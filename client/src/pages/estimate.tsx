@@ -10,20 +10,20 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from "@/components/ui/form";
-import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
 import logoImg from "@assets/logo_1772579467504.png";
 import {
   ArrowLeft, ArrowRight, CheckCircle2, Upload,
-  HardHat, Building2, Truck, Package, HelpCircle
+  HardHat, Building2, Truck, Package, HelpCircle,
+  Shield, Clock, Star, MapPin
 } from "lucide-react";
 
 const SERVICE_OPTIONS = [
-  { id: "Construction Cleanup", label: "Construction Cleanup", icon: HardHat, desc: "Post-build site cleanup & debris removal" },
-  { id: "Demolition", label: "Demolition", icon: Building2, desc: "Interior or exterior demolition work" },
-  { id: "Dumpster Rental", label: "Dumpster Rental", icon: Truck, desc: "Container drop-off & pickup" },
-  { id: "Debris Removal", label: "Debris Removal", icon: Package, desc: "One-time haul-away service" },
-  { id: "Other", label: "Other", icon: HelpCircle, desc: "Let us know what you need" },
+  { id: "Construction Cleanup", label: "Construction Cleanup", icon: HardHat, desc: "Post-build site cleanup & debris removal", color: "text-primary", selectedBg: "bg-primary/8 border-primary", glow: "shadow-primary/15" },
+  { id: "Demolition", label: "Demolition", icon: Building2, desc: "Interior or exterior demolition work", color: "text-gator-orange", selectedBg: "bg-gator-orange/8 border-gator-orange", glow: "shadow-gator-orange/15" },
+  { id: "Dumpster Rental", label: "Dumpster Rental", icon: Truck, desc: "Container drop-off & pickup", color: "text-primary", selectedBg: "bg-primary/8 border-primary", glow: "shadow-primary/15" },
+  { id: "Debris Removal", label: "Debris Removal", icon: Package, desc: "One-time haul-away service", color: "text-primary", selectedBg: "bg-primary/8 border-primary", glow: "shadow-primary/15" },
+  { id: "Other", label: "Other / Not Sure", icon: HelpCircle, desc: "Tell us what you need", color: "text-muted-foreground", selectedBg: "bg-muted/60 border-foreground/30", glow: "shadow-muted/15" },
 ];
 
 const step1Schema = z.object({ serviceType: z.string().min(1, "Please select a service type") });
@@ -42,7 +42,48 @@ type Step2Data = z.infer<typeof step2Schema>;
 type Step3Data = z.infer<typeof step3Schema>;
 type FormData = Step1Data & Step2Data & Step3Data;
 
-const STEPS = ["Service Type", "Project Details", "Your Info", "Confirm"];
+const STEPS = [
+  { label: "Service", shortLabel: "Service" },
+  { label: "Details", shortLabel: "Details" },
+  { label: "Contact", shortLabel: "Contact" },
+  { label: "Confirm", shortLabel: "Confirm" },
+];
+
+function StepIndicator({ currentStep }: { currentStep: number }) {
+  return (
+    <div className="mb-8">
+      <div className="flex items-center gap-0">
+        {STEPS.map((s, i) => {
+          const done = i < currentStep;
+          const active = i === currentStep;
+          return (
+            <div key={s.label} className="flex items-center flex-1">
+              <div className="flex flex-col items-center flex-1">
+                <div className={`w-9 h-9 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-300 border-2
+                  ${done
+                    ? "bg-primary border-primary text-primary-foreground"
+                    : active
+                    ? "bg-gator-orange border-gator-orange text-white shadow-lg shadow-gator-orange/25"
+                    : "bg-background border-border text-muted-foreground"
+                  }`}>
+                  {done ? <CheckCircle2 className="w-4 h-4" /> : <span>{i + 1}</span>}
+                </div>
+                <span className={`text-xs mt-1.5 font-medium hidden sm:block transition-colors
+                  ${active ? "text-gator-orange" : done ? "text-primary" : "text-muted-foreground"}`}>
+                  {s.label}
+                </span>
+              </div>
+              {i < STEPS.length - 1 && (
+                <div className={`flex-1 h-0.5 mx-1 mb-5 sm:mb-6 transition-all duration-500 rounded-full
+                  ${done ? "bg-primary" : "bg-border"}`} />
+              )}
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
 
 export default function EstimatePage() {
   const [, setLocation] = useLocation();
@@ -74,9 +115,7 @@ export default function EstimatePage() {
   const submitMutation = useMutation({
     mutationFn: (data: FormData) =>
       apiRequest("POST", "/api/estimates", { ...data, photoUrls: [] }),
-    onSuccess: () => {
-      setSubmitted(true);
-    },
+    onSuccess: () => setSubmitted(true),
     onError: () => {
       toast({ title: "Something went wrong", description: "Please try again.", variant: "destructive" });
     },
@@ -105,12 +144,12 @@ export default function EstimatePage() {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center p-4">
         <div className="max-w-md w-full text-center animate-fade-in">
-          <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-6">
-            <CheckCircle2 className="w-8 h-8 text-primary" />
+          <div className="w-20 h-20 rounded-full bg-primary/10 border-2 border-primary/20 flex items-center justify-center mx-auto mb-6">
+            <CheckCircle2 className="w-10 h-10 text-primary" />
           </div>
-          <h1 className="text-2xl font-bold mb-3">Estimate Requested!</h1>
-          <p className="text-muted-foreground mb-8">
-            Thanks, <strong>{formData.name}</strong>! We've received your request and will follow up at <strong>{formData.email}</strong> within 24 hours.
+          <h1 className="text-2xl font-black mb-3">Estimate Requested!</h1>
+          <p className="text-muted-foreground mb-8 leading-relaxed">
+            Thanks, <strong className="text-foreground">{formData.name}</strong>! We've received your request and will follow up at <strong className="text-foreground">{formData.email}</strong> within 24 hours.
           </p>
           <div className="flex flex-wrap justify-center gap-3">
             <Link href="/track">
@@ -126,172 +165,240 @@ export default function EstimatePage() {
   }
 
   return (
-    <div className="min-h-screen bg-background">
-      <header className="border-b border-border bg-background/95 backdrop-blur-sm sticky top-0 z-40">
-        <div className="max-w-3xl mx-auto px-4 py-4 flex items-center gap-4">
+    <div className="min-h-screen bg-background flex flex-col lg:flex-row">
+      <aside className="hidden lg:flex lg:w-80 xl:w-96 flex-col bg-[hsl(150_65%_15%)] text-white p-8 relative overflow-hidden flex-shrink-0">
+        <div className="absolute inset-0 opacity-5" style={{
+          backgroundImage: `repeating-linear-gradient(45deg, white 0, white 1px, transparent 0, transparent 50%)`,
+          backgroundSize: "20px 20px"
+        }} />
+        <div className="relative z-10 flex flex-col h-full">
           <Link href="/">
-            <Button variant="ghost" size="icon" data-testid="button-back-home">
-              <ArrowLeft className="w-4 h-4" />
-            </Button>
+            <div className="flex items-center gap-3 mb-12 group cursor-pointer">
+              <img src={logoImg} alt="Clear Gator Logo" className="h-12 w-12 object-contain drop-shadow-lg" />
+              <div>
+                <div className="font-black text-xl">Clear Gator</div>
+                <div className="text-white/50 text-xs">Construction Services</div>
+              </div>
+            </div>
           </Link>
-          <div className="flex items-center gap-2">
-            <img src={logoImg} alt="Clear Gator Logo" className="h-9 w-9 object-contain" />
-            <span className="font-bold">Clear Gator</span>
+
+          <div className="mb-8">
+            <div className="text-gator-orange-light font-bold text-xs uppercase tracking-widest mb-3">Free Estimate</div>
+            <h2 className="text-2xl font-black leading-tight mb-4">Let's Get Your Site Cleared</h2>
+            <p className="text-white/60 text-sm leading-relaxed">Fill out the quick form and our team will send you a detailed quote within 24 hours. No obligation.</p>
           </div>
-        </div>
-      </header>
 
-      <div className="max-w-3xl mx-auto px-4 py-10">
-        <div className="mb-8 text-center">
-          <Badge className="mb-3">Free — No Obligation</Badge>
-          <h1 className="text-2xl sm:text-3xl font-bold mb-2">Request a Free Estimate</h1>
-          <p className="text-muted-foreground text-sm">Takes less than 2 minutes. We'll respond within 24 hours.</p>
-        </div>
-
-        <div className="mb-8">
-          <div className="flex items-center justify-between gap-2">
-            {STEPS.map((s, i) => (
-              <div key={s} className="flex-1 flex flex-col items-center gap-1">
-                <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold transition-all
-                  ${i < step ? "bg-primary text-primary-foreground" : i === step ? "bg-[hsl(25_95%_50%)] text-white" : "bg-muted text-muted-foreground"}`}>
-                  {i < step ? <CheckCircle2 className="w-4 h-4" /> : i + 1}
+          <div className="space-y-4 mb-8">
+            {[
+              { icon: Shield, text: "Licensed & Fully Insured" },
+              { icon: Clock, text: "24-Hour Response Guarantee" },
+              { icon: Star, text: "4.9★ Customer Rating" },
+              { icon: MapPin, text: "Serving Tri-County Area" },
+            ].map(({ icon: Icon, text }) => (
+              <div key={text} className="flex items-center gap-3 text-sm text-white/70">
+                <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center flex-shrink-0">
+                  <Icon className="w-4 h-4 text-gator-orange-light" />
                 </div>
-                <span className={`text-xs hidden sm:block ${i === step ? "text-foreground font-medium" : "text-muted-foreground"}`}>{s}</span>
-                {i < STEPS.length - 1 && (
-                  <div className="absolute" />
-                )}
+                {text}
               </div>
             ))}
           </div>
-          <div className="mt-3 h-1.5 bg-muted rounded-full overflow-hidden">
-            <div
-              className="h-full bg-primary transition-all duration-500 rounded-full"
-              style={{ width: `${((step) / (STEPS.length - 1)) * 100}%` }}
-            />
+
+          <div className="mt-auto">
+            <div className="bg-white/8 rounded-xl p-5 border border-white/10">
+              <div className="text-gator-orange-light font-bold text-sm mb-1">Demo Job ID</div>
+              <div className="font-mono text-white text-lg font-bold mb-1">CG-2024-DEMO</div>
+              <div className="text-white/50 text-xs">Use this on the Track page to see a live demo.</div>
+            </div>
           </div>
         </div>
+      </aside>
 
-        {step === 0 && (
-          <Card className="animate-fade-in">
-            <CardHeader>
-              <CardTitle>What service do you need?</CardTitle>
-              <CardDescription>Select the type of work you're looking for.</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <Form {...step1Form}>
-                <form onSubmit={handleStep1} className="space-y-4">
-                  <FormField
-                    control={step1Form.control}
-                    name="serviceType"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormControl>
-                          <div className="grid sm:grid-cols-2 gap-3">
-                            {SERVICE_OPTIONS.map((opt) => (
-                              <button
-                                key={opt.id}
-                                type="button"
-                                data-testid={`service-option-${opt.id.toLowerCase().replace(/\s+/g, "-")}`}
-                                onClick={() => field.onChange(opt.id)}
-                                className={`text-left p-4 rounded-md border-2 transition-all hover-elevate
-                                  ${field.value === opt.id
-                                    ? "border-primary bg-primary/5 dark:bg-primary/10"
-                                    : "border-border"
-                                  }`}
-                              >
-                                <div className="flex items-center gap-3 mb-1">
-                                  <opt.icon className={`w-5 h-5 ${field.value === opt.id ? "text-primary" : "text-muted-foreground"}`} />
-                                  <span className="font-semibold text-sm">{opt.label}</span>
-                                </div>
-                                <p className="text-xs text-muted-foreground">{opt.desc}</p>
-                              </button>
-                            ))}
-                          </div>
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <div className="flex justify-end pt-2">
-                    <Button type="submit" data-testid="button-next-step1" className="gap-2">
-                      Next <ArrowRight className="w-4 h-4" />
-                    </Button>
-                  </div>
-                </form>
-              </Form>
-            </CardContent>
-          </Card>
-        )}
+      <div className="flex-1 flex flex-col min-h-screen lg:min-h-0">
+        <header className="border-b border-border bg-background/95 backdrop-blur-sm sticky top-0 z-40 lg:hidden">
+          <div className="max-w-3xl mx-auto px-4 py-3.5 flex items-center gap-3">
+            <Link href="/">
+              <Button variant="ghost" size="icon" data-testid="button-back-home">
+                <ArrowLeft className="w-4 h-4" />
+              </Button>
+            </Link>
+            <div className="flex items-center gap-2">
+              <img src={logoImg} alt="Clear Gator Logo" className="h-8 w-8 object-contain" />
+              <span className="font-bold text-sm">Clear Gator — Free Estimate</span>
+            </div>
+          </div>
+        </header>
 
-        {step === 1 && (
-          <Card className="animate-fade-in">
-            <CardHeader>
-              <CardTitle>Describe your project</CardTitle>
-              <CardDescription>Tell us the scope, timeline, and any special requirements.</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <Form {...step2Form}>
-                <form onSubmit={handleStep2} className="space-y-4">
-                  <FormField
-                    control={step2Form.control}
-                    name="description"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Project Description</FormLabel>
-                        <FormControl>
-                          <Textarea
-                            {...field}
-                            rows={5}
-                            placeholder="e.g. We're finishing a 2,500 sq ft new build and need full post-construction cleanup including all floors, windows, and exterior. Timeline is end of next week."
-                            data-testid="input-description"
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
+        <div className="flex-1 max-w-2xl mx-auto w-full px-4 py-10 lg:py-12">
+          <div className="mb-8 lg:hidden text-center">
+            <Link href="/" className="inline-flex items-center gap-2 mb-6 text-muted-foreground hover:text-foreground transition-colors">
+              <ArrowLeft className="w-4 h-4" /> Back to home
+            </Link>
+            <h1 className="text-2xl font-black mb-1">Request a Free Estimate</h1>
+            <p className="text-muted-foreground text-sm">Takes less than 2 minutes. We'll respond within 24 hours.</p>
+          </div>
 
-                  <div className="border-2 border-dashed border-border rounded-md p-6 text-center">
-                    <Upload className="w-8 h-8 text-muted-foreground mx-auto mb-2" />
-                    <p className="text-sm font-medium mb-1">Attach Site Photos</p>
-                    <p className="text-xs text-muted-foreground">Drag and drop or click to upload. Optional — helps us give you an accurate quote.</p>
-                    <Button type="button" variant="outline" size="sm" className="mt-3" data-testid="button-upload-photos">
-                      Choose Files
-                    </Button>
-                  </div>
+          <div className="hidden lg:block mb-8">
+            <h1 className="text-2xl font-black mb-1">Request a Free Estimate</h1>
+            <p className="text-muted-foreground text-sm">Takes less than 2 minutes. We'll respond within 24 hours.</p>
+          </div>
 
-                  <div className="flex gap-3 justify-between pt-2">
-                    <Button type="button" variant="outline" onClick={() => setStep(0)} data-testid="button-back-step2">
-                      <ArrowLeft className="w-4 h-4 mr-2" /> Back
-                    </Button>
-                    <Button type="submit" data-testid="button-next-step2" className="gap-2">
-                      Next <ArrowRight className="w-4 h-4" />
-                    </Button>
-                  </div>
-                </form>
-              </Form>
-            </CardContent>
-          </Card>
-        )}
+          <StepIndicator currentStep={step} />
 
-        {step === 2 && (
-          <Card className="animate-fade-in">
-            <CardHeader>
-              <CardTitle>Your Contact Information</CardTitle>
-              <CardDescription>We'll send your estimate here and follow up to schedule.</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <Form {...step3Form}>
-                <form onSubmit={handleStep3} className="space-y-4">
-                  <div className="grid sm:grid-cols-2 gap-4">
+          {step === 0 && (
+            <Card className="animate-fade-in border-card-border shadow-sm">
+              <CardHeader className="pb-4">
+                <CardTitle className="text-lg font-bold">What service do you need?</CardTitle>
+                <CardDescription>Select the type of work you're looking for.</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <Form {...step1Form}>
+                  <form onSubmit={handleStep1} className="space-y-4">
                     <FormField
-                      control={step3Form.control}
-                      name="name"
+                      control={step1Form.control}
+                      name="serviceType"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Full Name</FormLabel>
                           <FormControl>
-                            <Input {...field} placeholder="John Smith" data-testid="input-name" />
+                            <div className="grid sm:grid-cols-2 gap-3">
+                              {SERVICE_OPTIONS.map((opt) => {
+                                const selected = field.value === opt.id;
+                                return (
+                                  <button
+                                    key={opt.id}
+                                    type="button"
+                                    data-testid={`service-option-${opt.id.toLowerCase().replace(/\s+/g, "-")}`}
+                                    onClick={() => field.onChange(opt.id)}
+                                    className={`text-left p-4 rounded-lg border-2 transition-all duration-150
+                                      ${selected
+                                        ? `${opt.selectedBg} shadow-md ${opt.glow}`
+                                        : "border-border hover:border-primary/30 hover:bg-muted/30"
+                                      }`}
+                                  >
+                                    <div className="flex flex-col items-start gap-2">
+                                      <div className={`w-10 h-10 rounded-lg ${selected ? "bg-current/10" : "bg-muted"} flex items-center justify-center`}>
+                                        <opt.icon className={`w-5 h-5 ${selected ? opt.color : "text-muted-foreground"}`} />
+                                      </div>
+                                      <span className={`font-bold text-sm ${selected ? opt.color : "text-foreground"}`}>{opt.label}</span>
+                                      <p className="text-xs text-muted-foreground leading-snug">{opt.desc}</p>
+                                    </div>
+                                  </button>
+                                );
+                              })}
+                            </div>
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <div className="flex justify-end pt-2">
+                      <Button type="submit" data-testid="button-next-step1" className="gap-2 px-6">
+                        Next Step <ArrowRight className="w-4 h-4" />
+                      </Button>
+                    </div>
+                  </form>
+                </Form>
+              </CardContent>
+            </Card>
+          )}
+
+          {step === 1 && (
+            <Card className="animate-fade-in border-card-border shadow-sm">
+              <CardHeader className="pb-4">
+                <CardTitle className="text-lg font-bold">Describe your project</CardTitle>
+                <CardDescription>Tell us the scope, timeline, and any special requirements.</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <Form {...step2Form}>
+                  <form onSubmit={handleStep2} className="space-y-4">
+                    <FormField
+                      control={step2Form.control}
+                      name="description"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel className="font-semibold">Project Description</FormLabel>
+                          <FormControl>
+                            <Textarea
+                              {...field}
+                              rows={5}
+                              placeholder="e.g. We're finishing a 2,500 sq ft new build and need full post-construction cleanup including all floors, windows, and exterior. Timeline is end of next week."
+                              data-testid="input-description"
+                              className="resize-none"
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    <div className="border-2 border-dashed border-border rounded-lg p-6 text-center bg-muted/20 hover:bg-muted/40 transition-colors">
+                      <Upload className="w-8 h-8 text-muted-foreground mx-auto mb-2" />
+                      <p className="text-sm font-semibold mb-1">Attach Site Photos</p>
+                      <p className="text-xs text-muted-foreground mb-3">Optional — photos help us give you an accurate quote.</p>
+                      <Button type="button" variant="outline" size="sm" data-testid="button-upload-photos">
+                        Choose Files
+                      </Button>
+                    </div>
+
+                    <div className="flex gap-3 justify-between pt-2">
+                      <Button type="button" variant="outline" onClick={() => setStep(0)} data-testid="button-back-step2">
+                        <ArrowLeft className="w-4 h-4 mr-2" /> Back
+                      </Button>
+                      <Button type="submit" data-testid="button-next-step2" className="gap-2 px-6">
+                        Next Step <ArrowRight className="w-4 h-4" />
+                      </Button>
+                    </div>
+                  </form>
+                </Form>
+              </CardContent>
+            </Card>
+          )}
+
+          {step === 2 && (
+            <Card className="animate-fade-in border-card-border shadow-sm">
+              <CardHeader className="pb-4">
+                <CardTitle className="text-lg font-bold">Your Contact Information</CardTitle>
+                <CardDescription>We'll send your estimate here and follow up to schedule.</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <Form {...step3Form}>
+                  <form onSubmit={handleStep3} className="space-y-4">
+                    <div className="grid sm:grid-cols-2 gap-4">
+                      <FormField
+                        control={step3Form.control}
+                        name="name"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel className="font-semibold">Full Name</FormLabel>
+                            <FormControl>
+                              <Input {...field} placeholder="John Smith" data-testid="input-name" />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                      <FormField
+                        control={step3Form.control}
+                        name="phone"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel className="font-semibold">Phone Number</FormLabel>
+                            <FormControl>
+                              <Input {...field} placeholder="(555) 000-0000" type="tel" data-testid="input-phone" />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    </div>
+                    <FormField
+                      control={step3Form.control}
+                      name="email"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel className="font-semibold">Email Address</FormLabel>
+                          <FormControl>
+                            <Input {...field} placeholder="you@example.com" type="email" data-testid="input-email" />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -299,100 +406,74 @@ export default function EstimatePage() {
                     />
                     <FormField
                       control={step3Form.control}
-                      name="phone"
+                      name="location"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Phone Number</FormLabel>
+                          <FormLabel className="font-semibold">Project Address or Area</FormLabel>
                           <FormControl>
-                            <Input {...field} placeholder="(555) 000-0000" type="tel" data-testid="input-phone" />
+                            <Input {...field} placeholder="123 Main St, Miami, FL 33101" data-testid="input-location" />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
                       )}
                     />
-                  </div>
-                  <FormField
-                    control={step3Form.control}
-                    name="email"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Email Address</FormLabel>
-                        <FormControl>
-                          <Input {...field} placeholder="you@example.com" type="email" data-testid="input-email" />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={step3Form.control}
-                    name="location"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Project Address or Area</FormLabel>
-                        <FormControl>
-                          <Input {...field} placeholder="123 Main St, Miami, FL 33101" data-testid="input-location" />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <div className="flex gap-3 justify-between pt-2">
-                    <Button type="button" variant="outline" onClick={() => setStep(1)} data-testid="button-back-step3">
-                      <ArrowLeft className="w-4 h-4 mr-2" /> Back
-                    </Button>
-                    <Button type="submit" data-testid="button-next-step3" className="gap-2">
-                      Review <ArrowRight className="w-4 h-4" />
-                    </Button>
-                  </div>
-                </form>
-              </Form>
-            </CardContent>
-          </Card>
-        )}
+                    <div className="flex gap-3 justify-between pt-2">
+                      <Button type="button" variant="outline" onClick={() => setStep(1)} data-testid="button-back-step3">
+                        <ArrowLeft className="w-4 h-4 mr-2" /> Back
+                      </Button>
+                      <Button type="submit" data-testid="button-next-step3" className="gap-2 px-6">
+                        Review <ArrowRight className="w-4 h-4" />
+                      </Button>
+                    </div>
+                  </form>
+                </Form>
+              </CardContent>
+            </Card>
+          )}
 
-        {step === 3 && (
-          <Card className="animate-fade-in">
-            <CardHeader>
-              <CardTitle>Review & Submit</CardTitle>
-              <CardDescription>Confirm your details before we send your estimate request.</CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="grid sm:grid-cols-2 gap-4">
-                {[
-                  { label: "Service Type", value: formData.serviceType },
-                  { label: "Name", value: formData.name },
-                  { label: "Email", value: formData.email },
-                  { label: "Phone", value: formData.phone },
-                  { label: "Location", value: formData.location },
-                ].map(({ label, value }) => (
-                  <div key={label} className="bg-muted/40 dark:bg-muted/20 rounded-md p-3">
-                    <div className="text-xs text-muted-foreground mb-1">{label}</div>
-                    <div className="text-sm font-medium">{value}</div>
-                  </div>
-                ))}
-              </div>
-              <div className="bg-muted/40 dark:bg-muted/20 rounded-md p-3">
-                <div className="text-xs text-muted-foreground mb-1">Project Description</div>
-                <div className="text-sm">{formData.description}</div>
-              </div>
-              <div className="flex gap-3 justify-between pt-2">
-                <Button type="button" variant="outline" onClick={() => setStep(2)} data-testid="button-back-step4">
-                  <ArrowLeft className="w-4 h-4 mr-2" /> Edit
-                </Button>
-                <Button
-                  onClick={handleSubmit}
-                  disabled={submitMutation.isPending}
-                  data-testid="button-submit-estimate"
-                  className="bg-[hsl(25_95%_50%)] text-white border-[hsl(25_90%_40%)] gap-2"
-                >
-                  {submitMutation.isPending ? "Submitting..." : "Submit Estimate Request"}
-                  {!submitMutation.isPending && <CheckCircle2 className="w-4 h-4" />}
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
-        )}
+          {step === 3 && (
+            <Card className="animate-fade-in border-card-border shadow-sm">
+              <CardHeader className="pb-4">
+                <CardTitle className="text-lg font-bold">Review & Submit</CardTitle>
+                <CardDescription>Confirm your details before we send your estimate request.</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="grid sm:grid-cols-2 gap-3">
+                  {[
+                    { label: "Service Type", value: formData.serviceType },
+                    { label: "Name", value: formData.name },
+                    { label: "Email", value: formData.email },
+                    { label: "Phone", value: formData.phone },
+                    { label: "Location", value: formData.location },
+                  ].map(({ label, value }) => (
+                    <div key={label} className="bg-muted/40 dark:bg-muted/20 rounded-lg p-3.5 border border-border/50">
+                      <div className="text-xs text-muted-foreground mb-1 font-medium uppercase tracking-wide">{label}</div>
+                      <div className="text-sm font-semibold">{value}</div>
+                    </div>
+                  ))}
+                </div>
+                <div className="bg-muted/40 dark:bg-muted/20 rounded-lg p-3.5 border border-border/50">
+                  <div className="text-xs text-muted-foreground mb-1 font-medium uppercase tracking-wide">Project Description</div>
+                  <div className="text-sm leading-relaxed">{formData.description}</div>
+                </div>
+                <div className="flex gap-3 justify-between pt-2">
+                  <Button type="button" variant="outline" onClick={() => setStep(2)} data-testid="button-back-step4">
+                    <ArrowLeft className="w-4 h-4 mr-2" /> Edit
+                  </Button>
+                  <Button
+                    onClick={handleSubmit}
+                    disabled={submitMutation.isPending}
+                    data-testid="button-submit-estimate"
+                    className="bg-gator-orange hover:bg-gator-orange-dark text-white font-bold gap-2 shadow-lg shadow-gator-orange/25 px-8"
+                  >
+                    {submitMutation.isPending ? "Submitting..." : "Submit Estimate Request"}
+                    {!submitMutation.isPending && <CheckCircle2 className="w-4 h-4" />}
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+          )}
+        </div>
       </div>
     </div>
   );

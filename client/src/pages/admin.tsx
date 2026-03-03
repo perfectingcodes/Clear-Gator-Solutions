@@ -19,7 +19,8 @@ import { useToast } from "@/hooks/use-toast";
 import logoImg from "@assets/logo_1772579467504.png";
 import {
   ArrowLeft, Plus, Upload, Clock, CheckCircle2, Wrench, PauseCircle,
-  Calendar, Eye, LayoutDashboard, FileText, Lock
+  Calendar, Eye, LayoutDashboard, FileText, Lock, TrendingUp,
+  ChevronDown, ChevronUp, Mail, Phone, MapPin, DollarSign, User
 } from "lucide-react";
 import type { Job, JobPhoto, Estimate } from "@shared/schema";
 import { JOB_STATUSES, SERVICE_TYPES } from "@shared/schema";
@@ -27,10 +28,17 @@ import { JOB_STATUSES, SERVICE_TYPES } from "@shared/schema";
 const ADMIN_PASSWORD = "cleargator2024";
 
 const STATUS_COLORS: Record<string, string> = {
-  Scheduled: "bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/20",
-  "In Progress": "bg-[hsl(25_95%_50%/0.12)] text-[hsl(25_80%_38%)] dark:text-[hsl(25_95%_65%)] border-[hsl(25_95%_50%/0.25)]",
-  Completed: "bg-primary/10 text-primary border-primary/20",
+  Scheduled: "bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/25",
+  "In Progress": "bg-gator-orange/12 text-gator-orange-dark dark:text-gator-orange-light border-gator-orange/30",
+  Completed: "bg-primary/10 text-primary border-primary/25",
   "On Hold": "bg-muted text-muted-foreground border-border",
+};
+
+const STATUS_LEFT_BORDER: Record<string, string> = {
+  Scheduled: "border-l-blue-500",
+  "In Progress": "border-l-gator-orange",
+  Completed: "border-l-primary",
+  "On Hold": "border-l-border",
 };
 
 const STATUS_ICONS: Record<string, React.ElementType> = {
@@ -40,10 +48,17 @@ const STATUS_ICONS: Record<string, React.ElementType> = {
   "On Hold": PauseCircle,
 };
 
+const ESTIMATE_STATUS_COLORS: Record<string, string> = {
+  Pending: "bg-yellow-500/10 text-yellow-600 dark:text-yellow-400 border-yellow-500/25",
+  Reviewed: "bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/25",
+  Quoted: "bg-primary/10 text-primary border-primary/25",
+  Declined: "bg-destructive/10 text-destructive border-destructive/25",
+};
+
 function StatusBadge({ status }: { status: string }) {
   const Icon = STATUS_ICONS[status] || Clock;
   return (
-    <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-semibold border ${STATUS_COLORS[status] || STATUS_COLORS["Scheduled"]}`}>
+    <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-bold border ${STATUS_COLORS[status] || STATUS_COLORS["Scheduled"]}`}>
       <Icon className="w-3 h-3" />
       {status}
     </span>
@@ -91,19 +106,19 @@ function CreateJobDialog({ onCreated }: { onCreated: () => void }) {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button data-testid="button-create-job" className="gap-2">
+        <Button data-testid="button-create-job" className="gap-2 font-semibold shadow-md">
           <Plus className="w-4 h-4" /> New Job
         </Button>
       </DialogTrigger>
       <DialogContent className="max-w-lg max-h-[90vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle>Create New Job</DialogTitle>
+          <DialogTitle className="font-black">Create New Job</DialogTitle>
         </DialogHeader>
         <Form {...form}>
           <form onSubmit={form.handleSubmit((d) => createMutation.mutate(d))} className="space-y-4">
             <FormField control={form.control} name="title" render={({ field }) => (
               <FormItem>
-                <FormLabel>Job Title</FormLabel>
+                <FormLabel className="font-semibold">Job Title</FormLabel>
                 <FormControl><Input {...field} placeholder="Post-Construction Cleanup — Main St" data-testid="input-job-title" /></FormControl>
                 <FormMessage />
               </FormItem>
@@ -112,7 +127,7 @@ function CreateJobDialog({ onCreated }: { onCreated: () => void }) {
             <div className="grid grid-cols-2 gap-4">
               <FormField control={form.control} name="serviceType" render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Service Type</FormLabel>
+                  <FormLabel className="font-semibold">Service Type</FormLabel>
                   <Select onValueChange={field.onChange} value={field.value}>
                     <FormControl>
                       <SelectTrigger data-testid="select-service-type">
@@ -128,7 +143,7 @@ function CreateJobDialog({ onCreated }: { onCreated: () => void }) {
               )} />
               <FormField control={form.control} name="scheduledDate" render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Scheduled Date</FormLabel>
+                  <FormLabel className="font-semibold">Scheduled Date</FormLabel>
                   <FormControl><Input {...field} type="date" data-testid="input-scheduled-date" /></FormControl>
                   <FormMessage />
                 </FormItem>
@@ -138,14 +153,14 @@ function CreateJobDialog({ onCreated }: { onCreated: () => void }) {
             <div className="grid grid-cols-2 gap-4">
               <FormField control={form.control} name="customerName" render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Customer Name</FormLabel>
+                  <FormLabel className="font-semibold">Customer Name</FormLabel>
                   <FormControl><Input {...field} placeholder="John Smith" data-testid="input-customer-name" /></FormControl>
                   <FormMessage />
                 </FormItem>
               )} />
               <FormField control={form.control} name="customerPhone" render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Phone</FormLabel>
+                  <FormLabel className="font-semibold">Phone</FormLabel>
                   <FormControl><Input {...field} placeholder="(555) 000-0000" data-testid="input-customer-phone" /></FormControl>
                   <FormMessage />
                 </FormItem>
@@ -154,7 +169,7 @@ function CreateJobDialog({ onCreated }: { onCreated: () => void }) {
 
             <FormField control={form.control} name="customerEmail" render={({ field }) => (
               <FormItem>
-                <FormLabel>Customer Email</FormLabel>
+                <FormLabel className="font-semibold">Customer Email</FormLabel>
                 <FormControl><Input {...field} placeholder="customer@email.com" data-testid="input-customer-email" /></FormControl>
                 <FormMessage />
               </FormItem>
@@ -162,7 +177,7 @@ function CreateJobDialog({ onCreated }: { onCreated: () => void }) {
 
             <FormField control={form.control} name="location" render={({ field }) => (
               <FormItem>
-                <FormLabel>Project Location</FormLabel>
+                <FormLabel className="font-semibold">Project Location</FormLabel>
                 <FormControl><Input {...field} placeholder="123 Main St, Miami, FL" data-testid="input-job-location" /></FormControl>
                 <FormMessage />
               </FormItem>
@@ -170,7 +185,7 @@ function CreateJobDialog({ onCreated }: { onCreated: () => void }) {
 
             <FormField control={form.control} name="description" render={({ field }) => (
               <FormItem>
-                <FormLabel>Description (optional)</FormLabel>
+                <FormLabel className="font-semibold">Description <span className="text-muted-foreground font-normal">(optional)</span></FormLabel>
                 <FormControl><Textarea {...field} rows={3} placeholder="Project details..." data-testid="input-job-description" /></FormControl>
                 <FormMessage />
               </FormItem>
@@ -178,13 +193,13 @@ function CreateJobDialog({ onCreated }: { onCreated: () => void }) {
 
             <FormField control={form.control} name="invoiceAmount" render={({ field }) => (
               <FormItem>
-                <FormLabel>Invoice Amount ($) — optional</FormLabel>
+                <FormLabel className="font-semibold">Invoice Amount ($) <span className="text-muted-foreground font-normal">— optional</span></FormLabel>
                 <FormControl><Input {...field} placeholder="0.00" type="number" step="0.01" data-testid="input-invoice-amount" /></FormControl>
                 <FormMessage />
               </FormItem>
             )} />
 
-            <Button type="submit" disabled={createMutation.isPending} className="w-full" data-testid="button-submit-new-job">
+            <Button type="submit" disabled={createMutation.isPending} className="w-full font-semibold" data-testid="button-submit-new-job">
               {createMutation.isPending ? "Creating..." : "Create Job"}
             </Button>
           </form>
@@ -198,7 +213,7 @@ function JobRow({ job, onUpdated }: { job: Job; onUpdated: () => void }) {
   const { toast } = useToast();
   const qc = useQueryClient();
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const [photoUploading, setPhotoUploading] = useState(false);
+  const [uploadPhotoMutationPending, setUploadPending] = useState(false);
   const [showDetail, setShowDetail] = useState(false);
 
   const photosQuery = useQuery<JobPhoto[]>({
@@ -220,6 +235,7 @@ function JobRow({ job, onUpdated }: { job: Job; onUpdated: () => void }) {
 
   const uploadPhotoMutation = useMutation({
     mutationFn: async (file: File) => {
+      setUploadPending(true);
       const formData = new FormData();
       formData.append("photo", file);
       formData.append("jobId", job.id);
@@ -230,8 +246,12 @@ function JobRow({ job, onUpdated }: { job: Job; onUpdated: () => void }) {
     onSuccess: () => {
       toast({ title: "Photo Uploaded" });
       qc.invalidateQueries({ queryKey: ["/api/jobs", job.id, "photos"] });
+      setUploadPending(false);
     },
-    onError: () => toast({ title: "Upload failed", variant: "destructive" }),
+    onError: () => {
+      toast({ title: "Upload failed", variant: "destructive" });
+      setUploadPending(false);
+    },
   });
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -239,16 +259,25 @@ function JobRow({ job, onUpdated }: { job: Job; onUpdated: () => void }) {
     if (file) uploadPhotoMutation.mutate(file);
   };
 
+  const leftBorder = STATUS_LEFT_BORDER[job.status] || "border-l-border";
+
   return (
-    <div className="border border-card-border rounded-md bg-card" data-testid={`job-row-${job.id}`}>
+    <div className={`border border-card-border border-l-4 ${leftBorder} rounded-lg bg-card overflow-hidden`} data-testid={`job-row-${job.id}`}>
       <div className="p-4 flex flex-wrap items-center gap-4 justify-between">
         <div className="min-w-0 flex-1">
-          <div className="flex items-center gap-2 flex-wrap">
-            <span className="font-mono text-xs text-muted-foreground">{job.jobId}</span>
+          <div className="flex items-center gap-2 flex-wrap mb-1.5">
+            <span className="font-mono text-xs text-muted-foreground bg-muted/60 px-1.5 py-0.5 rounded">{job.jobId}</span>
             <StatusBadge status={job.status} />
+            <Badge variant="outline" className="text-xs font-medium">{job.serviceType}</Badge>
           </div>
-          <div className="font-semibold text-sm mt-1 truncate">{job.title}</div>
-          <div className="text-xs text-muted-foreground mt-0.5">{job.customerName} — {job.location}</div>
+          <div className="font-bold text-sm">{job.title}</div>
+          <div className="text-xs text-muted-foreground mt-0.5 flex items-center gap-1">
+            <User className="w-3 h-3" />
+            {job.customerName}
+            <span className="text-border mx-1">·</span>
+            <MapPin className="w-3 h-3" />
+            {job.location}
+          </div>
         </div>
 
         <div className="flex items-center gap-2 flex-wrap">
@@ -266,11 +295,11 @@ function JobRow({ job, onUpdated }: { job: Job; onUpdated: () => void }) {
             size="sm"
             variant="outline"
             onClick={() => fileInputRef.current?.click()}
-            disabled={uploadPhotoMutation.isPending}
+            disabled={uploadPhotoMutationPending}
             data-testid={`button-upload-photo-${job.id}`}
           >
-            <Upload className="w-3.5 h-3.5 mr-1" />
-            {uploadPhotoMutation.isPending ? "..." : "Photo"}
+            <Upload className="w-3.5 h-3.5 mr-1.5" />
+            {uploadPhotoMutationPending ? "Uploading..." : "Photo"}
           </Button>
 
           <Button
@@ -278,42 +307,57 @@ function JobRow({ job, onUpdated }: { job: Job; onUpdated: () => void }) {
             variant="ghost"
             onClick={() => setShowDetail(!showDetail)}
             data-testid={`button-expand-job-${job.id}`}
+            className="gap-1"
           >
-            <Eye className="w-3.5 h-3.5" />
+            {showDetail ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+            <span className="text-xs">{showDetail ? "Hide" : "Details"}</span>
           </Button>
         </div>
       </div>
 
       {showDetail && (
-        <div className="border-t border-card-border p-4 space-y-3 animate-fade-in">
+        <div className="border-t border-card-border p-4 space-y-4 animate-fade-in bg-muted/20">
           <div className="grid sm:grid-cols-3 gap-3 text-sm">
-            <div><span className="text-muted-foreground text-xs">Email</span><div className="mt-0.5 truncate">{job.customerEmail}</div></div>
-            <div><span className="text-muted-foreground text-xs">Phone</span><div className="mt-0.5">{job.customerPhone}</div></div>
-            <div><span className="text-muted-foreground text-xs">Service</span><div className="mt-0.5">{job.serviceType}</div></div>
+            {[
+              { icon: Mail, label: "Email", value: job.customerEmail },
+              { icon: Phone, label: "Phone", value: job.customerPhone },
+              { icon: DollarSign, label: "Invoice", value: job.invoiceAmount ? `$${parseFloat(job.invoiceAmount).toFixed(2)} — ${job.invoicePaid ? "Paid" : "Unpaid"}` : "Not set" },
+            ].map(({ icon: Icon, label, value }) => (
+              <div key={label} className="bg-background rounded-lg p-3 border border-border/50">
+                <div className="flex items-center gap-1.5 text-xs text-muted-foreground mb-1">
+                  <Icon className="w-3 h-3" />
+                  {label}
+                </div>
+                <div className="text-sm font-semibold truncate">{value}</div>
+              </div>
+            ))}
           </div>
+
           {job.description && (
-            <div className="text-sm"><span className="text-muted-foreground text-xs">Description</span><div className="mt-0.5">{job.description}</div></div>
+            <div className="bg-background rounded-lg p-3 border border-border/50">
+              <div className="text-xs text-muted-foreground mb-1 font-medium">Description</div>
+              <div className="text-sm leading-relaxed">{job.description}</div>
+            </div>
           )}
-          {job.invoiceAmount && (
-            <div className="text-sm"><span className="text-muted-foreground text-xs">Invoice</span><div className="mt-0.5 font-semibold">${parseFloat(job.invoiceAmount).toFixed(2)} — {job.invoicePaid ? "Paid" : "Unpaid"}</div></div>
-          )}
+
           <div>
-            <div className="text-xs text-muted-foreground mb-2">Site Photos</div>
+            <div className="text-xs text-muted-foreground font-semibold mb-2 uppercase tracking-wide">Site Photos</div>
             {photosQuery.isLoading ? (
-              <div className="grid grid-cols-4 gap-2">{Array.from({ length: 4 }).map((_, i) => <Skeleton key={i} className="aspect-square rounded" />)}</div>
+              <div className="grid grid-cols-4 gap-2">{Array.from({ length: 4 }).map((_, i) => <Skeleton key={i} className="aspect-square rounded-lg" />)}</div>
             ) : photosQuery.data?.length ? (
               <div className="grid grid-cols-4 sm:grid-cols-6 gap-2">
                 {photosQuery.data.map((p) => (
-                  <img key={p.id} src={p.url} alt={p.caption || "Photo"} className="aspect-square rounded object-cover border border-card-border" />
+                  <img key={p.id} src={p.url} alt={p.caption || "Photo"} className="aspect-square rounded-lg object-cover border border-card-border hover:shadow-md transition-shadow cursor-pointer" />
                 ))}
               </div>
             ) : (
-              <p className="text-xs text-muted-foreground">No photos uploaded yet.</p>
+              <div className="text-xs text-muted-foreground py-4 text-center border border-dashed border-border rounded-lg">No photos uploaded yet.</div>
             )}
           </div>
-          <div className="pt-1">
-            <Link href={`/track`}>
-              <Button size="sm" variant="outline" className="text-xs gap-1.5" onClick={() => {}}>
+
+          <div>
+            <Link href="/track">
+              <Button size="sm" variant="outline" className="text-xs gap-1.5 font-medium">
                 <Eye className="w-3 h-3" /> Customer View
               </Button>
             </Link>
@@ -340,39 +384,54 @@ function LoginScreen({ onLogin }: { onLogin: () => void }) {
 
   return (
     <div className="min-h-screen bg-background flex items-center justify-center p-4">
-      <Card className="w-full max-w-sm animate-fade-in">
-        <CardHeader className="text-center">
-          <div className="flex items-center justify-center mx-auto mb-4">
-            <img src={logoImg} alt="Clear Gator Logo" className="h-20 w-20 object-contain" />
+      <div className="w-full max-w-sm animate-fade-in">
+        <div className="text-center mb-8">
+          <div className="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-primary/10 border border-primary/20 mb-5">
+            <img src={logoImg} alt="Clear Gator Logo" className="h-12 w-12 object-contain" />
           </div>
-          <CardTitle>Staff Portal</CardTitle>
-          <CardDescription>Enter your password to access the admin dashboard.</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="space-y-2">
-              <div className="relative">
-                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-                <Input
-                  type="password"
-                  value={password}
-                  onChange={(e) => { setPassword(e.target.value); setError(false); }}
-                  placeholder="Password"
-                  className="pl-9"
-                  data-testid="input-admin-password"
-                />
+          <h1 className="text-2xl font-black mb-1">Staff Portal</h1>
+          <p className="text-muted-foreground text-sm">Enter your password to access the admin dashboard.</p>
+        </div>
+
+        <Card className="border-card-border shadow-md">
+          <CardContent className="pt-6">
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div className="space-y-2">
+                <div className="relative">
+                  <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                  <Input
+                    type="password"
+                    value={password}
+                    onChange={(e) => { setPassword(e.target.value); setError(false); }}
+                    placeholder="Enter password"
+                    className="pl-9"
+                    data-testid="input-admin-password"
+                  />
+                </div>
+                {error && (
+                  <p className="text-destructive text-xs flex items-center gap-1">
+                    <span className="inline-block w-1 h-1 rounded-full bg-destructive" />
+                    Incorrect password. Try again.
+                  </p>
+                )}
               </div>
-              {error && <p className="text-destructive text-xs">Incorrect password. Try again.</p>}
-            </div>
-            <Button type="submit" className="w-full" data-testid="button-admin-login">
-              Sign In
-            </Button>
-          </form>
-          <div className="mt-4 p-3 bg-muted/50 rounded-md text-xs text-muted-foreground">
-            Demo password: <span className="font-mono font-medium">{ADMIN_PASSWORD}</span>
-          </div>
-        </CardContent>
-      </Card>
+              <Button type="submit" className="w-full font-semibold" data-testid="button-admin-login">
+                Sign In
+              </Button>
+            </form>
+          </CardContent>
+        </Card>
+
+        <div className="mt-4 p-3.5 bg-muted/50 rounded-lg text-xs text-muted-foreground border border-border/50 text-center">
+          Demo password: <span className="font-mono font-bold text-foreground">{ADMIN_PASSWORD}</span>
+        </div>
+
+        <div className="mt-4 text-center">
+          <Link href="/" className="text-xs text-muted-foreground hover:text-foreground transition-colors">
+            ← Back to website
+          </Link>
+        </div>
+      </div>
     </div>
   );
 }
@@ -408,19 +467,29 @@ export default function AdminPage() {
   const estimates = estimatesQuery.data || [];
   const stats = statsQuery.data;
 
+  const statCards = [
+    { label: "Total Jobs", value: stats?.totalJobs ?? "—", icon: LayoutDashboard, iconBg: "bg-primary/10", iconColor: "text-primary", valueBg: "text-primary" },
+    { label: "In Progress", value: stats?.inProgress ?? "—", icon: Wrench, iconBg: "bg-gator-orange/10", iconColor: "text-gator-orange", valueBg: "text-gator-orange" },
+    { label: "Completed", value: stats?.completed ?? "—", icon: CheckCircle2, iconBg: "bg-emerald-500/10", iconColor: "text-emerald-600 dark:text-emerald-400", valueBg: "text-emerald-600 dark:text-emerald-400" },
+    { label: "Pending Estimates", value: stats?.pendingEstimates ?? "—", icon: TrendingUp, iconBg: "bg-blue-500/10", iconColor: "text-blue-600 dark:text-blue-400", valueBg: "text-blue-600 dark:text-blue-400" },
+  ];
+
   return (
     <div className="min-h-screen bg-background">
-      <header className="border-b border-border bg-background/95 backdrop-blur-sm sticky top-0 z-40">
-        <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between gap-4">
+      <header className="border-b border-border bg-background/95 backdrop-blur-sm sticky top-0 z-40 shadow-sm">
+        <div className="max-w-6xl mx-auto px-4 py-3.5 flex items-center justify-between gap-4">
           <div className="flex items-center gap-3">
             <Link href="/">
               <Button variant="ghost" size="icon" data-testid="button-back-home">
                 <ArrowLeft className="w-4 h-4" />
               </Button>
             </Link>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2.5">
               <img src={logoImg} alt="Clear Gator Logo" className="h-9 w-9 object-contain" />
-              <span className="font-bold">Clear Gator Admin</span>
+              <div>
+                <div className="font-black text-sm leading-none">Clear Gator</div>
+                <div className="text-xs text-muted-foreground leading-none mt-0.5">Admin Dashboard</div>
+              </div>
             </div>
           </div>
           <CreateJobDialog onCreated={() => qc.invalidateQueries({ queryKey: ["/api/jobs"] })} />
@@ -429,41 +498,38 @@ export default function AdminPage() {
 
       <div className="max-w-6xl mx-auto px-4 py-8 space-y-6">
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-          {[
-            { label: "Total Jobs", value: stats?.totalJobs ?? "—", icon: LayoutDashboard, color: "text-primary" },
-            { label: "In Progress", value: stats?.inProgress ?? "—", icon: Wrench, color: "text-[hsl(25_95%_50%)]" },
-            { label: "Completed", value: stats?.completed ?? "—", icon: CheckCircle2, color: "text-primary" },
-            { label: "Pending Estimates", value: stats?.pendingEstimates ?? "—", icon: FileText, color: "text-muted-foreground" },
-          ].map(({ label, value, icon: Icon, color }) => (
-            <Card key={label}>
-              <CardContent className="p-4">
-                <div className="flex items-center justify-between gap-2 mb-2">
-                  <span className="text-xs text-muted-foreground">{label}</span>
-                  <Icon className={`w-4 h-4 ${color}`} />
+          {statCards.map(({ label, value, icon: Icon, iconBg, iconColor, valueBg }) => (
+            <Card key={label} className="border-card-border shadow-sm hover:shadow-md transition-shadow">
+              <CardContent className="p-5">
+                <div className="flex items-center justify-between gap-2 mb-3">
+                  <span className="text-xs text-muted-foreground font-medium">{label}</span>
+                  <div className={`w-8 h-8 rounded-lg ${iconBg} flex items-center justify-center flex-shrink-0`}>
+                    <Icon className={`w-4 h-4 ${iconColor}`} />
+                  </div>
                 </div>
-                <div className="text-2xl font-bold">{value}</div>
+                <div className={`text-3xl font-black ${valueBg}`}>{value}</div>
               </CardContent>
             </Card>
           ))}
         </div>
 
         <Tabs defaultValue="jobs">
-          <TabsList data-testid="admin-tabs">
-            <TabsTrigger value="jobs" data-testid="tab-jobs">
-              <Wrench className="w-3.5 h-3.5 mr-2" /> Jobs ({jobs.length})
+          <TabsList data-testid="admin-tabs" className="h-10">
+            <TabsTrigger value="jobs" data-testid="tab-jobs" className="gap-2 font-semibold">
+              <Wrench className="w-3.5 h-3.5" /> Jobs ({jobs.length})
             </TabsTrigger>
-            <TabsTrigger value="estimates" data-testid="tab-estimates">
-              <FileText className="w-3.5 h-3.5 mr-2" /> Estimates ({estimates.length})
+            <TabsTrigger value="estimates" data-testid="tab-estimates" className="gap-2 font-semibold">
+              <FileText className="w-3.5 h-3.5" /> Estimates ({estimates.length})
             </TabsTrigger>
           </TabsList>
 
           <TabsContent value="jobs" className="mt-4">
             {jobsQuery.isLoading ? (
-              <div className="space-y-3">{Array.from({ length: 3 }).map((_, i) => <Skeleton key={i} className="h-20 rounded-md" />)}</div>
+              <div className="space-y-3">{Array.from({ length: 3 }).map((_, i) => <Skeleton key={i} className="h-20 rounded-lg" />)}</div>
             ) : jobs.length === 0 ? (
-              <div className="text-center py-16 text-muted-foreground border border-dashed border-border rounded-md">
-                <LayoutDashboard className="w-10 h-10 mx-auto mb-3 opacity-30" />
-                <p className="font-medium">No jobs yet</p>
+              <div className="text-center py-16 text-muted-foreground border-2 border-dashed border-border rounded-xl bg-muted/10">
+                <LayoutDashboard className="w-10 h-10 mx-auto mb-3 opacity-25" />
+                <p className="font-bold text-foreground/60">No jobs yet</p>
                 <p className="text-sm mt-1">Create your first job using the "New Job" button above.</p>
               </div>
             ) : (
@@ -481,31 +547,29 @@ export default function AdminPage() {
 
           <TabsContent value="estimates" className="mt-4">
             {estimatesQuery.isLoading ? (
-              <div className="space-y-3">{Array.from({ length: 3 }).map((_, i) => <Skeleton key={i} className="h-24 rounded-md" />)}</div>
+              <div className="space-y-3">{Array.from({ length: 3 }).map((_, i) => <Skeleton key={i} className="h-28 rounded-lg" />)}</div>
             ) : estimates.length === 0 ? (
-              <div className="text-center py-16 text-muted-foreground border border-dashed border-border rounded-md">
-                <FileText className="w-10 h-10 mx-auto mb-3 opacity-30" />
-                <p className="font-medium">No estimates yet</p>
+              <div className="text-center py-16 text-muted-foreground border-2 border-dashed border-border rounded-xl bg-muted/10">
+                <FileText className="w-10 h-10 mx-auto mb-3 opacity-25" />
+                <p className="font-bold text-foreground/60">No estimates yet</p>
               </div>
             ) : (
-              <div className="space-y-3">
+              <div className="grid sm:grid-cols-2 gap-4">
                 {estimates.map((est) => (
-                  <div key={est.id} className="border border-card-border rounded-md bg-card p-4" data-testid={`estimate-row-${est.id}`}>
-                    <div className="flex flex-wrap items-start justify-between gap-3">
-                      <div className="min-w-0 flex-1">
-                        <div className="flex items-center gap-2 flex-wrap mb-1">
-                          <span className="font-semibold text-sm">{est.name}</span>
-                          <Badge variant={est.status === "Pending" ? "secondary" : "default"} className="text-xs">
-                            {est.status}
-                          </Badge>
+                  <Card key={est.id} className="border-card-border shadow-sm" data-testid={`estimate-row-${est.id}`}>
+                    <CardContent className="p-5">
+                      <div className="flex items-start justify-between gap-3 mb-3">
+                        <div className="min-w-0 flex-1">
+                          <div className="flex items-center gap-2 flex-wrap mb-1">
+                            <span className="font-bold text-sm">{est.name}</span>
+                            <span className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-bold border ${ESTIMATE_STATUS_COLORS[est.status] || ESTIMATE_STATUS_COLORS["Pending"]}`}>
+                              {est.status}
+                            </span>
+                          </div>
+                          <Badge variant="outline" className="text-xs font-medium mb-2">{est.serviceType}</Badge>
                         </div>
-                        <div className="text-xs text-muted-foreground">{est.email} · {est.phone}</div>
-                        <div className="text-xs text-muted-foreground mt-0.5">{est.serviceType} — {est.location}</div>
-                        <p className="text-sm mt-2 text-foreground/80 line-clamp-2">{est.description}</p>
-                      </div>
-                      <div className="flex gap-2">
                         <Select value={est.status} onValueChange={(v) => updateEstimateMutation.mutate({ id: est.id, status: v })}>
-                          <SelectTrigger className="h-8 text-xs w-32" data-testid={`select-estimate-status-${est.id}`}>
+                          <SelectTrigger className="h-8 text-xs w-28 flex-shrink-0" data-testid={`select-estimate-status-${est.id}`}>
                             <SelectValue />
                           </SelectTrigger>
                           <SelectContent>
@@ -513,8 +577,27 @@ export default function AdminPage() {
                           </SelectContent>
                         </Select>
                       </div>
-                    </div>
-                  </div>
+
+                      <div className="space-y-1.5 text-xs text-muted-foreground mb-3">
+                        <div className="flex items-center gap-1.5">
+                          <Mail className="w-3 h-3" />
+                          <span className="truncate">{est.email}</span>
+                        </div>
+                        <div className="flex items-center gap-1.5">
+                          <Phone className="w-3 h-3" />
+                          {est.phone}
+                        </div>
+                        <div className="flex items-center gap-1.5">
+                          <MapPin className="w-3 h-3" />
+                          <span className="truncate">{est.location}</span>
+                        </div>
+                      </div>
+
+                      {est.description && (
+                        <p className="text-xs text-foreground/70 leading-relaxed line-clamp-2 border-t border-border/50 pt-3">{est.description}</p>
+                      )}
+                    </CardContent>
+                  </Card>
                 ))}
               </div>
             )}
