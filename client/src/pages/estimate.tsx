@@ -12,8 +12,9 @@ import { Textarea } from "@/components/ui/textarea";
 import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from "@/components/ui/form";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
+import logoImg from "@assets/logo_1772579467504.png";
 import {
-  Trash2, ArrowLeft, ArrowRight, CheckCircle2, Upload,
+  ArrowLeft, ArrowRight, CheckCircle2, Upload,
   HardHat, Building2, Truck, Package, HelpCircle
 } from "lucide-react";
 
@@ -134,9 +135,7 @@ export default function EstimatePage() {
             </Button>
           </Link>
           <div className="flex items-center gap-2">
-            <div className="w-7 h-7 rounded bg-primary flex items-center justify-center">
-              <Trash2 className="w-3.5 h-3.5 text-primary-foreground" />
-            </div>
+            <img src={logoImg} alt="Clear Gator Logo" className="h-9 w-9 object-contain" />
             <span className="font-bold">Clear Gator</span>
           </div>
         </div>

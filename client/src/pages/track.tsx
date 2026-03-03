@@ -6,8 +6,9 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Input } from "@/components/ui/input";
+import logoImg from "@assets/logo_1772579467504.png";
 import {
-  ArrowLeft, Search, Trash2, CheckCircle2, Clock, Wrench, PauseCircle,
+  ArrowLeft, Search, CheckCircle2, Clock, Wrench, PauseCircle,
   MapPin, User, Phone, Mail, ImageIcon, DollarSign, Calendar
 } from "lucide-react";
 import type { Job, JobPhoto } from "@shared/schema";
@@ -180,9 +181,7 @@ export default function TrackPage() {
             </Button>
           </Link>
           <div className="flex items-center gap-2">
-            <div className="w-7 h-7 rounded bg-primary flex items-center justify-center">
-              <Trash2 className="w-3.5 h-3.5 text-primary-foreground" />
-            </div>
+            <img src={logoImg} alt="Clear Gator Logo" className="h-9 w-9 object-contain" />
             <span className="font-bold">Clear Gator — Track My Job</span>
           </div>
         </div>

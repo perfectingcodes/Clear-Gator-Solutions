@@ -2,8 +2,9 @@ import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import logoImg from "@assets/logo_1772579467504.png";
 import {
-  Truck, HardHat, Trash2, Building2, PhoneCall, CheckCircle2,
+  Truck, HardHat, Building2, PhoneCall, CheckCircle2,
   ArrowRight, MapPin, Clock, Shield, Star, ChevronRight
 } from "lucide-react";
 
@@ -75,9 +76,7 @@ export default function LandingPage() {
       <header className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-md bg-primary flex items-center justify-center flex-shrink-0">
-              <Trash2 className="w-4 h-4 text-primary-foreground" />
-            </div>
+            <img src={logoImg} alt="Clear Gator Logo" className="h-10 w-10 object-contain" />
             <span className="font-bold text-lg tracking-tight">Clear Gator</span>
           </div>
           <nav className="hidden md:flex items-center gap-6 text-sm text-muted-foreground">
@@ -112,9 +111,12 @@ export default function LandingPage() {
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <div className="max-w-2xl animate-fade-in">
-            <Badge className="mb-6 bg-[hsl(25_95%_50%/0.2)] text-[hsl(25_95%_70%)] border-[hsl(25_95%_50%/0.4)]">
-              Florida's #1 Construction Cleanup Crew
-            </Badge>
+            <div className="flex items-center gap-4 mb-6">
+              <img src={logoImg} alt="Clear Gator Logo" className="h-20 w-20 object-contain drop-shadow-2xl" />
+              <Badge className="bg-[hsl(25_95%_50%/0.2)] text-[hsl(25_95%_70%)] border-[hsl(25_95%_50%/0.4)]">
+                Florida's #1 Construction Cleanup Crew
+              </Badge>
+            </div>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
               We Clear the Way.{" "}
               <span className="text-[hsl(30_100%_62%)]">You Build the Future.</span>
@@ -287,9 +289,7 @@ export default function LandingPage() {
           <div className="grid sm:grid-cols-3 gap-8 mb-8">
             <div>
               <div className="flex items-center gap-2 mb-3">
-                <div className="w-7 h-7 rounded bg-primary flex items-center justify-center">
-                  <Trash2 className="w-3.5 h-3.5 text-primary-foreground" />
-                </div>
+                <img src={logoImg} alt="Clear Gator Logo" className="h-9 w-9 object-contain" />
                 <span className="font-bold text-white">Clear Gator</span>
               </div>
               <p className="text-sm leading-relaxed">Construction cleanup, demolition, and dumpster rentals done right.</p>

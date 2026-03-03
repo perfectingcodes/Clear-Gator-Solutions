@@ -16,9 +16,10 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from "@/components/ui/form";
 import { useToast } from "@/hooks/use-toast";
+import logoImg from "@assets/logo_1772579467504.png";
 import {
-  ArrowLeft, Trash2, Plus, Upload, Clock, CheckCircle2, Wrench, PauseCircle,
-  Calendar, Eye, LayoutDashboard, FileText, Image, MoreHorizontal, Lock
+  ArrowLeft, Plus, Upload, Clock, CheckCircle2, Wrench, PauseCircle,
+  Calendar, Eye, LayoutDashboard, FileText, Lock
 } from "lucide-react";
 import type { Job, JobPhoto, Estimate } from "@shared/schema";
 import { JOB_STATUSES, SERVICE_TYPES } from "@shared/schema";
@@ -341,8 +342,8 @@ function LoginScreen({ onLogin }: { onLogin: () => void }) {
     <div className="min-h-screen bg-background flex items-center justify-center p-4">
       <Card className="w-full max-w-sm animate-fade-in">
         <CardHeader className="text-center">
-          <div className="w-14 h-14 rounded-md bg-primary flex items-center justify-center mx-auto mb-4">
-            <Trash2 className="w-7 h-7 text-primary-foreground" />
+          <div className="flex items-center justify-center mx-auto mb-4">
+            <img src={logoImg} alt="Clear Gator Logo" className="h-20 w-20 object-contain" />
           </div>
           <CardTitle>Staff Portal</CardTitle>
           <CardDescription>Enter your password to access the admin dashboard.</CardDescription>
@@ -418,9 +419,7 @@ export default function AdminPage() {
               </Button>
             </Link>
             <div className="flex items-center gap-2">
-              <div className="w-7 h-7 rounded bg-primary flex items-center justify-center">
-                <Trash2 className="w-3.5 h-3.5 text-primary-foreground" />
-              </div>
+              <img src={logoImg} alt="Clear Gator Logo" className="h-9 w-9 object-contain" />
               <span className="font-bold">Clear Gator Admin</span>
             </div>
           </div>
