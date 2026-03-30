@@ -352,7 +352,7 @@ export default function LandingPage() {
 
           <p className="text-center text-sm text-muted-foreground">
             Not sure if we cover your area?{" "}
-            <a href="tel:+12395550190" className="text-primary font-semibold hover:underline">
+            <a href="tel:+13055550190" className="text-primary font-semibold hover:underline">
               Give us a call
             </a>{" "}
             — we travel for the right job.
@@ -408,8 +408,8 @@ export default function LandingPage() {
                     },
                     {
                       icon: Shield,
-                      label: "Fully Insured Crew",
-                      desc: "Licensed, insured, and OSHA-aware — every job covered so your liability stays zero.",
+                      label: "Reliable & Fully Insured",
+                      desc: "We show up when we say we will — licensed, insured, and OSHA-aware so your liability stays zero.",
                     },
                     {
                       icon: DollarSign,
