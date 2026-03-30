@@ -3,35 +3,54 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import logoImg from "@assets/logo_1772579467504.png";
 import {
-  Truck, HardHat, Building2, PhoneCall, CheckCircle2,
+  Truck, HardHat, PhoneCall, CheckCircle2,
   ArrowRight, MapPin, Clock, Shield, Star, ChevronRight,
-  FileText, DollarSign, Search, Facebook, Instagram, Twitter
+  FileText, DollarSign, Search, Facebook, Instagram, Twitter,
+  Hammer, TreePine, Axe
 } from "lucide-react";
 
 const services = [
   {
+    icon: Hammer,
+    title: "Non-Structural Demolition",
+    description: "Safe, controlled removal of interior walls, flooring, fixtures, ceilings, and concrete slabs — without touching structural elements. Ideal for renovations and gut-outs.",
+    features: ["Interior walls & ceilings", "Flooring & concrete slabs", "Fixture & equipment removal"],
+    accent: "bg-gator-orange",
+    iconBg: "bg-gator-orange/10",
+    iconColor: "text-gator-orange",
+  },
+  {
     icon: HardHat,
-    title: "Construction Cleanup",
-    description: "Post-construction debris removal and site cleanup for residential and commercial projects. We leave your site clean, safe, and ready for occupancy.",
+    title: "Full Cleanup",
+    description: "Comprehensive post-construction and post-renovation cleanup for residential and commercial sites. We leave every corner spotless and move-in ready.",
     features: ["Post-build debris removal", "Dust & material cleanup", "Final walk-through ready"],
     accent: "bg-primary",
     iconBg: "bg-primary/10",
     iconColor: "text-primary",
   },
   {
-    icon: Building2,
-    title: "Demolition",
-    description: "Controlled interior and exterior demolition for renovation and new construction projects. Licensed, insured, and compliant with all local codes.",
-    features: ["Selective demolition", "Full structural removal", "Salvage & recycling"],
-    accent: "bg-gator-orange",
-    iconBg: "bg-gator-orange/10",
-    iconColor: "text-gator-orange",
+    icon: TreePine,
+    title: "Land Clearing",
+    description: "Full lot clearing for residential and commercial projects. We remove overgrowth, brush, trees, and debris to leave your land grading-ready.",
+    features: ["Tree & brush removal", "Overgrowth clearing", "Grading-ready finish"],
+    accent: "bg-primary",
+    iconBg: "bg-primary/10",
+    iconColor: "text-primary",
+  },
+  {
+    icon: Axe,
+    title: "Stump Removal",
+    description: "Complete stump grinding and full root extraction so your property is clean, safe, and ready for new landscaping or construction.",
+    features: ["Stump grinding", "Full root extraction", "Backfill available"],
+    accent: "bg-primary",
+    iconBg: "bg-primary/10",
+    iconColor: "text-primary",
   },
   {
     icon: Truck,
-    title: "Dumpster Rentals",
-    description: "Flexible dumpster rental sizes for any project. Drop-off and pickup on your schedule. No hidden fees — straightforward pricing you can count on.",
-    features: ["10, 20, 30-yard containers", "Flexible rental terms", "Same-day availability"],
+    title: "Hauling",
+    description: "Fast, reliable debris and junk haul-away for any size project. We load it, we haul it — straightforward load-and-go pricing with no hidden fees.",
+    features: ["Same-day pickup available", "All materials accepted", "Load & go pricing"],
     accent: "bg-primary",
     iconBg: "bg-primary/10",
     iconColor: "text-primary",
@@ -199,10 +218,10 @@ export default function LandingPage() {
             <Badge className="mb-4 font-semibold">Our Services</Badge>
             <h2 className="text-3xl sm:text-4xl font-black mb-4 tracking-tight">Built Tough. Done Right.</h2>
             <p className="text-muted-foreground max-w-xl mx-auto leading-relaxed">
-              From the first swing of the sledgehammer to the final sweep of the broom, Clear Gator handles every stage of site cleanup and clearance.
+              From non-structural demo to full site cleanup and land clearing — Clear Gator handles every stage of your project start to finish.
             </p>
           </div>
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {services.map((svc) => (
               <div key={svc.title} className="group bg-card border border-card-border rounded-lg overflow-hidden hover-elevate transition-all duration-200 hover:border-primary/30 hover:shadow-lg">
                 <div className={`h-1 w-full ${svc.accent}`} />
@@ -353,7 +372,6 @@ export default function LandingPage() {
                     <Link href="/estimate" className="hover:text-white transition-colors">{s.title}</Link>
                   </li>
                 ))}
-                <li><Link href="/estimate" className="hover:text-white transition-colors">Debris Removal</Link></li>
               </ul>
             </div>
             <div>

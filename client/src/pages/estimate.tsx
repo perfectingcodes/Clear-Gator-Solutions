@@ -14,16 +14,16 @@ import { useToast } from "@/hooks/use-toast";
 import logoImg from "@assets/logo_1772579467504.png";
 import {
   ArrowLeft, ArrowRight, CheckCircle2, Upload,
-  HardHat, Building2, Truck, Package, HelpCircle,
-  Shield, Clock, Star, MapPin
+  HardHat, Truck, Shield, Clock, Star, MapPin,
+  Hammer, TreePine, Axe
 } from "lucide-react";
 
 const SERVICE_OPTIONS = [
-  { id: "Construction Cleanup", label: "Construction Cleanup", icon: HardHat, desc: "Post-build site cleanup & debris removal", color: "text-primary", selectedBg: "bg-primary/8 border-primary", glow: "shadow-primary/15" },
-  { id: "Demolition", label: "Demolition", icon: Building2, desc: "Interior or exterior demolition work", color: "text-gator-orange", selectedBg: "bg-gator-orange/8 border-gator-orange", glow: "shadow-gator-orange/15" },
-  { id: "Dumpster Rental", label: "Dumpster Rental", icon: Truck, desc: "Container drop-off & pickup", color: "text-primary", selectedBg: "bg-primary/8 border-primary", glow: "shadow-primary/15" },
-  { id: "Debris Removal", label: "Debris Removal", icon: Package, desc: "One-time haul-away service", color: "text-primary", selectedBg: "bg-primary/8 border-primary", glow: "shadow-primary/15" },
-  { id: "Other", label: "Other / Not Sure", icon: HelpCircle, desc: "Tell us what you need", color: "text-muted-foreground", selectedBg: "bg-muted/60 border-foreground/30", glow: "shadow-muted/15" },
+  { id: "Non-Structural Demolition", label: "Non-Structural Demolition", icon: Hammer, desc: "Interior walls, fixtures, flooring & slabs", color: "text-gator-orange", selectedBg: "bg-gator-orange/8 border-gator-orange", glow: "shadow-gator-orange/15" },
+  { id: "Full Cleanup", label: "Full Cleanup", icon: HardHat, desc: "Post-construction & renovation cleanup", color: "text-primary", selectedBg: "bg-primary/8 border-primary", glow: "shadow-primary/15" },
+  { id: "Land Clearing", label: "Land Clearing", icon: TreePine, desc: "Overgrowth, brush, trees & lot prep", color: "text-primary", selectedBg: "bg-primary/8 border-primary", glow: "shadow-primary/15" },
+  { id: "Stump Removal", label: "Stump Removal", icon: Axe, desc: "Stump grinding & full root extraction", color: "text-primary", selectedBg: "bg-primary/8 border-primary", glow: "shadow-primary/15" },
+  { id: "Hauling", label: "Hauling", icon: Truck, desc: "Debris & junk load-and-go haul-away", color: "text-primary", selectedBg: "bg-primary/8 border-primary", glow: "shadow-primary/15" },
 ];
 
 const step1Schema = z.object({ serviceType: z.string().min(1, "Please select a service type") });
