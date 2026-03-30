@@ -6,8 +6,19 @@ import {
   Truck, HardHat, PhoneCall, CheckCircle2,
   ArrowRight, MapPin, Clock, Shield, Star, ChevronRight,
   FileText, DollarSign, Search, Facebook, Instagram, Twitter,
-  Hammer, TreePine, Axe
+  Hammer, TreePine, Axe, Users, Handshake
 } from "lucide-react";
+
+const SERVICE_AREAS = [
+  "Cape Coral",
+  "Naples",
+  "Bonita Springs",
+  "Punta Gorda",
+  "Sanibel Island",
+  "St. James City",
+  "Babcock Ranch",
+  "Fort Myers",
+];
 
 const services = [
   {
@@ -108,6 +119,7 @@ export default function LandingPage() {
             <a href="#services" className="hover:text-foreground px-3 py-2 rounded-md transition-colors hover:bg-muted/50">Services</a>
             <a href="#how-it-works" className="hover:text-foreground px-3 py-2 rounded-md transition-colors hover:bg-muted/50">How It Works</a>
             <a href="#testimonials" className="hover:text-foreground px-3 py-2 rounded-md transition-colors hover:bg-muted/50">Reviews</a>
+            <a href="#service-areas" className="hover:text-foreground px-3 py-2 rounded-md transition-colors hover:bg-muted/50">Service Areas</a>
           </nav>
           <div className="flex items-center gap-2">
             <Link href="/track">
@@ -145,7 +157,7 @@ export default function LandingPage() {
                 </Badge>
                 <div className="flex items-center gap-1.5 text-white/60 text-sm">
                   <MapPin className="w-3.5 h-3.5 text-gator-orange-light" />
-                  <span>Miami · Fort Lauderdale · West Palm Beach</span>
+                  <span>Cape Coral · Naples · Fort Myers · Southwest Florida</span>
                 </div>
               </div>
             </div>
@@ -310,6 +322,124 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* ── Service Areas ── */}
+      <section id="service-areas" className="py-24 bg-primary/5 border-y border-primary/10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <Badge className="mb-4 font-semibold">Where We Work</Badge>
+            <h2 className="text-3xl sm:text-4xl font-black mb-4 tracking-tight">Serving Southwest Florida</h2>
+            <p className="text-muted-foreground max-w-xl mx-auto leading-relaxed">
+              From the coast to the ranch — we bring the same quality and reliability to every city we serve.
+            </p>
+          </div>
+
+          <div className="flex flex-wrap justify-center gap-3 mb-10">
+            {SERVICE_AREAS.map((city) => (
+              <div
+                key={city}
+                data-testid={`chip-city-${city.toLowerCase().replace(/\s+/g, "-")}`}
+                className="flex items-center gap-2 bg-background border border-primary/25 text-foreground rounded-full px-5 py-2.5 text-sm font-medium shadow-sm hover:border-primary/60 hover:shadow-md transition-all duration-200"
+              >
+                <MapPin className="w-3.5 h-3.5 text-primary flex-shrink-0" />
+                {city}
+              </div>
+            ))}
+            <div className="flex items-center gap-2 bg-muted/50 border border-dashed border-muted-foreground/30 text-muted-foreground rounded-full px-5 py-2.5 text-sm font-medium">
+              <MapPin className="w-3.5 h-3.5 flex-shrink-0" />
+              &amp; Surrounding Southwest Florida
+            </div>
+          </div>
+
+          <p className="text-center text-sm text-muted-foreground">
+            Not sure if we cover your area?{" "}
+            <a href="tel:+12395550190" className="text-primary font-semibold hover:underline">
+              Give us a call
+            </a>{" "}
+            — we travel for the right job.
+          </p>
+        </div>
+      </section>
+
+      {/* ── Contractor Partnership ── */}
+      <section className="py-20 bg-[hsl(215_16%_14%)]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="rounded-2xl border border-primary/20 bg-[hsl(215_16%_10%)] overflow-hidden shadow-xl">
+            <div className="grid lg:grid-cols-2 gap-0">
+              {/* Left column */}
+              <div className="p-10 lg:p-14 border-b lg:border-b-0 lg:border-r border-primary/15">
+                <div className="flex items-center gap-2 mb-4">
+                  <div className="w-1 h-10 rounded-full bg-primary" />
+                  <Badge className="bg-primary/20 text-primary-foreground border-primary/30 font-semibold text-xs">
+                    Trade Partners Welcome
+                  </Badge>
+                </div>
+                <h2 className="text-2xl sm:text-3xl font-black text-white mb-5 tracking-tight leading-snug">
+                  Are You a Contractor?
+                </h2>
+                <p className="text-white/60 leading-relaxed mb-8 text-sm sm:text-base">
+                  General contractors and trade partners count on Clear Gator as a reliable extension of their crew.
+                  Fast turnaround, job-site ready work, and preferred partner rates — so you never have to worry
+                  about cleanup and demolition holding up your schedule.
+                </p>
+                <Link href="/estimate">
+                  <Button
+                    size="lg"
+                    className="bg-gator-orange hover:bg-gator-orange-dark text-white font-bold shadow-lg shadow-gator-orange/25 gap-2"
+                    data-testid="contractor-cta-partner"
+                  >
+                    <Handshake className="w-5 h-5" />
+                    Become a Partner
+                  </Button>
+                </Link>
+              </div>
+
+              {/* Right column */}
+              <div className="p-10 lg:p-14">
+                <div className="flex items-center gap-2 mb-8">
+                  <Users className="w-5 h-5 text-primary" />
+                  <span className="text-white/70 text-sm font-semibold uppercase tracking-wider">Why Contractors Choose Us</span>
+                </div>
+                <ul className="space-y-6">
+                  {[
+                    {
+                      icon: Clock,
+                      label: "Fast Turnaround",
+                      desc: "Same-day and next-day availability on most services so your build timeline stays intact.",
+                    },
+                    {
+                      icon: Shield,
+                      label: "Fully Insured Crew",
+                      desc: "Licensed, insured, and OSHA-aware — every job covered so your liability stays zero.",
+                    },
+                    {
+                      icon: DollarSign,
+                      label: "Preferred Partner Rates",
+                      desc: "Recurring partner discounts and priority scheduling for contractors on regular rotation.",
+                    },
+                    {
+                      icon: PhoneCall,
+                      label: "Dedicated Contact Line",
+                      desc: "Skip the queue — partners get a direct number to reach our crew leads directly.",
+                    },
+                  ].map(({ icon: Icon, label, desc }) => (
+                    <li key={label} className="flex items-start gap-4">
+                      <div className="w-10 h-10 rounded-lg bg-primary/15 border border-primary/25 flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <Icon className="w-5 h-5 text-primary" />
+                      </div>
+                      <div>
+                        <div className="text-white font-bold text-sm mb-1">{label}</div>
+                        <div className="text-white/50 text-sm leading-relaxed">{desc}</div>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Final CTA ── */}
       <section className="py-24 bg-[hsl(215_16%_12%)] relative overflow-hidden">
         <div className="absolute inset-0 opacity-5" style={{
           backgroundImage: `repeating-linear-gradient(45deg, white 0, white 1px, transparent 0, transparent 50%)`,
@@ -391,7 +521,7 @@ export default function LandingPage() {
                 </li>
                 <li className="flex items-start gap-2">
                   <MapPin className="w-4 h-4 mt-0.5 text-primary flex-shrink-0" />
-                  <span>Miami · Fort Lauderdale · West Palm Beach</span>
+                  <span>Cape Coral · Naples · Southwest Florida</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <Clock className="w-4 h-4 mt-0.5 text-primary flex-shrink-0" />
