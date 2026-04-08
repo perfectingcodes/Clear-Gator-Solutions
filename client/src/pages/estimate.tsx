@@ -11,19 +11,18 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from "@/components/ui/form";
 import { useToast } from "@/hooks/use-toast";
-import logoImg from "@assets/logo_1772579467504.png";
+import logoImg from "@assets/clear_gator_1775663894887.png";
 import {
   ArrowLeft, ArrowRight, CheckCircle2, Upload,
   HardHat, Truck, Shield, Clock, Star, MapPin,
-  Hammer, TreePine, Axe
+  Hammer, TreePine
 } from "lucide-react";
 
 const SERVICE_OPTIONS = [
-  { id: "Non-Structural Demolition", label: "Non-Structural Demolition", icon: Hammer, desc: "Interior walls, fixtures, flooring & slabs", color: "text-gator-orange", selectedBg: "bg-gator-orange/8 border-gator-orange", glow: "shadow-gator-orange/15" },
-  { id: "Full Cleanup", label: "Full Cleanup", icon: HardHat, desc: "Post-construction & renovation cleanup", color: "text-primary", selectedBg: "bg-primary/8 border-primary", glow: "shadow-primary/15" },
-  { id: "Land Clearing", label: "Land Clearing", icon: TreePine, desc: "Overgrowth, brush, trees & lot prep", color: "text-primary", selectedBg: "bg-primary/8 border-primary", glow: "shadow-primary/15" },
-  { id: "Stump Removal", label: "Stump Removal", icon: Axe, desc: "Stump grinding & full root extraction", color: "text-primary", selectedBg: "bg-primary/8 border-primary", glow: "shadow-primary/15" },
-  { id: "Hauling", label: "Hauling", icon: Truck, desc: "Debris & junk load-and-go haul-away", color: "text-primary", selectedBg: "bg-primary/8 border-primary", glow: "shadow-primary/15" },
+  { id: "Demo", label: "Demo", icon: Hammer, desc: "Floor removal, cabinets, drywall, bathroom & kitchen tear-outs", color: "text-gator-orange", selectedBg: "bg-gator-orange/8 border-gator-orange", glow: "shadow-gator-orange/15" },
+  { id: "Hauling", label: "Hauling", icon: Truck, desc: "Construction debris, renovation waste, dump runs & bulk trash", color: "text-primary", selectedBg: "bg-primary/8 border-primary", glow: "shadow-primary/15" },
+  { id: "Site Cleanup", label: "Site Cleanup", icon: HardHat, desc: "Post-construction, jobsite, bathroom & dust/debris cleanup", color: "text-primary", selectedBg: "bg-primary/8 border-primary", glow: "shadow-primary/15" },
+  { id: "Lot Clearing", label: "Lot Clearing", icon: TreePine, desc: "Yard debris, lot clearing, brush & abandoned property cleanouts", color: "text-primary", selectedBg: "bg-primary/8 border-primary", glow: "shadow-primary/15" },
 ];
 
 const step1Schema = z.object({ serviceType: z.string().min(1, "Please select a service type") });

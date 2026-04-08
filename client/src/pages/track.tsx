@@ -6,7 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Input } from "@/components/ui/input";
-import logoImg from "@assets/logo_1772579467504.png";
+import logoImg from "@assets/clear_gator_1775663894887.png";
 import {
   ArrowLeft, Search, CheckCircle2, Clock, Wrench, PauseCircle,
   MapPin, User, Phone, Mail, ImageIcon, DollarSign, Calendar, X

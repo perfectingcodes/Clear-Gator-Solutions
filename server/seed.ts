@@ -17,7 +17,7 @@ export async function seedDatabase() {
   const [job1] = await db.insert(jobs).values({
     jobId: "CG-2024-DEMO",
     title: "Post-Construction Cleanup — Riverfront Condos",
-    serviceType: "Full Cleanup",
+    serviceType: "Site Cleanup",
     status: "In Progress",
     customerName: "Marcus Torres",
     customerEmail: "m.torres@riverfrontdev.com",
@@ -32,8 +32,8 @@ export async function seedDatabase() {
 
   const [job2] = await db.insert(jobs).values({
     jobId: "CG-2024-A7B2",
-    title: "Non-Structural Demo — Former Warehouse Gut-Out",
-    serviceType: "Non-Structural Demolition",
+    title: "Interior Demo — Former Warehouse Gut-Out",
+    serviceType: "Demo",
     status: "Completed",
     customerName: "Sandra Kwan",
     customerEmail: "skwan@kwanproperties.com",
@@ -88,7 +88,7 @@ export async function seedDatabase() {
       name: "Patricia Nguyen",
       email: "p.nguyen@nguyenbuilds.com",
       phone: "(305) 555-0774",
-      serviceType: "Full Cleanup",
+      serviceType: "Site Cleanup",
       location: "2250 Collins Ave, Miami Beach, FL 33139",
       description: "Need post-construction cleanup for a 6,000 sq ft commercial renovation. Two floors, new flooring throughout. Looking to schedule within the next two weeks.",
       photoUrls: [],

@@ -1,12 +1,12 @@
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import logoImg from "@assets/logo_1772579467504.png";
+import logoImg from "@assets/clear_gator_1775663894887.png";
 import {
   Truck, HardHat, PhoneCall, CheckCircle2,
   ArrowRight, MapPin, Clock, Shield, Star, ChevronRight,
   FileText, DollarSign, Search, Facebook, Instagram, Twitter,
-  Hammer, TreePine, Axe, Users, Handshake
+  Hammer, TreePine, Users, Handshake
 } from "lucide-react";
 
 const SERVICE_AREAS = [
@@ -23,45 +23,36 @@ const SERVICE_AREAS = [
 const services = [
   {
     icon: Hammer,
-    title: "Non-Structural Demolition",
-    description: "Safe, controlled removal of interior walls, flooring, fixtures, ceilings, and concrete slabs — without touching structural elements. Ideal for renovations and gut-outs.",
-    features: ["Interior walls & ceilings", "Flooring & concrete slabs", "Fixture & equipment removal"],
+    title: "Demo",
+    description: "Professional interior demolition for residential and commercial projects — from single-room tear-outs to full gut jobs. Structural elements always protected.",
+    features: ["Floor Removal", "Cabinet Removal", "Drywall Removal", "Bathroom Demo", "Kitchen Tear Outs"],
     accent: "bg-gator-orange",
     iconBg: "bg-gator-orange/10",
     iconColor: "text-gator-orange",
   },
   {
+    icon: Truck,
+    title: "Hauling",
+    description: "Fast, reliable haul-away for any size project. We load it, we haul it — straightforward load-and-go pricing with no hidden fees.",
+    features: ["Construction Debris", "Renovation Waste", "Dump Runs", "Bulk Trash", "Post Demo Cleanup"],
+    accent: "bg-primary",
+    iconBg: "bg-primary/10",
+    iconColor: "text-primary",
+  },
+  {
     icon: HardHat,
-    title: "Full Cleanup",
-    description: "Comprehensive post-construction and post-renovation cleanup for residential and commercial sites. We leave every corner spotless and move-in ready.",
-    features: ["Post-build debris removal", "Dust & material cleanup", "Final walk-through ready"],
+    title: "Site Cleanup",
+    description: "Thorough cleanup services for construction and renovation sites. We leave every job site spotless and ready for the next phase.",
+    features: ["Post Construction", "Jobsite Cleanup", "Final Bathroom Cleanup", "Dust & Debris"],
     accent: "bg-primary",
     iconBg: "bg-primary/10",
     iconColor: "text-primary",
   },
   {
     icon: TreePine,
-    title: "Land Clearing",
-    description: "Full lot clearing for residential and commercial projects. We remove overgrowth, brush, trees, and debris to leave your land grading-ready.",
-    features: ["Tree & brush removal", "Overgrowth clearing", "Grading-ready finish"],
-    accent: "bg-primary",
-    iconBg: "bg-primary/10",
-    iconColor: "text-primary",
-  },
-  {
-    icon: Axe,
-    title: "Stump Removal",
-    description: "Complete stump grinding and full root extraction so your property is clean, safe, and ready for new landscaping or construction.",
-    features: ["Stump grinding", "Full root extraction", "Backfill available"],
-    accent: "bg-primary",
-    iconBg: "bg-primary/10",
-    iconColor: "text-primary",
-  },
-  {
-    icon: Truck,
-    title: "Hauling",
-    description: "Fast, reliable debris and junk haul-away for any size project. We load it, we haul it — straightforward load-and-go pricing with no hidden fees.",
-    features: ["Same-day pickup available", "All materials accepted", "Load & go pricing"],
+    title: "Lot Clearing",
+    description: "Full lot and land clearing for residential and commercial properties — from overgrown yards to abandoned property cleanouts.",
+    features: ["Yard Debris Removal", "Lot Clearing", "Brush & Trash", "Abandoned Property"],
     accent: "bg-primary",
     iconBg: "bg-primary/10",
     iconColor: "text-primary",
@@ -172,7 +163,7 @@ export default function LandingPage() {
               </span>
             </h1>
             <p className="text-lg text-white/70 mb-10 leading-relaxed max-w-xl">
-              Construction cleanup, demolition, and dumpster rentals — done right, done safe, done on time. Trusted by contractors and homeowners across the region.
+              Demo, hauling, site cleanup, and lot clearing — done right, done safe, done on time. Trusted by contractors and homeowners across Southwest Florida.
             </p>
             <div className="flex flex-wrap gap-4 mb-10">
               <Link href="/estimate">
@@ -481,7 +472,7 @@ export default function LandingPage() {
                 <img src={logoImg} alt="Clear Gator Logo" className="h-10 w-10 object-contain" />
                 <span className="font-black text-lg text-white">Clear Gator</span>
               </div>
-              <p className="text-sm leading-relaxed mb-5">Construction cleanup, demolition, and dumpster rentals done right, done safe, done on time.</p>
+              <p className="text-sm leading-relaxed mb-5">Demo, hauling, site cleanup, and lot clearing — done right, done safe, done on time.</p>
               <div className="flex gap-3">
                 <a href="#" aria-label="Facebook" className="w-8 h-8 rounded-md bg-white/8 hover:bg-white/15 flex items-center justify-center transition-colors">
                   <Facebook className="w-4 h-4" />

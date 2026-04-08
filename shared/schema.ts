@@ -19,7 +19,7 @@ export type User = typeof users.$inferSelect;
 export const JOB_STATUSES = ["Scheduled", "In Progress", "Completed", "On Hold"] as const;
 export type JobStatus = typeof JOB_STATUSES[number];
 
-export const SERVICE_TYPES = ["Non-Structural Demolition", "Full Cleanup", "Land Clearing", "Stump Removal", "Hauling"] as const;
+export const SERVICE_TYPES = ["Demo", "Hauling", "Site Cleanup", "Lot Clearing"] as const;
 export type ServiceType = typeof SERVICE_TYPES[number];
 
 export const jobs = pgTable("jobs", {

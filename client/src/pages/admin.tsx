@@ -16,7 +16,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from "@/components/ui/form";
 import { useToast } from "@/hooks/use-toast";
-import logoImg from "@assets/logo_1772579467504.png";
+import logoImg from "@assets/clear_gator_1775663894887.png";
 import {
   ArrowLeft, Plus, Upload, Clock, CheckCircle2, Wrench, PauseCircle,
   Calendar, Eye, LayoutDashboard, FileText, Lock, TrendingUp,
