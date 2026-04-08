@@ -99,7 +99,7 @@ const howItWorks = [
 
 export default function LandingPage() {
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen bg-background text-foreground pb-[68px] sm:pb-0">
       <header className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between gap-4 py-3">
           <div className="flex items-center gap-3">
@@ -526,6 +526,18 @@ export default function LandingPage() {
           </div>
         </div>
       </footer>
+
+      {/* ── Mobile sticky Call Now bar ── */}
+      <div className="sm:hidden fixed bottom-0 left-0 right-0 z-50 shadow-[0_-4px_24px_rgba(0,0,0,0.18)]">
+        <a
+          href="tel:+13055550190"
+          data-testid="mobile-call-now-bar"
+          className="flex items-center justify-center gap-3 bg-gator-orange hover:bg-gator-orange-dark active:bg-gator-orange-dark w-full h-[68px] text-white font-bold text-lg transition-colors"
+        >
+          <PhoneCall className="w-5 h-5" />
+          Call Now
+        </a>
+      </div>
     </div>
   );
 }
