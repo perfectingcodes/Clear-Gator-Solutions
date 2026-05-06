@@ -3,6 +3,7 @@ import { useMutation } from "@tanstack/react-query";
 import { useLocation } from "wouter";
 import { ArrowRight, Check, Loader2 } from "lucide-react";
 import { apiRequest } from "@/lib/queryClient";
+import { GatorMonogram } from "@/components/swamp-decor";
 
 const SERVICES = ["Demo", "Hauling", "Site Cleanup", "Lot Clearing", "Handyman"];
 
@@ -58,6 +59,7 @@ export default function HeroQuoteForm() {
   if (submitted) {
     return (
       <div className="relative bg-background text-foreground rounded-xl p-8 hairline">
+        <GatorMonogram className="absolute top-6 right-6 w-8 h-8 text-foreground/40" />
         <div className="flex items-start gap-4 mb-5">
           <div className="w-10 h-10 rounded-md bg-gator-orange/10 flex items-center justify-center flex-shrink-0">
             <Check className="w-5 h-5 text-gator-orange" strokeWidth={2.4} />
@@ -113,12 +115,19 @@ export default function HeroQuoteForm() {
       </div>
 
       <div className="p-6 sm:p-7">
-        <h3 className="font-display text-xl sm:text-2xl font-bold tracking-tight leading-tight mb-1">
-          Request a free estimate
-        </h3>
-        <p className="text-sm text-muted-foreground mb-6 leading-relaxed">
-          Two short steps. No commitment. We respond within 24 hours.
-        </p>
+        <div className="flex items-start justify-between mb-3">
+          <div className="flex-1">
+            <h3 className="font-display text-xl sm:text-2xl font-bold tracking-[-0.02em] leading-tight mb-1">
+              Request a free estimate
+            </h3>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              Two short steps. No commitment. We respond within 24 hours.
+            </p>
+          </div>
+          <GatorMonogram className="w-8 h-8 text-foreground/40 flex-shrink-0 mt-1 ml-3" />
+        </div>
+        <div className="mb-6 mt-5 h-px bg-border" />
+
 
         {step === 0 && (
           <form onSubmit={handleStep0} className="space-y-5" data-testid="hero-form-step-1">

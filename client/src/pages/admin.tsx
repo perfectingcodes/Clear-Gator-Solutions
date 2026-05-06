@@ -112,7 +112,7 @@ function CreateJobDialog({ onCreated }: { onCreated: () => void }) {
       </DialogTrigger>
       <DialogContent className="max-w-lg max-h-[90vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle className="font-black">Create New Job</DialogTitle>
+          <DialogTitle className="font-display font-semibold">Create New Job</DialogTitle>
         </DialogHeader>
         <Form {...form}>
           <form onSubmit={form.handleSubmit((d) => createMutation.mutate(d))} className="space-y-4">
@@ -389,7 +389,7 @@ function LoginScreen({ onLogin }: { onLogin: () => void }) {
           <div className="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-primary/10 border border-primary/20 mb-5">
             <img src={logoImg} alt="Clear Gator Logo" className="h-12 w-12 object-contain" />
           </div>
-          <h1 className="text-2xl font-black mb-1">Staff Portal</h1>
+          <h1 className="text-2xl font-display font-semibold mb-1">Staff Portal</h1>
           <p className="text-muted-foreground text-sm">Enter your password to access the admin dashboard.</p>
         </div>
 
@@ -487,7 +487,7 @@ export default function AdminPage() {
             <div className="flex items-center gap-2.5">
               <img src={logoImg} alt="Clear Gator Logo" className="h-9 w-9 object-contain" />
               <div>
-                <div className="font-black text-sm leading-none">Clear Gator</div>
+                <div className="font-display font-semibold text-sm leading-none">Clear Gator</div>
                 <div className="text-xs text-muted-foreground leading-none mt-0.5">Admin Dashboard</div>
               </div>
             </div>
@@ -507,7 +507,7 @@ export default function AdminPage() {
                     <Icon className={`w-4 h-4 ${iconColor}`} />
                   </div>
                 </div>
-                <div className={`text-3xl font-black ${valueBg}`}>{value}</div>
+                <div className={`text-3xl font-display font-semibold ${valueBg}`}>{value}</div>
               </CardContent>
             </Card>
           ))}

@@ -1,7 +1,7 @@
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { usePageMeta } from "@/hooks/use-page-meta";
-import { GatorScales, SectionRule } from "@/components/swamp-decor";
+import { GatorScales, SectionRule, GatorMark } from "@/components/swamp-decor";
 import HeroQuoteForm from "@/components/hero-quote-form";
 import { useReveal } from "@/hooks/use-reveal";
 import logoImg from "@assets/clear_gator_1775663894887.png";
@@ -313,7 +313,7 @@ export default function LandingPage() {
                 </span>
                 <SectionRule className="w-16 h-1.5 text-gator-orange/60" />
               </div>
-              <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-black tracking-[-0.025em] text-balance leading-[0.98]">
+              <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-[-0.025em] text-balance leading-[0.98]">
                 Five disciplines.<br />
                 <span className="text-muted-foreground/60">One crew.</span>
               </h2>
@@ -375,7 +375,7 @@ export default function LandingPage() {
                 </span>
                 <SectionRule className="w-16 h-1.5 text-gator-orange/60" />
               </div>
-              <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-black tracking-[-0.025em] text-balance leading-[0.98]">
+              <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-[-0.025em] text-balance leading-[0.98]">
                 A simple,<br />
                 <span className="text-muted-foreground/60">transparent</span><br />
                 handoff.
@@ -423,7 +423,7 @@ export default function LandingPage() {
                 </span>
                 <SectionRule className="w-16 h-1.5 text-gator-orange/60" />
               </div>
-              <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-black tracking-[-0.025em] text-balance leading-[0.98] mb-6">
+              <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-[-0.025em] text-balance leading-[0.98] mb-6">
                 Southwest Florida,<br />
                 <span className="text-muted-foreground/60">end to end.</span>
               </h2>
@@ -473,7 +473,7 @@ export default function LandingPage() {
                 </span>
                 <SectionRule className="w-16 h-1.5 text-gator-orange/60" />
               </div>
-              <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-[-0.025em] leading-[0.98] mb-7 text-balance">
+              <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-semibold text-white tracking-[-0.025em] leading-[0.98] mb-7 text-balance">
                 Built to be<br />
                 <span className="text-white/40">a contractor's</span><br />
                 first call.
@@ -536,6 +536,7 @@ export default function LandingPage() {
         <div className="absolute -top-1/2 left-1/2 -translate-x-1/2 w-[120%] aspect-square rounded-full bg-gator-orange/[0.06] blur-3xl pointer-events-none" aria-hidden="true" />
 
         <div ref={ctaReveal} className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center reveal">
+          <GatorMark className="w-24 h-8 mx-auto text-gator-orange-light/70 mb-6" />
           <div className="font-mono text-gator-orange-light tracking-[0.32em] text-[11px] font-medium uppercase mb-8">
             Let's Gator Done.
           </div>
@@ -646,8 +647,11 @@ export default function LandingPage() {
             <div className="text-white/40">
               &copy; {new Date().getFullYear()} Clear Gator Construction Services. All rights reserved.
             </div>
-            <div className="font-mono text-gator-orange-light tracking-[0.32em] text-[11px] font-medium uppercase">
-              Let's Gator Done.
+            <div className="flex items-center gap-3">
+              <GatorMark className="w-16 h-5 text-gator-orange-light/60" />
+              <div className="font-mono text-gator-orange-light tracking-[0.32em] text-[11px] font-medium uppercase">
+                Let's Gator Done.
+              </div>
             </div>
           </div>
         </div>

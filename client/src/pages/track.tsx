@@ -152,7 +152,7 @@ function JobDetails({ job, photos }: { job: Job; photos: JobPhoto[] }) {
         <div className="flex flex-wrap items-start justify-between gap-3 mb-4">
           <div>
             <span className="text-xs text-muted-foreground font-mono bg-muted/60 px-2 py-0.5 rounded">{job.jobId}</span>
-            <h2 className="text-xl font-black mt-2 leading-tight">{job.title}</h2>
+            <h2 className="text-xl font-display font-semibold mt-2 leading-tight">{job.title}</h2>
             <p className="text-muted-foreground text-sm mt-1">{job.serviceType}</p>
           </div>
           <StatusBadge status={job.status} />
@@ -254,30 +254,34 @@ export default function TrackPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <header className="border-b border-border bg-background/95 backdrop-blur-sm sticky top-0 z-40 shadow-sm">
+      <header className="border-b border-border bg-background/85 backdrop-blur-md sticky top-0 z-40">
         <div className="max-w-3xl mx-auto px-4 py-3.5 flex items-center gap-3">
           <Link href="/">
             <Button variant="ghost" size="icon" data-testid="button-back-home">
               <ArrowLeft className="w-4 h-4" />
             </Button>
           </Link>
-          <div className="flex items-center gap-2">
-            <img src={logoImg} alt="Clear Gator Logo" className="h-9 w-9 object-contain" />
-            <div>
-              <div className="font-black text-sm leading-none">Clear Gator</div>
-              <div className="text-xs text-muted-foreground">Job Tracker</div>
+          <Link href="/" className="flex items-center gap-3 group">
+            <img src={logoImg} alt="Clear Gator Logo" className="h-10 w-10 object-contain transition-transform group-hover:scale-[1.04]" />
+            <div className="leading-none">
+              <div className="font-display font-semibold text-sm tracking-[-0.01em]">Clear Gator</div>
+              <div className="font-mono text-[10px] font-medium tracking-[0.22em] uppercase text-muted-foreground mt-1">
+                Job Tracker
+              </div>
             </div>
-          </div>
+          </Link>
         </div>
       </header>
 
-      <div className="max-w-3xl mx-auto px-4 py-10">
-        <div className="text-center mb-8">
-          <div className="w-14 h-14 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center mx-auto mb-4">
-            <Search className="w-7 h-7 text-primary" />
+      <div className="max-w-3xl mx-auto px-4 py-14">
+        <div className="mb-10">
+          <div className="font-mono text-[11px] tracking-[0.22em] uppercase text-gator-orange mb-3">
+            Track
           </div>
-          <h1 className="text-2xl sm:text-3xl font-black mb-2">Track Your Job</h1>
-          <p className="text-muted-foreground text-sm max-w-sm mx-auto leading-relaxed">
+          <h1 className="font-display text-3xl sm:text-4xl font-semibold tracking-[-0.025em] leading-[1.05] mb-3">
+            Track your job.
+          </h1>
+          <p className="text-muted-foreground text-sm leading-relaxed max-w-md">
             Enter your unique Job ID to see real-time status, site photos, and your invoice.
           </p>
         </div>

@@ -12,6 +12,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from "@/components/ui/form";
 import { useToast } from "@/hooks/use-toast";
 import { usePageMeta } from "@/hooks/use-page-meta";
+import { GatorMark } from "@/components/swamp-decor";
 import logoImg from "@assets/clear_gator_1775663894887.png";
 import {
   ArrowLeft, ArrowRight, CheckCircle2, Upload,
@@ -154,7 +155,7 @@ export default function EstimatePage() {
           <div className="w-20 h-20 rounded-full bg-primary/10 border-2 border-primary/20 flex items-center justify-center mx-auto mb-6">
             <CheckCircle2 className="w-10 h-10 text-primary" />
           </div>
-          <h1 className="text-2xl font-black mb-3">Estimate Requested!</h1>
+          <h1 className="text-2xl font-display font-semibold mb-3">Estimate Requested!</h1>
           <p className="text-muted-foreground mb-8 leading-relaxed">
             Thanks, <strong className="text-foreground">{formData.name}</strong>! We've received your request and will follow up at <strong className="text-foreground">{formData.email}</strong> within 24 hours.
           </p>
@@ -173,56 +174,76 @@ export default function EstimatePage() {
 
   return (
     <div className="min-h-screen bg-background flex flex-col lg:flex-row">
-      <aside className="hidden lg:flex lg:w-80 xl:w-96 flex-col bg-[hsl(150_65%_15%)] text-white p-8 relative overflow-hidden flex-shrink-0">
-        <div className="absolute inset-0 opacity-5" style={{
-          backgroundImage: `repeating-linear-gradient(45deg, white 0, white 1px, transparent 0, transparent 50%)`,
-          backgroundSize: "20px 20px"
-        }} />
+      <aside className="hidden lg:flex lg:w-80 xl:w-96 flex-col bg-ink text-white p-10 relative overflow-hidden flex-shrink-0 border-r border-white/5">
+        <div className="absolute -top-1/3 right-0 w-[120%] aspect-square rounded-full bg-gator-orange/[0.05] blur-3xl pointer-events-none" aria-hidden="true" />
         <div className="relative z-10 flex flex-col h-full">
           <Link href="/">
-            <div className="flex items-center gap-3 mb-12 group cursor-pointer">
-              <img src={logoImg} alt="Clear Gator Logo" className="h-12 w-12 object-contain drop-shadow-lg" />
-              <div>
-                <div className="font-black text-xl">Clear Gator</div>
-                <div className="text-white/50 text-xs">Construction Services</div>
+            <div className="flex items-center gap-3 mb-14 group cursor-pointer">
+              <img src={logoImg} alt="Clear Gator Logo" className="h-11 w-11 object-contain transition-transform group-hover:scale-[1.04]" />
+              <div className="leading-none">
+                <div className="font-display font-semibold text-lg tracking-[-0.02em]">Clear Gator</div>
+                <div className="font-mono text-[10px] font-medium tracking-[0.22em] uppercase text-white/40 mt-1">
+                  Construction Services
+                </div>
               </div>
             </div>
           </Link>
 
-          <div className="mb-8">
-            <div className="text-gator-orange-light font-bold text-xs uppercase tracking-widest mb-3">Free Estimate</div>
-            <h2 className="text-2xl font-black leading-tight mb-4">Let's Get Your Site Cleared</h2>
-            <p className="text-white/60 text-sm leading-relaxed">Fill out the quick form and our team will send you a detailed quote within 24 hours. No obligation.</p>
+          <div className="mb-10">
+            <div className="flex items-center gap-3 mb-6">
+              <span className="font-mono text-[11px] tracking-[0.22em] uppercase text-gator-orange-light">
+                01 / Free Estimate
+              </span>
+              <span className="h-px flex-1 bg-white/10" />
+            </div>
+            <h2 className="font-display text-3xl font-semibold leading-[1.05] tracking-[-0.025em] mb-4 text-balance">
+              Let's get your site cleared.
+            </h2>
+            <p className="text-white/55 text-sm leading-[1.65]">
+              Fill out the quick form. Our team sends a detailed quote within 24 hours. No commitment.
+            </p>
           </div>
 
-          <div className="space-y-4 mb-8">
+          <div className="space-y-3.5 mb-10">
             {[
               { icon: Shield, text: "Licensed & Fully Insured" },
               { icon: Clock, text: "24-Hour Response Guarantee" },
-              { icon: Star, text: "4.9★ Customer Rating" },
-              { icon: MapPin, text: "Serving Tri-County Area" },
+              { icon: MapPin, text: "Serving Southwest Florida" },
             ].map(({ icon: Icon, text }) => (
               <div key={text} className="flex items-center gap-3 text-sm text-white/70">
-                <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center flex-shrink-0">
-                  <Icon className="w-4 h-4 text-gator-orange-light" />
-                </div>
+                <Icon className="w-4 h-4 text-gator-orange-light flex-shrink-0" strokeWidth={2} />
                 {text}
               </div>
             ))}
           </div>
 
           <div className="mt-auto">
-            <div className="bg-white/8 rounded-xl p-5 border border-white/10">
-              <div className="text-gator-orange-light font-bold text-sm mb-1">Demo Job ID</div>
-              <div className="font-mono text-white text-lg font-bold mb-1">CG-2024-DEMO</div>
-              <div className="text-white/50 text-xs">Use this on the Track page to see a live demo.</div>
+            <div className="pt-6 border-t border-white/8">
+              <div className="font-mono text-[10px] tracking-[0.22em] uppercase text-white/40 mb-3">
+                Try the Demo
+              </div>
+              <div className="flex items-baseline justify-between mb-2">
+                <span className="font-mono text-white text-base">CG-2024-DEMO</span>
+                <Link href="/track" className="text-[10px] text-gator-orange-light tracking-wide hover:underline underline-offset-2">
+                  Track →
+                </Link>
+              </div>
+              <div className="text-white/45 text-xs leading-relaxed">
+                Paste this on the Track page to see a live demo job.
+              </div>
+            </div>
+            <div className="flex items-center gap-3 pt-8 mt-6 border-t border-white/8">
+              <GatorMark className="w-16 h-5 text-gator-orange-light/60" />
+              <div className="font-mono text-gator-orange-light/80 tracking-[0.32em] text-[10px] font-medium uppercase">
+                Let's Gator Done.
+              </div>
             </div>
           </div>
         </div>
       </aside>
 
       <div className="flex-1 flex flex-col min-h-screen lg:min-h-0">
-        <header className="border-b border-border bg-background/95 backdrop-blur-sm sticky top-0 z-40 lg:hidden">
+        <header className="border-b border-border bg-background/85 backdrop-blur-md sticky top-0 z-40 lg:hidden">
           <div className="max-w-3xl mx-auto px-4 py-3.5 flex items-center gap-3">
             <Link href="/">
               <Button variant="ghost" size="icon" data-testid="button-back-home">
@@ -231,29 +252,35 @@ export default function EstimatePage() {
             </Link>
             <div className="flex items-center gap-2 flex-1 min-w-0">
               <img src={logoImg} alt="Clear Gator Logo" className="h-8 w-8 object-contain" />
-              <span className="font-bold text-sm truncate">Clear Gator — Free Estimate</span>
+              <span className="font-display font-semibold text-sm tracking-[-0.01em] truncate">Clear Gator</span>
             </div>
             <a href="tel:+12392343061" aria-label="Call Clear Gator" data-testid="estimate-header-call">
-              <Button size="sm" variant="outline" className="gap-1.5">
-                <PhoneCall className="w-4 h-4 text-gator-orange" />
+              <Button size="sm" variant="outline" className="gap-1.5 rounded-md">
+                <PhoneCall className="w-3.5 h-3.5 text-gator-orange" strokeWidth={2.2} />
                 Call
               </Button>
             </a>
           </div>
         </header>
 
-        <div className="flex-1 max-w-2xl mx-auto w-full px-4 py-10 lg:py-12">
-          <div className="mb-8 lg:hidden text-center">
-            <Link href="/" className="inline-flex items-center gap-2 mb-6 text-muted-foreground hover:text-foreground transition-colors">
-              <ArrowLeft className="w-4 h-4" /> Back to home
+        <div className="flex-1 max-w-2xl mx-auto w-full px-4 py-10 lg:py-14">
+          <div className="mb-10 lg:hidden">
+            <Link href="/" className="inline-flex items-center gap-1.5 mb-6 text-muted-foreground hover:text-foreground transition-colors text-sm">
+              <ArrowLeft className="w-3.5 h-3.5" /> Back
             </Link>
-            <h1 className="text-2xl font-black mb-1">Request a Free Estimate</h1>
-            <p className="text-muted-foreground text-sm">Takes less than 2 minutes. We'll respond within 24 hours.</p>
+            <div className="font-mono text-[11px] tracking-[0.22em] uppercase text-gator-orange mb-3">
+              01 / Free Estimate
+            </div>
+            <h1 className="font-display text-3xl font-semibold tracking-[-0.025em] leading-[1.05] mb-2">Request a free estimate</h1>
+            <p className="text-muted-foreground text-sm leading-relaxed">Takes under 2 minutes. We respond within 24 hours.</p>
           </div>
 
-          <div className="hidden lg:block mb-8">
-            <h1 className="text-2xl font-black mb-1">Request a Free Estimate</h1>
-            <p className="text-muted-foreground text-sm">Takes less than 2 minutes. We'll respond within 24 hours.</p>
+          <div className="hidden lg:block mb-10">
+            <div className="font-mono text-[11px] tracking-[0.22em] uppercase text-gator-orange mb-3">
+              Request
+            </div>
+            <h1 className="font-display text-3xl font-semibold tracking-[-0.025em] leading-[1.05] mb-2">Request a free estimate</h1>
+            <p className="text-muted-foreground text-sm leading-relaxed">Takes under 2 minutes. We respond within 24 hours.</p>
           </div>
 
           <StepIndicator currentStep={step} />

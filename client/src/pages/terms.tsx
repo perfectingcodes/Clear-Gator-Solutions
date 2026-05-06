@@ -14,24 +14,32 @@ export default function TermsPage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <header className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
+      <header className="sticky top-0 z-50 bg-background/85 backdrop-blur-md border-b border-border/70">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between gap-4 py-3">
-          <Link href="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
-            <img src={logoImg} alt="Clear Gator Logo" className="h-11 w-11 object-contain" />
-            <span className="font-black text-xl tracking-tight text-foreground">Clear Gator</span>
+          <Link href="/" className="flex items-center gap-3 group">
+            <img src={logoImg} alt="Clear Gator Logo" className="h-10 w-10 object-contain transition-transform group-hover:scale-[1.04]" />
+            <div className="leading-none">
+              <div className="font-display font-semibold text-lg sm:text-xl tracking-[-0.02em]">Clear Gator</div>
+              <div className="hidden sm:block font-mono text-[10px] font-medium tracking-[0.22em] uppercase text-muted-foreground mt-1">
+                Construction Services
+              </div>
+            </div>
           </Link>
           <Link href="/">
-            <Button variant="outline" size="sm" className="gap-2">
-              <ArrowLeft className="w-4 h-4" />
-              Back to Home
+            <Button variant="outline" size="sm" className="gap-2 rounded-md">
+              <ArrowLeft className="w-3.5 h-3.5" strokeWidth={2.2} />
+              Home
             </Button>
           </Link>
         </div>
       </header>
 
       <main className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <h1 className="text-3xl sm:text-4xl font-black tracking-tight mb-2">Terms &amp; Conditions</h1>
-        <p className="text-muted-foreground text-sm mb-10">Effective Date: {EFFECTIVE_DATE}</p>
+        <div className="font-mono text-[11px] tracking-[0.22em] uppercase text-gator-orange mb-3">
+          Legal
+        </div>
+        <h1 className="font-display text-3xl sm:text-5xl font-semibold tracking-[-0.025em] leading-[1.02] mb-3">Terms &amp; Conditions</h1>
+        <p className="text-muted-foreground text-sm mb-10 font-mono">Effective {EFFECTIVE_DATE}</p>
 
         <div className="prose prose-slate dark:prose-invert max-w-none space-y-8 text-foreground/85 leading-relaxed">
           <section>
