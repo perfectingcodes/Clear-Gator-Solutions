@@ -1,6 +1,7 @@
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { usePageMeta } from "@/hooks/use-page-meta";
 import logoImg from "@assets/clear_gator_1775663894887.png";
 import {
   Truck, HardHat, PhoneCall, CheckCircle2,
@@ -83,6 +84,12 @@ const howItWorks = [
 ];
 
 export default function LandingPage() {
+  usePageMeta({
+    title: "Clear Gator — Demo, Hauling, Site Cleanup & Handyman in SW Florida",
+    description:
+      "Demo, hauling, site cleanup, lot clearing, and handyman work (including painting) for Cape Coral, Naples & Southwest Florida. Licensed & insured. Let's Gator Done. Call (239) 234-3061.",
+  });
+
   return (
     <div className="min-h-screen bg-background text-foreground pb-[calc(68px+env(safe-area-inset-bottom,0px))] sm:pb-0">
       <header className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border shadow-sm">
@@ -97,11 +104,26 @@ export default function LandingPage() {
             <a href="#service-areas" className="hover:text-foreground px-3 py-2 rounded-md transition-colors hover:bg-muted/50">Service Areas</a>
           </nav>
           <div className="flex items-center gap-2">
+            <a
+              href="tel:+12392343061"
+              data-testid="header-call-now"
+              className="hidden lg:inline-flex items-center gap-2 px-3 py-2 rounded-md text-sm font-semibold text-foreground hover:bg-muted/50 transition-colors"
+              aria-label="Call Clear Gator at 239-234-3061"
+            >
+              <PhoneCall className="w-4 h-4 text-gator-orange" />
+              (239) 234-3061
+            </a>
             <Link href="/track">
               <Button variant="outline" size="sm" data-testid="link-track-job" className="hidden sm:inline-flex">
                 Track My Job
               </Button>
             </Link>
+            <a href="tel:+12392343061" className="sm:hidden" aria-label="Call Clear Gator">
+              <Button size="sm" variant="outline" className="gap-1.5" data-testid="header-call-icon">
+                <PhoneCall className="w-4 h-4" />
+                Call
+              </Button>
+            </a>
             <Link href="/estimate">
               <Button size="sm" className="bg-gator-orange hover:bg-gator-orange-dark text-white font-semibold shadow-md" data-testid="link-get-estimate">
                 Free Estimate
@@ -162,11 +184,21 @@ export default function LandingPage() {
                   Get a Free Estimate <ArrowRight className="w-5 h-5" />
                 </Button>
               </Link>
-              <Link href="/track">
+              <a href="tel:+12392343061" data-testid="hero-cta-call">
                 <Button
                   size="lg"
                   variant="outline"
-                  className="border-white/30 text-white bg-white/10 backdrop-blur-sm hover:bg-white/20 text-base px-8"
+                  className="border-white/30 text-white bg-white/10 backdrop-blur-sm hover:bg-white/20 text-base px-8 gap-2"
+                >
+                  <PhoneCall className="w-5 h-5" />
+                  Call (239) 234-3061
+                </Button>
+              </a>
+              <Link href="/track">
+                <Button
+                  size="lg"
+                  variant="ghost"
+                  className="text-white/80 hover:text-white hover:bg-white/10 text-base px-6"
                   data-testid="hero-cta-track"
                 >
                   Track My Job
@@ -298,7 +330,7 @@ export default function LandingPage() {
 
           <p className="text-center text-sm text-muted-foreground">
             Not sure if we cover your area?{" "}
-            <a href="tel:+13055550190" className="text-primary font-semibold hover:underline">
+            <a href="tel:+12392343061" className="text-primary font-semibold hover:underline">
               Give us a call
             </a>{" "}
             — we travel for the right job.
@@ -463,7 +495,7 @@ export default function LandingPage() {
               <ul className="space-y-2.5 text-sm">
                 <li className="flex items-start gap-2">
                   <PhoneCall className="w-4 h-4 mt-0.5 text-primary flex-shrink-0" />
-                  <span>(305) 555-0190</span>
+                  <span>(239) 234-3061</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <MapPin className="w-4 h-4 mt-0.5 text-primary flex-shrink-0" />
@@ -496,7 +528,7 @@ export default function LandingPage() {
         style={{ paddingBottom: "env(safe-area-inset-bottom, 0px)" }}
       >
         <a
-          href="tel:+13055550190"
+          href="tel:+12392343061"
           data-testid="mobile-call-now-bar"
           className="flex items-center justify-center gap-3 hover:bg-gator-orange-dark active:bg-gator-orange-dark w-full h-[68px] text-white font-bold text-lg transition-colors"
         >

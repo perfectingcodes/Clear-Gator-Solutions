@@ -1,11 +1,17 @@
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
+import { usePageMeta } from "@/hooks/use-page-meta";
 import logoImg from "@assets/clear_gator_1775663894887.png";
 import { ArrowLeft } from "lucide-react";
 
 const EFFECTIVE_DATE = "May 6, 2026";
 
 export default function PrivacyPage() {
+  usePageMeta({
+    title: "Privacy Policy — Clear Gator Construction Services",
+    description: "How Clear Gator Construction Services collects, uses, and protects your information.",
+  });
+
   return (
     <div className="min-h-screen bg-background text-foreground">
       <header className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
@@ -118,7 +124,7 @@ export default function PrivacyPage() {
             </p>
             <ul className="list-none pl-0 space-y-1 mt-2">
               <li><strong>Clear Gator Construction Services</strong></li>
-              <li>Phone: (305) 555-0190</li>
+              <li>Phone: (239) 234-3061</li>
               <li>Service Area: Cape Coral · Naples · Southwest Florida</li>
             </ul>
           </section>

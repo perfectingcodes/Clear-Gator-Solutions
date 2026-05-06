@@ -122,7 +122,7 @@ export default function SupportBot() {
           };
           saveLead(finalLead);
           pushBot(
-            `Thanks, ${finalLead.name.split(" ")[0]}! I've passed your info to our team. Someone will reach out within 24 hours. For anything urgent, give us a ring at (305) 555-0190.`
+            `Thanks, ${finalLead.name.split(" ")[0]}! I've passed your info to our team. Someone will reach out within 24 hours. For anything urgent, give us a ring at (239) 234-3061.`
           );
           setStep("done");
           break;

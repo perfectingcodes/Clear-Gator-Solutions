@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Input } from "@/components/ui/input";
+import { usePageMeta } from "@/hooks/use-page-meta";
 import logoImg from "@assets/clear_gator_1775663894887.png";
 import {
   ArrowLeft, Search, CheckCircle2, Clock, Wrench, PauseCircle,
@@ -230,6 +231,12 @@ function JobDetails({ job, photos }: { job: Job; photos: JobPhoto[] }) {
 }
 
 export default function TrackPage() {
+  usePageMeta({
+    title: "Track My Job — Clear Gator Construction Services",
+    description:
+      "Track your Clear Gator job in real time. Use your Job ID to view live progress, site photos, and your invoice.",
+  });
+
   const [jobIdInput, setJobIdInput] = useState("");
   const [searchId, setSearchId] = useState<string | null>(null);
 

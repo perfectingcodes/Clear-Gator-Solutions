@@ -11,11 +11,12 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from "@/components/ui/form";
 import { useToast } from "@/hooks/use-toast";
+import { usePageMeta } from "@/hooks/use-page-meta";
 import logoImg from "@assets/clear_gator_1775663894887.png";
 import {
   ArrowLeft, ArrowRight, CheckCircle2, Upload,
   HardHat, Truck, Shield, Clock, Star, MapPin,
-  Hammer, TreePine, Wrench
+  Hammer, TreePine, Wrench, PhoneCall
 } from "lucide-react";
 
 const SERVICE_OPTIONS = [
@@ -86,6 +87,12 @@ function StepIndicator({ currentStep }: { currentStep: number }) {
 }
 
 export default function EstimatePage() {
+  usePageMeta({
+    title: "Free Estimate — Clear Gator Construction Services",
+    description:
+      "Get a free, no-obligation estimate for demo, hauling, site cleanup, lot clearing, or handyman services in Southwest Florida. We respond within 24 hours.",
+  });
+
   const [, setLocation] = useLocation();
   const { toast } = useToast();
   const [step, setStep] = useState(0);
@@ -222,10 +229,16 @@ export default function EstimatePage() {
                 <ArrowLeft className="w-4 h-4" />
               </Button>
             </Link>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 flex-1 min-w-0">
               <img src={logoImg} alt="Clear Gator Logo" className="h-8 w-8 object-contain" />
-              <span className="font-bold text-sm">Clear Gator — Free Estimate</span>
+              <span className="font-bold text-sm truncate">Clear Gator — Free Estimate</span>
             </div>
+            <a href="tel:+12392343061" aria-label="Call Clear Gator" data-testid="estimate-header-call">
+              <Button size="sm" variant="outline" className="gap-1.5">
+                <PhoneCall className="w-4 h-4 text-gator-orange" />
+                Call
+              </Button>
+            </a>
           </div>
         </header>
 
