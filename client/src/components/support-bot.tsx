@@ -149,10 +149,11 @@ export default function SupportBot() {
           onClick={toggleOpen}
           aria-label="Open support chat"
           data-testid="support-bot-toggle"
-          className="fixed bottom-4 right-4 z-[60] w-14 h-14 rounded-full bg-gator-orange hover:bg-gator-orange-dark text-white shadow-2xl shadow-gator-orange/40 flex items-center justify-center transition-all hover:scale-105"
-          style={{ marginBottom: "calc(env(safe-area-inset-bottom, 0px) + 76px)" }}
+          className="group fixed bottom-4 right-4 z-[60] w-14 h-14 rounded-full bg-gradient-to-br from-gator-orange via-gator-orange to-gator-orange-dark text-white shadow-2xl shadow-gator-orange/50 flex items-center justify-center transition-all hover:scale-110 active:scale-95 ring-4 ring-gator-orange/15"
+          style={{ marginBottom: "calc(env(safe-area-inset-bottom, 0px) + 92px)" }}
         >
-          <MessageCircle className="w-6 h-6" />
+          <span className="absolute inset-0 rounded-full bg-gator-orange/40 animate-ripple" aria-hidden="true" />
+          <MessageCircle className="relative w-6 h-6 group-hover:rotate-6 transition-transform" strokeWidth={2.4} />
           {unread && (
             <span className="absolute top-1 right-1 w-3 h-3 rounded-full bg-red-500 border-2 border-background" />
           )}
@@ -165,7 +166,7 @@ export default function SupportBot() {
           aria-label="Support chat"
           data-testid="support-bot-window"
           className="fixed bottom-4 right-4 z-[60] w-[calc(100vw-2rem)] sm:w-96 max-w-sm h-[520px] max-h-[80vh] bg-card border border-card-border rounded-2xl shadow-2xl shadow-black/30 flex flex-col overflow-hidden animate-in slide-in-from-bottom-4 fade-in duration-200"
-          style={{ marginBottom: "calc(env(safe-area-inset-bottom, 0px) + 76px)" }}
+          style={{ marginBottom: "calc(env(safe-area-inset-bottom, 0px) + 92px)" }}
         >
           <div className="flex items-center gap-3 p-4 border-b border-card-border bg-gator-orange text-white">
             <div className="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0">
