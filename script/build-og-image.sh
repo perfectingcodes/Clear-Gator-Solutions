@@ -36,27 +36,27 @@ cat > "$SVG" <<SVG
   <!-- brand logo -->
   <image href="data:image/png;base64,${LOGO_B64}" x="80" y="180" width="270" height="270" preserveAspectRatio="xMidYMid meet"/>
 
-  <g font-family="Outfit, Inter, 'Helvetica Neue', Arial, sans-serif">
+  <g font-family="Geist, Inter, -apple-system, 'Helvetica Neue', Arial, sans-serif">
     <!-- editorial number eyebrow -->
-    <text x="420" y="188" font-size="16" font-weight="600" fill="#ff9b3d" letter-spacing="6">01 — CLEAR GATOR</text>
-    <line x1="600" y1="183" x2="660" y2="183" stroke="#ffffff" stroke-opacity="0.25" stroke-width="1"/>
-    <text x="676" y="188" font-size="16" font-weight="600" fill="#ffffff" opacity="0.45" letter-spacing="5">SOUTHWEST FLORIDA</text>
+    <text x="420" y="188" font-size="14" font-weight="500" fill="#ff9b3d" letter-spacing="3" font-family="'Geist Mono', monospace">01 / CLEAR GATOR</text>
+    <line x1="585" y1="183" x2="640" y2="183" stroke="#ffffff" stroke-opacity="0.25" stroke-width="1"/>
+    <text x="654" y="188" font-size="14" font-weight="500" fill="#ffffff" opacity="0.45" letter-spacing="3" font-family="'Geist Mono', monospace">SOUTHWEST FLORIDA</text>
 
     <!-- headline -->
-    <text x="420" y="260" font-size="64" font-weight="900" fill="#ffffff" letter-spacing="-2">We clear the way.</text>
-    <text x="420" y="320" font-size="64" font-weight="900" fill="#ffffff" opacity="0.45" letter-spacing="-2">You build what's next.</text>
+    <text x="420" y="262" font-size="64" font-weight="600" fill="#ffffff" letter-spacing="-2.5">We clear the way.</text>
+    <text x="420" y="322" font-size="64" font-weight="600" fill="#ffffff" opacity="0.4" letter-spacing="-2.5">You build what's next.</text>
 
     <!-- supporting copy -->
-    <text x="420" y="385" font-size="22" font-weight="500" fill="#ffffff" opacity="0.65">Demolition · Hauling · Site Cleanup</text>
-    <text x="420" y="416" font-size="22" font-weight="500" fill="#ffffff" opacity="0.65">Lot Clearing · Handyman &amp; Painting</text>
+    <text x="420" y="386" font-size="22" font-weight="400" fill="#ffffff" opacity="0.65">Demolition · Hauling · Site Cleanup</text>
+    <text x="420" y="416" font-size="22" font-weight="400" fill="#ffffff" opacity="0.65">Lot Clearing · Handyman &amp; Painting</text>
 
     <!-- footer rule + signoff -->
     <line x1="420" y1="478" x2="1080" y2="478" stroke="#ffffff" stroke-opacity="0.12" stroke-width="1"/>
 
-    <text x="420" y="528" font-size="32" font-weight="800" fill="#ffffff" letter-spacing="-0.5">(239) 234-3061</text>
-    <text x="420" y="562" font-size="14" font-weight="500" fill="#ffffff" opacity="0.45" letter-spacing="3">CAPE CORAL · NAPLES · LICENSED &amp; INSURED</text>
+    <text x="420" y="528" font-size="32" font-weight="600" fill="#ffffff" letter-spacing="-0.8">(239) 234-3061</text>
+    <text x="420" y="562" font-size="13" font-weight="500" fill="#ffffff" opacity="0.45" letter-spacing="3" font-family="'Geist Mono', monospace">CAPE CORAL · NAPLES · LICENSED &amp; INSURED</text>
 
-    <text x="1080" y="528" font-size="14" font-weight="700" fill="#ff9b3d" letter-spacing="6" text-anchor="end">LET'S GATOR DONE.</text>
+    <text x="1080" y="528" font-size="13" font-weight="500" fill="#ff9b3d" letter-spacing="3" text-anchor="end" font-family="'Geist Mono', monospace">LET'S GATOR DONE.</text>
   </g>
 </svg>
 SVG

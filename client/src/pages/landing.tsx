@@ -2,6 +2,8 @@ import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { usePageMeta } from "@/hooks/use-page-meta";
 import { GatorScales, SectionRule } from "@/components/swamp-decor";
+import HeroQuoteForm from "@/components/hero-quote-form";
+import { useReveal } from "@/hooks/use-reveal";
 import logoImg from "@assets/clear_gator_1775663894887.png";
 import {
   Truck, HardHat, PhoneCall, CheckCircle2,
@@ -90,47 +92,74 @@ export default function LandingPage() {
       "Demo, hauling, site cleanup, lot clearing, and handyman work (including painting) for Cape Coral, Naples & Southwest Florida. Licensed & insured. Let's Gator Done. Call (239) 234-3061.",
   });
 
+  const servicesReveal = useReveal<HTMLDivElement>();
+  const howReveal = useReveal<HTMLDivElement>();
+  const areasReveal = useReveal<HTMLDivElement>();
+  const tradeReveal = useReveal<HTMLDivElement>();
+  const ctaReveal = useReveal<HTMLDivElement>();
+
   return (
     <div className="min-h-screen bg-background text-foreground pb-[calc(88px+env(safe-area-inset-bottom,0px))] sm:pb-0">
       <header className="sticky top-0 z-50 bg-background/85 backdrop-blur-md border-b border-border/70">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between gap-4 py-3">
-          <Link href="/" className="flex items-center gap-3 hover-elevate rounded-md px-1 -mx-1 py-1">
-            <img src={logoImg} alt="Clear Gator Logo" className="h-11 w-11 object-contain drop-shadow-sm" />
+          <Link href="/" className="flex items-center gap-3 group">
+            <img src={logoImg} alt="Clear Gator Logo" className="h-10 w-10 object-contain transition-transform duration-300 group-hover:scale-[1.04]" />
             <div className="leading-none">
-              <div className="font-display font-black text-lg sm:text-xl tracking-tight text-foreground">Clear Gator</div>
-              <div className="hidden sm:block text-[9px] font-bold tracking-[0.22em] uppercase text-gator-orange mt-0.5">
+              <div className="font-display font-semibold text-lg sm:text-xl tracking-[-0.02em] text-foreground">Clear Gator</div>
+              <div className="hidden sm:block font-mono text-[10px] font-medium tracking-[0.22em] uppercase text-muted-foreground mt-1">
                 Construction Services
               </div>
             </div>
           </Link>
-          <nav className="hidden md:flex items-center gap-1 text-sm text-muted-foreground">
-            <a href="#services" className="hover:text-foreground px-3 py-2 rounded-md transition-colors hover:bg-muted/50">Services</a>
-            <a href="#how-it-works" className="hover:text-foreground px-3 py-2 rounded-md transition-colors hover:bg-muted/50">How It Works</a>
-            <a href="#service-areas" className="hover:text-foreground px-3 py-2 rounded-md transition-colors hover:bg-muted/50">Service Areas</a>
+          <nav className="hidden md:flex items-center gap-7 text-sm">
+            {[
+              { label: "Services", href: "#services" },
+              { label: "Process", href: "#how-it-works" },
+              { label: "Coverage", href: "#service-areas" },
+            ].map(({ label, href }) => (
+              <a
+                key={href}
+                href={href}
+                className="relative text-muted-foreground hover:text-foreground transition-colors py-2 group"
+              >
+                {label}
+                <span className="absolute left-0 right-0 -bottom-0.5 h-px bg-foreground origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
+              </a>
+            ))}
           </nav>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-3">
             <a
               href="tel:+12392343061"
               data-testid="header-call-now"
-              className="hidden lg:inline-flex items-center gap-2 px-3 py-2 rounded-md text-sm font-semibold text-foreground hover:bg-muted/50 transition-colors"
+              className="hidden lg:inline-flex items-center gap-2 text-sm font-medium text-foreground hover:text-gator-orange transition-colors"
               aria-label="Call Clear Gator at 239-234-3061"
             >
-              <PhoneCall className="w-4 h-4 text-gator-orange" />
+              <PhoneCall className="w-3.5 h-3.5 text-gator-orange" strokeWidth={2.2} />
               (239) 234-3061
             </a>
+            <span className="hidden lg:block h-5 w-px bg-border" aria-hidden="true" />
             <Link href="/track">
-              <Button variant="outline" size="sm" data-testid="link-track-job" className="hidden sm:inline-flex">
-                Track My Job
+              <Button
+                variant="ghost"
+                size="sm"
+                data-testid="link-track-job"
+                className="hidden sm:inline-flex text-muted-foreground hover:text-foreground hover:bg-transparent font-medium px-2"
+              >
+                Track Job
               </Button>
             </Link>
             <a href="tel:+12392343061" className="sm:hidden" aria-label="Call Clear Gator">
-              <Button size="sm" variant="outline" className="gap-1.5" data-testid="header-call-icon">
-                <PhoneCall className="w-4 h-4" />
+              <Button size="sm" variant="outline" className="gap-1.5 rounded-md" data-testid="header-call-icon">
+                <PhoneCall className="w-3.5 h-3.5" strokeWidth={2.2} />
                 Call
               </Button>
             </a>
             <Link href="/estimate">
-              <Button size="sm" className="bg-gator-orange hover:bg-gator-orange-dark text-white font-semibold shadow-md" data-testid="link-get-estimate">
+              <Button
+                size="sm"
+                className="bg-foreground hover:bg-foreground/90 text-background font-semibold rounded-md shadow-sm"
+                data-testid="link-get-estimate"
+              >
                 Free Estimate
               </Button>
             </Link>
@@ -138,28 +167,29 @@ export default function LandingPage() {
         </div>
       </header>
 
-      <section className="relative overflow-hidden bg-ink-hero min-h-[88vh] flex items-center">
+      <section className="relative overflow-hidden bg-ink-hero">
         <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-[0.18]"
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-[0.16]"
           style={{ backgroundImage: "url('/images/hero-construction.png')" }}
           aria-hidden="true"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/55 to-transparent" aria-hidden="true" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" aria-hidden="true" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/65 to-black/30" aria-hidden="true" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" aria-hidden="true" />
+        <div className="absolute -top-1/3 right-0 w-[55%] aspect-square rounded-full bg-gator-orange/[0.06] blur-3xl pointer-events-none" aria-hidden="true" />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-28 sm:py-32 w-full grid lg:grid-cols-12 gap-12 items-center">
-          <div className="lg:col-span-8">
-            <div className="flex items-center gap-3 mb-9">
-              <span className="text-[10px] font-semibold tracking-[0.32em] uppercase text-gator-orange-light">
-                01 — Clear Gator
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-28 pb-20 sm:pb-24 grid lg:grid-cols-12 gap-x-12 gap-y-14 items-center">
+          <div className="lg:col-span-7 xl:col-span-7">
+            <div className="flex items-center gap-3 mb-8">
+              <span className="font-mono text-[11px] tracking-[0.22em] uppercase text-gator-orange-light">
+                01 / Clear Gator
               </span>
               <span className="h-px w-10 bg-white/25" aria-hidden="true" />
-              <span className="text-[10px] font-semibold tracking-[0.28em] uppercase text-white/45">
+              <span className="font-mono text-[11px] tracking-[0.22em] uppercase text-white/40">
                 Southwest Florida
               </span>
             </div>
 
-            <h1 className="font-display text-5xl sm:text-6xl lg:text-[5.25rem] font-black text-white leading-[0.98] mb-8 tracking-[-0.025em] text-balance">
+            <h1 className="font-display text-[2.75rem] sm:text-6xl lg:text-7xl xl:text-[5rem] font-semibold text-white leading-[0.98] mb-7 tracking-[-0.035em] text-balance">
               We clear the way.<br />
               <span className="text-white/40">You build </span>
               <span className="relative text-white">
@@ -169,67 +199,84 @@ export default function LandingPage() {
               <span className="text-white/40">.</span>
             </h1>
 
-            <p className="text-lg sm:text-xl text-white/65 mb-10 leading-[1.55] max-w-xl text-balance">
+            <p className="text-base sm:text-lg text-white/65 mb-10 leading-[1.65] max-w-xl text-pretty">
               Demolition, hauling, site cleanup, lot clearing, and handyman services
               <span className="text-white/90"> — including painting</span>.
               Built for the coast, the canal, and everywhere in between.
             </p>
 
-            <div className="flex flex-wrap items-center gap-3 mb-14">
-              <Link href="/estimate">
-                <Button
-                  size="lg"
-                  className="bg-gator-orange hover:bg-gator-orange-dark text-white font-semibold gap-2 text-base px-7 h-12 rounded-md shadow-lg shadow-gator-orange/20"
-                  data-testid="hero-cta-estimate"
-                >
-                  Request an Estimate
-                  <ArrowRight className="w-4 h-4" />
-                </Button>
-              </Link>
-              <a href="tel:+12392343061" data-testid="hero-cta-call">
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="border-white/20 text-white bg-transparent hover:bg-white/5 text-base px-6 h-12 rounded-md gap-2 font-semibold"
-                >
-                  <PhoneCall className="w-4 h-4 text-gator-orange-light" strokeWidth={2.2} />
-                  (239) 234-3061
-                </Button>
+            <div className="flex flex-wrap items-center gap-x-6 gap-y-3 mb-12">
+              <a href="tel:+12392343061" className="group inline-flex items-center gap-3" data-testid="hero-cta-call">
+                <span className="w-10 h-10 rounded-full bg-white/8 border border-white/15 flex items-center justify-center group-hover:bg-gator-orange group-hover:border-gator-orange transition-colors">
+                  <PhoneCall className="w-4 h-4 text-white" strokeWidth={2.2} />
+                </span>
+                <span>
+                  <span className="block font-mono text-[10px] tracking-[0.22em] uppercase text-white/45 leading-none mb-1">
+                    Direct line
+                  </span>
+                  <span className="block text-white text-base font-semibold tracking-tight leading-none">
+                    (239) 234-3061
+                  </span>
+                </span>
               </a>
+              <span className="hidden sm:block h-8 w-px bg-white/15" aria-hidden="true" />
               <Link href="/track">
-                <Button
-                  size="lg"
-                  variant="ghost"
-                  className="text-white/55 hover:text-white hover:bg-transparent text-sm px-3 h-12 underline underline-offset-4 decoration-white/20 hover:decoration-white/60"
+                <button
+                  className="text-white/55 hover:text-white text-sm font-medium underline underline-offset-[6px] decoration-white/20 hover:decoration-gator-orange decoration-1 transition-all"
                   data-testid="hero-cta-track"
                 >
                   Track an existing job
-                </Button>
+                </button>
               </Link>
             </div>
 
-            <dl className="grid grid-cols-3 gap-x-8 gap-y-1 max-w-xl border-t border-white/10 pt-6">
+            <dl className="grid grid-cols-3 gap-x-6 gap-y-1 max-w-md border-t border-white/10 pt-6">
               {[
                 { label: "Licensed", sub: "& Insured" },
-                { label: "24-Hour", sub: "Quote Turnaround" },
-                { label: "Local", sub: "Southwest Florida" },
+                { label: "24-Hour", sub: "Quote Reply" },
+                { label: "Local", sub: "SW Florida" },
               ].map(({ label, sub }) => (
                 <div key={label}>
-                  <dt className="font-display text-base font-bold text-white tracking-tight">{label}</dt>
-                  <dd className="text-white/45 text-xs tracking-wide">{sub}</dd>
+                  <dt className="font-display text-base font-semibold text-white tracking-tight">{label}</dt>
+                  <dd className="text-white/40 text-[11px] tracking-wide font-mono uppercase mt-0.5">{sub}</dd>
                 </div>
               ))}
             </dl>
           </div>
 
-          <div className="lg:col-span-4 hidden lg:flex justify-end">
-            <div className="relative">
-              <div className="absolute -inset-6 rounded-full bg-gator-orange/8 blur-3xl pointer-events-none" aria-hidden="true" />
-              <img
-                src={logoImg}
-                alt="Clear Gator emblem"
-                className="relative h-72 w-72 object-contain drop-shadow-[0_10px_40px_rgba(0,0,0,0.5)]"
-              />
+          <div className="lg:col-span-5 xl:col-span-5">
+            <HeroQuoteForm />
+          </div>
+        </div>
+
+        {/* Marquee ticker — service areas + signature mark */}
+        <div className="relative z-10 border-t border-white/10 bg-black/30 backdrop-blur-sm">
+          <div className="overflow-hidden">
+            <div className="flex animate-marquee whitespace-nowrap py-3.5">
+              {[...Array(2)].map((_, dup) => (
+                <div key={dup} className="flex items-center" aria-hidden={dup === 1}>
+                  {[
+                    "Cape Coral",
+                    "Naples",
+                    "Fort Myers",
+                    "Bonita Springs",
+                    "Punta Gorda",
+                    "Sanibel Island",
+                    "Babcock Ranch",
+                    "St. James City",
+                    "Let's Gator Done.",
+                  ].map((c, i) => (
+                    <span key={`${dup}-${i}`} className="flex items-center text-white/45 mx-6 text-xs font-mono uppercase tracking-[0.22em]">
+                      {c === "Let's Gator Done." ? (
+                        <span className="text-gator-orange-light font-semibold">{c}</span>
+                      ) : (
+                        c
+                      )}
+                      <span className="mx-6 text-white/15">/</span>
+                    </span>
+                  ))}
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -257,11 +304,11 @@ export default function LandingPage() {
       </section>
 
       <section id="services" className="relative py-24 sm:py-32 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
+        <div ref={servicesReveal} className="max-w-7xl mx-auto reveal">
           <div className="grid lg:grid-cols-12 gap-12 lg:gap-20 mb-16 lg:mb-20 items-end">
             <div className="lg:col-span-5">
               <div className="flex items-center gap-3 mb-6">
-                <span className="text-[10px] font-semibold tracking-[0.32em] uppercase text-gator-orange">
+                <span className="font-mono text-[11px] font-medium tracking-[0.22em] uppercase text-gator-orange">
                   02 — Capabilities
                 </span>
                 <SectionRule className="w-16 h-1.5 text-gator-orange/60" />
@@ -280,46 +327,50 @@ export default function LandingPage() {
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-border/60 ring-1 ring-border/60 rounded-lg overflow-hidden">
             {services.map((svc, i) => (
-              <article
-                key={svc.title}
-                className="group relative bg-card p-7 sm:p-8 transition-colors duration-300 hover:bg-muted/30"
-              >
-                <div className="flex items-start justify-between mb-8">
-                  <div className={`w-11 h-11 rounded-md ${svc.iconBg} flex items-center justify-center`}>
-                    <svc.icon className={`w-5 h-5 ${svc.iconColor}`} strokeWidth={2} />
+              <Link key={svc.title} href="/estimate">
+                <article className="group relative bg-card p-7 sm:p-8 transition-all duration-500 hover:bg-foreground hover:text-background cursor-pointer overflow-hidden">
+                  {/* hover sweep line */}
+                  <span
+                    className="absolute top-0 left-0 right-0 h-px bg-gator-orange origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500"
+                    aria-hidden="true"
+                  />
+                  <div className="flex items-start justify-between mb-8">
+                    <div className={`w-11 h-11 rounded-md ${svc.iconBg} flex items-center justify-center transition-all duration-500 group-hover:bg-gator-orange/20`}>
+                      <svc.icon className={`w-5 h-5 ${svc.iconColor} transition-colors duration-500 group-hover:text-gator-orange-light`} strokeWidth={2} />
+                    </div>
+                    <span className="font-mono text-[11px] tracking-[0.18em] text-muted-foreground/50 group-hover:text-background/40 transition-colors">
+                      /0{i + 1}
+                    </span>
                   </div>
-                  <span className="font-display text-xs font-bold tracking-[0.18em] text-muted-foreground/50">
-                    /0{i + 1}
-                  </span>
-                </div>
-                <h3 className="font-display text-2xl font-bold mb-3 tracking-tight">{svc.title}</h3>
-                <p className="text-muted-foreground text-sm leading-[1.65] mb-6">{svc.description}</p>
-                <ul className="space-y-2 mb-8 text-sm">
-                  {svc.features.map((f) => (
-                    <li key={f} className="flex items-center gap-3 text-foreground/80">
-                      <span className="w-1 h-1 rounded-full bg-gator-orange flex-shrink-0" />
-                      {f}
-                    </li>
-                  ))}
-                </ul>
-                <Link href="/estimate">
-                  <button className="inline-flex items-center gap-2 text-sm font-semibold text-foreground border-b border-foreground/30 pb-0.5 hover:border-gator-orange hover:text-gator-orange transition-colors">
+                  <h3 className="font-display text-2xl font-bold mb-3 tracking-tight">{svc.title}</h3>
+                  <p className="text-muted-foreground text-sm leading-[1.65] mb-6 group-hover:text-background/65 transition-colors duration-500">
+                    {svc.description}
+                  </p>
+                  <ul className="space-y-2 mb-8 text-sm">
+                    {svc.features.map((f) => (
+                      <li key={f} className="flex items-center gap-3 text-foreground/80 group-hover:text-background/80 transition-colors duration-500">
+                        <span className="w-1 h-1 rounded-full bg-gator-orange flex-shrink-0" />
+                        {f}
+                      </li>
+                    ))}
+                  </ul>
+                  <span className="inline-flex items-center gap-2 text-sm font-semibold border-b border-foreground/30 group-hover:border-gator-orange-light pb-0.5 transition-all">
                     Request a quote
-                    <ArrowRight className="w-3.5 h-3.5" strokeWidth={2.4} />
-                  </button>
-                </Link>
-              </article>
+                    <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5" strokeWidth={2.4} />
+                  </span>
+                </article>
+              </Link>
             ))}
           </div>
         </div>
       </section>
 
       <section id="how-it-works" className="relative py-24 sm:py-32 bg-muted/30 dark:bg-muted/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div ref={howReveal} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
           <div className="grid lg:grid-cols-12 gap-12 lg:gap-20 mb-16 items-end">
             <div className="lg:col-span-5">
               <div className="flex items-center gap-3 mb-6">
-                <span className="text-[10px] font-semibold tracking-[0.32em] uppercase text-gator-orange">
+                <span className="font-mono text-[11px] font-medium tracking-[0.22em] uppercase text-gator-orange">
                   03 — Process
                 </span>
                 <SectionRule className="w-16 h-1.5 text-gator-orange/60" />
@@ -339,12 +390,16 @@ export default function LandingPage() {
 
           <ol className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-border/60 ring-1 ring-border/60 rounded-lg overflow-hidden">
             {howItWorks.map(({ step, title, desc, icon: Icon }) => (
-              <li key={step} className="bg-background p-7 sm:p-8 flex flex-col gap-4">
+              <li key={step} className="group relative bg-background p-7 sm:p-8 flex flex-col gap-4 transition-colors duration-300 hover:bg-muted/30">
+                <span
+                  className="absolute top-0 left-0 right-0 h-px bg-gator-orange origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500"
+                  aria-hidden="true"
+                />
                 <div className="flex items-center justify-between">
-                  <span className="font-display text-3xl font-black text-gator-orange tracking-tight leading-none">
+                  <span className="font-display text-3xl font-semibold text-gator-orange tracking-[-0.04em] leading-none">
                     {step}
                   </span>
-                  <Icon className="w-4 h-4 text-muted-foreground/50" strokeWidth={2} />
+                  <Icon className="w-4 h-4 text-muted-foreground/50 group-hover:text-foreground transition-colors duration-300" strokeWidth={2} />
                 </div>
                 <div className="h-px bg-border/80" />
                 <div>
@@ -359,11 +414,11 @@ export default function LandingPage() {
 
       {/* ── Service Areas ── */}
       <section id="service-areas" className="relative py-24 sm:py-32 border-y border-border/60">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div ref={areasReveal} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
           <div className="grid lg:grid-cols-12 gap-12 lg:gap-20 items-center">
             <div className="lg:col-span-5">
               <div className="flex items-center gap-3 mb-6">
-                <span className="text-[10px] font-semibold tracking-[0.32em] uppercase text-gator-orange">
+                <span className="font-mono text-[11px] font-medium tracking-[0.22em] uppercase text-gator-orange">
                   04 — Coverage
                 </span>
                 <SectionRule className="w-16 h-1.5 text-gator-orange/60" />
@@ -409,11 +464,11 @@ export default function LandingPage() {
       {/* ── Contractor Partnership ── */}
       <section className="relative py-24 sm:py-32 bg-ink overflow-hidden">
         <GatorScales className="absolute inset-0 w-full h-full text-white/5 pointer-events-none" />
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div ref={tradeReveal} className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
           <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
             <div className="lg:col-span-5">
               <div className="flex items-center gap-3 mb-6">
-                <span className="text-[10px] font-semibold tracking-[0.32em] uppercase text-gator-orange">
+                <span className="font-mono text-[11px] font-medium tracking-[0.22em] uppercase text-gator-orange">
                   05 — Trade Partners
                 </span>
                 <SectionRule className="w-16 h-1.5 text-gator-orange/60" />
@@ -480,11 +535,11 @@ export default function LandingPage() {
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/30 pointer-events-none" aria-hidden="true" />
         <div className="absolute -top-1/2 left-1/2 -translate-x-1/2 w-[120%] aspect-square rounded-full bg-gator-orange/[0.06] blur-3xl pointer-events-none" aria-hidden="true" />
 
-        <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="font-display text-gator-orange-light tracking-[0.4em] text-xs font-bold uppercase mb-8">
+        <div ref={ctaReveal} className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center reveal">
+          <div className="font-mono text-gator-orange-light tracking-[0.32em] text-[11px] font-medium uppercase mb-8">
             Let's Gator Done.
           </div>
-          <h2 className="font-display text-5xl sm:text-6xl lg:text-7xl font-black text-white tracking-[-0.03em] leading-[0.96] mb-8 text-balance">
+          <h2 className="font-display text-5xl sm:text-6xl lg:text-7xl font-semibold text-white tracking-[-0.035em] leading-[0.96] mb-8 text-balance">
             Bring us the site.<br />
             <span className="text-white/40">We'll bring the crew.</span>
           </h2>
@@ -523,7 +578,7 @@ export default function LandingPage() {
               <div className="flex items-center gap-3 mb-5">
                 <img src={logoImg} alt="Clear Gator Logo" className="h-12 w-12 object-contain" />
                 <div className="leading-none">
-                  <div className="font-display font-black text-xl text-white tracking-tight">Clear Gator</div>
+                  <div className="font-display font-semibold text-xl text-white tracking-tight">Clear Gator</div>
                   <div className="text-[9px] font-semibold tracking-[0.32em] uppercase text-white/40 mt-1.5">
                     Construction Services
                   </div>
@@ -550,7 +605,7 @@ export default function LandingPage() {
               </div>
             </div>
             <div className="lg:col-span-2 lg:col-start-7">
-              <div className="text-[10px] font-semibold tracking-[0.32em] uppercase text-white/40 mb-5">Services</div>
+              <div className="font-mono text-[11px] font-medium tracking-[0.22em] uppercase text-white/40 mb-5">Services</div>
               <ul className="space-y-2.5 text-sm">
                 {services.map((s) => (
                   <li key={s.title}>
@@ -560,7 +615,7 @@ export default function LandingPage() {
               </ul>
             </div>
             <div className="lg:col-span-2">
-              <div className="text-[10px] font-semibold tracking-[0.32em] uppercase text-white/40 mb-5">Company</div>
+              <div className="font-mono text-[11px] font-medium tracking-[0.22em] uppercase text-white/40 mb-5">Company</div>
               <ul className="space-y-2.5 text-sm">
                 <li><Link href="/estimate" className="hover:text-white transition-colors">Free Estimate</Link></li>
                 <li><Link href="/track" className="hover:text-white transition-colors">Track a Job</Link></li>
@@ -570,7 +625,7 @@ export default function LandingPage() {
               </ul>
             </div>
             <div className="lg:col-span-3">
-              <div className="text-[10px] font-semibold tracking-[0.32em] uppercase text-white/40 mb-5">Contact</div>
+              <div className="font-mono text-[11px] font-medium tracking-[0.22em] uppercase text-white/40 mb-5">Contact</div>
               <a
                 href="tel:+12392343061"
                 className="block group mb-4"
@@ -591,7 +646,7 @@ export default function LandingPage() {
             <div className="text-white/40">
               &copy; {new Date().getFullYear()} Clear Gator Construction Services. All rights reserved.
             </div>
-            <div className="font-display text-gator-orange-light tracking-[0.4em] text-[10px] font-bold uppercase">
+            <div className="font-mono text-gator-orange-light tracking-[0.32em] text-[11px] font-medium uppercase">
               Let's Gator Done.
             </div>
           </div>
