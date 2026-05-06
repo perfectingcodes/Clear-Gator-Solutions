@@ -98,7 +98,7 @@ export default function LandingPage() {
   usePageMeta({
     title: "Clear Gator — Demolition, Hauling & Property Maintenance in SW Florida",
     description:
-      "Interior & outdoor demolition, hauling, site cleanup, lot clearing, and property maintenance (including painting) for Cape Coral, Naples & Southwest Florida. Licensed & insured. Let's Gator Done. Call (239) 234-3061.",
+      "Interior & outdoor demolition, hauling, site cleanup, lot clearing, and property maintenance for Cape Coral, Naples & Southwest Florida. Licensed & insured. Let's Gator Done. Call (239) 234-3061.",
   });
 
   const servicesReveal = useReveal<HTMLDivElement>();
@@ -218,7 +218,7 @@ export default function LandingPage() {
 
             <p className="text-base sm:text-lg text-white/65 mb-10 leading-[1.65] max-w-xl text-pretty">
               Interior &amp; outdoor demolition, hauling, site cleanup, lot clearing, and property maintenance
-              <span className="text-white/90"> — including painting</span>.
+              <span className="text-white/90"> — property maintenance</span>.
               Built for the coast, the canal, and everywhere in between.
             </p>
 
