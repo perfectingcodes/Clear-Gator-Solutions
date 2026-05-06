@@ -47,8 +47,8 @@ cat > "$SVG" <<SVG
     <text x="420" y="322" font-size="64" font-weight="600" fill="#ffffff" opacity="0.4" letter-spacing="-2.5">You build what's next.</text>
 
     <!-- supporting copy -->
-    <text x="420" y="386" font-size="22" font-weight="400" fill="#ffffff" opacity="0.65">Demolition · Hauling · Site Cleanup</text>
-    <text x="420" y="416" font-size="22" font-weight="400" fill="#ffffff" opacity="0.65">Lot Clearing · Handyman &amp; Painting</text>
+    <text x="420" y="386" font-size="22" font-weight="400" fill="#ffffff" opacity="0.65">Interior &amp; Outdoor Demolition · Hauling</text>
+    <text x="420" y="416" font-size="22" font-weight="400" fill="#ffffff" opacity="0.65">Site Cleanup · Lot Clearing · Maintenance</text>
 
     <!-- footer rule + signoff -->
     <line x1="420" y1="478" x2="1080" y2="478" stroke="#ffffff" stroke-opacity="0.12" stroke-width="1"/>
@@ -57,6 +57,17 @@ cat > "$SVG" <<SVG
     <text x="420" y="562" font-size="13" font-weight="500" fill="#ffffff" opacity="0.45" letter-spacing="3" font-family="'Geist Mono', monospace">CAPE CORAL · NAPLES · LICENSED &amp; INSURED</text>
 
     <text x="1080" y="528" font-size="13" font-weight="500" fill="#ff9b3d" letter-spacing="3" text-anchor="end" font-family="'Geist Mono', monospace">LET'S GATOR DONE.</text>
+  </g>
+
+  <!-- GatorMark sigil bottom-right -->
+  <g transform="translate(940, 580) scale(1.2)" stroke="#ff9b3d" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.5">
+    <path d="M2,17 L14,17"/>
+    <path d="M2,17 Q4,12 12,12 L18,12 Q22,8 30,8 L52,8 Q60,8 64,11 Q70,15 78,15 Q88,15 96,12 Q104,9 116,5"/>
+    <path d="M2,17 Q4,21 12,21 L20,21 L80,21 Q90,21 98,19 Q108,16 116,6"/>
+    <circle cx="22" cy="11" r="1" fill="#ff9b3d" stroke="none"/>
+    <circle cx="6" cy="14.5" r="0.6" fill="#ff9b3d" stroke="none"/>
+    <path d="M30,21 L30,27 M27,27 L33,27"/>
+    <path d="M64,21 L64,27 M61,27 L67,27"/>
   </g>
 </svg>
 SVG

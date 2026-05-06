@@ -63,8 +63,9 @@ export default function TermsPage() {
           <section>
             <h2 className="text-xl font-bold mb-3">2. Scope of Work</h2>
             <p>
-              Clear Gator performs non-structural demolition, hauling, site cleanup, lot clearing, and handyman
-              services (including painting). We do not perform structural demolition, electrical, plumbing,
+              Clear Gator performs non-structural interior and outdoor demolition, hauling, site cleanup,
+              lot clearing, and property maintenance (including painting). We do not perform structural
+              demolition, electrical, plumbing,
               HVAC, or roofing work. Any work outside our scope must be coordinated with appropriately
               licensed trades.
             </p>

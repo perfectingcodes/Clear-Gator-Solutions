@@ -5,7 +5,14 @@ import { ArrowRight, Check, Loader2 } from "lucide-react";
 import { apiRequest } from "@/lib/queryClient";
 import { GatorMonogram } from "@/components/swamp-decor";
 
-const SERVICES = ["Demo", "Hauling", "Site Cleanup", "Lot Clearing", "Handyman"];
+const SERVICES = [
+  "Interior Demo",
+  "Outdoor Demo",
+  "Hauling",
+  "Site Cleanup",
+  "Lot Clearing",
+  "Maintenance",
+];
 
 type Lead = {
   name: string;

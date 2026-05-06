@@ -18,7 +18,14 @@ const CITIES = [
   "Cape Coral", "Naples", "Bonita Springs", "Punta Gorda", "Fort Myers",
   "Sanibel Island", "St. James City", "Babcock Ranch",
 ];
-const SERVICES = ["Demo", "Hauling", "Site Cleanup", "Lot Clearing", "Handyman / Painting"];
+const SERVICES = [
+  "Interior Demolition",
+  "Outdoor Demolition",
+  "Hauling",
+  "Site Cleanup",
+  "Lot Clearing",
+  "Property Maintenance",
+];
 
 const NOTIFY_INTERVAL_MS = 4 * 60 * 1000;
 const VISIBLE_MS = 7000;

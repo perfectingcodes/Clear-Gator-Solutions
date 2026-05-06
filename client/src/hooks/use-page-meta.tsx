@@ -6,7 +6,7 @@ type PageMeta = {
 };
 
 const DEFAULT_DESCRIPTION =
-  "Clear Gator Construction Services — demo, hauling, site cleanup, lot clearing, and handyman work (including painting) for Cape Coral, Naples, and Southwest Florida. Licensed & insured. Let's Gator Done. Call (239) 234-3061.";
+  "Clear Gator Construction Services — interior & outdoor demolition, hauling, site cleanup, lot clearing, and property maintenance (including painting) for Cape Coral, Naples, and Southwest Florida. Licensed & insured. Let's Gator Done. Call (239) 234-3061.";
 
 function setMeta(selector: string, attr: string, content: string) {
   const el = document.head.querySelector<HTMLMetaElement>(selector);

@@ -9,7 +9,7 @@ import {
   Truck, HardHat, PhoneCall, CheckCircle2,
   ArrowRight, Clock, Shield,
   FileText, DollarSign, Search, Facebook, Instagram, Twitter,
-  Hammer, TreePine, Handshake, Wrench
+  Hammer, TreePine, Handshake, Wrench, Construction
 } from "lucide-react";
 
 const SERVICE_AREAS = [
@@ -26,9 +26,18 @@ const SERVICE_AREAS = [
 const services = [
   {
     icon: Hammer,
-    title: "Demo",
-    description: "Professional interior demolition for residential and commercial projects — from single-room tear-outs to full gut jobs. Structural elements always protected.",
+    title: "Interior Demolition",
+    description: "Non-structural interior demolition for residential and commercial projects — from single-room tear-outs to full gut jobs. Structural elements always protected.",
     features: ["Floor Removal", "Cabinet Removal", "Drywall Removal", "Bathroom Demo", "Kitchen Tear Outs"],
+    accent: "bg-gator-orange",
+    iconBg: "bg-gator-orange/10",
+    iconColor: "text-gator-orange",
+  },
+  {
+    icon: Construction,
+    title: "Outdoor Demolition",
+    description: "Exterior tear-downs done right — pools, sheds, fences, decks, concrete pads, and driveways. We handle the heavy lifting, the load-out, and the final grade.",
+    features: ["Pool Demolition", "Shed & Fence Removal", "Concrete & Driveway", "Deck & Patio Tear-Out", "Pergola & Outbuilding"],
     accent: "bg-gator-orange",
     iconBg: "bg-gator-orange/10",
     iconColor: "text-gator-orange",
@@ -37,7 +46,7 @@ const services = [
     icon: Truck,
     title: "Hauling",
     description: "Fast, reliable haul-away for any size project. We load it, we haul it — straightforward load-and-go pricing with no hidden fees.",
-    features: ["Construction Debris", "Renovation Waste", "Dump Runs", "Bulk Trash", "Post Demo Cleanup"],
+    features: ["Construction Debris", "Renovation Waste", "Dump Runs", "Bulk Trash", "Post-Demo Cleanup"],
     accent: "bg-primary",
     iconBg: "bg-primary/10",
     iconColor: "text-primary",
@@ -45,8 +54,8 @@ const services = [
   {
     icon: HardHat,
     title: "Site Cleanup",
-    description: "Thorough cleanup services for construction and renovation sites. We leave every job site spotless and ready for the next phase.",
-    features: ["Post Construction", "Jobsite Cleanup", "Final Bathroom Cleanup", "Dust & Debris"],
+    description: "Thorough cleanup for construction and renovation sites. We leave every job site spotless and ready for the next phase.",
+    features: ["Post-Construction", "Jobsite Cleanup", "Final Bathroom Cleanup", "Dust & Debris"],
     accent: "bg-primary",
     iconBg: "bg-primary/10",
     iconColor: "text-primary",
@@ -62,9 +71,9 @@ const services = [
   },
   {
     icon: Wrench,
-    title: "Handyman Services",
-    description: "Skilled handyman work for homes and businesses — from interior and exterior painting to repairs, installs, and the small jobs that keep your property sharp.",
-    features: ["Interior & Exterior Painting", "Drywall Repair", "Door & Trim Install", "Fixture Replacement", "Honey-Do Lists"],
+    title: "Property Maintenance",
+    description: "Skilled property maintenance for homes, rentals, and commercial spaces — interior and exterior painting, repairs, installs, and the standing list of small jobs that keep a property sharp.",
+    features: ["Interior & Exterior Painting", "Drywall Repair", "Door & Trim Install", "Fixture Replacement", "Routine Punch Lists"],
     accent: "bg-gator-orange",
     iconBg: "bg-gator-orange/10",
     iconColor: "text-gator-orange",
@@ -87,9 +96,9 @@ const howItWorks = [
 
 export default function LandingPage() {
   usePageMeta({
-    title: "Clear Gator — Demo, Hauling, Site Cleanup & Handyman in SW Florida",
+    title: "Clear Gator — Demolition, Hauling & Property Maintenance in SW Florida",
     description:
-      "Demo, hauling, site cleanup, lot clearing, and handyman work (including painting) for Cape Coral, Naples & Southwest Florida. Licensed & insured. Let's Gator Done. Call (239) 234-3061.",
+      "Interior & outdoor demolition, hauling, site cleanup, lot clearing, and property maintenance (including painting) for Cape Coral, Naples & Southwest Florida. Licensed & insured. Let's Gator Done. Call (239) 234-3061.",
   });
 
   const servicesReveal = useReveal<HTMLDivElement>();
@@ -106,8 +115,10 @@ export default function LandingPage() {
             <img src={logoImg} alt="Clear Gator Logo" className="h-10 w-10 object-contain transition-transform duration-300 group-hover:scale-[1.04]" />
             <div className="leading-none">
               <div className="font-display font-semibold text-lg sm:text-xl tracking-[-0.02em] text-foreground">Clear Gator</div>
-              <div className="hidden sm:block font-mono text-[10px] font-medium tracking-[0.22em] uppercase text-muted-foreground mt-1">
-                Construction Services
+              <div className="hidden sm:flex items-center gap-1.5 font-mono text-[10px] font-medium tracking-[0.22em] uppercase text-muted-foreground mt-1">
+                <span>Construction Services</span>
+                <span className="text-muted-foreground/40">·</span>
+                <span className="text-gator-orange">SWFL</span>
               </div>
             </div>
           </Link>
@@ -177,6 +188,12 @@ export default function LandingPage() {
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" aria-hidden="true" />
         <div className="absolute -top-1/3 right-0 w-[55%] aspect-square rounded-full bg-gator-orange/[0.06] blur-3xl pointer-events-none" aria-hidden="true" />
 
+        {/* Editorial brand watermark — large GatorMark anchored low-left */}
+        <GatorMark
+          className="absolute -bottom-12 -left-16 w-[780px] h-[208px] text-white/[0.025] pointer-events-none hidden md:block"
+          aria-hidden="true"
+        />
+
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-28 pb-20 sm:pb-24 grid lg:grid-cols-12 gap-x-12 gap-y-14 items-center">
           <div className="lg:col-span-7 xl:col-span-7">
             <div className="flex items-center gap-3 mb-8">
@@ -200,7 +217,7 @@ export default function LandingPage() {
             </h1>
 
             <p className="text-base sm:text-lg text-white/65 mb-10 leading-[1.65] max-w-xl text-pretty">
-              Demolition, hauling, site cleanup, lot clearing, and handyman services
+              Interior &amp; outdoor demolition, hauling, site cleanup, lot clearing, and property maintenance
               <span className="text-white/90"> — including painting</span>.
               Built for the coast, the canal, and everywhere in between.
             </p>
@@ -268,7 +285,10 @@ export default function LandingPage() {
                   ].map((c, i) => (
                     <span key={`${dup}-${i}`} className="flex items-center text-white/45 mx-6 text-xs font-mono uppercase tracking-[0.22em]">
                       {c === "Let's Gator Done." ? (
-                        <span className="text-gator-orange-light font-semibold">{c}</span>
+                        <span className="flex items-center gap-3 text-gator-orange-light font-semibold">
+                          <GatorMark className="w-10 h-3 text-gator-orange-light" aria-hidden="true" />
+                          {c}
+                        </span>
                       ) : (
                         c
                       )}
@@ -314,13 +334,13 @@ export default function LandingPage() {
                 <SectionRule className="w-16 h-1.5 text-gator-orange/60" />
               </div>
               <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-[-0.025em] text-balance leading-[0.98]">
-                Five disciplines.<br />
+                Six disciplines.<br />
                 <span className="text-muted-foreground/60">One crew.</span>
               </h2>
             </div>
             <div className="lg:col-span-6 lg:col-start-7">
               <p className="text-base sm:text-lg text-muted-foreground leading-[1.65] text-balance max-w-lg">
-                From non-structural demolition to full-property handyman work, Clear Gator handles each phase of a project with the same crew, the same standards, and the same accountability.
+                From interior and outdoor demolition to ongoing property maintenance, Clear Gator handles each phase of a project with the same crew, the same standards, and the same accountability.
               </p>
             </div>
           </div>
@@ -585,9 +605,13 @@ export default function LandingPage() {
                   </div>
                 </div>
               </div>
-              <p className="text-sm leading-[1.7] mb-7 text-white/50 max-w-md">
-                Demolition, hauling, site cleanup, lot clearing, and handyman services for Southwest Florida.
+              <p className="text-sm leading-[1.7] mb-5 text-white/50 max-w-md">
+                Interior &amp; outdoor demolition, hauling, site cleanup, lot clearing, and property maintenance for Southwest Florida.
               </p>
+              <div className="flex items-center gap-2 mb-7 font-mono text-[10px] font-medium tracking-[0.22em] uppercase text-white/35">
+                <span className="w-6 h-px bg-white/25" aria-hidden="true" />
+                <span>Locally Owned · Licensed &amp; Insured</span>
+              </div>
               <div className="flex gap-2">
                 {[
                   { Icon: Facebook, label: "Facebook" },

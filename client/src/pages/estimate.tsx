@@ -17,15 +17,16 @@ import logoImg from "@assets/clear_gator_1775663894887.png";
 import {
   ArrowLeft, ArrowRight, CheckCircle2, Upload,
   HardHat, Truck, Shield, Clock, Star, MapPin,
-  Hammer, TreePine, Wrench, PhoneCall
+  Hammer, TreePine, Wrench, PhoneCall, Construction
 } from "lucide-react";
 
 const SERVICE_OPTIONS = [
-  { id: "Demo", label: "Demo", icon: Hammer, desc: "Floor removal, cabinets, drywall, bathroom & kitchen tear-outs", color: "text-gator-orange", selectedBg: "bg-gator-orange/8 border-gator-orange", glow: "shadow-gator-orange/15" },
+  { id: "Interior Demolition", label: "Interior Demo", icon: Hammer, desc: "Floor removal, cabinets, drywall, bathroom & kitchen tear-outs", color: "text-gator-orange", selectedBg: "bg-gator-orange/8 border-gator-orange", glow: "shadow-gator-orange/15" },
+  { id: "Outdoor Demolition", label: "Outdoor Demo", icon: Construction, desc: "Pools, sheds, fences, decks, concrete pads & driveways", color: "text-gator-orange", selectedBg: "bg-gator-orange/8 border-gator-orange", glow: "shadow-gator-orange/15" },
   { id: "Hauling", label: "Hauling", icon: Truck, desc: "Construction debris, renovation waste, dump runs & bulk trash", color: "text-primary", selectedBg: "bg-primary/8 border-primary", glow: "shadow-primary/15" },
   { id: "Site Cleanup", label: "Site Cleanup", icon: HardHat, desc: "Post-construction, jobsite, bathroom & dust/debris cleanup", color: "text-primary", selectedBg: "bg-primary/8 border-primary", glow: "shadow-primary/15" },
   { id: "Lot Clearing", label: "Lot Clearing", icon: TreePine, desc: "Yard debris, lot clearing, brush & abandoned property cleanouts", color: "text-primary", selectedBg: "bg-primary/8 border-primary", glow: "shadow-primary/15" },
-  { id: "Handyman", label: "Handyman", icon: Wrench, desc: "Interior & exterior painting, repairs, installs & honey-do lists", color: "text-gator-orange", selectedBg: "bg-gator-orange/8 border-gator-orange", glow: "shadow-gator-orange/15" },
+  { id: "Property Maintenance", label: "Property Maintenance", icon: Wrench, desc: "Interior & exterior painting, repairs, installs & punch lists", color: "text-gator-orange", selectedBg: "bg-gator-orange/8 border-gator-orange", glow: "shadow-gator-orange/15" },
 ];
 
 const step1Schema = z.object({ serviceType: z.string().min(1, "Please select a service type") });
@@ -91,7 +92,7 @@ export default function EstimatePage() {
   usePageMeta({
     title: "Free Estimate — Clear Gator Construction Services",
     description:
-      "Get a free, no-obligation estimate for demo, hauling, site cleanup, lot clearing, or handyman services in Southwest Florida. We respond within 24 hours.",
+      "Get a free, no-obligation estimate for interior or outdoor demolition, hauling, site cleanup, lot clearing, or property maintenance in Southwest Florida. We respond within 24 hours.",
   });
 
   const [, setLocation] = useLocation();
