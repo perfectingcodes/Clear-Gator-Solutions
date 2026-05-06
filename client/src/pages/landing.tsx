@@ -217,8 +217,8 @@ export default function LandingPage() {
             </h1>
 
             <p className="text-base sm:text-lg text-white/65 mb-10 leading-[1.65] max-w-xl text-pretty">
-              Interior &amp; outdoor demolition, hauling, site cleanup, lot clearing, and property maintenance
-              <span className="text-white/90"> — property maintenance</span>.
+              Interior &amp; outdoor demolition, hauling, site cleanup, lot clearing, and property maintenance for
+              contractors and homeowners across Southwest Florida.
               Built for the coast, the canal, and everywhere in between.
             </p>
 
