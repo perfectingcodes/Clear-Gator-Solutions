@@ -657,29 +657,30 @@ export default function LandingPage() {
         </div>
       </footer>
 
-      {/* Mobile sticky Call CTA — restrained, editorial */}
+      {/* Mobile sticky Call CTA — professional gator-orange */}
       <div
         className="sm:hidden fixed bottom-0 left-0 right-0 z-50 px-3 pt-3 pointer-events-none"
         style={{ paddingBottom: "calc(env(safe-area-inset-bottom, 0px) + 12px)" }}
       >
-        <div className="absolute inset-x-0 -top-6 bottom-0 bg-gradient-to-t from-background via-background to-transparent pointer-events-none" />
+        <div className="absolute inset-x-0 -top-8 bottom-0 bg-gradient-to-t from-background via-background to-transparent pointer-events-none" />
         <a
           href="tel:+12392343061"
           data-testid="mobile-call-now-bar"
           aria-label="Call Clear Gator at 239-234-3061"
-          className="relative pointer-events-auto flex items-center gap-3 w-full h-[60px] pl-4 pr-2 rounded-full bg-foreground text-background shadow-[0_8px_32px_rgba(0,0,0,0.18)] active:scale-[0.985] transition-transform"
+          className="relative pointer-events-auto flex items-center gap-3 w-full h-[60px] pl-3 pr-4 rounded-full bg-gator-orange text-white shadow-[0_10px_30px_-6px_hsl(25_95%_50%_/_0.55)] ring-1 ring-gator-orange-dark/30 active:scale-[0.985] transition-transform"
         >
-          <span className="flex flex-col leading-tight flex-1 min-w-0">
-            <span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-background/55">
-              Call Clear Gator
+          <span className="flex items-center justify-center w-11 h-11 rounded-full bg-white/15 flex-shrink-0">
+            <PhoneCall className="w-4 h-4" strokeWidth={2.4} />
+          </span>
+          <span className="flex flex-col leading-tight flex-1 min-w-0 text-left">
+            <span className="font-mono text-[10px] font-medium uppercase tracking-[0.22em] text-white/80">
+              Tap to Call · 24h Reply
             </span>
-            <span className="font-display text-base font-bold tracking-tight">
+            <span className="font-display text-base font-semibold tracking-[-0.01em]">
               (239) 234-3061
             </span>
           </span>
-          <span className="flex items-center justify-center w-11 h-11 rounded-full bg-gator-orange text-white flex-shrink-0">
-            <PhoneCall className="w-4 h-4" strokeWidth={2.4} />
-          </span>
+          <ArrowRight className="w-4 h-4 text-white/75 flex-shrink-0" strokeWidth={2.2} />
         </a>
       </div>
     </div>
