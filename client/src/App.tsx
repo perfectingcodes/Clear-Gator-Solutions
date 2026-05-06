@@ -8,6 +8,8 @@ import LandingPage from "@/pages/landing";
 import EstimatePage from "@/pages/estimate";
 import TrackPage from "@/pages/track";
 import AdminPage from "@/pages/admin";
+import BookingNotifications from "@/components/booking-notifications";
+import SupportBot from "@/components/support-bot";
 
 function Router() {
   return (
@@ -27,6 +29,8 @@ function App() {
       <TooltipProvider>
         <Toaster />
         <Router />
+        <BookingNotifications />
+        <SupportBot />
       </TooltipProvider>
     </QueryClientProvider>
   );

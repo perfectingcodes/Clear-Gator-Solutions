@@ -6,7 +6,7 @@ import {
   Truck, HardHat, PhoneCall, CheckCircle2,
   ArrowRight, MapPin, Clock, Shield, Star, ChevronRight,
   FileText, DollarSign, Search, Facebook, Instagram, Twitter,
-  Hammer, TreePine, Users, Handshake
+  Hammer, TreePine, Users, Handshake, Wrench
 } from "lucide-react";
 
 const SERVICE_AREAS = [
@@ -56,6 +56,15 @@ const services = [
     accent: "bg-primary",
     iconBg: "bg-primary/10",
     iconColor: "text-primary",
+  },
+  {
+    icon: Wrench,
+    title: "Handyman Services",
+    description: "Skilled handyman work for homes and businesses — from interior and exterior painting to repairs, installs, and the small jobs that keep your property sharp.",
+    features: ["Interior & Exterior Painting", "Drywall Repair", "Door & Trim Install", "Fixture Replacement", "Honey-Do Lists"],
+    accent: "bg-gator-orange",
+    iconBg: "bg-gator-orange/10",
+    iconColor: "text-gator-orange",
   },
 ];
 
@@ -163,7 +172,7 @@ export default function LandingPage() {
               </span>
             </h1>
             <p className="text-lg text-white/70 mb-10 leading-relaxed max-w-xl">
-              Demo, hauling, site cleanup, and lot clearing — done right, done safe, done on time. Trusted by contractors and homeowners across Southwest Florida.
+              Demo, hauling, site cleanup, lot clearing, and handyman services (including painting) — done right, done safe, done on time. Trusted by contractors and homeowners across Southwest Florida.
             </p>
             <div className="flex flex-wrap gap-4 mb-10">
               <Link href="/estimate">
@@ -472,7 +481,7 @@ export default function LandingPage() {
                 <img src={logoImg} alt="Clear Gator Logo" className="h-10 w-10 object-contain" />
                 <span className="font-black text-lg text-white">Clear Gator</span>
               </div>
-              <p className="text-sm leading-relaxed mb-5">Demo, hauling, site cleanup, and lot clearing — done right, done safe, done on time.</p>
+              <p className="text-sm leading-relaxed mb-5">Demo, hauling, site cleanup, lot clearing, and handyman services (including painting) — done right, done safe, done on time.</p>
               <div className="flex gap-3">
                 <a href="#" aria-label="Facebook" className="w-8 h-8 rounded-md bg-white/8 hover:bg-white/15 flex items-center justify-center transition-colors">
                   <Facebook className="w-4 h-4" />

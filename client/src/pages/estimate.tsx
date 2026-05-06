@@ -15,7 +15,7 @@ import logoImg from "@assets/clear_gator_1775663894887.png";
 import {
   ArrowLeft, ArrowRight, CheckCircle2, Upload,
   HardHat, Truck, Shield, Clock, Star, MapPin,
-  Hammer, TreePine
+  Hammer, TreePine, Wrench
 } from "lucide-react";
 
 const SERVICE_OPTIONS = [
@@ -23,6 +23,7 @@ const SERVICE_OPTIONS = [
   { id: "Hauling", label: "Hauling", icon: Truck, desc: "Construction debris, renovation waste, dump runs & bulk trash", color: "text-primary", selectedBg: "bg-primary/8 border-primary", glow: "shadow-primary/15" },
   { id: "Site Cleanup", label: "Site Cleanup", icon: HardHat, desc: "Post-construction, jobsite, bathroom & dust/debris cleanup", color: "text-primary", selectedBg: "bg-primary/8 border-primary", glow: "shadow-primary/15" },
   { id: "Lot Clearing", label: "Lot Clearing", icon: TreePine, desc: "Yard debris, lot clearing, brush & abandoned property cleanouts", color: "text-primary", selectedBg: "bg-primary/8 border-primary", glow: "shadow-primary/15" },
+  { id: "Handyman", label: "Handyman", icon: Wrench, desc: "Interior & exterior painting, repairs, installs & honey-do lists", color: "text-gator-orange", selectedBg: "bg-gator-orange/8 border-gator-orange", glow: "shadow-gator-orange/15" },
 ];
 
 const step1Schema = z.object({ serviceType: z.string().min(1, "Please select a service type") });
