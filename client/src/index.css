@@ -303,76 +303,25 @@
     text-wrap: balance;
   }
 
-  /* Subtle gator-scale pattern overlay — used as decorative texture on dark sections */
-  .bg-scale-pattern {
-    background-image:
-      radial-gradient(circle at 25% 25%, hsl(150 50% 35% / 0.08) 0%, transparent 35%),
-      radial-gradient(circle at 75% 75%, hsl(25 90% 50% / 0.05) 0%, transparent 35%),
-      repeating-radial-gradient(circle at 50% 50%, hsl(150 30% 20% / 0.05) 0 1px, transparent 1px 18px);
+  /* Editorial dark surface — a single, restrained near-black with a hint of cool depth */
+  .bg-ink {
+    background: hsl(220 14% 7%);
   }
 
-  /* Swamp atmosphere — vertical fog/depth gradient */
-  .bg-swamp {
+  /* Subtle vignette for hero — soft warmth at the top-right, deepens toward bottom */
+  .bg-ink-hero {
     background:
-      radial-gradient(ellipse 90% 60% at 50% 100%, hsl(150 45% 14%) 0%, hsl(150 30% 8%) 60%, hsl(215 25% 6%) 100%);
-  }
-
-  /* Sunset over the swamp — used in hero */
-  .bg-swamp-sunset {
-    background:
-      linear-gradient(180deg,
-        hsl(215 35% 8%) 0%,
-        hsl(215 30% 12%) 40%,
-        hsl(150 40% 10%) 75%,
-        hsl(150 50% 6%) 100%);
-  }
-
-  /* Soft animated cypress-canopy haze */
-  .bg-canopy-haze {
-    background:
-      radial-gradient(ellipse 80% 50% at 20% 0%, hsl(25 80% 55% / 0.12) 0%, transparent 70%),
-      radial-gradient(ellipse 70% 40% at 80% 0%, hsl(150 70% 40% / 0.08) 0%, transparent 60%);
+      radial-gradient(ellipse 60% 50% at 90% 0%, hsl(25 60% 30% / 0.16) 0%, transparent 60%),
+      linear-gradient(180deg, hsl(220 14% 8%) 0%, hsl(220 16% 6%) 100%);
   }
 }
 
-@keyframes ripple {
-  0%   { transform: scale(0.85); opacity: 0.7; }
-  70%  { transform: scale(1.6); opacity: 0; }
-  100% { transform: scale(1.6); opacity: 0; }
-}
-
-@keyframes palm-sway {
-  0%, 100% { transform: scaleX(var(--palm-flip, 1)) rotate(-1.5deg); }
-  50%      { transform: scaleX(var(--palm-flip, 1)) rotate(1.5deg); }
-}
-
-@keyframes phone-shake {
-  0%, 70%, 100% { transform: rotate(0deg); }
-  74%           { transform: rotate(-12deg); }
-  78%           { transform: rotate(10deg); }
-  82%           { transform: rotate(-8deg); }
-  86%           { transform: rotate(6deg); }
-  90%           { transform: rotate(0deg); }
-}
-
-@keyframes sheen {
-  0%   { transform: translateX(-120%) skewX(-20deg); }
-  60%  { transform: translateX(220%) skewX(-20deg); }
-  100% { transform: translateX(220%) skewX(-20deg); }
+@keyframes pulse-soft {
+  0%, 100% { opacity: 0.7; }
+  50%      { opacity: 1; }
 }
 
 @layer utilities {
-  .animate-ripple { animation: ripple 2.4s ease-out infinite; }
-  .animate-palm-sway { animation: palm-sway 7s ease-in-out infinite; transform-origin: bottom center; }
-  .animate-phone-shake { animation: phone-shake 3.2s ease-in-out infinite; transform-origin: 50% 60%; }
-  .animate-sheen::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(110deg, transparent 30%, rgba(255,255,255,0.25) 50%, transparent 70%);
-    transform: translateX(-120%) skewX(-20deg);
-    animation: sheen 4s ease-in-out infinite;
-    pointer-events: none;
-  }
+  .animate-pulse-soft { animation: pulse-soft 3s ease-in-out infinite; }
 }
 

@@ -68,26 +68,25 @@ export default function BookingNotifications() {
       role="status"
       aria-live="polite"
       data-testid="booking-notification"
-      className="fixed bottom-4 left-4 z-[60] max-w-[320px] sm:max-w-sm bg-card/95 backdrop-blur-md border border-card-border rounded-2xl shadow-2xl shadow-black/30 overflow-hidden animate-in slide-in-from-bottom-4 fade-in duration-300"
-      style={{ marginBottom: "calc(env(safe-area-inset-bottom, 0px) + 92px)" }}
+      className="fixed bottom-4 left-4 z-[60] max-w-[320px] sm:max-w-sm bg-background border border-border rounded-lg shadow-2xl shadow-black/15 overflow-hidden animate-in slide-in-from-bottom-2 fade-in duration-300"
+      style={{ marginBottom: "calc(env(safe-area-inset-bottom, 0px) + 88px)" }}
     >
-      <div className="h-1 w-full bg-gradient-to-r from-gator-orange via-gator-orange-light to-gator-orange" />
       <div className="p-4 pr-9 flex gap-3">
-        <div className="relative w-11 h-11 rounded-xl bg-gradient-to-br from-gator-orange to-gator-orange-dark flex items-center justify-center flex-shrink-0 shadow-md shadow-gator-orange/30">
-          <CheckCircle2 className="w-5 h-5 text-white" strokeWidth={2.5} />
+        <div className="w-9 h-9 rounded-md bg-gator-orange/10 border border-gator-orange/20 flex items-center justify-center flex-shrink-0">
+          <CheckCircle2 className="w-4 h-4 text-gator-orange" strokeWidth={2.2} />
         </div>
         <div className="min-w-0 flex-1">
+          <div className="text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-foreground mb-1">
+            New booking
+          </div>
           <div className="text-sm font-bold text-foreground leading-tight">
-            {booking.name} just booked!
+            {booking.name} · <span className="text-muted-foreground font-medium">{booking.service}</span>
           </div>
-          <div className="text-xs text-muted-foreground mt-0.5 leading-snug">
-            <span className="font-semibold text-foreground/85">{booking.service}</span>
-          </div>
-          <div className="flex items-center gap-1.5 mt-1.5 text-[11px] text-muted-foreground">
-            <MapPin className="w-3 h-3 text-primary flex-shrink-0" />
+          <div className="flex items-center gap-1.5 mt-1 text-[11px] text-muted-foreground">
+            <MapPin className="w-3 h-3 flex-shrink-0" />
             <span className="truncate">{booking.city}</span>
             <span className="text-muted-foreground/40">·</span>
-            <span>{booking.minutesAgo} min ago</span>
+            <span>{booking.minutesAgo}m ago</span>
           </div>
         </div>
       </div>

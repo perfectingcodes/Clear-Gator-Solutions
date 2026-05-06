@@ -1,22 +1,13 @@
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { usePageMeta } from "@/hooks/use-page-meta";
-import {
-  CypressCanopy,
-  PalmFrond,
-  BayouDivider,
-  GatorScales,
-  Cattail,
-  FloridaOutline,
-  BrandFlourish,
-} from "@/components/swamp-decor";
+import { GatorScales, SectionRule } from "@/components/swamp-decor";
 import logoImg from "@assets/clear_gator_1775663894887.png";
 import {
   Truck, HardHat, PhoneCall, CheckCircle2,
-  ArrowRight, MapPin, Clock, Shield, ChevronRight,
+  ArrowRight, Clock, Shield,
   FileText, DollarSign, Search, Facebook, Instagram, Twitter,
-  Hammer, TreePine, Users, Handshake, Wrench, Leaf, Award, Sparkles
+  Hammer, TreePine, Handshake, Wrench
 } from "lucide-react";
 
 const SERVICE_AREAS = [
@@ -100,7 +91,7 @@ export default function LandingPage() {
   });
 
   return (
-    <div className="min-h-screen bg-background text-foreground pb-[calc(96px+env(safe-area-inset-bottom,0px))] sm:pb-0">
+    <div className="min-h-screen bg-background text-foreground pb-[calc(88px+env(safe-area-inset-bottom,0px))] sm:pb-0">
       <header className="sticky top-0 z-50 bg-background/85 backdrop-blur-md border-b border-border/70">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between gap-4 py-3">
           <Link href="/" className="flex items-center gap-3 hover-elevate rounded-md px-1 -mx-1 py-1">
@@ -147,96 +138,61 @@ export default function LandingPage() {
         </div>
       </header>
 
-      <section className="relative overflow-hidden bg-swamp-sunset min-h-[92vh] flex items-center">
-        {/* Layered atmosphere */}
+      <section className="relative overflow-hidden bg-ink-hero min-h-[88vh] flex items-center">
         <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-25"
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-[0.18]"
           style={{ backgroundImage: "url('/images/hero-construction.png')" }}
           aria-hidden="true"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-swamp-950/95 via-swamp-900/70 to-transparent" aria-hidden="true" />
-        <div className="absolute inset-0 bg-canopy-haze" aria-hidden="true" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/55 to-transparent" aria-hidden="true" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" aria-hidden="true" />
 
-        {/* Cypress canopy silhouette at the top */}
-        <CypressCanopy className="absolute top-0 left-0 w-full h-32 sm:h-44 pointer-events-none" />
-
-        {/* Subtle gator-scale texture in the right side */}
-        <GatorScales className="absolute right-0 top-1/4 w-[55%] h-[55%] text-gator-green-light opacity-30 pointer-events-none hidden md:block" />
-
-        {/* Decorative palm fronds */}
-        <PalmFrond className="absolute -bottom-6 -left-8 w-56 h-56 text-gator-green/35 animate-palm-sway pointer-events-none hidden sm:block" />
-        <PalmFrond
-          className="absolute -bottom-10 -right-10 w-64 h-64 text-gator-green/25 animate-palm-sway pointer-events-none hidden lg:block"
-          style={{ ["--palm-flip" as never]: -1, animationDelay: "1.5s" }}
-        />
-
-        {/* Cattails along the bottom edge */}
-        <div className="absolute bottom-0 right-12 hidden xl:flex items-end gap-3 opacity-50 pointer-events-none">
-          <Cattail className="w-6 h-44 text-moss-light" />
-          <Cattail className="w-6 h-56 text-moss-light" />
-          <Cattail className="w-6 h-40 text-moss-light" />
-        </div>
-
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-28 sm:py-32 w-full">
-          <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2.5 mb-8 px-4 py-2 rounded-full bg-white/8 backdrop-blur-md border border-white/15 shadow-lg">
-              <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full rounded-full bg-gator-orange-light opacity-75 animate-ping" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-gator-orange" />
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-28 sm:py-32 w-full grid lg:grid-cols-12 gap-12 items-center">
+          <div className="lg:col-span-8">
+            <div className="flex items-center gap-3 mb-9">
+              <span className="text-[10px] font-semibold tracking-[0.32em] uppercase text-gator-orange-light">
+                01 — Clear Gator
               </span>
-              <span className="text-white/80 text-xs font-semibold tracking-wider uppercase">
-                Southwest Florida · Licensed &amp; Insured
+              <span className="h-px w-10 bg-white/25" aria-hidden="true" />
+              <span className="text-[10px] font-semibold tracking-[0.28em] uppercase text-white/45">
+                Southwest Florida
               </span>
             </div>
 
-            <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl font-black text-white leading-[1.02] mb-5 tracking-tight text-balance">
-              We Clear the Way.
-              <span className="block mt-1">
-                <span className="relative inline-block text-gator-orange-light">
-                  You Build the Future.
-                  <svg
-                    className="absolute -bottom-2 left-0 w-full"
-                    height="8"
-                    viewBox="0 0 100 8"
-                    preserveAspectRatio="none"
-                    aria-hidden="true"
-                  >
-                    <path d="M0,4 Q25,0 50,4 T100,4" stroke="hsl(30 100% 62%)" strokeWidth="1.5" fill="none" strokeLinecap="round" />
-                  </svg>
-                </span>
+            <h1 className="font-display text-5xl sm:text-6xl lg:text-[5.25rem] font-black text-white leading-[0.98] mb-8 tracking-[-0.025em] text-balance">
+              We clear the way.<br />
+              <span className="text-white/40">You build </span>
+              <span className="relative text-white">
+                what's next
+                <span className="absolute -bottom-1 left-0 w-full h-[3px] bg-gator-orange" aria-hidden="true" />
               </span>
+              <span className="text-white/40">.</span>
             </h1>
 
-            <div className="flex items-center gap-3 mb-7">
-              <div className="h-px w-10 bg-gator-orange-light/60" aria-hidden="true" />
-              <div className="font-display text-gator-orange-light font-extrabold tracking-[0.2em] text-base sm:text-lg uppercase">
-                Let's Gator Done.
-              </div>
-            </div>
-
-            <p className="text-lg text-white/75 mb-10 leading-relaxed max-w-xl text-balance">
-              Demo, hauling, site cleanup, lot clearing, and handyman services
-              <span className="text-white/90 font-semibold"> (including painting)</span> —
-              built for Southwest Florida properties from the coast to the cypress.
+            <p className="text-lg sm:text-xl text-white/65 mb-10 leading-[1.55] max-w-xl text-balance">
+              Demolition, hauling, site cleanup, lot clearing, and handyman services
+              <span className="text-white/90"> — including painting</span>.
+              Built for the coast, the canal, and everywhere in between.
             </p>
 
-            <div className="flex flex-wrap gap-3 mb-12">
+            <div className="flex flex-wrap items-center gap-3 mb-14">
               <Link href="/estimate">
                 <Button
                   size="lg"
-                  className="bg-gator-orange hover:bg-gator-orange-dark text-white font-bold shadow-xl shadow-gator-orange/30 gap-2 text-base px-8 h-12"
+                  className="bg-gator-orange hover:bg-gator-orange-dark text-white font-semibold gap-2 text-base px-7 h-12 rounded-md shadow-lg shadow-gator-orange/20"
                   data-testid="hero-cta-estimate"
                 >
-                  Get a Free Estimate <ArrowRight className="w-5 h-5" />
+                  Request an Estimate
+                  <ArrowRight className="w-4 h-4" />
                 </Button>
               </Link>
               <a href="tel:+12392343061" data-testid="hero-cta-call">
                 <Button
                   size="lg"
                   variant="outline"
-                  className="border-white/25 text-white bg-white/10 backdrop-blur-md hover:bg-white/20 text-base px-7 gap-2 h-12"
+                  className="border-white/20 text-white bg-transparent hover:bg-white/5 text-base px-6 h-12 rounded-md gap-2 font-semibold"
                 >
-                  <PhoneCall className="w-5 h-5 text-gator-orange-light" />
+                  <PhoneCall className="w-4 h-4 text-gator-orange-light" strokeWidth={2.2} />
                   (239) 234-3061
                 </Button>
               </a>
@@ -244,343 +200,339 @@ export default function LandingPage() {
                 <Button
                   size="lg"
                   variant="ghost"
-                  className="text-white/75 hover:text-white hover:bg-white/8 text-base px-5 h-12"
+                  className="text-white/55 hover:text-white hover:bg-transparent text-sm px-3 h-12 underline underline-offset-4 decoration-white/20 hover:decoration-white/60"
                   data-testid="hero-cta-track"
                 >
-                  Track My Job
+                  Track an existing job
                 </Button>
               </Link>
             </div>
 
-            <div className="grid grid-cols-3 gap-4 sm:gap-8 max-w-xl">
+            <dl className="grid grid-cols-3 gap-x-8 gap-y-1 max-w-xl border-t border-white/10 pt-6">
               {[
-                { icon: Shield, label: "Licensed", sub: "& Insured" },
-                { icon: Clock, label: "24-Hour", sub: "Quote Turnaround" },
-                { icon: CheckCircle2, label: "Quality", sub: "Backed Workmanship" },
-              ].map(({ icon: Icon, label, sub }) => (
-                <div key={label} className="flex flex-col gap-1.5">
-                  <Icon className="w-5 h-5 text-gator-orange-light flex-shrink-0" strokeWidth={2.2} />
-                  <div>
-                    <div className="text-white text-sm font-bold leading-tight">{label}</div>
-                    <div className="text-white/55 text-xs leading-tight">{sub}</div>
-                  </div>
+                { label: "Licensed", sub: "& Insured" },
+                { label: "24-Hour", sub: "Quote Turnaround" },
+                { label: "Local", sub: "Southwest Florida" },
+              ].map(({ label, sub }) => (
+                <div key={label}>
+                  <dt className="font-display text-base font-bold text-white tracking-tight">{label}</dt>
+                  <dd className="text-white/45 text-xs tracking-wide">{sub}</dd>
                 </div>
               ))}
+            </dl>
+          </div>
+
+          <div className="lg:col-span-4 hidden lg:flex justify-end">
+            <div className="relative">
+              <div className="absolute -inset-6 rounded-full bg-gator-orange/8 blur-3xl pointer-events-none" aria-hidden="true" />
+              <img
+                src={logoImg}
+                alt="Clear Gator emblem"
+                className="relative h-72 w-72 object-contain drop-shadow-[0_10px_40px_rgba(0,0,0,0.5)]"
+              />
             </div>
           </div>
         </div>
-
-        {/* Bayou waterline at the very bottom */}
-        <BayouDivider className="absolute bottom-0 left-0 w-full h-16 text-background pointer-events-none" />
       </section>
 
-      <section className="relative bg-background py-10 sm:py-14 border-b border-border/60">
+      <section className="relative bg-background border-b border-border/60">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-border/60 rounded-2xl overflow-hidden ring-1 ring-border/60 shadow-sm">
+          <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-border/70 md:py-2">
             {stats.map(({ value, label }, i) => (
-              <div key={label} className="bg-card p-6 sm:p-7 flex flex-col gap-2 hover-elevate transition-all">
-                <div className="flex items-center gap-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-gator-orange" />
-                  <span className="text-[10px] font-bold tracking-[0.18em] text-muted-foreground uppercase">
-                    0{i + 1}
+              <div
+                key={label}
+                className={`flex flex-col gap-1.5 py-7 sm:py-8 px-5 sm:px-7 ${i >= 2 ? "border-t md:border-t-0 border-border/70" : ""}`}
+              >
+                <span className="text-[10px] font-semibold tracking-[0.28em] text-muted-foreground/70 uppercase">
+                  0{i + 1}
+                </span>
+                <div className="font-display text-xl sm:text-2xl font-bold text-foreground leading-none tracking-tight">
+                  {value}
+                </div>
+                <div className="text-muted-foreground text-xs sm:text-sm leading-snug">{label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="services" className="relative py-24 sm:py-32 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid lg:grid-cols-12 gap-12 lg:gap-20 mb-16 lg:mb-20 items-end">
+            <div className="lg:col-span-5">
+              <div className="flex items-center gap-3 mb-6">
+                <span className="text-[10px] font-semibold tracking-[0.32em] uppercase text-gator-orange">
+                  02 — Capabilities
+                </span>
+                <SectionRule className="w-16 h-1.5 text-gator-orange/60" />
+              </div>
+              <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-black tracking-[-0.025em] text-balance leading-[0.98]">
+                Five disciplines.<br />
+                <span className="text-muted-foreground/60">One crew.</span>
+              </h2>
+            </div>
+            <div className="lg:col-span-6 lg:col-start-7">
+              <p className="text-base sm:text-lg text-muted-foreground leading-[1.65] text-balance max-w-lg">
+                From non-structural demolition to full-property handyman work, Clear Gator handles each phase of a project with the same crew, the same standards, and the same accountability.
+              </p>
+            </div>
+          </div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-border/60 ring-1 ring-border/60 rounded-lg overflow-hidden">
+            {services.map((svc, i) => (
+              <article
+                key={svc.title}
+                className="group relative bg-card p-7 sm:p-8 transition-colors duration-300 hover:bg-muted/30"
+              >
+                <div className="flex items-start justify-between mb-8">
+                  <div className={`w-11 h-11 rounded-md ${svc.iconBg} flex items-center justify-center`}>
+                    <svc.icon className={`w-5 h-5 ${svc.iconColor}`} strokeWidth={2} />
+                  </div>
+                  <span className="font-display text-xs font-bold tracking-[0.18em] text-muted-foreground/50">
+                    /0{i + 1}
                   </span>
                 </div>
-                <div className="font-display text-2xl sm:text-3xl font-black text-foreground leading-none tracking-tight">{value}</div>
-                <div className="text-muted-foreground text-sm leading-snug">{label}</div>
-              </div>
+                <h3 className="font-display text-2xl font-bold mb-3 tracking-tight">{svc.title}</h3>
+                <p className="text-muted-foreground text-sm leading-[1.65] mb-6">{svc.description}</p>
+                <ul className="space-y-2 mb-8 text-sm">
+                  {svc.features.map((f) => (
+                    <li key={f} className="flex items-center gap-3 text-foreground/80">
+                      <span className="w-1 h-1 rounded-full bg-gator-orange flex-shrink-0" />
+                      {f}
+                    </li>
+                  ))}
+                </ul>
+                <Link href="/estimate">
+                  <button className="inline-flex items-center gap-2 text-sm font-semibold text-foreground border-b border-foreground/30 pb-0.5 hover:border-gator-orange hover:text-gator-orange transition-colors">
+                    Request a quote
+                    <ArrowRight className="w-3.5 h-3.5" strokeWidth={2.4} />
+                  </button>
+                </Link>
+              </article>
             ))}
           </div>
         </div>
       </section>
 
-      <section id="services" className="relative py-24 sm:py-28 px-4 sm:px-6 lg:px-8 overflow-hidden">
-        {/* Subtle gator-scale watermark */}
-        <GatorScales className="absolute -right-20 -top-20 w-[480px] h-[480px] text-primary/30 pointer-events-none hidden md:block" />
-
-        <div className="relative max-w-7xl mx-auto">
-          <div className="text-center mb-16 max-w-2xl mx-auto">
-            <div className="inline-flex items-center gap-2 mb-5 px-3.5 py-1.5 rounded-full bg-primary/10 border border-primary/20">
-              <Leaf className="w-3.5 h-3.5 text-primary" />
-              <span className="text-xs font-bold tracking-[0.18em] uppercase text-primary">Our Services</span>
-            </div>
-            <h2 className="font-display text-4xl sm:text-5xl font-black mb-5 tracking-tight text-balance leading-[1.05]">
-              Built Tough.<br className="sm:hidden" />
-              <span className="text-gator-orange"> Done Right.</span>
-            </h2>
-            <BrandFlourish className="w-32 h-3 mx-auto text-gator-orange/70 mb-5" />
-            <p className="text-muted-foreground text-base sm:text-lg leading-relaxed text-balance">
-              From non-structural demo to full site cleanup and land clearing — Clear Gator handles every stage of your project start to finish.
-            </p>
-          </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
-            {services.map((svc) => (
-              <div
-                key={svc.title}
-                className="group relative bg-card border border-card-border rounded-2xl overflow-hidden transition-all duration-300 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-1"
-              >
-                <div className={`h-1.5 w-full ${svc.accent}`} />
-                <div className="p-7 relative">
-                  <div className="absolute top-5 right-5 text-[60px] font-display font-black text-foreground/[0.03] leading-none pointer-events-none select-none">
-                    {String(services.indexOf(svc) + 1).padStart(2, "0")}
-                  </div>
-                  <div className={`relative w-14 h-14 rounded-xl ${svc.iconBg} flex items-center justify-center mb-5 ring-1 ring-current/5`}>
-                    <svc.icon className={`w-7 h-7 ${svc.iconColor}`} strokeWidth={2.2} />
-                  </div>
-                  <h3 className="font-display text-2xl font-bold mb-3 tracking-tight">{svc.title}</h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed mb-5">{svc.description}</p>
-                  <ul className="space-y-2.5 mb-6">
-                    {svc.features.map((f) => (
-                      <li key={f} className="flex items-center gap-2.5 text-sm">
-                        <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0" />
-                        {f}
-                      </li>
-                    ))}
-                  </ul>
-                  <Link href="/estimate">
-                    <button className={`text-sm font-semibold ${svc.iconColor} flex items-center gap-1 hover:gap-2 transition-all`}>
-                      Get a Quote <ArrowRight className="w-4 h-4" />
-                    </button>
-                  </Link>
-                </div>
+      <section id="how-it-works" className="relative py-24 sm:py-32 bg-muted/30 dark:bg-muted/10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-12 gap-12 lg:gap-20 mb-16 items-end">
+            <div className="lg:col-span-5">
+              <div className="flex items-center gap-3 mb-6">
+                <span className="text-[10px] font-semibold tracking-[0.32em] uppercase text-gator-orange">
+                  03 — Process
+                </span>
+                <SectionRule className="w-16 h-1.5 text-gator-orange/60" />
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section id="how-it-works" className="relative py-24 sm:py-28 bg-muted/40 dark:bg-muted/10 overflow-hidden">
-        <PalmFrond className="absolute -bottom-12 -right-12 w-64 h-64 text-primary/8 pointer-events-none hidden md:block" style={{ transform: "scaleX(-1) rotate(20deg)" }} />
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16 max-w-2xl mx-auto">
-            <div className="inline-flex items-center gap-2 mb-5 px-3.5 py-1.5 rounded-full bg-primary/10 border border-primary/20">
-              <Sparkles className="w-3.5 h-3.5 text-primary" />
-              <span className="text-xs font-bold tracking-[0.18em] uppercase text-primary">Simple Process</span>
+              <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-black tracking-[-0.025em] text-balance leading-[0.98]">
+                A simple,<br />
+                <span className="text-muted-foreground/60">transparent</span><br />
+                handoff.
+              </h2>
             </div>
-            <h2 className="font-display text-4xl sm:text-5xl font-black mb-5 tracking-tight text-balance leading-[1.05]">
-              How It Works
-            </h2>
-            <BrandFlourish className="w-32 h-3 mx-auto text-gator-orange/70 mb-5" />
-            <p className="text-muted-foreground text-base sm:text-lg leading-relaxed text-balance">
-              Getting started is fast and easy. No back-and-forth, no surprises.
-            </p>
+            <div className="lg:col-span-6 lg:col-start-7">
+              <p className="text-base sm:text-lg text-muted-foreground leading-[1.65] text-balance max-w-lg">
+                Four steps from first call to invoice. No back-and-forth, no surprises, no hidden line items.
+              </p>
+            </div>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-4 relative">
-            {howItWorks.map(({ step, title, desc, icon: Icon }, i) => (
-              <div
-                key={step}
-                className="relative flex flex-col items-center text-center bg-background/60 backdrop-blur-sm border border-card-border rounded-2xl p-7 hover:border-primary/30 hover:shadow-lg transition-all duration-300"
-              >
-                {i < howItWorks.length - 1 && (
-                  <div className="hidden lg:block absolute top-1/2 -right-6 w-12 h-px z-0" aria-hidden="true">
-                    <svg viewBox="0 0 48 8" className="w-full h-2 -mt-1 text-primary/40" preserveAspectRatio="none">
-                      <path d="M0,4 L42,4 M38,1 L42,4 L38,7" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" />
-                    </svg>
-                  </div>
-                )}
-                <div className="relative w-14 h-14 rounded-2xl bg-gradient-to-br from-primary to-gator-green-dark flex items-center justify-center mb-5 shadow-lg shadow-primary/25 ring-4 ring-primary/10">
-                  <Icon className="w-6 h-6 text-primary-foreground" strokeWidth={2.2} />
+
+          <ol className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-border/60 ring-1 ring-border/60 rounded-lg overflow-hidden">
+            {howItWorks.map(({ step, title, desc, icon: Icon }) => (
+              <li key={step} className="bg-background p-7 sm:p-8 flex flex-col gap-4">
+                <div className="flex items-center justify-between">
+                  <span className="font-display text-3xl font-black text-gator-orange tracking-tight leading-none">
+                    {step}
+                  </span>
+                  <Icon className="w-4 h-4 text-muted-foreground/50" strokeWidth={2} />
                 </div>
-                <div className="font-display text-4xl font-black text-primary/15 leading-none mb-2 select-none">{step}</div>
-                <h3 className="font-display text-lg font-bold mb-2 tracking-tight">{title}</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">{desc}</p>
-              </div>
+                <div className="h-px bg-border/80" />
+                <div>
+                  <h3 className="font-display text-lg font-bold mb-2 tracking-tight">{title}</h3>
+                  <p className="text-muted-foreground text-sm leading-[1.65]">{desc}</p>
+                </div>
+              </li>
             ))}
-          </div>
+          </ol>
         </div>
       </section>
 
       {/* ── Service Areas ── */}
-      <section id="service-areas" className="relative py-24 sm:py-28 bg-primary/5 border-y border-primary/10 overflow-hidden">
-        <FloridaOutline className="absolute right-4 top-4 w-32 h-40 text-primary/10 pointer-events-none hidden md:block" />
-        <FloridaOutline className="absolute left-4 bottom-4 w-24 h-28 text-primary/8 pointer-events-none hidden md:block" style={{ transform: "scaleX(-1)" }} />
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12 max-w-2xl mx-auto">
-            <div className="inline-flex items-center gap-2 mb-5 px-3.5 py-1.5 rounded-full bg-primary/10 border border-primary/20">
-              <MapPin className="w-3.5 h-3.5 text-primary" />
-              <span className="text-xs font-bold tracking-[0.18em] uppercase text-primary">Where We Work</span>
-            </div>
-            <h2 className="font-display text-4xl sm:text-5xl font-black mb-5 tracking-tight text-balance leading-[1.05]">
-              Serving Southwest Florida
-            </h2>
-            <BrandFlourish className="w-32 h-3 mx-auto text-gator-orange/70 mb-5" />
-            <p className="text-muted-foreground text-base sm:text-lg leading-relaxed text-balance">
-              From the coast to the cypress — we bring the same quality and reliability to every city we serve.
-            </p>
-          </div>
-
-          <div className="flex flex-wrap justify-center gap-2.5 mb-10">
-            {SERVICE_AREAS.map((city) => (
-              <div
-                key={city}
-                data-testid={`chip-city-${city.toLowerCase().replace(/\s+/g, "-")}`}
-                className="flex items-center gap-2 bg-background border border-primary/25 text-foreground rounded-full px-5 py-2.5 text-sm font-semibold shadow-sm hover:border-primary/60 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200"
-              >
-                <MapPin className="w-3.5 h-3.5 text-primary flex-shrink-0" />
-                {city}
+      <section id="service-areas" className="relative py-24 sm:py-32 border-y border-border/60">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+            <div className="lg:col-span-5">
+              <div className="flex items-center gap-3 mb-6">
+                <span className="text-[10px] font-semibold tracking-[0.32em] uppercase text-gator-orange">
+                  04 — Coverage
+                </span>
+                <SectionRule className="w-16 h-1.5 text-gator-orange/60" />
               </div>
-            ))}
-            <div className="flex items-center gap-2 bg-muted/50 border border-dashed border-muted-foreground/30 text-muted-foreground rounded-full px-5 py-2.5 text-sm font-medium">
-              <MapPin className="w-3.5 h-3.5 flex-shrink-0" />
-              &amp; Surrounding Southwest Florida
+              <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-black tracking-[-0.025em] text-balance leading-[0.98] mb-6">
+                Southwest Florida,<br />
+                <span className="text-muted-foreground/60">end to end.</span>
+              </h2>
+              <p className="text-base text-muted-foreground leading-[1.65] mb-6 max-w-md">
+                Headquartered in Cape Coral. We work the entire SWFL corridor — from the islands to the ranch — with the same crew on every job.
+              </p>
+              <p className="text-sm text-muted-foreground">
+                Not on the list?{" "}
+                <a href="tel:+12392343061" className="text-foreground font-semibold border-b border-foreground/40 hover:border-gator-orange hover:text-gator-orange transition-colors">
+                  Call us
+                </a>{" "}
+                — we travel for the right job.
+              </p>
+            </div>
+
+            <div className="lg:col-span-6 lg:col-start-7">
+              <ul className="grid grid-cols-2 sm:grid-cols-2 divide-y divide-x divide-border/70 border border-border/70 rounded-lg overflow-hidden">
+                {SERVICE_AREAS.map((city, i) => (
+                  <li
+                    key={city}
+                    data-testid={`chip-city-${city.toLowerCase().replace(/\s+/g, "-")}`}
+                    className={`group flex items-center justify-between px-5 py-4 bg-background hover:bg-muted/30 transition-colors ${
+                      i < 2 ? "border-t-0" : ""
+                    } ${i % 2 === 0 ? "border-l-0" : ""}`}
+                  >
+                    <span className="font-display font-bold text-foreground text-sm sm:text-base tracking-tight">
+                      {city}
+                    </span>
+                    <ArrowRight className="w-3.5 h-3.5 text-muted-foreground/40 group-hover:text-gator-orange group-hover:translate-x-0.5 transition-all" />
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
-
-          <p className="text-center text-sm text-muted-foreground">
-            Not sure if we cover your area?{" "}
-            <a href="tel:+12392343061" className="text-primary font-semibold hover:underline">
-              Give us a call
-            </a>{" "}
-            — we travel for the right job.
-          </p>
         </div>
       </section>
 
       {/* ── Contractor Partnership ── */}
-      <section className="relative py-24 bg-swamp overflow-hidden">
+      <section className="relative py-24 sm:py-32 bg-ink overflow-hidden">
         <GatorScales className="absolute inset-0 w-full h-full text-white/5 pointer-events-none" />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="rounded-3xl border border-primary/20 bg-gradient-to-br from-cypress-dark/80 to-swamp-900/80 backdrop-blur-sm overflow-hidden shadow-2xl shadow-black/40">
-            <div className="grid lg:grid-cols-2 gap-0">
-              {/* Left column */}
-              <div className="relative p-10 lg:p-14 border-b lg:border-b-0 lg:border-r border-primary/15">
-                <PalmFrond className="absolute -bottom-8 -left-8 w-44 h-44 text-primary/10 pointer-events-none" />
-                <div className="relative">
-                  <div className="inline-flex items-center gap-2 mb-5 px-3.5 py-1.5 rounded-full bg-primary/15 border border-primary/30">
-                    <Handshake className="w-3.5 h-3.5 text-gator-green-light" />
-                    <span className="text-xs font-bold tracking-[0.18em] uppercase text-gator-green-light">Trade Partners Welcome</span>
-                  </div>
-                  <h2 className="font-display text-3xl sm:text-4xl font-black text-white mb-5 tracking-tight leading-[1.05]">
-                    Are You a <span className="text-gator-orange-light">Contractor</span>?
-                  </h2>
-                  <p className="text-white/65 leading-relaxed mb-8 text-base">
-                    We work hand-in-hand with general contractors and trade partners as a reliable extension of your crew.
-                    Fast turnaround, job-site ready work, and partner-friendly rates — so cleanup and demolition never
-                    hold up your schedule.
-                  </p>
-                  <Link href="/estimate">
-                    <Button
-                      size="lg"
-                      className="bg-gator-orange hover:bg-gator-orange-dark text-white font-bold shadow-lg shadow-gator-orange/30 gap-2"
-                      data-testid="contractor-cta-partner"
-                    >
-                      <Handshake className="w-5 h-5" />
-                      Become a Partner
-                    </Button>
-                  </Link>
-                </div>
+          <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+            <div className="lg:col-span-5">
+              <div className="flex items-center gap-3 mb-6">
+                <span className="text-[10px] font-semibold tracking-[0.32em] uppercase text-gator-orange">
+                  05 — Trade Partners
+                </span>
+                <SectionRule className="w-16 h-1.5 text-gator-orange/60" />
               </div>
+              <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-[-0.025em] leading-[0.98] mb-7 text-balance">
+                Built to be<br />
+                <span className="text-white/40">a contractor's</span><br />
+                first call.
+              </h2>
+              <p className="text-white/55 leading-[1.65] text-base mb-9 max-w-md">
+                We extend your crew without extending your liability. Job-site ready work,
+                fast turnaround, and partner pricing for steady rotation.
+              </p>
+              <Link href="/estimate">
+                <Button
+                  size="lg"
+                  className="bg-white text-ink hover:bg-white/90 font-semibold gap-2 px-7 h-12 rounded-md"
+                  data-testid="contractor-cta-partner"
+                >
+                  Become a Trade Partner
+                  <ArrowRight className="w-4 h-4" />
+                </Button>
+              </Link>
+            </div>
 
-              {/* Right column */}
-              <div className="p-10 lg:p-14">
-                <div className="flex items-center gap-2 mb-8">
-                  <Users className="w-5 h-5 text-gator-green-light" />
-                  <span className="text-white/70 text-xs font-bold uppercase tracking-[0.18em]">Why Contractors Choose Us</span>
-                </div>
-                <ul className="space-y-6">
-                  {[
-                    {
-                      icon: Clock,
-                      label: "Fast Turnaround",
-                      desc: "Same-day and next-day availability on most services so your build timeline stays intact.",
-                    },
-                    {
-                      icon: Shield,
-                      label: "Reliable & Fully Insured",
-                      desc: "We show up when we say we will — licensed, insured, and OSHA-aware so your liability stays zero.",
-                    },
-                    {
-                      icon: DollarSign,
-                      label: "Partner-Friendly Rates",
-                      desc: "Volume pricing and priority scheduling available for ongoing trade partners.",
-                    },
-                    {
-                      icon: PhoneCall,
-                      label: "Dedicated Contact Line",
-                      desc: "Skip the queue — partners get a direct number to reach our crew leads directly.",
-                    },
-                  ].map(({ icon: Icon, label, desc }) => (
-                    <li key={label} className="flex items-start gap-4">
-                      <div className="w-10 h-10 rounded-lg bg-primary/15 border border-primary/25 flex items-center justify-center flex-shrink-0 mt-0.5">
-                        <Icon className="w-5 h-5 text-primary" />
-                      </div>
-                      <div>
-                        <div className="text-white font-bold text-sm mb-1">{label}</div>
-                        <div className="text-white/50 text-sm leading-relaxed">{desc}</div>
-                      </div>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+            <div className="lg:col-span-7">
+              <dl className="grid sm:grid-cols-2 gap-px bg-white/10 ring-1 ring-white/10 rounded-lg overflow-hidden">
+                {[
+                  {
+                    icon: Clock,
+                    label: "Fast Turnaround",
+                    desc: "Same-day and next-day availability on most services — your build timeline stays intact.",
+                  },
+                  {
+                    icon: Shield,
+                    label: "Licensed & Insured",
+                    desc: "We show up when we say we will. Insured and OSHA-aware so your liability stays clean.",
+                  },
+                  {
+                    icon: DollarSign,
+                    label: "Partner Pricing",
+                    desc: "Volume rates and priority scheduling available for trade partners on regular rotation.",
+                  },
+                  {
+                    icon: PhoneCall,
+                    label: "Direct Line",
+                    desc: "Trade partners reach our crew leads directly — no queue, no triage, no runaround.",
+                  },
+                ].map(({ icon: Icon, label, desc }) => (
+                  <div key={label} className="bg-ink p-7 lg:p-8">
+                    <Icon className="w-4 h-4 text-gator-orange-light mb-5" strokeWidth={2.2} />
+                    <dt className="font-display text-white text-lg font-bold mb-2 tracking-tight">{label}</dt>
+                    <dd className="text-white/50 text-sm leading-[1.65]">{desc}</dd>
+                  </div>
+                ))}
+              </dl>
             </div>
           </div>
         </div>
       </section>
 
       {/* ── Final CTA ── */}
-      <section className="relative py-28 bg-swamp-sunset overflow-hidden">
-        <CypressCanopy className="absolute top-0 left-0 w-full h-32 pointer-events-none" />
-        <div className="absolute inset-0 bg-canopy-haze pointer-events-none" />
-        <GatorScales className="absolute inset-0 w-full h-full text-white/4 pointer-events-none" />
-        <PalmFrond className="absolute -bottom-12 -left-16 w-72 h-72 text-primary/20 animate-palm-sway pointer-events-none hidden md:block" />
-        <PalmFrond className="absolute -bottom-12 -right-16 w-72 h-72 text-primary/20 animate-palm-sway pointer-events-none hidden md:block" style={{ ["--palm-flip" as never]: -1, animationDelay: "1.5s" }} />
+      <section className="relative py-32 sm:py-40 bg-ink overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/30 pointer-events-none" aria-hidden="true" />
+        <div className="absolute -top-1/2 left-1/2 -translate-x-1/2 w-[120%] aspect-square rounded-full bg-gator-orange/[0.06] blur-3xl pointer-events-none" aria-hidden="true" />
 
-        <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="inline-flex items-center gap-2 mb-6 px-3.5 py-1.5 rounded-full bg-gator-orange/15 border border-gator-orange/30">
-            <Sparkles className="w-3.5 h-3.5 text-gator-orange-light" />
-            <span className="text-xs font-bold tracking-[0.18em] uppercase text-gator-orange-light">Ready to Start?</span>
+        <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="font-display text-gator-orange-light tracking-[0.4em] text-xs font-bold uppercase mb-8">
+            Let's Gator Done.
           </div>
-          <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-black text-white mb-5 tracking-tight leading-[1.02] text-balance">
-            Ready to <span className="text-gator-orange-light">Clear the Site?</span>
+          <h2 className="font-display text-5xl sm:text-6xl lg:text-7xl font-black text-white tracking-[-0.03em] leading-[0.96] mb-8 text-balance">
+            Bring us the site.<br />
+            <span className="text-white/40">We'll bring the crew.</span>
           </h2>
-          <BrandFlourish className="w-32 h-3 mx-auto text-gator-orange/70 mb-6" />
-          <p className="text-white/70 mb-10 text-base sm:text-lg leading-relaxed max-w-xl mx-auto text-balance">
-            Get your free estimate in minutes. No commitment required. Our team responds within 24 hours.
+          <p className="text-white/55 mb-12 text-base sm:text-lg leading-[1.65] max-w-xl mx-auto text-balance">
+            Free estimates, returned within 24 hours. No commitment. No hidden line items.
           </p>
-          <div className="flex flex-wrap justify-center gap-3">
+          <div className="flex flex-wrap justify-center items-center gap-3">
             <Link href="/estimate">
               <Button
                 size="lg"
-                className="bg-gator-orange hover:bg-gator-orange-dark text-white font-bold shadow-xl shadow-gator-orange/40 gap-2 text-base px-10 h-12"
+                className="bg-gator-orange hover:bg-gator-orange-dark text-white font-semibold gap-2 text-base px-8 h-12 rounded-md shadow-lg shadow-gator-orange/30"
                 data-testid="footer-cta-estimate"
               >
-                Get Your Free Estimate <ChevronRight className="w-5 h-5" />
+                Request an Estimate
+                <ArrowRight className="w-4 h-4" />
               </Button>
             </Link>
             <a href="tel:+12392343061">
               <Button
                 size="lg"
                 variant="outline"
-                className="border-white/25 text-white bg-white/8 hover:bg-white/15 text-base px-8 h-12 gap-2"
+                className="border-white/20 text-white bg-transparent hover:bg-white/5 text-base px-7 h-12 rounded-md gap-2 font-semibold"
               >
-                <PhoneCall className="w-4 h-4 text-gator-orange-light" />
+                <PhoneCall className="w-4 h-4 text-gator-orange-light" strokeWidth={2.2} />
                 (239) 234-3061
               </Button>
             </a>
           </div>
-          <div className="mt-8 inline-flex items-center gap-3 text-white/45 text-xs uppercase tracking-[0.18em] font-semibold">
-            <span className="h-px w-8 bg-white/30" />
-            <span>Let's Gator Done.</span>
-            <span className="h-px w-8 bg-white/30" />
-          </div>
         </div>
       </section>
 
-      <footer className="relative bg-swamp-950 text-white/60 pt-20 pb-12 overflow-hidden">
-        <GatorScales className="absolute inset-0 w-full h-full text-white/4 pointer-events-none" />
+      <footer className="relative bg-ink text-white/55 pt-20 pb-10">
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-14">
-            <div className="lg:col-span-1">
-              <div className="flex items-center gap-2.5 mb-4">
-                <img src={logoImg} alt="Clear Gator Logo" className="h-12 w-12 object-contain drop-shadow-md" />
-                <div>
-                  <div className="font-display font-black text-xl text-white tracking-tight leading-none">Clear Gator</div>
-                  <div className="text-[10px] font-bold tracking-[0.2em] uppercase text-gator-orange-light mt-0.5">Construction Services</div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-12 gap-10 mb-16">
+            <div className="lg:col-span-5">
+              <div className="flex items-center gap-3 mb-5">
+                <img src={logoImg} alt="Clear Gator Logo" className="h-12 w-12 object-contain" />
+                <div className="leading-none">
+                  <div className="font-display font-black text-xl text-white tracking-tight">Clear Gator</div>
+                  <div className="text-[9px] font-semibold tracking-[0.32em] uppercase text-white/40 mt-1.5">
+                    Construction Services
+                  </div>
                 </div>
               </div>
-              <p className="text-sm leading-relaxed mb-6 text-white/55">
-                Demo, hauling, site cleanup, lot clearing, and handyman work — done right, done safe, done on time across Southwest Florida.
+              <p className="text-sm leading-[1.7] mb-7 text-white/50 max-w-md">
+                Demolition, hauling, site cleanup, lot clearing, and handyman services for Southwest Florida.
               </p>
-              <div className="flex gap-2.5">
+              <div className="flex gap-2">
                 {[
                   { Icon: Facebook, label: "Facebook" },
                   { Icon: Instagram, label: "Instagram" },
@@ -590,96 +542,84 @@ export default function LandingPage() {
                     key={label}
                     href="#"
                     aria-label={label}
-                    className="w-9 h-9 rounded-lg bg-white/5 border border-white/10 hover:bg-gator-orange/20 hover:border-gator-orange/40 hover:text-gator-orange-light flex items-center justify-center transition-all duration-200"
+                    className="w-9 h-9 rounded-md border border-white/10 hover:border-white/30 hover:bg-white/5 flex items-center justify-center transition-colors"
                   >
-                    <Icon className="w-4 h-4" />
+                    <Icon className="w-3.5 h-3.5" />
                   </a>
                 ))}
               </div>
             </div>
-            <div>
-              <div className="font-bold text-white mb-4 text-xs uppercase tracking-[0.18em]">Services</div>
+            <div className="lg:col-span-2 lg:col-start-7">
+              <div className="text-[10px] font-semibold tracking-[0.32em] uppercase text-white/40 mb-5">Services</div>
               <ul className="space-y-2.5 text-sm">
                 {services.map((s) => (
                   <li key={s.title}>
-                    <Link href="/estimate" className="hover:text-gator-orange-light transition-colors">{s.title}</Link>
+                    <Link href="/estimate" className="hover:text-white transition-colors">{s.title}</Link>
                   </li>
                 ))}
               </ul>
             </div>
-            <div>
-              <div className="font-bold text-white mb-4 text-xs uppercase tracking-[0.18em]">Portal</div>
+            <div className="lg:col-span-2">
+              <div className="text-[10px] font-semibold tracking-[0.32em] uppercase text-white/40 mb-5">Company</div>
               <ul className="space-y-2.5 text-sm">
-                <li><Link href="/estimate" className="hover:text-gator-orange-light transition-colors">Get a Free Estimate</Link></li>
-                <li><Link href="/track" className="hover:text-gator-orange-light transition-colors">Track My Job</Link></li>
-                <li><Link href="/admin" className="hover:text-gator-orange-light transition-colors">Staff Login</Link></li>
+                <li><Link href="/estimate" className="hover:text-white transition-colors">Free Estimate</Link></li>
+                <li><Link href="/track" className="hover:text-white transition-colors">Track a Job</Link></li>
+                <li><Link href="/privacy" className="hover:text-white transition-colors">Privacy</Link></li>
+                <li><Link href="/terms" className="hover:text-white transition-colors">Terms</Link></li>
+                <li><Link href="/admin" className="hover:text-white transition-colors">Staff Login</Link></li>
               </ul>
             </div>
-            <div>
-              <div className="font-bold text-white mb-4 text-xs uppercase tracking-[0.18em]">Contact</div>
-              <ul className="space-y-3 text-sm">
-                <li>
-                  <a href="tel:+12392343061" className="group flex items-start gap-3 hover:text-white transition-colors">
-                    <span className="w-9 h-9 rounded-lg bg-gator-orange/15 border border-gator-orange/30 flex items-center justify-center flex-shrink-0 group-hover:bg-gator-orange/25 transition-colors">
-                      <PhoneCall className="w-4 h-4 text-gator-orange-light" />
-                    </span>
-                    <span className="leading-tight">
-                      <div className="font-bold text-white">(239) 234-3061</div>
-                      <div className="text-xs text-white/45">Tap to call</div>
-                    </span>
-                  </a>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="w-9 h-9 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0">
-                    <MapPin className="w-4 h-4 text-gator-green-light" />
-                  </span>
-                  <span className="leading-tight pt-1">Cape Coral · Naples · SW Florida</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="w-9 h-9 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0">
-                    <Clock className="w-4 h-4 text-gator-green-light" />
-                  </span>
-                  <span className="leading-tight pt-1">Mon–Sat, 7am–6pm</span>
-                </li>
-              </ul>
+            <div className="lg:col-span-3">
+              <div className="text-[10px] font-semibold tracking-[0.32em] uppercase text-white/40 mb-5">Contact</div>
+              <a
+                href="tel:+12392343061"
+                className="block group mb-4"
+                aria-label="Call Clear Gator"
+              >
+                <div className="font-display text-2xl font-bold text-white tracking-tight leading-none group-hover:text-gator-orange-light transition-colors">
+                  (239) 234-3061
+                </div>
+                <div className="text-xs text-white/40 mt-1">Mon–Sat, 7am–6pm</div>
+              </a>
+              <div className="text-sm text-white/55 leading-[1.7]">
+                Cape Coral · Naples<br />
+                Southwest Florida
+              </div>
             </div>
           </div>
-          <div className="border-t border-white/8 pt-8 flex flex-col md:flex-row gap-4 md:gap-0 items-center justify-between text-xs">
-            <div className="flex items-center gap-3 text-white/55">
-              <span className="font-display font-black uppercase tracking-[0.2em] text-gator-orange-light">Let's Gator Done.</span>
-              <span className="text-white/20 hidden sm:inline">·</span>
-              <span className="hidden sm:inline">&copy; {new Date().getFullYear()} Clear Gator Construction Services</span>
+          <div className="border-t border-white/10 pt-7 flex flex-col md:flex-row gap-4 md:gap-0 items-start md:items-center justify-between text-xs">
+            <div className="text-white/40">
+              &copy; {new Date().getFullYear()} Clear Gator Construction Services. All rights reserved.
             </div>
-            <div className="flex items-center gap-5 text-white/55">
-              <Link href="/privacy" className="hover:text-white transition-colors">Privacy</Link>
-              <Link href="/terms" className="hover:text-white transition-colors">Terms</Link>
+            <div className="font-display text-gator-orange-light tracking-[0.4em] text-[10px] font-bold uppercase">
+              Let's Gator Done.
             </div>
           </div>
         </div>
       </footer>
 
-      {/* Mobile sticky Call CTA — refined floating bar */}
+      {/* Mobile sticky Call CTA — restrained, editorial */}
       <div
-        className="sm:hidden fixed bottom-0 left-0 right-0 z-50 px-4 pt-4 pb-3 pointer-events-none"
+        className="sm:hidden fixed bottom-0 left-0 right-0 z-50 px-3 pt-3 pointer-events-none"
         style={{ paddingBottom: "calc(env(safe-area-inset-bottom, 0px) + 12px)" }}
       >
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/85 to-transparent pointer-events-none" />
+        <div className="absolute inset-x-0 -top-6 bottom-0 bg-gradient-to-t from-background via-background to-transparent pointer-events-none" />
         <a
           href="tel:+12392343061"
           data-testid="mobile-call-now-bar"
           aria-label="Call Clear Gator at 239-234-3061"
-          className="relative pointer-events-auto flex items-center gap-3 w-full h-[64px] pl-3 pr-5 rounded-2xl bg-gradient-to-r from-gator-orange-dark via-gator-orange to-gator-orange-light text-white shadow-2xl shadow-gator-orange/40 overflow-hidden active:scale-[0.98] transition-transform animate-sheen"
+          className="relative pointer-events-auto flex items-center gap-3 w-full h-[60px] pl-4 pr-2 rounded-full bg-foreground text-background shadow-[0_8px_32px_rgba(0,0,0,0.18)] active:scale-[0.985] transition-transform"
         >
-          <span className="relative flex items-center justify-center w-12 h-12 rounded-xl bg-white/15 backdrop-blur-sm flex-shrink-0">
-            <span className="absolute inset-0 rounded-xl bg-white/20 animate-ripple" aria-hidden="true" />
-            <PhoneCall className="relative w-5 h-5 animate-phone-shake" strokeWidth={2.6} />
+          <span className="flex flex-col leading-tight flex-1 min-w-0">
+            <span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-background/55">
+              Call Clear Gator
+            </span>
+            <span className="font-display text-base font-bold tracking-tight">
+              (239) 234-3061
+            </span>
           </span>
-          <span className="flex-1 min-w-0 leading-tight">
-            <span className="block text-[10px] font-bold uppercase tracking-[0.18em] text-white/85">Tap to call · 24h Quotes</span>
-            <span className="font-display block text-lg font-black tracking-tight">(239) 234-3061</span>
-          </span>
-          <span className="flex items-center gap-1 text-xs font-bold uppercase tracking-wider bg-white/20 backdrop-blur-sm rounded-full px-3 py-1.5 flex-shrink-0">
-            Call <ArrowRight className="w-3 h-3" strokeWidth={3} />
+          <span className="flex items-center justify-center w-11 h-11 rounded-full bg-gator-orange text-white flex-shrink-0">
+            <PhoneCall className="w-4 h-4" strokeWidth={2.4} />
           </span>
         </a>
       </div>
