@@ -4,7 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import logoImg from "@assets/clear_gator_1775663894887.png";
 import {
   Truck, HardHat, PhoneCall, CheckCircle2,
-  ArrowRight, MapPin, Clock, Shield, Star, ChevronRight,
+  ArrowRight, MapPin, Clock, Shield, ChevronRight,
   FileText, DollarSign, Search, Facebook, Instagram, Twitter,
   Hammer, TreePine, Users, Handshake, Wrench
 } from "lucide-react";
@@ -69,34 +69,10 @@ const services = [
 ];
 
 const stats = [
-  { value: "500+", label: "Projects Completed" },
-  { value: "12+", label: "Years in Business" },
-  { value: "98%", label: "Client Satisfaction" },
-  { value: "24hr", label: "Response Time" },
-];
-
-const testimonials = [
-  {
-    name: "Marcus T.",
-    role: "General Contractor",
-    initials: "MT",
-    text: "Clear Gator showed up on time, worked fast, and the site was spotless. They're my go-to for every build now.",
-    rating: 5,
-  },
-  {
-    name: "Sandra K.",
-    role: "Property Developer",
-    initials: "SK",
-    text: "The job tracking feature is a game changer. I could see exactly what was happening on site without being there.",
-    rating: 5,
-  },
-  {
-    name: "Derek M.",
-    role: "Homeowner",
-    initials: "DM",
-    text: "Ordered a dumpster for my kitchen reno. They delivered it exactly when they said and picked it up the next day. Flawless.",
-    rating: 5,
-  },
+  { value: "Licensed", label: "& Fully Insured" },
+  { value: "Local", label: "Southwest Florida" },
+  { value: "Free", label: "Project Estimates" },
+  { value: "24hr", label: "Quote Turnaround" },
 ];
 
 const howItWorks = [
@@ -118,7 +94,6 @@ export default function LandingPage() {
           <nav className="hidden md:flex items-center gap-1 text-sm text-muted-foreground">
             <a href="#services" className="hover:text-foreground px-3 py-2 rounded-md transition-colors hover:bg-muted/50">Services</a>
             <a href="#how-it-works" className="hover:text-foreground px-3 py-2 rounded-md transition-colors hover:bg-muted/50">How It Works</a>
-            <a href="#testimonials" className="hover:text-foreground px-3 py-2 rounded-md transition-colors hover:bg-muted/50">Reviews</a>
             <a href="#service-areas" className="hover:text-foreground px-3 py-2 rounded-md transition-colors hover:bg-muted/50">Service Areas</a>
           </nav>
           <div className="flex items-center gap-2">
@@ -153,7 +128,7 @@ export default function LandingPage() {
               <img src={logoImg} alt="Clear Gator Logo" className="h-24 w-24 object-contain drop-shadow-2xl" />
               <div>
                 <Badge className="bg-gator-orange/20 text-gator-orange-light border-gator-orange/40 font-semibold mb-1">
-                  Florida's #1 Construction Crew
+                  Southwest Florida · Licensed &amp; Insured
                 </Badge>
                 <div className="flex items-center gap-1.5 text-white/60 text-sm">
                   <MapPin className="w-3.5 h-3.5 text-gator-orange-light" />
@@ -162,7 +137,7 @@ export default function LandingPage() {
               </div>
             </div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-[1.08] mb-6 tracking-tight">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-[1.08] mb-4 tracking-tight">
               We Clear the Way.{" "}
               <span className="text-gator-orange-light relative">
                 You Build the Future.
@@ -171,8 +146,11 @@ export default function LandingPage() {
                 </svg>
               </span>
             </h1>
+            <div className="text-gator-orange-light font-black tracking-wide text-xl sm:text-2xl uppercase mb-6">
+              Let's Gator Done.
+            </div>
             <p className="text-lg text-white/70 mb-10 leading-relaxed max-w-xl">
-              Demo, hauling, site cleanup, lot clearing, and handyman services (including painting) — done right, done safe, done on time. Trusted by contractors and homeowners across Southwest Florida.
+              Demo, hauling, site cleanup, lot clearing, and handyman services (including painting) for Southwest Florida — done right, done safe, done on time.
             </p>
             <div className="flex flex-wrap gap-4 mb-10">
               <Link href="/estimate">
@@ -290,38 +268,6 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <section id="testimonials" className="py-24 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <Badge className="mb-4 font-semibold">Client Reviews</Badge>
-            <h2 className="text-3xl sm:text-4xl font-black mb-4 tracking-tight">What Our Clients Say</h2>
-            <p className="text-muted-foreground max-w-md mx-auto">Real feedback from the contractors and homeowners who trust us most.</p>
-          </div>
-          <div className="grid md:grid-cols-3 gap-6">
-            {testimonials.map((t) => (
-              <div key={t.name} className="bg-card border border-card-border rounded-lg p-7 hover-elevate hover:shadow-lg hover:border-primary/20 transition-all duration-200">
-                <div className="text-6xl leading-none text-primary/20 font-serif mb-2 select-none">"</div>
-                <div className="flex gap-0.5 mb-4">
-                  {Array.from({ length: t.rating }).map((_, i) => (
-                    <Star key={i} className="w-4 h-4 fill-gator-orange text-gator-orange" />
-                  ))}
-                </div>
-                <p className="text-sm leading-relaxed mb-6 text-foreground/80">"{t.text}"</p>
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center flex-shrink-0">
-                    <span className="text-xs font-bold text-primary">{t.initials}</span>
-                  </div>
-                  <div>
-                    <div className="font-bold text-sm">{t.name}</div>
-                    <div className="text-muted-foreground text-xs">{t.role}</div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* ── Service Areas ── */}
       <section id="service-areas" className="py-24 bg-primary/5 border-y border-primary/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -377,9 +323,9 @@ export default function LandingPage() {
                   Are You a Contractor?
                 </h2>
                 <p className="text-white/60 leading-relaxed mb-8 text-sm sm:text-base">
-                  General contractors and trade partners count on Clear Gator as a reliable extension of their crew.
-                  Fast turnaround, job-site ready work, and preferred partner rates — so you never have to worry
-                  about cleanup and demolition holding up your schedule.
+                  We work hand-in-hand with general contractors and trade partners as a reliable extension of your crew.
+                  Fast turnaround, job-site ready work, and partner-friendly rates — so cleanup and demolition never
+                  hold up your schedule.
                 </p>
                 <Link href="/estimate">
                   <Button
@@ -413,8 +359,8 @@ export default function LandingPage() {
                     },
                     {
                       icon: DollarSign,
-                      label: "Preferred Partner Rates",
-                      desc: "Recurring partner discounts and priority scheduling for contractors on regular rotation.",
+                      label: "Partner-Friendly Rates",
+                      desc: "Volume pricing and priority scheduling available for ongoing trade partners.",
                     },
                     {
                       icon: PhoneCall,
@@ -530,8 +476,16 @@ export default function LandingPage() {
               </ul>
             </div>
           </div>
-          <div className="border-t border-white/8 pt-8 text-sm text-center">
-            &copy; {new Date().getFullYear()} Clear Gator Construction Services. All rights reserved.
+          <div className="border-t border-white/8 pt-8 flex flex-col md:flex-row gap-4 md:gap-0 items-center justify-between text-sm">
+            <div className="flex items-center gap-3">
+              <span className="text-gator-orange-light font-black uppercase tracking-wide">Let's Gator Done.</span>
+              <span className="text-white/30">·</span>
+              <span>&copy; {new Date().getFullYear()} Clear Gator Construction Services. All rights reserved.</span>
+            </div>
+            <div className="flex items-center gap-5">
+              <Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
+              <Link href="/terms" className="hover:text-white transition-colors">Terms &amp; Conditions</Link>
+            </div>
           </div>
         </div>
       </footer>

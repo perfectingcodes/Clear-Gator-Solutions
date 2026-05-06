@@ -8,6 +8,8 @@ import LandingPage from "@/pages/landing";
 import EstimatePage from "@/pages/estimate";
 import TrackPage from "@/pages/track";
 import AdminPage from "@/pages/admin";
+import PrivacyPage from "@/pages/privacy";
+import TermsPage from "@/pages/terms";
 import BookingNotifications from "@/components/booking-notifications";
 import SupportBot from "@/components/support-bot";
 
@@ -18,6 +20,8 @@ function Router() {
       <Route path="/estimate" component={EstimatePage} />
       <Route path="/track" component={TrackPage} />
       <Route path="/admin" component={AdminPage} />
+      <Route path="/privacy" component={PrivacyPage} />
+      <Route path="/terms" component={TermsPage} />
       <Route component={NotFound} />
     </Switch>
   );
