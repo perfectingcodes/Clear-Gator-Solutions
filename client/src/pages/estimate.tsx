@@ -250,10 +250,9 @@ export default function EstimatePage() {
                 <ArrowLeft className="w-4 h-4" />
               </Button>
             </Link>
-            <div className="flex items-center gap-2 flex-1 min-w-0">
-              <img src={logoImg} alt="Clear Gator Logo" className="h-8 w-8 object-contain" />
-              <span className="font-display font-semibold text-sm tracking-[-0.01em] truncate">Clear Gator</span>
-            </div>
+            <Link href="/" className="flex items-center gap-2 flex-1 min-w-0" aria-label="Clear Gator — Home">
+              <img src={logoImg} alt="Clear Gator Logo" className="h-11 w-11 object-contain" />
+            </Link>
             <a href="tel:+12392343061" aria-label="Call Clear Gator" data-testid="estimate-header-call">
               <Button size="sm" variant="outline" className="gap-1.5 rounded-md">
                 <PhoneCall className="w-3.5 h-3.5 text-gator-orange" strokeWidth={2.2} />

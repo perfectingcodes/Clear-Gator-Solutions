@@ -22,7 +22,7 @@ import {
   Calendar, Eye, LayoutDashboard, FileText, Lock, TrendingUp,
   ChevronDown, ChevronUp, Mail, Phone, MapPin, DollarSign, User,
   Users, BarChart3, Workflow, LogOut, ExternalLink, Search,
-  Building2, Trash2, PencilLine, MoreHorizontal,
+  Building2, Trash2, PencilLine, MoreHorizontal, Receipt, Save,
 } from "lucide-react";
 import type { Job, JobPhoto, Estimate, CrewMember, AnalyticsEvent } from "@shared/schema";
 import {
@@ -76,6 +76,49 @@ function StatusBadge({ status }: { status: string }) {
       {status}
     </span>
   );
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Revenue helpers
+   ───────────────────────────────────────────────────────────── */
+const ACTIVE_STATUSES = ["Scheduled", "In Progress", "On Hold"] as const;
+const COMPLETED_STATUSES = ["Completed"] as const;
+
+function parseAmount(v: string | null | undefined): number {
+  if (!v) return 0;
+  const n = parseFloat(v);
+  return Number.isFinite(n) ? n : 0;
+}
+
+function fmtCurrency(n: number, opts: { compact?: boolean } = {}): string {
+  if (opts.compact && n >= 10000) {
+    return new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", notation: "compact", maximumFractionDigits: 1 }).format(n);
+  }
+  return new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 2 }).format(n);
+}
+
+function computeRevenue(jobs: Job[]) {
+  let invoiced = 0;
+  let paid = 0;
+  let outstanding = 0;
+  let thisMonth = 0;
+  const startOfMonth = new Date();
+  startOfMonth.setDate(1);
+  startOfMonth.setHours(0, 0, 0, 0);
+
+  for (const j of jobs) {
+    const amt = parseAmount(j.invoiceAmount);
+    if (amt <= 0) continue;
+    invoiced += amt;
+    if (j.invoicePaid) {
+      paid += amt;
+      const created = j.createdAt ? new Date(j.createdAt) : null;
+      if (created && created >= startOfMonth) thisMonth += amt;
+    } else {
+      outstanding += amt;
+    }
+  }
+  return { invoiced, paid, outstanding, thisMonth };
 }
 
 function SectionHeader({ eyebrow, title, description, actions }: {
@@ -328,18 +371,19 @@ function JobRow({ job, onUpdated }: { job: Job; onUpdated: () => void }) {
       </div>
       {showDetail && (
         <div className="border-t border-card-border p-4 space-y-4 bg-muted/20">
-          <div className="grid sm:grid-cols-3 gap-3 text-sm">
-            {[
-              { icon: Mail, label: "Email", value: job.customerEmail },
-              { icon: Phone, label: "Phone", value: job.customerPhone },
-              { icon: DollarSign, label: "Invoice", value: job.invoiceAmount ? `$${parseFloat(job.invoiceAmount).toFixed(2)} — ${job.invoicePaid ? "Paid" : "Unpaid"}` : "Not set" },
-            ].map(({ icon: Icon, label, value }) => (
-              <div key={label} className="bg-background rounded-lg p-3 border border-border/50">
-                <div className="flex items-center gap-1.5 text-xs text-muted-foreground mb-1"><Icon className="w-3 h-3" />{label}</div>
-                <div className="text-sm font-semibold truncate">{value}</div>
-              </div>
-            ))}
+          <div className="grid sm:grid-cols-2 gap-3 text-sm">
+            <div className="bg-background rounded-lg p-3 border border-border/50">
+              <div className="flex items-center gap-1.5 text-xs text-muted-foreground mb-1"><Mail className="w-3 h-3" />Email</div>
+              <a href={`mailto:${job.customerEmail}`} className="text-sm font-semibold truncate hover:text-gator-orange">{job.customerEmail}</a>
+            </div>
+            <div className="bg-background rounded-lg p-3 border border-border/50">
+              <div className="flex items-center gap-1.5 text-xs text-muted-foreground mb-1"><Phone className="w-3 h-3" />Phone</div>
+              <a href={`tel:${job.customerPhone}`} className="text-sm font-semibold truncate hover:text-gator-orange">{job.customerPhone}</a>
+            </div>
           </div>
+
+          <InvoiceEditor job={job} onUpdated={onUpdated} />
+
           {job.description && (
             <div className="bg-background rounded-lg p-3 border border-border/50">
               <div className="text-xs text-muted-foreground mb-1 font-medium">Description</div>
@@ -367,6 +411,115 @@ function JobRow({ job, onUpdated }: { job: Job; onUpdated: () => void }) {
           </Link>
         </div>
       )}
+    </div>
+  );
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Inline invoice editor — used inside JobRow detail panel
+   ───────────────────────────────────────────────────────────── */
+function InvoiceEditor({ job, onUpdated }: { job: Job; onUpdated: () => void }) {
+  const { toast } = useToast();
+  const [amount, setAmount] = useState<string>(job.invoiceAmount ?? "");
+  const [paid, setPaid] = useState<boolean>(!!job.invoicePaid);
+
+  const save = useMutation({
+    mutationFn: async () => {
+      const body: Record<string, unknown> = {
+        invoiceAmount: amount.trim() === "" ? null : amount,
+        invoicePaid: paid,
+      };
+      const res = await apiRequest("PATCH", `/api/jobs/${job.id}`, body);
+      return res.json();
+    },
+    onSuccess: () => { onUpdated(); toast({ title: "Invoice updated" }); },
+    onError: () => toast({ title: "Failed to save invoice", variant: "destructive" }),
+  });
+
+  const dirty = (job.invoiceAmount ?? "") !== amount || !!job.invoicePaid !== paid;
+
+  return (
+    <div className="bg-background rounded-lg p-4 border border-border/60">
+      <div className="flex items-center justify-between mb-3">
+        <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+          <Receipt className="w-3.5 h-3.5" />
+          Invoice / Deal Value
+        </div>
+        {paid && amount && (
+          <span className="text-[10px] font-semibold px-2 py-0.5 rounded-md border bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border-emerald-500/30">
+            Paid
+          </span>
+        )}
+        {!paid && amount && (
+          <span className="text-[10px] font-semibold px-2 py-0.5 rounded-md border bg-yellow-500/10 text-yellow-700 dark:text-yellow-400 border-yellow-500/30">
+            Outstanding
+          </span>
+        )}
+      </div>
+      <div className="grid grid-cols-1 sm:grid-cols-[1fr_auto_auto] gap-2 sm:items-center">
+        <div className="relative">
+          <span className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground text-sm">$</span>
+          <input
+            type="number"
+            inputMode="decimal"
+            step="0.01"
+            min="0"
+            value={amount}
+            onChange={(e) => setAmount(e.target.value)}
+            placeholder="0.00"
+            className="w-full h-10 pl-7 pr-3 rounded-md border border-border bg-background text-sm font-mono focus-ring"
+          />
+        </div>
+        <label className="inline-flex items-center gap-2 px-3 h-10 rounded-md border border-border bg-background cursor-pointer hover:bg-muted/40 transition-colors">
+          <input
+            type="checkbox"
+            checked={paid}
+            onChange={(e) => setPaid(e.target.checked)}
+            className="w-4 h-4 accent-gator-orange"
+          />
+          <span className="text-xs font-semibold">Mark Paid</span>
+        </label>
+        <Button
+          size="sm"
+          onClick={() => save.mutate()}
+          disabled={!dirty || save.isPending}
+          className="h-10 gap-1.5 rounded-md font-semibold"
+        >
+          <Save className="w-3.5 h-3.5" />
+          {save.isPending ? "Saving..." : "Save"}
+        </Button>
+      </div>
+      {amount && parseAmount(amount) > 0 && (
+        <div className="text-xs text-muted-foreground mt-2.5 font-mono">
+          {fmtCurrency(parseAmount(amount))} {paid ? "received" : "outstanding"}
+        </div>
+      )}
+    </div>
+  );
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Revenue summary band
+   ───────────────────────────────────────────────────────────── */
+function RevenueBand({ jobs }: { jobs: Job[] }) {
+  const r = useMemo(() => computeRevenue(jobs), [jobs]);
+  const cells = [
+    { label: "Total Invoiced", value: fmtCurrency(r.invoiced, { compact: true }), color: "text-foreground", icon: Receipt },
+    { label: "Paid",           value: fmtCurrency(r.paid,     { compact: true }), color: "text-emerald-600 dark:text-emerald-400", icon: CheckCircle2 },
+    { label: "Outstanding",    value: fmtCurrency(r.outstanding, { compact: true }), color: "text-gator-orange", icon: Clock },
+    { label: "This Month",     value: fmtCurrency(r.thisMonth, { compact: true }), color: "text-blue-600 dark:text-blue-400", icon: TrendingUp },
+  ];
+  return (
+    <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-border/60 ring-1 ring-border/60 rounded-lg overflow-hidden">
+      {cells.map(({ label, value, color, icon: Icon }) => (
+        <div key={label} className="bg-card p-5 flex flex-col gap-2">
+          <div className="flex items-center justify-between">
+            <span className="font-mono text-[10px] font-medium tracking-[0.22em] uppercase text-muted-foreground">{label}</span>
+            <Icon className={`w-4 h-4 ${color}`} strokeWidth={2.2} />
+          </div>
+          <div className={`font-display text-2xl sm:text-3xl font-semibold tracking-tight leading-none ${color}`}>{value}</div>
+        </div>
+      ))}
     </div>
   );
 }
@@ -406,6 +559,13 @@ function OverviewSection({ stats, jobs, estimates, crew }: {
             <div className={`font-display text-3xl font-semibold tracking-tight leading-none ${color}`}>{value}</div>
           </div>
         ))}
+      </div>
+
+      <div>
+        <div className="font-mono text-[10px] font-medium tracking-[0.22em] uppercase text-muted-foreground mb-3">
+          Revenue
+        </div>
+        <RevenueBand jobs={jobs} />
       </div>
 
       <div className="grid lg:grid-cols-3 gap-6">
@@ -587,6 +747,8 @@ function PipelineSection({ estimates, onUpdated }: { estimates: Estimate[]; onUp
    ───────────────────────────────────────────────────────────── */
 function JobsSection({ jobs, loading, onUpdated, onCreated }: { jobs: Job[]; loading: boolean; onUpdated: () => void; onCreated: () => void }) {
   const [q, setQ] = useState("");
+  const [showCompleted, setShowCompleted] = useState(false);
+
   const filtered = useMemo(() => {
     if (!q.trim()) return jobs;
     const lc = q.toLowerCase();
@@ -595,25 +757,85 @@ function JobsSection({ jobs, loading, onUpdated, onCreated }: { jobs: Job[]; loa
     );
   }, [q, jobs]);
 
+  const active = useMemo(
+    () => filtered.filter((j) => (ACTIVE_STATUSES as readonly string[]).includes(j.status)),
+    [filtered]
+  );
+  const completed = useMemo(
+    () => filtered.filter((j) => (COMPLETED_STATUSES as readonly string[]).includes(j.status)),
+    [filtered]
+  );
+
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       <SectionHeader
         eyebrow="02 / Jobs"
         title="Active job ledger."
-        description="Every job with its status, customer info, photos, and invoice."
+        description="Live jobs at the top; completed work is tucked away below."
         actions={<CreateJobDialog onCreated={onCreated} />}
       />
+
+      <div>
+        <div className="font-mono text-[10px] font-medium tracking-[0.22em] uppercase text-muted-foreground mb-3">
+          Revenue
+        </div>
+        <RevenueBand jobs={jobs} />
+      </div>
+
       <div className="relative max-w-md">
         <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
         <Input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search jobs by ID, customer, location..." className="pl-9 rounded-md" />
       </div>
-      {loading ? (
-        <div className="space-y-3">{Array.from({ length: 3 }).map((_, i) => <Skeleton key={i} className="h-20 rounded-lg" />)}</div>
-      ) : filtered.length === 0 ? (
-        <EmptyState icon={LayoutDashboard} title={q ? "No matches" : "No jobs yet"} body={q ? "Try a different search." : "Create your first job to get started."} />
-      ) : (
-        <div className="space-y-3">
-          {filtered.map((j) => <JobRow key={j.id} job={j} onUpdated={onUpdated} />)}
+
+      {/* Active / upcoming */}
+      <div className="space-y-3">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <span className="font-mono text-[10px] font-medium tracking-[0.22em] uppercase text-gator-orange">Active & Upcoming</span>
+            <Badge variant="outline" className="text-[10px] font-mono">{active.length}</Badge>
+          </div>
+        </div>
+        {loading ? (
+          <div className="space-y-3">{Array.from({ length: 3 }).map((_, i) => <Skeleton key={i} className="h-20 rounded-lg" />)}</div>
+        ) : active.length === 0 ? (
+          <EmptyState icon={LayoutDashboard} title={q ? "No active matches" : "No active jobs"} body={q ? "Try a different search." : "Anything scheduled or in progress will show up here."} />
+        ) : (
+          <div className="space-y-3">
+            {active.map((j) => <JobRow key={j.id} job={j} onUpdated={onUpdated} />)}
+          </div>
+        )}
+      </div>
+
+      {/* Completed (collapsible) */}
+      {!loading && completed.length > 0 && (
+        <div className="space-y-3 border-t border-border/60 pt-8">
+          <button
+            type="button"
+            onClick={() => setShowCompleted((v) => !v)}
+            className="w-full flex items-center justify-between gap-3 px-4 py-3 rounded-md bg-muted/30 border border-border/60 hover:bg-muted/50 transition-colors"
+            data-testid="toggle-completed-jobs"
+          >
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 rounded-md bg-primary/10 border border-primary/20 flex items-center justify-center">
+                <CheckCircle2 className="w-4 h-4 text-primary" strokeWidth={2.2} />
+              </div>
+              <div className="text-left">
+                <div className="font-mono text-[10px] font-medium tracking-[0.22em] uppercase text-muted-foreground">Archive</div>
+                <div className="font-display font-semibold text-sm">
+                  Completed jobs <span className="text-muted-foreground font-mono ml-1">· {completed.length}</span>
+                </div>
+              </div>
+            </div>
+            <span className="flex items-center gap-1 text-xs font-semibold text-muted-foreground">
+              {showCompleted ? "Hide" : "Show"}
+              {showCompleted ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+            </span>
+          </button>
+          {showCompleted && (
+            <div className="space-y-3 pt-1">
+              {completed.map((j) => <JobRow key={j.id} job={j} onUpdated={onUpdated} />)}
+            </div>
+          )}
         </div>
       )}
     </div>
@@ -1200,9 +1422,8 @@ function MobileNav({ section, onSelect }: { section: SectionId; onSelect: (s: Se
   return (
     <div className="lg:hidden sticky top-0 z-30 bg-ink text-white border-b border-white/10 overflow-x-auto">
       <div className="flex items-center px-3 py-2 gap-1 whitespace-nowrap">
-        <Link href="/" className="flex items-center gap-2 mr-3 flex-shrink-0">
-          <img src={logoImg} alt="Clear Gator" className="h-7 w-7 object-contain" />
-          <span className="font-display font-semibold text-sm">Clear Gator</span>
+        <Link href="/" className="flex items-center gap-2 mr-3 flex-shrink-0" aria-label="Clear Gator — Home">
+          <img src={logoImg} alt="Clear Gator" className="h-9 w-9 object-contain" />
         </Link>
         {NAV.map(({ id, label, icon: Icon }) => {
           const active = section === id;

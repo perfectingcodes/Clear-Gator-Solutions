@@ -111,11 +111,11 @@ export default function LandingPage() {
     <div className="min-h-screen bg-background text-foreground pb-[calc(72px+env(safe-area-inset-bottom,0px))] sm:pb-0">
       <header className="sticky top-0 z-50 bg-background/85 backdrop-blur-md border-b border-border/70">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between gap-4 py-3">
-          <Link href="/" className="flex items-center gap-3 group">
-            <img src={logoImg} alt="Clear Gator Logo" className="h-10 w-10 object-contain transition-transform duration-300 group-hover:scale-[1.04]" />
-            <div className="leading-none">
+          <Link href="/" className="flex items-center gap-3 group" aria-label="Clear Gator — Home">
+            <img src={logoImg} alt="Clear Gator Logo" className="h-12 w-12 sm:h-10 sm:w-10 object-contain transition-transform duration-300 group-hover:scale-[1.04]" />
+            <div className="hidden sm:block leading-none">
               <div className="font-display font-semibold text-lg sm:text-xl tracking-[-0.02em] text-foreground">Clear Gator</div>
-              <div className="hidden sm:flex items-center gap-1.5 font-mono text-[10px] font-medium tracking-[0.22em] uppercase text-muted-foreground mt-1">
+              <div className="flex items-center gap-1.5 font-mono text-[10px] font-medium tracking-[0.22em] uppercase text-muted-foreground mt-1">
                 <span>Construction Services</span>
                 <span className="text-muted-foreground/40">·</span>
                 <span className="text-gator-orange">SWFL</span>

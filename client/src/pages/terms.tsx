@@ -16,11 +16,11 @@ export default function TermsPage() {
     <div className="min-h-screen bg-background text-foreground">
       <header className="sticky top-0 z-50 bg-background/85 backdrop-blur-md border-b border-border/70">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between gap-4 py-3">
-          <Link href="/" className="flex items-center gap-3 group">
-            <img src={logoImg} alt="Clear Gator Logo" className="h-10 w-10 object-contain transition-transform group-hover:scale-[1.04]" />
-            <div className="leading-none">
+          <Link href="/" className="flex items-center gap-3 group" aria-label="Clear Gator — Home">
+            <img src={logoImg} alt="Clear Gator Logo" className="h-12 w-12 sm:h-10 sm:w-10 object-contain transition-transform group-hover:scale-[1.04]" />
+            <div className="hidden sm:block leading-none">
               <div className="font-display font-semibold text-lg sm:text-xl tracking-[-0.02em]">Clear Gator</div>
-              <div className="hidden sm:block font-mono text-[10px] font-medium tracking-[0.22em] uppercase text-muted-foreground mt-1">
+              <div className="font-mono text-[10px] font-medium tracking-[0.22em] uppercase text-muted-foreground mt-1">
                 Construction Services
               </div>
             </div>
