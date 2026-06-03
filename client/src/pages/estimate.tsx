@@ -12,7 +12,6 @@ import { Textarea } from "@/components/ui/textarea";
 import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from "@/components/ui/form";
 import { useToast } from "@/hooks/use-toast";
 import { usePageMeta } from "@/hooks/use-page-meta";
-import { GatorMark } from "@/components/swamp-decor";
 import logoImg from "@assets/clear_gator_1775663894887.png";
 import {
   ArrowLeft, ArrowRight, CheckCircle2, Upload,
@@ -233,8 +232,8 @@ export default function EstimatePage() {
                 Paste this on the Track page to see a live demo job.
               </div>
             </div>
-            <div className="flex items-center gap-3 pt-8 mt-6 border-t border-white/8">
-              <GatorMark className="w-16 h-5 text-gator-orange-light/60" />
+            <div className="flex items-center gap-2.5 pt-8 mt-6 border-t border-white/8">
+              <img src={logoImg} alt="" aria-hidden="true" className="h-6 w-6 object-contain" />
               <div className="font-mono text-gator-orange-light/80 tracking-[0.32em] text-[10px] font-medium uppercase">
                 Let's Gator Done.
               </div>

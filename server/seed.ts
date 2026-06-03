@@ -1,5 +1,5 @@
 import { db } from "./db";
-import { jobs, jobPhotos, estimates } from "@shared/schema";
+import { jobs, jobPhotos, estimates, crewMembers } from "@shared/schema";
 import { count } from "drizzle-orm";
 
 function generateJobId(): string {
@@ -105,6 +105,83 @@ export async function seedDatabase() {
       status: "Reviewed",
     },
   ]);
+
+  // Crew members (only seed if table is empty so we don't duplicate).
+  // Wrap in try/catch so a missing table (pre-`db:push`) doesn't crash startup.
+  try {
+    const [{ count: crewCount }] = await db.select({ count: count() }).from(crewMembers);
+    if (Number(crewCount) === 0) {
+      await db.insert(crewMembers).values([
+      {
+        name: "Diego Vasquez",
+        role: "Foreman",
+        phone: "(239) 555-0145",
+        email: "diego@cleargator.com",
+        status: "Active",
+        specialty: "Site supervision, scheduling",
+        emergencyContact: "Maria Vasquez · (239) 555-0146",
+        hiredAt: "2023-04-12",
+        notes: "Lead foreman. Handles all multi-day jobs and crew dispatch.",
+      },
+      {
+        name: "Marcus Reyes",
+        role: "Operator",
+        phone: "(239) 555-0152",
+        email: "marcus@cleargator.com",
+        status: "On Job",
+        specialty: "Skid steer, mini-excavator, CDL",
+        emergencyContact: "Lila Reyes · (239) 555-0153",
+        hiredAt: "2023-08-03",
+        notes: "Heavy equipment operator. CDL Class B.",
+      },
+      {
+        name: "Tasha Bell",
+        role: "Demolition",
+        phone: "(239) 555-0168",
+        email: "tasha@cleargator.com",
+        status: "Active",
+        specialty: "Interior demo, asbestos-aware",
+        emergencyContact: "James Bell · (239) 555-0169",
+        hiredAt: "2024-01-20",
+        notes: "Lead interior demo crew. OSHA 30.",
+      },
+      {
+        name: "Luis Ortega",
+        role: "Hauling",
+        phone: "(239) 555-0177",
+        email: "luis@cleargator.com",
+        status: "Active",
+        specialty: "Dump truck, 30-yard roll-off",
+        emergencyContact: "Ana Ortega · (239) 555-0178",
+        hiredAt: "2023-10-09",
+        notes: "Lead hauler. CDL Class B.",
+      },
+      {
+        name: "Priya Patel",
+        role: "Cleanup",
+        phone: "(239) 555-0184",
+        email: "priya@cleargator.com",
+        status: "Off Duty",
+        specialty: "Final clean, dust mitigation",
+        hiredAt: "2024-03-15",
+        notes: "Post-construction final clean lead.",
+      },
+      {
+        name: "Kevin Brooks",
+        role: "Painter",
+        phone: "(239) 555-0199",
+        email: "kevin@cleargator.com",
+        status: "Active",
+        specialty: "Interior & exterior, sprayer",
+        hiredAt: "2024-06-01",
+        notes: "Property maintenance painter. 12 years experience.",
+      },
+    ]);
+      console.log("[seed] Crew seeded.");
+    }
+  } catch (e) {
+    console.warn("[seed] Skipping crew seed (run `npm run db:push` to create new tables):", (e as Error).message);
+  }
 
   console.log("[seed] Demo data inserted successfully.");
 }

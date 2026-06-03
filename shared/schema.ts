@@ -1,5 +1,5 @@
 import { sql } from "drizzle-orm";
-import { pgTable, text, varchar, timestamp, numeric, boolean } from "drizzle-orm/pg-core";
+import { pgTable, text, varchar, timestamp, numeric, boolean, integer, jsonb } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
@@ -19,7 +19,14 @@ export type User = typeof users.$inferSelect;
 export const JOB_STATUSES = ["Scheduled", "In Progress", "Completed", "On Hold"] as const;
 export type JobStatus = typeof JOB_STATUSES[number];
 
-export const SERVICE_TYPES = ["Demo", "Hauling", "Site Cleanup", "Lot Clearing"] as const;
+export const SERVICE_TYPES = [
+  "Interior Demolition",
+  "Outdoor Demolition",
+  "Hauling",
+  "Site Cleanup",
+  "Lot Clearing",
+  "Property Maintenance",
+] as const;
 export type ServiceType = typeof SERVICE_TYPES[number];
 
 export const jobs = pgTable("jobs", {
@@ -83,3 +90,60 @@ export const insertEstimateSchema = createInsertSchema(estimates).omit({
 });
 export type InsertEstimate = z.infer<typeof insertEstimateSchema>;
 export type Estimate = typeof estimates.$inferSelect;
+
+/* ─────────────────────────────────────────────────────────────
+   Lead pipeline — extends Estimate.status with explicit stages
+   ───────────────────────────────────────────────────────────── */
+export const ESTIMATE_STAGES = ["Pending", "Contacted", "Quoted", "Won", "Lost"] as const;
+export type EstimateStage = typeof ESTIMATE_STAGES[number];
+
+/* ─────────────────────────────────────────────────────────────
+   Crew members — internal CRM for workers
+   ───────────────────────────────────────────────────────────── */
+export const CREW_ROLES = ["Foreman", "Operator", "Demolition", "Hauling", "Cleanup", "Painter", "Apprentice"] as const;
+export type CrewRole = typeof CREW_ROLES[number];
+
+export const CREW_STATUSES = ["Active", "On Job", "Off Duty", "On Leave"] as const;
+export type CrewStatus = typeof CREW_STATUSES[number];
+
+export const crewMembers = pgTable("crew_members", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  name: text("name").notNull(),
+  role: text("role").notNull(),
+  phone: text("phone").notNull(),
+  email: text("email"),
+  status: text("status").notNull().default("Active"),
+  specialty: text("specialty"),
+  emergencyContact: text("emergency_contact"),
+  notes: text("notes"),
+  hiredAt: text("hired_at"),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
+export const insertCrewMemberSchema = createInsertSchema(crewMembers).omit({
+  id: true,
+  createdAt: true,
+});
+export type InsertCrewMember = z.infer<typeof insertCrewMemberSchema>;
+export type CrewMember = typeof crewMembers.$inferSelect;
+
+/* ─────────────────────────────────────────────────────────────
+   Analytics — lightweight event tracking
+   ───────────────────────────────────────────────────────────── */
+export const analyticsEvents = pgTable("analytics_events", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  type: text("type").notNull(),          // "pageview", "form_submit", "click", "call"
+  path: text("path"),                    // url path
+  sessionId: text("session_id"),
+  referrer: text("referrer"),
+  userAgent: text("user_agent"),
+  metadata: jsonb("metadata"),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
+export const insertAnalyticsEventSchema = createInsertSchema(analyticsEvents).omit({
+  id: true,
+  createdAt: true,
+});
+export type InsertAnalyticsEvent = z.infer<typeof insertAnalyticsEventSchema>;
+export type AnalyticsEvent = typeof analyticsEvents.$inferSelect;

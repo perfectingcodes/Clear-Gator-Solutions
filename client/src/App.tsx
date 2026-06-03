@@ -12,8 +12,10 @@ import PrivacyPage from "@/pages/privacy";
 import TermsPage from "@/pages/terms";
 import BookingNotifications from "@/components/booking-notifications";
 import SupportBot from "@/components/support-bot";
+import { usePageviewTracking } from "@/hooks/use-analytics";
 
 function Router() {
+  usePageviewTracking();
   return (
     <Switch>
       <Route path="/" component={LandingPage} />

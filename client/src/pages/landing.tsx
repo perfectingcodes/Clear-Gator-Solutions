@@ -1,7 +1,7 @@
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { usePageMeta } from "@/hooks/use-page-meta";
-import { GatorScales, SectionRule, GatorMark } from "@/components/swamp-decor";
+import { GatorScales, SectionRule } from "@/components/swamp-decor";
 import HeroQuoteForm from "@/components/hero-quote-form";
 import { useReveal } from "@/hooks/use-reveal";
 import logoImg from "@assets/clear_gator_1775663894887.png";
@@ -188,10 +188,12 @@ export default function LandingPage() {
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" aria-hidden="true" />
         <div className="absolute -top-1/3 right-0 w-[55%] aspect-square rounded-full bg-gator-orange/[0.06] blur-3xl pointer-events-none" aria-hidden="true" />
 
-        {/* Editorial brand watermark — large GatorMark anchored low-left */}
-        <GatorMark
-          className="absolute -bottom-12 -left-16 w-[780px] h-[208px] text-white/[0.025] pointer-events-none hidden md:block"
+        {/* Brand watermark — actual logo, low opacity, anchored bottom-right */}
+        <img
+          src={logoImg}
+          alt=""
           aria-hidden="true"
+          className="absolute -bottom-20 -right-20 w-[560px] h-[560px] object-contain opacity-[0.06] pointer-events-none hidden md:block select-none"
         />
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-28 pb-20 sm:pb-24 grid lg:grid-cols-12 gap-x-12 gap-y-14 items-center">
@@ -285,8 +287,8 @@ export default function LandingPage() {
                   ].map((c, i) => (
                     <span key={`${dup}-${i}`} className="flex items-center text-white/45 mx-6 text-xs font-mono uppercase tracking-[0.22em]">
                       {c === "Let's Gator Done." ? (
-                        <span className="flex items-center gap-3 text-gator-orange-light font-semibold">
-                          <GatorMark className="w-10 h-3 text-gator-orange-light" aria-hidden="true" />
+                        <span className="flex items-center gap-2 text-gator-orange-light font-semibold">
+                          <img src={logoImg} alt="" aria-hidden="true" className="h-5 w-5 object-contain" />
                           {c}
                         </span>
                       ) : (
@@ -555,10 +557,26 @@ export default function LandingPage() {
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/30 pointer-events-none" aria-hidden="true" />
         <div className="absolute -top-1/2 left-1/2 -translate-x-1/2 w-[120%] aspect-square rounded-full bg-gator-orange/[0.06] blur-3xl pointer-events-none" aria-hidden="true" />
 
+        {/* Large brand emblem behind the headline */}
+        <img
+          src={logoImg}
+          alt=""
+          aria-hidden="true"
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[58%] w-[680px] h-[680px] object-contain opacity-[0.05] pointer-events-none select-none hidden md:block"
+        />
+
         <div ref={ctaReveal} className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center reveal">
-          <GatorMark className="w-24 h-8 mx-auto text-gator-orange-light/70 mb-6" />
-          <div className="font-mono text-gator-orange-light tracking-[0.32em] text-[11px] font-medium uppercase mb-8">
-            Let's Gator Done.
+          <img
+            src={logoImg}
+            alt="Clear Gator emblem"
+            className="h-20 w-20 mx-auto object-contain mb-6 drop-shadow-[0_8px_24px_rgba(0,0,0,0.4)]"
+          />
+          <div className="flex items-center justify-center gap-3 mb-8">
+            <span className="h-px w-8 bg-gator-orange-light/40" aria-hidden="true" />
+            <span className="font-mono text-gator-orange-light tracking-[0.32em] text-[11px] font-medium uppercase">
+              Let's Gator Done.
+            </span>
+            <span className="h-px w-8 bg-gator-orange-light/40" aria-hidden="true" />
           </div>
           <h2 className="font-display text-5xl sm:text-6xl lg:text-7xl font-semibold text-white tracking-[-0.035em] leading-[0.96] mb-8 text-balance">
             Bring us the site.<br />
@@ -671,8 +689,8 @@ export default function LandingPage() {
             <div className="text-white/40">
               &copy; {new Date().getFullYear()} Clear Gator Construction Services. All rights reserved.
             </div>
-            <div className="flex items-center gap-3">
-              <GatorMark className="w-16 h-5 text-gator-orange-light/60" />
+            <div className="flex items-center gap-2.5">
+              <img src={logoImg} alt="" aria-hidden="true" className="h-5 w-5 object-contain" />
               <div className="font-mono text-gator-orange-light tracking-[0.32em] text-[11px] font-medium uppercase">
                 Let's Gator Done.
               </div>

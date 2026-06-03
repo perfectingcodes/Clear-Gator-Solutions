@@ -3,7 +3,8 @@ import { useMutation } from "@tanstack/react-query";
 import { useLocation } from "wouter";
 import { ArrowRight, Check, Loader2 } from "lucide-react";
 import { apiRequest } from "@/lib/queryClient";
-import { GatorMonogram } from "@/components/swamp-decor";
+import logoImg from "@assets/clear_gator_1775663894887.png";
+import { track } from "@/hooks/use-analytics";
 
 const SERVICES = [
   "Interior Demo",
@@ -42,7 +43,10 @@ export default function HeroQuoteForm() {
   const submit = useMutation({
     mutationFn: async (data: Lead) =>
       apiRequest("POST", "/api/estimates", { ...data, photoUrls: [] }),
-    onSuccess: () => setSubmitted(true),
+    onSuccess: () => {
+      track("form_submit", { metadata: { form: "hero_quote", service: lead.serviceType, city: lead.location } });
+      setSubmitted(true);
+    },
     onError: () => setError("Something went wrong. Please try again or call us directly."),
   });
 
@@ -66,7 +70,7 @@ export default function HeroQuoteForm() {
   if (submitted) {
     return (
       <div className="relative bg-background text-foreground rounded-xl p-8 hairline">
-        <GatorMonogram className="absolute top-6 right-6 w-8 h-8 text-foreground/40" />
+        <img src={logoImg} alt="" aria-hidden="true" className="absolute top-6 right-6 w-10 h-10 object-contain opacity-70" />
         <div className="flex items-start gap-4 mb-5">
           <div className="w-10 h-10 rounded-md bg-gator-orange/10 flex items-center justify-center flex-shrink-0">
             <Check className="w-5 h-5 text-gator-orange" strokeWidth={2.4} />
@@ -131,7 +135,7 @@ export default function HeroQuoteForm() {
               Two short steps. No commitment. We respond within 24 hours.
             </p>
           </div>
-          <GatorMonogram className="w-8 h-8 text-foreground/40 flex-shrink-0 mt-1 ml-3" />
+          <img src={logoImg} alt="" aria-hidden="true" className="w-10 h-10 object-contain opacity-70 flex-shrink-0 mt-0.5 ml-3" />
         </div>
         <div className="mb-6 mt-5 h-px bg-border" />
 

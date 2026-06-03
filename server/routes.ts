@@ -151,5 +151,85 @@ export async function registerRoutes(httpServer: Server, app: Express): Promise<
     }
   });
 
+  /* ─── Crew CRM ─────────────────────────────────────────── */
+  app.get("/api/crew", async (_req, res) => {
+    try {
+      const crew = await storage.getCrewMembers();
+      res.json(crew);
+    } catch (e) {
+      res.status(500).json({ error: "Failed to fetch crew" });
+    }
+  });
+
+  app.post("/api/crew", async (req, res) => {
+    try {
+      const c = await storage.createCrewMember({
+        name: req.body.name,
+        role: req.body.role,
+        phone: req.body.phone,
+        email: req.body.email || null,
+        status: req.body.status || "Active",
+        specialty: req.body.specialty || null,
+        emergencyContact: req.body.emergencyContact || null,
+        notes: req.body.notes || null,
+        hiredAt: req.body.hiredAt || null,
+      });
+      res.json(c);
+    } catch (e) {
+      res.status(500).json({ error: "Failed to create crew member" });
+    }
+  });
+
+  app.patch("/api/crew/:id", async (req, res) => {
+    try {
+      const c = await storage.updateCrewMember(req.params.id, req.body);
+      if (!c) return res.status(404).json({ error: "Crew member not found" });
+      res.json(c);
+    } catch (e) {
+      res.status(500).json({ error: "Failed to update crew member" });
+    }
+  });
+
+  app.delete("/api/crew/:id", async (req, res) => {
+    try {
+      const ok = await storage.deleteCrewMember(req.params.id);
+      if (!ok) return res.status(404).json({ error: "Crew member not found" });
+      res.json({ ok: true });
+    } catch (e) {
+      res.status(500).json({ error: "Failed to delete crew member" });
+    }
+  });
+
+  /* ─── Analytics ────────────────────────────────────────── */
+  app.post("/api/analytics/event", async (req, res) => {
+    try {
+      const { type, path, sessionId, referrer, metadata } = req.body || {};
+      if (!type) return res.status(400).json({ error: "type required" });
+      const userAgent = (req.headers["user-agent"] as string) || null;
+      const e = await storage.recordEvent({
+        type,
+        path: path || null,
+        sessionId: sessionId || null,
+        referrer: referrer || null,
+        userAgent,
+        metadata: metadata || null,
+      });
+      res.json({ ok: true, id: e.id });
+    } catch (e) {
+      res.status(500).json({ error: "Failed to record event" });
+    }
+  });
+
+  app.get("/api/analytics/summary", async (req, res) => {
+    try {
+      const days = Number(req.query.days) || 30;
+      const summary = await storage.getAnalyticsSummary(days);
+      res.json(summary);
+    } catch (e) {
+      console.error("[analytics/summary]", e);
+      res.status(500).json({ error: "Failed to compute analytics" });
+    }
+  });
+
   return httpServer;
 }
