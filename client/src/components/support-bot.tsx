@@ -150,7 +150,7 @@ export default function SupportBot() {
           aria-label="Open support chat"
           data-testid="support-bot-toggle"
           className="fixed bottom-4 right-4 z-[60] h-12 px-4 rounded-full bg-foreground text-background shadow-xl shadow-black/20 flex items-center gap-2 transition-all hover:translate-y-[-1px] active:translate-y-0"
-          style={{ marginBottom: "calc(env(safe-area-inset-bottom, 0px) + 88px)" }}
+          style={{ marginBottom: "calc(env(safe-area-inset-bottom, 0px) + 80px)" }}
         >
           <MessageCircle className="w-4 h-4" strokeWidth={2.2} />
           <span className="text-sm font-semibold">Support</span>
@@ -166,7 +166,7 @@ export default function SupportBot() {
           aria-label="Support chat"
           data-testid="support-bot-window"
           className="fixed bottom-4 right-4 z-[60] w-[calc(100vw-2rem)] sm:w-96 max-w-sm h-[520px] max-h-[80vh] bg-background border border-border rounded-lg shadow-2xl shadow-black/20 flex flex-col overflow-hidden animate-in slide-in-from-bottom-2 fade-in duration-200"
-          style={{ marginBottom: "calc(env(safe-area-inset-bottom, 0px) + 88px)" }}
+          style={{ marginBottom: "calc(env(safe-area-inset-bottom, 0px) + 80px)" }}
         >
           <div className="flex items-center gap-3 p-4 border-b border-border bg-foreground text-background">
             <div className="w-8 h-8 rounded-md bg-background/15 flex items-center justify-center flex-shrink-0">

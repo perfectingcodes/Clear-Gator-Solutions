@@ -108,7 +108,7 @@ export default function LandingPage() {
   const ctaReveal = useReveal<HTMLDivElement>();
 
   return (
-    <div className="min-h-screen bg-background text-foreground pb-[calc(88px+env(safe-area-inset-bottom,0px))] sm:pb-0">
+    <div className="min-h-screen bg-background text-foreground pb-[calc(72px+env(safe-area-inset-bottom,0px))] sm:pb-0">
       <header className="sticky top-0 z-50 bg-background/85 backdrop-blur-md border-b border-border/70">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between gap-4 py-3">
           <Link href="/" className="flex items-center gap-3 group">
@@ -159,12 +159,6 @@ export default function LandingPage() {
                 Track Job
               </Button>
             </Link>
-            <a href="tel:+12392343061" className="sm:hidden" aria-label="Call Clear Gator">
-              <Button size="sm" variant="outline" className="gap-1.5 rounded-md" data-testid="header-call-icon">
-                <PhoneCall className="w-3.5 h-3.5" strokeWidth={2.2} />
-                Call
-              </Button>
-            </a>
             <Link href="/estimate">
               <Button
                 size="sm"
@@ -196,44 +190,42 @@ export default function LandingPage() {
           className="absolute -bottom-20 -right-20 w-[560px] h-[560px] object-contain opacity-[0.06] pointer-events-none hidden md:block select-none"
         />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-28 pb-20 sm:pb-24 grid lg:grid-cols-12 gap-x-12 gap-y-14 items-center">
+        <div className="relative z-10 max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 pt-20 sm:pt-28 pb-16 sm:pb-24 grid lg:grid-cols-12 gap-x-12 gap-y-10 sm:gap-y-14 items-center">
           <div className="lg:col-span-7 xl:col-span-7">
-            <div className="flex items-center gap-3 mb-8">
+            <div className="flex items-center gap-3 mb-6 sm:mb-8">
               <span className="font-mono text-[11px] tracking-[0.22em] uppercase text-gator-orange-light">
                 01 / Clear Gator
               </span>
-              <span className="h-px w-10 bg-white/25" aria-hidden="true" />
-              <span className="font-mono text-[11px] tracking-[0.22em] uppercase text-white/40">
-                Southwest Florida
+              <span className="h-px w-8 bg-white/25" aria-hidden="true" />
+              <span className="font-mono text-[11px] tracking-[0.22em] uppercase text-white/50">
+                SW Florida
               </span>
             </div>
 
-            <h1 className="font-display text-[2.75rem] sm:text-6xl lg:text-7xl xl:text-[5rem] font-semibold text-white leading-[0.98] mb-7 tracking-[-0.035em] text-balance">
+            <h1 className="font-display text-4xl sm:text-6xl lg:text-7xl xl:text-[5rem] font-semibold text-white leading-[1.02] sm:leading-[0.98] mb-6 sm:mb-7 tracking-[-0.03em] sm:tracking-[-0.035em] text-balance">
               We clear the way.<br />
-              <span className="text-white/40">You build </span>
+              <span className="text-white/45">You build </span>
               <span className="relative text-white">
                 what's next
                 <span className="absolute -bottom-1 left-0 w-full h-[3px] bg-gator-orange" aria-hidden="true" />
               </span>
-              <span className="text-white/40">.</span>
+              <span className="text-white/45">.</span>
             </h1>
 
-            <p className="text-base sm:text-lg text-white/65 mb-10 leading-[1.65] max-w-xl text-pretty">
-              Interior &amp; outdoor demolition, hauling, site cleanup, lot clearing, and property maintenance for
-              contractors and homeowners across Southwest Florida.
-              Built for the coast, the canal, and everywhere in between.
+            <p className="text-base sm:text-lg text-white/75 mb-8 sm:mb-10 leading-[1.6] max-w-xl text-pretty">
+              Interior &amp; outdoor demolition, hauling, site cleanup, lot clearing, and property maintenance for contractors and homeowners across Southwest Florida.
             </p>
 
-            <div className="flex flex-wrap items-center gap-x-6 gap-y-3 mb-12">
+            <div className="flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-4 sm:gap-x-6 sm:gap-y-3 mb-10 sm:mb-12">
               <a href="tel:+12392343061" className="group inline-flex items-center gap-3" data-testid="hero-cta-call">
-                <span className="w-10 h-10 rounded-full bg-white/8 border border-white/15 flex items-center justify-center group-hover:bg-gator-orange group-hover:border-gator-orange transition-colors">
+                <span className="w-11 h-11 rounded-full bg-white/10 border border-white/20 flex items-center justify-center group-hover:bg-gator-orange group-hover:border-gator-orange transition-colors">
                   <PhoneCall className="w-4 h-4 text-white" strokeWidth={2.2} />
                 </span>
                 <span>
-                  <span className="block font-mono text-[10px] tracking-[0.22em] uppercase text-white/45 leading-none mb-1">
+                  <span className="block font-mono text-[10px] tracking-[0.22em] uppercase text-white/60 leading-none mb-1">
                     Direct line
                   </span>
-                  <span className="block text-white text-base font-semibold tracking-tight leading-none">
+                  <span className="block text-white text-lg sm:text-base font-semibold tracking-tight leading-none">
                     (239) 234-3061
                   </span>
                 </span>
@@ -241,7 +233,7 @@ export default function LandingPage() {
               <span className="hidden sm:block h-8 w-px bg-white/15" aria-hidden="true" />
               <Link href="/track">
                 <button
-                  className="text-white/55 hover:text-white text-sm font-medium underline underline-offset-[6px] decoration-white/20 hover:decoration-gator-orange decoration-1 transition-all"
+                  className="text-white/70 hover:text-white text-sm font-semibold underline underline-offset-[6px] decoration-white/30 hover:decoration-gator-orange decoration-1 transition-all text-left"
                   data-testid="hero-cta-track"
                 >
                   Track an existing job
@@ -249,15 +241,15 @@ export default function LandingPage() {
               </Link>
             </div>
 
-            <dl className="grid grid-cols-3 gap-x-6 gap-y-1 max-w-md border-t border-white/10 pt-6">
+            <dl className="grid grid-cols-3 gap-x-4 sm:gap-x-6 gap-y-1 max-w-md border-t border-white/10 pt-5 sm:pt-6">
               {[
                 { label: "Licensed", sub: "& Insured" },
                 { label: "24-Hour", sub: "Quote Reply" },
                 { label: "Local", sub: "SW Florida" },
               ].map(({ label, sub }) => (
                 <div key={label}>
-                  <dt className="font-display text-base font-semibold text-white tracking-tight">{label}</dt>
-                  <dd className="text-white/40 text-[11px] tracking-wide font-mono uppercase mt-0.5">{sub}</dd>
+                  <dt className="font-display text-sm sm:text-base font-semibold text-white tracking-tight">{label}</dt>
+                  <dd className="text-white/55 text-[10px] sm:text-[11px] tracking-wide font-mono uppercase mt-0.5">{sub}</dd>
                 </div>
               ))}
             </dl>
@@ -325,9 +317,9 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <section id="services" className="relative py-24 sm:py-32 px-4 sm:px-6 lg:px-8">
+      <section id="services" className="relative py-16 sm:py-32 px-4 sm:px-6 lg:px-8">
         <div ref={servicesReveal} className="max-w-7xl mx-auto reveal">
-          <div className="grid lg:grid-cols-12 gap-12 lg:gap-20 mb-16 lg:mb-20 items-end">
+          <div className="grid lg:grid-cols-12 gap-8 sm:gap-12 lg:gap-20 mb-12 sm:mb-16 lg:mb-20 items-end">
             <div className="lg:col-span-5">
               <div className="flex items-center gap-3 mb-6">
                 <span className="font-mono text-[11px] font-medium tracking-[0.22em] uppercase text-gator-orange">
@@ -350,7 +342,7 @@ export default function LandingPage() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-border/60 ring-1 ring-border/60 rounded-lg overflow-hidden">
             {services.map((svc, i) => (
               <Link key={svc.title} href="/estimate">
-                <article className="group relative bg-card p-7 sm:p-8 transition-all duration-500 hover:bg-foreground hover:text-background cursor-pointer overflow-hidden">
+                <article className="group relative bg-card p-6 sm:p-8 transition-all duration-500 hover:bg-foreground hover:text-background active:bg-foreground/95 active:text-background cursor-pointer overflow-hidden">
                   {/* hover sweep line */}
                   <span
                     className="absolute top-0 left-0 right-0 h-px bg-gator-orange origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500"
@@ -387,7 +379,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <section id="how-it-works" className="relative py-24 sm:py-32 bg-muted/30 dark:bg-muted/10">
+      <section id="how-it-works" className="relative py-16 sm:py-32 bg-muted/30 dark:bg-muted/10">
         <div ref={howReveal} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
           <div className="grid lg:grid-cols-12 gap-12 lg:gap-20 mb-16 items-end">
             <div className="lg:col-span-5">
@@ -435,11 +427,11 @@ export default function LandingPage() {
       </section>
 
       {/* ── Service Areas ── */}
-      <section id="service-areas" className="relative py-24 sm:py-32 border-y border-border/60">
+      <section id="service-areas" className="relative py-16 sm:py-32 border-y border-border/60">
         <div ref={areasReveal} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
-          <div className="grid lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+          <div className="grid lg:grid-cols-12 gap-8 sm:gap-12 lg:gap-20 items-center">
             <div className="lg:col-span-5">
-              <div className="flex items-center gap-3 mb-6">
+              <div className="flex items-center gap-3 mb-5 sm:mb-6">
                 <span className="font-mono text-[11px] font-medium tracking-[0.22em] uppercase text-gator-orange">
                   04 — Coverage
                 </span>
@@ -484,10 +476,10 @@ export default function LandingPage() {
       </section>
 
       {/* ── Contractor Partnership ── */}
-      <section className="relative py-24 sm:py-32 bg-ink overflow-hidden">
+      <section className="relative py-16 sm:py-32 bg-ink overflow-hidden">
         <GatorScales className="absolute inset-0 w-full h-full text-white/5 pointer-events-none" />
         <div ref={tradeReveal} className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
-          <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+          <div className="grid lg:grid-cols-12 gap-8 sm:gap-12 lg:gap-16 items-start">
             <div className="lg:col-span-5">
               <div className="flex items-center gap-3 mb-6">
                 <span className="font-mono text-[11px] font-medium tracking-[0.22em] uppercase text-gator-orange">
@@ -500,7 +492,7 @@ export default function LandingPage() {
                 <span className="text-white/40">a contractor's</span><br />
                 first call.
               </h2>
-              <p className="text-white/55 leading-[1.65] text-base mb-9 max-w-md">
+              <p className="text-white/70 leading-[1.65] text-base mb-9 max-w-md">
                 We extend your crew without extending your liability. Job-site ready work,
                 fast turnaround, and partner pricing for steady rotation.
               </p>
@@ -543,7 +535,7 @@ export default function LandingPage() {
                   <div key={label} className="bg-ink p-7 lg:p-8">
                     <Icon className="w-4 h-4 text-gator-orange-light mb-5" strokeWidth={2.2} />
                     <dt className="font-display text-white text-lg font-bold mb-2 tracking-tight">{label}</dt>
-                    <dd className="text-white/50 text-sm leading-[1.65]">{desc}</dd>
+                    <dd className="text-white/65 text-sm leading-[1.65]">{desc}</dd>
                   </div>
                 ))}
               </dl>
@@ -553,7 +545,7 @@ export default function LandingPage() {
       </section>
 
       {/* ── Final CTA ── */}
-      <section className="relative py-32 sm:py-40 bg-ink overflow-hidden">
+      <section className="relative py-20 sm:py-40 bg-ink overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/30 pointer-events-none" aria-hidden="true" />
         <div className="absolute -top-1/2 left-1/2 -translate-x-1/2 w-[120%] aspect-square rounded-full bg-gator-orange/[0.06] blur-3xl pointer-events-none" aria-hidden="true" />
 
@@ -582,7 +574,7 @@ export default function LandingPage() {
             Bring us the site.<br />
             <span className="text-white/40">We'll bring the crew.</span>
           </h2>
-          <p className="text-white/55 mb-12 text-base sm:text-lg leading-[1.65] max-w-xl mx-auto text-balance">
+          <p className="text-white/75 mb-10 sm:mb-12 text-base sm:text-lg leading-[1.65] max-w-xl mx-auto text-balance">
             Free estimates, returned within 24 hours. No commitment. No hidden line items.
           </p>
           <div className="flex flex-wrap justify-center items-center gap-3">
@@ -679,7 +671,7 @@ export default function LandingPage() {
                 </div>
                 <div className="text-xs text-white/40 mt-1">Mon–Sat, 7am–6pm</div>
               </a>
-              <div className="text-sm text-white/55 leading-[1.7]">
+              <div className="text-sm text-white/70 leading-[1.7]">
                 Cape Coral · Naples<br />
                 Southwest Florida
               </div>
@@ -699,32 +691,32 @@ export default function LandingPage() {
         </div>
       </footer>
 
-      {/* Mobile sticky Call CTA — professional gator-orange */}
-      <div
-        className="sm:hidden fixed bottom-0 left-0 right-0 z-50 px-3 pt-3 pointer-events-none"
-        style={{ paddingBottom: "calc(env(safe-area-inset-bottom, 0px) + 12px)" }}
+      {/* Mobile sticky Call CTA — solid edge-to-edge orange bar */}
+      <a
+        href="tel:+12392343061"
+        data-testid="mobile-call-now-bar"
+        aria-label="Call Clear Gator at 239-234-3061"
+        className="sm:hidden fixed bottom-0 left-0 right-0 z-50 bg-gator-orange text-white flex items-center gap-3.5 active:bg-gator-orange-dark transition-colors border-t border-gator-orange-dark/40"
+        style={{
+          paddingTop: "14px",
+          paddingBottom: "calc(env(safe-area-inset-bottom, 0px) + 14px)",
+          paddingLeft: "18px",
+          paddingRight: "18px",
+        }}
       >
-        <div className="absolute inset-x-0 -top-8 bottom-0 bg-gradient-to-t from-background via-background to-transparent pointer-events-none" />
-        <a
-          href="tel:+12392343061"
-          data-testid="mobile-call-now-bar"
-          aria-label="Call Clear Gator at 239-234-3061"
-          className="relative pointer-events-auto flex items-center gap-3 w-full h-[60px] pl-3 pr-4 rounded-full bg-gator-orange text-white shadow-[0_10px_30px_-6px_hsl(25_95%_50%_/_0.55)] ring-1 ring-gator-orange-dark/30 active:scale-[0.985] transition-transform"
-        >
-          <span className="flex items-center justify-center w-11 h-11 rounded-full bg-white/15 flex-shrink-0">
-            <PhoneCall className="w-4 h-4" strokeWidth={2.4} />
+        <span className="flex items-center justify-center w-11 h-11 rounded-full bg-white/15 flex-shrink-0">
+          <PhoneCall className="w-5 h-5" strokeWidth={2.4} />
+        </span>
+        <span className="flex flex-col leading-tight flex-1 min-w-0 text-left">
+          <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-white/90">
+            Tap to Call · 24h Reply
           </span>
-          <span className="flex flex-col leading-tight flex-1 min-w-0 text-left">
-            <span className="font-mono text-[10px] font-medium uppercase tracking-[0.22em] text-white/80">
-              Tap to Call · 24h Reply
-            </span>
-            <span className="font-display text-base font-semibold tracking-[-0.01em]">
-              (239) 234-3061
-            </span>
+          <span className="font-display text-lg font-semibold tracking-[-0.01em]">
+            (239) 234-3061
           </span>
-          <ArrowRight className="w-4 h-4 text-white/75 flex-shrink-0" strokeWidth={2.2} />
-        </a>
-      </div>
+        </span>
+        <ArrowRight className="w-5 h-5 text-white/85 flex-shrink-0" strokeWidth={2.4} />
+      </a>
     </div>
   );
 }

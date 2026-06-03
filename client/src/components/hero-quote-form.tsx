@@ -108,13 +108,13 @@ export default function HeroQuoteForm() {
   return (
     <div className="relative bg-background text-foreground rounded-xl hairline overflow-hidden">
       {/* Top meta bar */}
-      <div className="flex items-center justify-between px-6 py-3.5 border-b border-border bg-muted/40">
+      <div className="flex items-center justify-between px-5 sm:px-6 py-3 sm:py-3.5 border-b border-border bg-muted/40">
         <div className="flex items-center gap-2.5">
           <span className="relative flex h-2 w-2">
             <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-60 animate-ping" />
             <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
           </span>
-          <span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-muted-foreground">
+          <span className="text-[10px] font-semibold uppercase tracking-[0.18em] sm:tracking-[0.22em] text-muted-foreground">
             Free Estimate · 24h Reply
           </span>
         </div>
@@ -125,9 +125,9 @@ export default function HeroQuoteForm() {
         </div>
       </div>
 
-      <div className="p-6 sm:p-7">
-        <div className="flex items-start justify-between mb-3">
-          <div className="flex-1">
+      <div className="p-5 sm:p-7">
+        <div className="flex items-start justify-between mb-3 gap-3">
+          <div className="flex-1 min-w-0">
             <h3 className="font-display text-xl sm:text-2xl font-bold tracking-[-0.02em] leading-tight mb-1">
               Request a free estimate
             </h3>
@@ -135,9 +135,9 @@ export default function HeroQuoteForm() {
               Two short steps. No commitment. We respond within 24 hours.
             </p>
           </div>
-          <img src={logoImg} alt="" aria-hidden="true" className="w-10 h-10 object-contain opacity-70 flex-shrink-0 mt-0.5 ml-3" />
+          <img src={logoImg} alt="" aria-hidden="true" className="w-10 h-10 object-contain opacity-70 flex-shrink-0 mt-0.5" />
         </div>
-        <div className="mb-6 mt-5 h-px bg-border" />
+        <div className="mb-5 mt-4 sm:mb-6 sm:mt-5 h-px bg-border" />
 
 
         {step === 0 && (
@@ -178,7 +178,7 @@ export default function HeroQuoteForm() {
                 onChange={(e) => setLead((l) => ({ ...l, location: e.target.value }))}
                 placeholder="City or full address"
                 data-testid="hero-location-input"
-                className="w-full px-4 h-11 rounded-md border border-border bg-background text-foreground placeholder:text-muted-foreground/60 text-sm focus-ring"
+                className="w-full px-4 h-12 sm:h-11 rounded-md border border-border bg-background text-foreground placeholder:text-muted-foreground/60 text-base sm:text-sm focus-ring"
               />
             </div>
 
@@ -191,7 +191,7 @@ export default function HeroQuoteForm() {
             <button
               type="submit"
               data-testid="hero-form-next"
-              className="w-full h-11 rounded-md bg-foreground text-background font-semibold text-sm flex items-center justify-center gap-2 hover:bg-foreground/90 transition-colors focus-ring"
+              className="w-full h-12 sm:h-11 rounded-md bg-foreground text-background font-semibold text-sm flex items-center justify-center gap-2 hover:bg-foreground/90 transition-colors focus-ring"
             >
               Continue
               <ArrowRight className="w-4 h-4" strokeWidth={2.4} />
@@ -236,7 +236,7 @@ export default function HeroQuoteForm() {
                   value={lead.name}
                   onChange={(e) => setLead((l) => ({ ...l, name: e.target.value }))}
                   data-testid="hero-name-input"
-                  className="w-full px-4 h-11 rounded-md border border-border bg-background text-foreground text-sm focus-ring"
+                  className="w-full px-4 h-12 sm:h-11 rounded-md border border-border bg-background text-foreground text-base sm:text-sm focus-ring"
                 />
               </div>
               <div>
@@ -251,7 +251,7 @@ export default function HeroQuoteForm() {
                   value={lead.phone}
                   onChange={(e) => setLead((l) => ({ ...l, phone: e.target.value }))}
                   data-testid="hero-phone-input"
-                  className="w-full px-4 h-11 rounded-md border border-border bg-background text-foreground text-sm focus-ring"
+                  className="w-full px-4 h-12 sm:h-11 rounded-md border border-border bg-background text-foreground text-base sm:text-sm focus-ring"
                 />
               </div>
             </div>
@@ -268,7 +268,7 @@ export default function HeroQuoteForm() {
                 value={lead.email}
                 onChange={(e) => setLead((l) => ({ ...l, email: e.target.value }))}
                 data-testid="hero-email-input"
-                className="w-full px-4 h-11 rounded-md border border-border bg-background text-foreground text-sm focus-ring"
+                className="w-full px-4 h-12 sm:h-11 rounded-md border border-border bg-background text-foreground text-base sm:text-sm focus-ring"
               />
             </div>
 
@@ -283,7 +283,7 @@ export default function HeroQuoteForm() {
                 onChange={(e) => setLead((l) => ({ ...l, description: e.target.value }))}
                 placeholder="What's the scope? Any timing constraints?"
                 data-testid="hero-description-input"
-                className="w-full px-4 py-3 rounded-md border border-border bg-background text-foreground text-sm placeholder:text-muted-foreground/60 focus-ring resize-none"
+                className="w-full px-4 py-3 rounded-md border border-border bg-background text-foreground text-base sm:text-sm placeholder:text-muted-foreground/60 focus-ring resize-none"
               />
             </div>
 
@@ -298,7 +298,7 @@ export default function HeroQuoteForm() {
                 type="submit"
                 disabled={submit.isPending}
                 data-testid="hero-form-submit"
-                className="flex-1 h-11 rounded-md bg-gator-orange hover:bg-gator-orange-dark text-white font-semibold text-sm flex items-center justify-center gap-2 transition-colors focus-ring disabled:opacity-70"
+                className="flex-1 h-12 sm:h-11 rounded-md bg-gator-orange hover:bg-gator-orange-dark text-white font-semibold text-sm flex items-center justify-center gap-2 transition-colors focus-ring disabled:opacity-70"
               >
                 {submit.isPending ? (
                   <>

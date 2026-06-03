@@ -76,7 +76,7 @@ export default function BookingNotifications() {
       aria-live="polite"
       data-testid="booking-notification"
       className="fixed bottom-4 left-4 z-[60] max-w-[320px] sm:max-w-sm bg-background border border-border rounded-lg shadow-2xl shadow-black/15 overflow-hidden animate-in slide-in-from-bottom-2 fade-in duration-300"
-      style={{ marginBottom: "calc(env(safe-area-inset-bottom, 0px) + 88px)" }}
+      style={{ marginBottom: "calc(env(safe-area-inset-bottom, 0px) + 80px)" }}
     >
       <div className="p-4 pr-9 flex gap-3">
         <div className="w-9 h-9 rounded-md bg-gator-orange/10 border border-gator-orange/20 flex items-center justify-center flex-shrink-0">
