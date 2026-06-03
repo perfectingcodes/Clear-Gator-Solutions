@@ -25,6 +25,7 @@ const SERVICE_AREAS = [
 
 const services = [
   {
+    slug: "interior-demolition",
     icon: Hammer,
     title: "Interior Demolition",
     description: "Non-structural interior demolition for residential and commercial projects — from single-room tear-outs to full gut jobs. Structural elements always protected.",
@@ -34,6 +35,7 @@ const services = [
     iconColor: "text-gator-orange",
   },
   {
+    slug: "outdoor-demolition",
     icon: Construction,
     title: "Outdoor Demolition",
     description: "Exterior tear-downs done right — pools, sheds, fences, decks, concrete pads, and driveways. We handle the heavy lifting, the load-out, and the final grade.",
@@ -43,6 +45,7 @@ const services = [
     iconColor: "text-gator-orange",
   },
   {
+    slug: "hauling",
     icon: Truck,
     title: "Hauling",
     description: "Fast, reliable haul-away for any size project. We load it, we haul it — straightforward load-and-go pricing with no hidden fees.",
@@ -52,6 +55,7 @@ const services = [
     iconColor: "text-primary",
   },
   {
+    slug: "site-cleanup",
     icon: HardHat,
     title: "Site Cleanup",
     description: "Thorough cleanup for construction and renovation sites. We leave every job site spotless and ready for the next phase.",
@@ -61,6 +65,7 @@ const services = [
     iconColor: "text-primary",
   },
   {
+    slug: "lot-clearing",
     icon: TreePine,
     title: "Lot Clearing",
     description: "Full lot and land clearing for residential and commercial properties — from overgrown yards to abandoned property cleanouts.",
@@ -70,6 +75,7 @@ const services = [
     iconColor: "text-primary",
   },
   {
+    slug: "property-maintenance",
     icon: Wrench,
     title: "Property Maintenance",
     description: "Skilled property maintenance for homes, rentals, and commercial spaces — interior and exterior painting, repairs, installs, and the standing list of small jobs that keep a property sharp.",
@@ -341,7 +347,7 @@ export default function LandingPage() {
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-border/60 ring-1 ring-border/60 rounded-lg overflow-hidden">
             {services.map((svc, i) => (
-              <Link key={svc.title} href="/estimate">
+              <Link key={svc.title} href={`/services/${svc.slug}`}>
                 <article className="group relative bg-card p-6 sm:p-8 transition-all duration-500 hover:bg-foreground hover:text-background active:bg-foreground/95 active:text-background cursor-pointer overflow-hidden">
                   {/* hover sweep line */}
                   <span
@@ -369,7 +375,7 @@ export default function LandingPage() {
                     ))}
                   </ul>
                   <span className="inline-flex items-center gap-2 text-sm font-semibold border-b border-foreground/30 group-hover:border-gator-orange-light pb-0.5 transition-all">
-                    Request a quote
+                    Learn more &amp; request a quote
                     <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5" strokeWidth={2.4} />
                   </span>
                 </article>
@@ -458,15 +464,20 @@ export default function LandingPage() {
                 {SERVICE_AREAS.map((city, i) => (
                   <li
                     key={city}
-                    data-testid={`chip-city-${city.toLowerCase().replace(/\s+/g, "-")}`}
-                    className={`group flex items-center justify-between px-5 py-4 bg-background hover:bg-muted/30 transition-colors ${
+                    data-testid={`chip-city-${city.toLowerCase().replace(/\s+/g, "-").replace(/\./g, "")}`}
+                    className={`p-0 bg-background ${
                       i < 2 ? "border-t-0" : ""
                     } ${i % 2 === 0 ? "border-l-0" : ""}`}
                   >
-                    <span className="font-display font-bold text-foreground text-sm sm:text-base tracking-tight">
-                      {city}
-                    </span>
-                    <ArrowRight className="w-3.5 h-3.5 text-muted-foreground/40 group-hover:text-gator-orange group-hover:translate-x-0.5 transition-all" />
+                    <Link
+                      href={`/service-areas/${city.toLowerCase().replace(/\s+/g, "-").replace(/\./g, "")}`}
+                      className="group flex items-center justify-between px-5 py-4 hover:bg-muted/40 transition-colors"
+                    >
+                      <span className="font-display font-bold text-foreground text-sm sm:text-base tracking-tight">
+                        {city}
+                      </span>
+                      <ArrowRight className="w-3.5 h-3.5 text-muted-foreground/40 group-hover:text-gator-orange group-hover:translate-x-0.5 transition-all" />
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -644,7 +655,7 @@ export default function LandingPage() {
               <ul className="space-y-2.5 text-sm">
                 {services.map((s) => (
                   <li key={s.title}>
-                    <Link href="/estimate" className="hover:text-white transition-colors">{s.title}</Link>
+                    <Link href={`/services/${s.slug}`} className="hover:text-white transition-colors">{s.title}</Link>
                   </li>
                 ))}
               </ul>
@@ -677,6 +688,37 @@ export default function LandingPage() {
               </div>
             </div>
           </div>
+          {/* Sitemap row — services + cities for crawlability and discovery */}
+          <div className="grid sm:grid-cols-2 gap-8 mb-10 pt-10 border-t border-white/10">
+            <div>
+              <div className="font-mono text-[10px] font-medium tracking-[0.22em] uppercase text-white/40 mb-4">All Services</div>
+              <ul className="grid grid-cols-1 gap-y-2 text-sm text-white/70">
+                {services.map((s) => (
+                  <li key={s.title}>
+                    <Link href={`/services/${s.slug}`} className="hover:text-white transition-colors">
+                      {s.title} in SW Florida
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <div className="font-mono text-[10px] font-medium tracking-[0.22em] uppercase text-white/40 mb-4">Service Areas</div>
+              <ul className="grid grid-cols-2 gap-y-2 gap-x-4 text-sm text-white/70">
+                {SERVICE_AREAS.map((city) => (
+                  <li key={city}>
+                    <Link
+                      href={`/service-areas/${city.toLowerCase().replace(/\s+/g, "-").replace(/\./g, "")}`}
+                      className="hover:text-white transition-colors"
+                    >
+                      {city}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
           <div className="border-t border-white/10 pt-7 flex flex-col md:flex-row gap-4 md:gap-0 items-start md:items-center justify-between text-xs">
             <div className="text-white/40">
               &copy; {new Date().getFullYear()} Clear Gator Construction Services. All rights reserved.

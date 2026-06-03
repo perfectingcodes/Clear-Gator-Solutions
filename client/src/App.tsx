@@ -10,6 +10,8 @@ import TrackPage from "@/pages/track";
 import AdminPage from "@/pages/admin";
 import PrivacyPage from "@/pages/privacy";
 import TermsPage from "@/pages/terms";
+import ServicePage from "@/pages/service";
+import ServiceAreaPage from "@/pages/service-area";
 import BookingNotifications from "@/components/booking-notifications";
 import SupportBot from "@/components/support-bot";
 import { usePageviewTracking } from "@/hooks/use-analytics";
@@ -24,6 +26,8 @@ function Router() {
       <Route path="/admin" component={AdminPage} />
       <Route path="/privacy" component={PrivacyPage} />
       <Route path="/terms" component={TermsPage} />
+      <Route path="/services/:slug" component={ServicePage} />
+      <Route path="/service-areas/:slug" component={ServiceAreaPage} />
       <Route component={NotFound} />
     </Switch>
   );
