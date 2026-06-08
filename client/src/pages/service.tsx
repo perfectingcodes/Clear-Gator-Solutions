@@ -11,6 +11,7 @@ import { getService, SERVICES } from "@/data/services";
 import { CITIES } from "@/data/cities";
 import { SERVICE_IMAGES } from "@/data/page-images";
 import LeadFormCompact from "@/components/lead-form-compact";
+import MainNav from "@/components/main-nav";
 import JsonLd, { breadcrumbLd, faqLd, localBusinessLd, serviceLd, BASE_URL } from "@/components/json-ld";
 import NotFound from "@/pages/not-found";
 import logoImg from "@assets/clear_gator_1775663894887.png";
@@ -52,32 +53,7 @@ export default function ServicePage() {
         { name: service.name, url: `${BASE_URL}/services/${service.slug}` },
       ])} />
 
-      {/* Header */}
-      <header className="sticky top-0 z-50 bg-background/85 backdrop-blur-md border-b border-border/70">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between gap-4 py-3">
-          <Link href="/" className="flex items-center gap-3 group" aria-label="Clear Gator — Home">
-            <img src={logoImg} alt="Clear Gator Logo" className="h-12 w-12 sm:h-10 sm:w-10 object-contain transition-transform group-hover:scale-[1.04]" />
-            <div className="hidden sm:block leading-none">
-              <div className="font-display font-semibold text-lg sm:text-xl tracking-[-0.02em]">Clear Gator</div>
-              <div className="flex items-center gap-1.5 font-mono text-[10px] font-medium tracking-[0.22em] uppercase text-muted-foreground mt-1">
-                <span>Construction Services</span>
-                <span className="text-muted-foreground/40">·</span>
-                <span className="text-gator-orange">SWFL</span>
-              </div>
-            </div>
-          </Link>
-          <div className="flex items-center gap-3">
-            <a href="tel:+12392343061" className="hidden sm:inline-flex items-center gap-2 text-sm font-medium text-foreground hover:text-gator-orange">
-              <PhoneCall className="w-3.5 h-3.5 text-gator-orange" strokeWidth={2.2} /> (239) 234-3061
-            </a>
-            <Link href="/estimate">
-              <Button size="sm" className="bg-foreground hover:bg-foreground/90 text-background font-semibold rounded-md">
-                Free Estimate
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </header>
+      <MainNav />
 
       {/* Breadcrumbs */}
       <div className="border-b border-border/60 bg-muted/30">
@@ -92,19 +68,16 @@ export default function ServicePage() {
 
       {/* Hero */}
       <section className="relative bg-ink text-white overflow-hidden">
-        {/* Real photo backdrop */}
-        {images?.hero && (
-          <img
-            src={images.hero}
-            alt=""
-            aria-hidden="true"
-            loading="eager"
-            className="absolute inset-0 w-full h-full object-cover opacity-25"
-          />
-        )}
+        {/* Brand-controlled construction photo backdrop */}
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-[0.22]"
+          style={{ backgroundImage: "url('/images/hero-construction.png')" }}
+          aria-hidden="true"
+        />
         <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink/85 to-ink/40" aria-hidden="true" />
         <div className="absolute inset-0 bg-gradient-to-t from-ink via-transparent to-transparent" aria-hidden="true" />
         <div className="absolute -top-1/3 right-0 w-[60%] aspect-square rounded-full bg-gator-orange/[0.08] blur-3xl pointer-events-none" aria-hidden="true" />
+        <img src={logoImg} alt="" aria-hidden="true" className="absolute -bottom-16 -right-16 w-[480px] h-[480px] object-contain opacity-[0.06] pointer-events-none hidden md:block select-none" />
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-16 sm:pt-24 sm:pb-24 grid lg:grid-cols-12 gap-x-12 gap-y-10 items-start">
           <div className="lg:col-span-7">
@@ -209,30 +182,55 @@ export default function ServicePage() {
         </div>
       </section>
 
-      {/* Editorial image break — work in progress */}
-      {images?.feature && (
-        <section className="relative bg-background">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="relative rounded-2xl overflow-hidden ring-1 ring-border/60 aspect-[16/8] sm:aspect-[16/7]">
-              <img
-                src={images.feature}
-                alt={`${service.name} work in progress`}
-                loading="lazy"
-                className="absolute inset-0 w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" aria-hidden="true" />
-              <div className="absolute inset-x-0 bottom-0 p-6 sm:p-10">
-                <div className="font-mono text-[10px] tracking-[0.22em] uppercase text-gator-orange-light mb-2 sm:mb-3">
+      {/* Editorial brand-card break */}
+      <section className="relative bg-background">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="relative rounded-2xl overflow-hidden ring-1 ring-border/60 bg-ink">
+            <div
+              className="absolute inset-0 bg-cover bg-center opacity-25"
+              style={{ backgroundImage: "url('/images/hero-construction.png')" }}
+              aria-hidden="true"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink/80 to-ink/30" aria-hidden="true" />
+            <img src={logoImg} alt="" aria-hidden="true" className="absolute -bottom-12 -right-12 w-[360px] h-[360px] object-contain opacity-[0.08] pointer-events-none hidden md:block" />
+
+            <div className="relative grid md:grid-cols-12 gap-6 sm:gap-10 p-6 sm:p-10 lg:p-14 items-center">
+              <div className="md:col-span-7">
+                <div className="font-mono text-[10px] sm:text-[11px] tracking-[0.22em] uppercase text-gator-orange-light mb-3 sm:mb-4">
                   On the job
                 </div>
-                <h3 className="font-display text-2xl sm:text-4xl lg:text-5xl font-semibold text-white tracking-[-0.025em] leading-[1.05] max-w-3xl text-balance">
-                  {service.name} done the {service.accent === "orange" ? "Gator" : "Gator"} way — every job, every time.
+                <h3 className="font-display text-2xl sm:text-4xl lg:text-5xl font-semibold text-white tracking-[-0.025em] leading-[1.05] mb-4 sm:mb-6 text-balance">
+                  {service.name}<br className="hidden sm:block" />
+                  <span className="text-white/45"> done the Gator way</span> —<br className="hidden sm:block" />
+                  every job, every time.
                 </h3>
+                <p className="text-white/65 text-base sm:text-lg leading-[1.65] max-w-xl">
+                  Same crew. Same standards. Same write-it-down honesty — from the
+                  first walk-through to the final sweep.
+                </p>
+              </div>
+              <div className="md:col-span-5 md:pl-6 md:border-l border-white/10">
+                <dl className="grid grid-cols-2 gap-x-6 gap-y-6">
+                  {service.stats.map(({ value, label }) => (
+                    <div key={label} className="col-span-2 sm:col-span-1">
+                      <dt className="font-display text-2xl sm:text-3xl font-semibold text-white tracking-tight leading-none">{value}</dt>
+                      <dd className="text-white/55 text-[10px] sm:text-[11px] font-mono uppercase tracking-wide mt-1.5">{label}</dd>
+                    </div>
+                  ))}
+                  <div className="col-span-2 pt-3 border-t border-white/10 mt-1">
+                    <Link href="/estimate">
+                      <span className="inline-flex items-center gap-2 text-white text-sm font-semibold border-b border-white/30 hover:border-gator-orange-light hover:text-gator-orange-light pb-0.5 transition-colors cursor-pointer">
+                        Request a quote
+                        <ArrowRight className="w-3.5 h-3.5" strokeWidth={2.4} />
+                      </span>
+                    </Link>
+                  </div>
+                </dl>
               </div>
             </div>
           </div>
-        </section>
-      )}
+        </div>
+      </section>
 
       {/* Process */}
       <section className="relative py-16 sm:py-24 bg-muted/30">

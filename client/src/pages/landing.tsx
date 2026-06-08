@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { usePageMeta } from "@/hooks/use-page-meta";
 import { GatorScales, SectionRule } from "@/components/swamp-decor";
 import HeroQuoteForm from "@/components/hero-quote-form";
+import MainNav from "@/components/main-nav";
 import { useReveal } from "@/hooks/use-reveal";
 import logoImg from "@assets/clear_gator_1775663894887.png";
 import {
@@ -115,68 +116,7 @@ export default function LandingPage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground pb-[calc(72px+env(safe-area-inset-bottom,0px))] sm:pb-0">
-      <header className="sticky top-0 z-50 bg-background/85 backdrop-blur-md border-b border-border/70">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between gap-4 py-3">
-          <Link href="/" className="flex items-center gap-3 group" aria-label="Clear Gator — Home">
-            <img src={logoImg} alt="Clear Gator Logo" className="h-12 w-12 sm:h-10 sm:w-10 object-contain transition-transform duration-300 group-hover:scale-[1.04]" />
-            <div className="hidden sm:block leading-none">
-              <div className="font-display font-semibold text-lg sm:text-xl tracking-[-0.02em] text-foreground">Clear Gator</div>
-              <div className="flex items-center gap-1.5 font-mono text-[10px] font-medium tracking-[0.22em] uppercase text-muted-foreground mt-1">
-                <span>Construction Services</span>
-                <span className="text-muted-foreground/40">·</span>
-                <span className="text-gator-orange">SWFL</span>
-              </div>
-            </div>
-          </Link>
-          <nav className="hidden md:flex items-center gap-7 text-sm">
-            {[
-              { label: "Services", href: "#services" },
-              { label: "Process", href: "#how-it-works" },
-              { label: "Coverage", href: "#service-areas" },
-            ].map(({ label, href }) => (
-              <a
-                key={href}
-                href={href}
-                className="relative text-muted-foreground hover:text-foreground transition-colors py-2 group"
-              >
-                {label}
-                <span className="absolute left-0 right-0 -bottom-0.5 h-px bg-foreground origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
-              </a>
-            ))}
-          </nav>
-          <div className="flex items-center gap-3">
-            <a
-              href="tel:+12392343061"
-              data-testid="header-call-now"
-              className="hidden lg:inline-flex items-center gap-2 text-sm font-medium text-foreground hover:text-gator-orange transition-colors"
-              aria-label="Call Clear Gator at 239-234-3061"
-            >
-              <PhoneCall className="w-3.5 h-3.5 text-gator-orange" strokeWidth={2.2} />
-              (239) 234-3061
-            </a>
-            <span className="hidden lg:block h-5 w-px bg-border" aria-hidden="true" />
-            <Link href="/track">
-              <Button
-                variant="ghost"
-                size="sm"
-                data-testid="link-track-job"
-                className="hidden sm:inline-flex text-muted-foreground hover:text-foreground hover:bg-transparent font-medium px-2"
-              >
-                Track Job
-              </Button>
-            </Link>
-            <Link href="/estimate">
-              <Button
-                size="sm"
-                className="bg-foreground hover:bg-foreground/90 text-background font-semibold rounded-md shadow-sm"
-                data-testid="link-get-estimate"
-              >
-                Free Estimate
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </header>
+      <MainNav />
 
       <section className="relative overflow-hidden bg-ink-hero">
         <div
