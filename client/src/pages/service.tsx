@@ -7,8 +7,9 @@ import {
 } from "lucide-react";
 import { usePageMeta } from "@/hooks/use-page-meta";
 import { useReveal } from "@/hooks/use-reveal";
-import { getService } from "@/data/services";
+import { getService, SERVICES } from "@/data/services";
 import { CITIES } from "@/data/cities";
+import { SERVICE_IMAGES } from "@/data/page-images";
 import LeadFormCompact from "@/components/lead-form-compact";
 import JsonLd, { breadcrumbLd, faqLd, localBusinessLd, serviceLd, BASE_URL } from "@/components/json-ld";
 import NotFound from "@/pages/not-found";
@@ -36,6 +37,9 @@ export default function ServicePage() {
   const Icon = ICONS[service.icon];
   const accentText = service.accent === "orange" ? "text-gator-orange" : "text-primary";
   const accentBg = service.accent === "orange" ? "bg-gator-orange" : "bg-primary";
+  const images = SERVICE_IMAGES[service.slug];
+  // Cross-link: pick 3 other services to surface at the bottom
+  const otherServices = SERVICES.filter((s) => s.slug !== service.slug).slice(0, 3);
 
   return (
     <div className="min-h-screen bg-background text-foreground pb-[calc(72px+env(safe-area-inset-bottom,0px))] sm:pb-0">
@@ -88,8 +92,19 @@ export default function ServicePage() {
 
       {/* Hero */}
       <section className="relative bg-ink text-white overflow-hidden">
-        <div className="absolute -top-1/3 right-0 w-[60%] aspect-square rounded-full bg-gator-orange/[0.06] blur-3xl pointer-events-none" aria-hidden="true" />
-        <img src={logoImg} alt="" aria-hidden="true" className="absolute -bottom-16 -right-16 w-[480px] h-[480px] object-contain opacity-[0.06] pointer-events-none hidden md:block select-none" />
+        {/* Real photo backdrop */}
+        {images?.hero && (
+          <img
+            src={images.hero}
+            alt=""
+            aria-hidden="true"
+            loading="eager"
+            className="absolute inset-0 w-full h-full object-cover opacity-25"
+          />
+        )}
+        <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink/85 to-ink/40" aria-hidden="true" />
+        <div className="absolute inset-0 bg-gradient-to-t from-ink via-transparent to-transparent" aria-hidden="true" />
+        <div className="absolute -top-1/3 right-0 w-[60%] aspect-square rounded-full bg-gator-orange/[0.08] blur-3xl pointer-events-none" aria-hidden="true" />
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-16 sm:pt-24 sm:pb-24 grid lg:grid-cols-12 gap-x-12 gap-y-10 items-start">
           <div className="lg:col-span-7">
@@ -99,11 +114,11 @@ export default function ServicePage() {
               <span className="font-mono text-[11px] tracking-[0.22em] uppercase text-white/55">Southwest Florida</span>
             </div>
 
-            <div className="flex items-center gap-4 mb-5">
-              <div className={`w-12 h-12 rounded-md bg-white/8 border border-white/15 flex items-center justify-center`}>
-                <Icon className={`w-6 h-6 ${service.accent === "orange" ? "text-gator-orange-light" : "text-gator-green-light"}`} strokeWidth={2.2} />
+            <div className="inline-flex items-center gap-3 mb-6 px-3 py-1.5 rounded-full bg-white/8 border border-white/15 backdrop-blur-sm">
+              <div className={`w-6 h-6 rounded-md ${service.accent === "orange" ? "bg-gator-orange/20" : "bg-primary/20"} flex items-center justify-center`}>
+                <Icon className={`w-3.5 h-3.5 ${service.accent === "orange" ? "text-gator-orange-light" : "text-gator-green-light"}`} strokeWidth={2.4} />
               </div>
-              <div className="font-mono text-[10px] tracking-[0.22em] uppercase text-white/50">Service</div>
+              <span className="font-mono text-[10px] tracking-[0.22em] uppercase text-white/70">Service</span>
             </div>
 
             <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-semibold leading-[1.02] tracking-[-0.03em] mb-5 text-balance">
@@ -117,7 +132,7 @@ export default function ServicePage() {
 
             <div className="flex flex-wrap items-center gap-4 mb-10">
               <Link href="/estimate">
-                <Button size="lg" className="bg-gator-orange hover:bg-gator-orange-dark text-white font-semibold gap-2 px-7 h-12 rounded-md shadow-lg shadow-gator-orange/20">
+                <Button size="lg" className="bg-gator-orange hover:bg-gator-orange-dark text-white font-semibold gap-2 px-7 h-12 rounded-md shadow-lg shadow-gator-orange/30">
                   Request a Quote <ArrowRight className="w-4 h-4" />
                 </Button>
               </Link>
@@ -193,6 +208,31 @@ export default function ServicePage() {
           )}
         </div>
       </section>
+
+      {/* Editorial image break — work in progress */}
+      {images?.feature && (
+        <section className="relative bg-background">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="relative rounded-2xl overflow-hidden ring-1 ring-border/60 aspect-[16/8] sm:aspect-[16/7]">
+              <img
+                src={images.feature}
+                alt={`${service.name} work in progress`}
+                loading="lazy"
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" aria-hidden="true" />
+              <div className="absolute inset-x-0 bottom-0 p-6 sm:p-10">
+                <div className="font-mono text-[10px] tracking-[0.22em] uppercase text-gator-orange-light mb-2 sm:mb-3">
+                  On the job
+                </div>
+                <h3 className="font-display text-2xl sm:text-4xl lg:text-5xl font-semibold text-white tracking-[-0.025em] leading-[1.05] max-w-3xl text-balance">
+                  {service.name} done the {service.accent === "orange" ? "Gator" : "Gator"} way — every job, every time.
+                </h3>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Process */}
       <section className="relative py-16 sm:py-24 bg-muted/30">
@@ -301,6 +341,36 @@ export default function ServicePage() {
                   <span className="font-display font-semibold text-sm tracking-tight">{c.name}</span>
                   <ArrowRight className="w-3.5 h-3.5 text-muted-foreground/50 group-hover:text-gator-orange group-hover:translate-x-0.5 transition-all" />
                 </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* More services — cross-link to keep visitors moving */}
+      <section className="relative py-16 sm:py-20 bg-muted/30 border-t border-border/60">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-wrap items-end justify-between gap-4 mb-8">
+            <div>
+              <div className="font-mono text-[11px] tracking-[0.22em] uppercase text-gator-orange mb-3">07 / More from Clear Gator</div>
+              <h2 className="font-display text-2xl sm:text-3xl font-semibold tracking-[-0.025em]">
+                Other things <span className="text-muted-foreground/60">we handle.</span>
+              </h2>
+            </div>
+            <Link href="/#services" className="text-xs font-semibold uppercase tracking-wider text-foreground border-b border-foreground/30 hover:border-gator-orange hover:text-gator-orange pb-0.5 transition-colors">
+              View all services →
+            </Link>
+          </div>
+          <div className="grid sm:grid-cols-3 gap-px bg-border/60 ring-1 ring-border/60 rounded-lg overflow-hidden">
+            {otherServices.map((s) => (
+              <Link key={s.slug} href={`/services/${s.slug}`}>
+                <article className="group bg-card p-5 sm:p-6 hover:bg-foreground hover:text-background transition-colors duration-500 h-full flex flex-col cursor-pointer">
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="font-display font-bold text-lg tracking-tight">{s.name}</span>
+                    <ArrowRight className="w-4 h-4 text-muted-foreground/40 group-hover:text-gator-orange-light group-hover:translate-x-0.5 transition-all" />
+                  </div>
+                  <p className="text-sm text-muted-foreground group-hover:text-background/70 leading-[1.6] flex-1">{s.lede}</p>
+                </article>
               </Link>
             ))}
           </div>

@@ -180,12 +180,12 @@ export default function LandingPage() {
 
       <section className="relative overflow-hidden bg-ink-hero">
         <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-[0.16]"
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-[0.22]"
           style={{ backgroundImage: "url('/images/hero-construction.png')" }}
           aria-hidden="true"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/65 to-black/30" aria-hidden="true" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" aria-hidden="true" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/60 to-black/25" aria-hidden="true" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-transparent to-transparent" aria-hidden="true" />
         <div className="absolute -top-1/3 right-0 w-[55%] aspect-square rounded-full bg-gator-orange/[0.06] blur-3xl pointer-events-none" aria-hidden="true" />
 
         {/* Brand watermark — actual logo, low opacity, anchored bottom-right */}

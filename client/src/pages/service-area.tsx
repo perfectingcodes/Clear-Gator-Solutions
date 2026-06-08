@@ -5,8 +5,9 @@ import {
 } from "lucide-react";
 import { usePageMeta } from "@/hooks/use-page-meta";
 import { useReveal } from "@/hooks/use-reveal";
-import { getCity } from "@/data/cities";
+import { getCity, CITIES } from "@/data/cities";
 import { SERVICES } from "@/data/services";
+import { CITY_IMAGES } from "@/data/page-images";
 import LeadFormCompact from "@/components/lead-form-compact";
 import JsonLd, { breadcrumbLd, faqLd, localBusinessLd, placeLd, BASE_URL } from "@/components/json-ld";
 import NotFound from "@/pages/not-found";
@@ -28,6 +29,8 @@ export default function ServiceAreaPage() {
   const r4 = useReveal<HTMLDivElement>();
 
   if (!city) return <NotFound />;
+  const images = CITY_IMAGES[city.slug];
+  const otherCities = CITIES.filter((c) => c.slug !== city.slug).slice(0, 4);
 
   return (
     <div className="min-h-screen bg-background text-foreground pb-[calc(72px+env(safe-area-inset-bottom,0px))] sm:pb-0">
@@ -80,8 +83,19 @@ export default function ServiceAreaPage() {
 
       {/* Hero */}
       <section className="relative bg-ink text-white overflow-hidden">
-        <div className="absolute -top-1/3 right-0 w-[60%] aspect-square rounded-full bg-gator-orange/[0.06] blur-3xl pointer-events-none" aria-hidden="true" />
-        <img src={logoImg} alt="" aria-hidden="true" className="absolute -bottom-16 -right-16 w-[480px] h-[480px] object-contain opacity-[0.06] pointer-events-none hidden md:block select-none" />
+        {/* Real photo backdrop */}
+        {images?.hero && (
+          <img
+            src={images.hero}
+            alt=""
+            aria-hidden="true"
+            loading="eager"
+            className="absolute inset-0 w-full h-full object-cover opacity-[0.22]"
+          />
+        )}
+        <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink/85 to-ink/40" aria-hidden="true" />
+        <div className="absolute inset-0 bg-gradient-to-t from-ink via-transparent to-transparent" aria-hidden="true" />
+        <div className="absolute -top-1/3 right-0 w-[60%] aspect-square rounded-full bg-gator-orange/[0.08] blur-3xl pointer-events-none" aria-hidden="true" />
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-16 sm:pt-24 sm:pb-24 grid lg:grid-cols-12 gap-x-12 gap-y-10 items-start">
           <div className="lg:col-span-7">
@@ -162,6 +176,32 @@ export default function ServiceAreaPage() {
           </ul>
         </div>
       </section>
+
+      {/* Editorial image break */}
+      {images?.feature && (
+        <section className="relative bg-background">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="relative rounded-2xl overflow-hidden ring-1 ring-border/60 aspect-[16/8] sm:aspect-[16/7]">
+              <img
+                src={images.feature}
+                alt={`Working in ${city.name}`}
+                loading="lazy"
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" aria-hidden="true" />
+              <div className="absolute inset-x-0 bottom-0 p-6 sm:p-10">
+                <div className="font-mono text-[10px] tracking-[0.22em] uppercase text-gator-orange-light mb-2 sm:mb-3">
+                  {city.county}
+                </div>
+                <h3 className="font-display text-2xl sm:text-4xl lg:text-5xl font-semibold text-white tracking-[-0.025em] leading-[1.05] max-w-3xl text-balance">
+                  Working in {city.name}.<br className="hidden sm:block" />
+                  <span className="text-white/55">Same crew every week.</span>
+                </h3>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Neighborhoods */}
       {city.neighborhoods.length > 0 && (
@@ -259,6 +299,36 @@ export default function ServiceAreaPage() {
           <p className="mt-8 text-sm text-muted-foreground">
             Got a {city.name}-specific question? <a href="tel:+12392343061" className="text-foreground font-semibold border-b border-foreground/30 hover:border-gator-orange hover:text-gator-orange transition-colors">Call (239) 234-3061</a>.
           </p>
+        </div>
+      </section>
+
+      {/* More cities — cross-link to neighbors */}
+      <section className="relative py-16 sm:py-20 bg-muted/30 border-t border-border/60">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-wrap items-end justify-between gap-4 mb-8">
+            <div>
+              <div className="font-mono text-[11px] tracking-[0.22em] uppercase text-gator-orange mb-3">06 / Nearby coverage</div>
+              <h2 className="font-display text-2xl sm:text-3xl font-semibold tracking-[-0.025em]">
+                Also working in <span className="text-muted-foreground/60">these cities.</span>
+              </h2>
+            </div>
+            <Link href="/#service-areas" className="text-xs font-semibold uppercase tracking-wider text-foreground border-b border-foreground/30 hover:border-gator-orange hover:text-gator-orange pb-0.5 transition-colors">
+              All Gator Country →
+            </Link>
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-px bg-border/60 ring-1 ring-border/60 rounded-lg overflow-hidden">
+            {otherCities.map((c) => (
+              <Link key={c.slug} href={`/service-areas/${c.slug}`}>
+                <div className="group bg-card p-5 hover:bg-foreground hover:text-background transition-colors duration-300 flex items-center justify-between cursor-pointer h-full">
+                  <div>
+                    <div className="font-display font-bold text-sm sm:text-base tracking-tight">{c.name}</div>
+                    <div className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground/70 group-hover:text-background/60 mt-1">{c.county.replace(" County", "")}</div>
+                  </div>
+                  <ArrowRight className="w-3.5 h-3.5 text-muted-foreground/40 group-hover:text-gator-orange-light group-hover:translate-x-0.5 transition-all flex-shrink-0" />
+                </div>
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
 
