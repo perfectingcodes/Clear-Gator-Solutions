@@ -323,19 +323,52 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* Customer-type trust strip — who we work with, no logos, just confidence */}
+      <section className="relative bg-ink text-white py-6 sm:py-7 overflow-hidden border-b border-white/5">
+        <img src={logoImg} alt="" aria-hidden="true" className="absolute -right-8 top-1/2 -translate-y-1/2 h-32 w-32 object-contain opacity-[0.05] pointer-events-none hidden sm:block" />
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row gap-3 sm:gap-6 items-start sm:items-center">
+          <div className="font-mono text-[10px] sm:text-[11px] font-semibold tracking-[0.28em] uppercase text-gator-orange-light flex-shrink-0">
+            Trusted by
+          </div>
+          <div className="overflow-hidden flex-1 -mx-4 sm:mx-0 mask-fade-x">
+            <div className="flex animate-marquee whitespace-nowrap">
+              {[...Array(2)].map((_, dup) => (
+                <div key={dup} className="flex items-center" aria-hidden={dup === 1}>
+                  {[
+                    "General Contractors",
+                    "Custom Home Builders",
+                    "Property Managers",
+                    "Homeowners",
+                    "Short-Term Rental Operators",
+                    "Commercial Developers",
+                    "Realtors",
+                    "Insurance Adjusters",
+                  ].map((c, i) => (
+                    <span key={`${dup}-${i}`} className="flex items-center mx-5 sm:mx-7 text-white/70 text-sm sm:text-base font-display font-semibold tracking-tight">
+                      {c}
+                      <span className="mx-5 sm:mx-7 text-white/15">·</span>
+                    </span>
+                  ))}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section id="services" className="relative py-16 sm:py-32 px-4 sm:px-6 lg:px-8">
         <div ref={servicesReveal} className="max-w-7xl mx-auto reveal">
           <div className="grid lg:grid-cols-12 gap-8 sm:gap-12 lg:gap-20 mb-12 sm:mb-16 lg:mb-20 items-end">
             <div className="lg:col-span-5">
               <div className="flex items-center gap-3 mb-6">
                 <span className="font-mono text-[11px] font-medium tracking-[0.22em] uppercase text-gator-orange">
-                  02 — Capabilities
+                  02 / Capabilities
                 </span>
                 <SectionRule className="w-16 h-1.5 text-gator-orange/60" />
               </div>
               <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-[-0.025em] text-balance leading-[0.98]">
                 Six disciplines.<br />
-                <span className="text-muted-foreground/60">One crew.</span>
+                <span className="text-muted-foreground/60">One Gator crew.</span>
               </h2>
             </div>
             <div className="lg:col-span-6 lg:col-start-7">
@@ -385,20 +418,47 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* Editorial pull quote — owner voice */}
+      <section className="relative bg-background py-16 sm:py-28 border-y border-border/60 overflow-hidden">
+        <img src={logoImg} alt="" aria-hidden="true" className="absolute -left-12 sm:-left-20 top-1/2 -translate-y-1/2 h-48 w-48 sm:h-64 sm:w-64 object-contain opacity-[0.05] pointer-events-none select-none" />
+        <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center gap-3 mb-6 sm:mb-8">
+            <span className="font-mono text-[11px] font-medium tracking-[0.22em] uppercase text-gator-orange">
+              On the record
+            </span>
+            <span className="h-px flex-1 bg-border max-w-[120px]" />
+          </div>
+          <blockquote className="font-display text-3xl sm:text-5xl lg:text-6xl font-semibold tracking-[-0.025em] leading-[1.04] text-balance">
+            <span aria-hidden="true" className="text-gator-orange/70 mr-1">“</span>
+            In Southwest Florida, when something needs to come down, come up, or
+            <span className="text-muted-foreground/60"> get hauled away</span> —
+            <span className="text-gator-orange"> we want to be the call.</span>
+            <span aria-hidden="true" className="text-gator-orange/70 ml-1">”</span>
+          </blockquote>
+          <div className="mt-8 sm:mt-10 flex items-center gap-3">
+            <img src={logoImg} alt="" aria-hidden="true" className="h-9 w-9 object-contain" />
+            <div className="leading-none">
+              <div className="font-display text-sm font-semibold tracking-tight">Clear Gator Crew</div>
+              <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground mt-1">Cape Coral · Naples · Fort Myers</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section id="how-it-works" className="relative py-16 sm:py-32 bg-muted/30 dark:bg-muted/10">
         <div ref={howReveal} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
           <div className="grid lg:grid-cols-12 gap-12 lg:gap-20 mb-16 items-end">
             <div className="lg:col-span-5">
               <div className="flex items-center gap-3 mb-6">
                 <span className="font-mono text-[11px] font-medium tracking-[0.22em] uppercase text-gator-orange">
-                  03 — Process
+                  03 / The Gator Way
                 </span>
                 <SectionRule className="w-16 h-1.5 text-gator-orange/60" />
               </div>
               <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-[-0.025em] text-balance leading-[0.98]">
-                A simple,<br />
-                <span className="text-muted-foreground/60">transparent</span><br />
-                handoff.
+                Four steps.<br />
+                <span className="text-muted-foreground/60">No back-and-forth.</span><br />
+                No surprises.
               </h2>
             </div>
             <div className="lg:col-span-6 lg:col-start-7">
@@ -432,6 +492,86 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* ── The Gator Promise ── */}
+      <section className="relative py-16 sm:py-32 bg-background overflow-hidden">
+        <img src={logoImg} alt="" aria-hidden="true" className="absolute -right-16 -bottom-20 w-[420px] h-[420px] object-contain opacity-[0.04] pointer-events-none select-none hidden md:block" />
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-12 gap-8 sm:gap-12 lg:gap-20 mb-12 sm:mb-16 items-end">
+            <div className="lg:col-span-5">
+              <div className="flex items-center gap-3 mb-5 sm:mb-6">
+                <span className="font-mono text-[11px] font-medium tracking-[0.22em] uppercase text-gator-orange">
+                  04 / The Gator Promise
+                </span>
+                <SectionRule className="w-16 h-1.5 text-gator-orange/60" />
+              </div>
+              <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-[-0.025em] text-balance leading-[0.98]">
+                Four things<br />
+                <span className="text-muted-foreground/60">we stake the name on.</span>
+              </h2>
+            </div>
+            <div className="lg:col-span-6 lg:col-start-7">
+              <p className="text-base sm:text-lg text-muted-foreground leading-[1.65] text-balance max-w-lg">
+                The bar's named after us. We don't lower it.
+              </p>
+            </div>
+          </div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-border/60 ring-1 ring-border/60 rounded-lg overflow-hidden">
+            {[
+              {
+                num: "I.",
+                title: "We Show Up",
+                body: "We arrive when we said we would. If we can't, you hear from us before the appointment window, not after.",
+              },
+              {
+                num: "II.",
+                title: "We Quote Honest",
+                body: "Written estimate, scope spelled out, dump fees included. If something turns out bigger than the walk-through showed, you hear from us before we go past the quote.",
+              },
+              {
+                num: "III.",
+                title: "We Clean As We Go",
+                body: "We don't trade speed for damage. Floor protection, daily clean-up, debris loaded same-day where access allows.",
+              },
+              {
+                num: "IV.",
+                title: "We Stand By It",
+                body: "If something we did isn't right, we come back and make it right. You're not chasing us for a callback.",
+              },
+            ].map((p) => (
+              <div key={p.num} className="bg-card p-6 sm:p-7 flex flex-col gap-4">
+                <div className="flex items-center justify-between">
+                  <span className="font-display text-2xl font-semibold text-gator-orange tracking-tight">
+                    {p.num}
+                  </span>
+                  <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground/60">Promise</span>
+                </div>
+                <div className="h-px bg-border/80" />
+                <div>
+                  <h3 className="font-display text-lg font-bold mb-2 tracking-tight">{p.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-[1.65]">{p.body}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-10 sm:mt-12 flex flex-wrap items-center justify-between gap-4 pt-6 border-t border-border/60">
+            <div className="flex items-center gap-3">
+              <img src={logoImg} alt="" aria-hidden="true" className="h-7 w-7 object-contain" />
+              <span className="font-mono text-[11px] uppercase tracking-[0.32em] text-gator-orange font-semibold">
+                Let's Gator Done.
+              </span>
+            </div>
+            <Link href="/estimate">
+              <span className="inline-flex items-center gap-2 text-sm font-semibold text-foreground border-b border-foreground/30 hover:border-gator-orange hover:text-gator-orange pb-0.5 transition-colors cursor-pointer">
+                Put us to work
+                <ArrowRight className="w-3.5 h-3.5" strokeWidth={2.4} />
+              </span>
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* ── Service Areas ── */}
       <section id="service-areas" className="relative py-16 sm:py-32 border-y border-border/60">
         <div ref={areasReveal} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
@@ -439,7 +579,7 @@ export default function LandingPage() {
             <div className="lg:col-span-5">
               <div className="flex items-center gap-3 mb-5 sm:mb-6">
                 <span className="font-mono text-[11px] font-medium tracking-[0.22em] uppercase text-gator-orange">
-                  04 — Coverage
+                  05 / Gator Country
                 </span>
                 <SectionRule className="w-16 h-1.5 text-gator-orange/60" />
               </div>
@@ -494,7 +634,7 @@ export default function LandingPage() {
             <div className="lg:col-span-5">
               <div className="flex items-center gap-3 mb-6">
                 <span className="font-mono text-[11px] font-medium tracking-[0.22em] uppercase text-gator-orange">
-                  05 — Trade Partners
+                  06 / Trade Partners
                 </span>
                 <SectionRule className="w-16 h-1.5 text-gator-orange/60" />
               </div>
@@ -555,6 +695,28 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* ── Conversion trust strip — concrete numbers right above the close ── */}
+      <section className="relative py-10 sm:py-12 bg-background border-y border-border/60">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-border/60 ring-1 ring-border/60 rounded-lg overflow-hidden">
+            {[
+              { kpi: "24 hrs", label: "Average quote turnaround" },
+              { kpi: "Same week", label: "Common project start" },
+              { kpi: "8 cities", label: "Southwest Florida coverage" },
+              { kpi: "Insured", label: "COI sent on request" },
+            ].map(({ kpi, label }) => (
+              <div key={label} className="bg-card p-5 sm:p-6 flex items-center gap-4 sm:gap-5">
+                <CheckCircle2 className="w-5 h-5 sm:w-6 sm:h-6 text-gator-orange flex-shrink-0" strokeWidth={2.2} />
+                <div className="leading-tight">
+                  <div className="font-display text-base sm:text-lg font-bold tracking-tight">{kpi}</div>
+                  <div className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground mt-1">{label}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ── Final CTA ── */}
       <section className="relative py-20 sm:py-40 bg-ink overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/30 pointer-events-none" aria-hidden="true" />
@@ -583,10 +745,13 @@ export default function LandingPage() {
           </div>
           <h2 className="font-display text-5xl sm:text-6xl lg:text-7xl font-semibold text-white tracking-[-0.035em] leading-[0.96] mb-8 text-balance">
             Bring us the site.<br />
-            <span className="text-white/40">We'll bring the crew.</span>
+            <span className="text-white/40">We'll bring</span><br className="sm:hidden" />
+            <span className="text-white/40"> the Gator crew.</span>
           </h2>
           <p className="text-white/75 mb-10 sm:mb-12 text-base sm:text-lg leading-[1.65] max-w-xl mx-auto text-balance">
-            Free estimates, returned within 24 hours. No commitment. No hidden line items.
+            Free estimates returned within 24 hours. No commitment. No hidden line items.
+            <br className="hidden sm:block" />
+            <span className="text-white/55"> Just the work, done right.</span>
           </p>
           <div className="flex flex-wrap justify-center items-center gap-3">
             <Link href="/estimate">
@@ -631,7 +796,7 @@ export default function LandingPage() {
               </p>
               <div className="flex items-center gap-2 mb-7 font-mono text-[10px] font-medium tracking-[0.22em] uppercase text-white/35">
                 <span className="w-6 h-px bg-white/25" aria-hidden="true" />
-                <span>Locally Owned · Licensed &amp; Insured</span>
+                <span>Est. SW FL · Locally Owned · Licensed &amp; Insured</span>
               </div>
               <div className="flex gap-2">
                 {[
