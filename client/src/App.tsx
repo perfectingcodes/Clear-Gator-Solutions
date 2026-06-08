@@ -15,9 +15,11 @@ import ServiceAreaPage from "@/pages/service-area";
 import BookingNotifications from "@/components/booking-notifications";
 import SupportBot from "@/components/support-bot";
 import { usePageviewTracking } from "@/hooks/use-analytics";
+import { useScrollRestore } from "@/hooks/use-scroll-restore";
 
 function Router() {
   usePageviewTracking();
+  useScrollRestore();
   return (
     <Switch>
       <Route path="/" component={LandingPage} />
