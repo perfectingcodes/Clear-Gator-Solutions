@@ -94,12 +94,15 @@ export default function ServicePage() {
               <span className="font-mono text-[10px] tracking-[0.22em] uppercase text-white/70">Service</span>
             </div>
 
-            <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-semibold leading-[1.02] tracking-[-0.03em] mb-5 text-balance">
-              {service.name}.<br />
-              <span className="text-white/45">{service.lede}</span>
+            <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-semibold leading-[1.02] tracking-[-0.03em] mb-4 text-balance">
+              {service.name}.
             </h1>
 
-            <div className="space-y-5 text-base sm:text-lg text-white/75 leading-[1.65] mb-8 max-w-2xl">
+            <p className="text-lg sm:text-xl text-white/85 font-medium mb-6 leading-[1.45] max-w-xl text-balance">
+              {service.lede}
+            </p>
+
+            <div className="space-y-4 text-sm sm:text-base text-white/65 leading-[1.65] mb-8 max-w-2xl">
               {service.intro.map((p, i) => <p key={i}>{p}</p>)}
             </div>
 
@@ -199,13 +202,11 @@ export default function ServicePage() {
                 <div className="font-mono text-[10px] sm:text-[11px] tracking-[0.22em] uppercase text-gator-orange-light mb-3 sm:mb-4">
                   On the job
                 </div>
-                <h3 className="font-display text-2xl sm:text-4xl lg:text-5xl font-semibold text-white tracking-[-0.025em] leading-[1.05] mb-4 sm:mb-6 text-balance">
-                  {service.name}<br className="hidden sm:block" />
-                  <span className="text-white/45"> done the Gator way</span> —<br className="hidden sm:block" />
-                  every job, every time.
+                <h3 className="font-display text-2xl sm:text-3xl lg:text-4xl font-semibold text-white tracking-[-0.025em] leading-[1.1] mb-3 sm:mb-4 text-balance">
+                  {service.name} <span className="text-white/45">done the Gator way.</span>
                 </h3>
-                <p className="text-white/65 text-base sm:text-lg leading-[1.65] max-w-xl">
-                  Same crew. Same standards. Same write-it-down honesty — from the
+                <p className="text-white/65 text-sm sm:text-base leading-[1.65] max-w-xl">
+                  Same crew, same standards, same write-it-down honesty — from the
                   first walk-through to the final sweep.
                 </p>
               </div>

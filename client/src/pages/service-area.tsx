@@ -78,11 +78,15 @@ export default function ServiceAreaPage() {
               <span className="font-mono text-[11px] tracking-[0.22em] uppercase text-white/55">{city.county}</span>
             </div>
 
-            <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-semibold leading-[1.02] tracking-[-0.03em] mb-5 text-balance">
-              {city.name}, {city.state}.<br /><span className="text-white/45">{city.lede}</span>
+            <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-semibold leading-[1.02] tracking-[-0.03em] mb-4 text-balance">
+              {city.name}, {city.state}.
             </h1>
 
-            <div className="space-y-5 text-base sm:text-lg text-white/75 leading-[1.65] mb-8 max-w-2xl">
+            <p className="text-lg sm:text-xl text-white/85 font-medium mb-6 leading-[1.45] max-w-xl text-balance">
+              {city.lede}
+            </p>
+
+            <div className="space-y-4 text-sm sm:text-base text-white/65 leading-[1.65] mb-8 max-w-2xl">
               {city.intro.map((p, i) => <p key={i}>{p}</p>)}
             </div>
 
@@ -167,11 +171,10 @@ export default function ServiceAreaPage() {
                 <div className="font-mono text-[10px] sm:text-[11px] tracking-[0.22em] uppercase text-gator-orange-light mb-3 sm:mb-4">
                   {city.county}
                 </div>
-                <h3 className="font-display text-2xl sm:text-4xl lg:text-5xl font-semibold text-white tracking-[-0.025em] leading-[1.05] mb-4 sm:mb-6 text-balance">
-                  Working in {city.name}.<br className="hidden sm:block" />
-                  <span className="text-white/45">Same crew every week.</span>
+                <h3 className="font-display text-2xl sm:text-3xl lg:text-4xl font-semibold text-white tracking-[-0.025em] leading-[1.1] mb-3 sm:mb-4 text-balance">
+                  Working in {city.name}. <span className="text-white/45">Same crew every week.</span>
                 </h3>
-                <p className="text-white/65 text-base sm:text-lg leading-[1.65] max-w-xl">
+                <p className="text-white/65 text-sm sm:text-base leading-[1.65] max-w-xl">
                   {city.lede}
                 </p>
               </div>
