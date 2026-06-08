@@ -22,52 +22,62 @@ cat > "$SVG" <<SVG
       <stop offset="100%" stop-color="#0d0f12"/>
     </linearGradient>
     <radialGradient id="warm" cx="0.85" cy="0.05" r="0.7">
-      <stop offset="0%" stop-color="#f97316" stop-opacity="0.10"/>
+      <stop offset="0%" stop-color="#f97316" stop-opacity="0.12"/>
       <stop offset="60%" stop-color="#f97316" stop-opacity="0"/>
     </radialGradient>
+    <linearGradient id="cgBg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ff9b3d"/>
+      <stop offset="100%" stop-color="#f97316"/>
+    </linearGradient>
   </defs>
 
+  <!-- Base layers -->
   <rect width="1200" height="630" fill="url(#bg)"/>
   <rect width="1200" height="630" fill="url(#warm)"/>
 
-  <!-- thin orange rule on the left -->
-  <rect x="0" y="0" width="3" height="630" fill="#f97316"/>
+  <!-- Thin orange accent rule on the left edge -->
+  <rect x="0" y="0" width="4" height="630" fill="#f97316"/>
 
-  <!-- brand logo -->
-  <image href="data:image/png;base64,${LOGO_B64}" x="80" y="180" width="270" height="270" preserveAspectRatio="xMidYMid meet"/>
+  <!-- Top + bottom hairline rules -->
+  <line x1="80" y1="80" x2="1120" y2="80" stroke="#ffffff" stroke-opacity="0.1" stroke-width="1"/>
+  <line x1="80" y1="550" x2="1120" y2="550" stroke="#ffffff" stroke-opacity="0.1" stroke-width="1"/>
 
-  <g font-family="Geist, Inter, -apple-system, 'Helvetica Neue', Arial, sans-serif">
-    <!-- editorial number eyebrow -->
-    <text x="420" y="188" font-size="14" font-weight="500" fill="#ff9b3d" letter-spacing="3" font-family="'Geist Mono', monospace">01 / CLEAR GATOR</text>
-    <line x1="585" y1="183" x2="640" y2="183" stroke="#ffffff" stroke-opacity="0.25" stroke-width="1"/>
-    <text x="654" y="188" font-size="14" font-weight="500" fill="#ffffff" opacity="0.45" letter-spacing="3" font-family="'Geist Mono', monospace">SOUTHWEST FLORIDA</text>
-
-    <!-- headline -->
-    <text x="420" y="262" font-size="64" font-weight="600" fill="#ffffff" letter-spacing="-2.5">We clear the way.</text>
-    <text x="420" y="322" font-size="64" font-weight="600" fill="#ffffff" opacity="0.4" letter-spacing="-2.5">You build what's next.</text>
-
-    <!-- supporting copy -->
-    <text x="420" y="386" font-size="22" font-weight="400" fill="#ffffff" opacity="0.65">Interior &amp; Outdoor Demolition · Hauling</text>
-    <text x="420" y="416" font-size="22" font-weight="400" fill="#ffffff" opacity="0.65">Site Cleanup · Lot Clearing · Maintenance</text>
-
-    <!-- footer rule + signoff -->
-    <line x1="420" y1="478" x2="1080" y2="478" stroke="#ffffff" stroke-opacity="0.12" stroke-width="1"/>
-
-    <text x="420" y="528" font-size="32" font-weight="600" fill="#ffffff" letter-spacing="-0.8">(239) 234-3061</text>
-    <text x="420" y="562" font-size="13" font-weight="500" fill="#ffffff" opacity="0.45" letter-spacing="3" font-family="'Geist Mono', monospace">CAPE CORAL · NAPLES · LICENSED &amp; INSURED</text>
-
-    <text x="1080" y="528" font-size="13" font-weight="500" fill="#ff9b3d" letter-spacing="3" text-anchor="end" font-family="'Geist Mono', monospace">LET'S GATOR DONE.</text>
+  <!-- Top eyebrow row -->
+  <g font-family="'Geist Mono', ui-monospace, monospace">
+    <text x="80" y="60" font-size="14" font-weight="500" fill="#ff9b3d" letter-spacing="3">CLEAR GATOR</text>
+    <line x1="220" y1="55" x2="280" y2="55" stroke="#ffffff" stroke-opacity="0.25" stroke-width="1"/>
+    <text x="294" y="60" font-size="14" font-weight="500" fill="#ffffff" opacity="0.5" letter-spacing="3">CONSTRUCTION SERVICES</text>
+    <text x="1120" y="60" font-size="14" font-weight="500" fill="#ffffff" opacity="0.45" letter-spacing="3" text-anchor="end">SOUTHWEST FLORIDA</text>
   </g>
 
-  <!-- GatorMark sigil bottom-right -->
-  <g transform="translate(940, 580) scale(1.2)" stroke="#ff9b3d" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.5">
-    <path d="M2,17 L14,17"/>
-    <path d="M2,17 Q4,12 12,12 L18,12 Q22,8 30,8 L52,8 Q60,8 64,11 Q70,15 78,15 Q88,15 96,12 Q104,9 116,5"/>
-    <path d="M2,17 Q4,21 12,21 L20,21 L80,21 Q90,21 98,19 Q108,16 116,6"/>
-    <circle cx="22" cy="11" r="1" fill="#ff9b3d" stroke="none"/>
-    <circle cx="6" cy="14.5" r="0.6" fill="#ff9b3d" stroke="none"/>
-    <path d="M30,21 L30,27 M27,27 L33,27"/>
-    <path d="M64,21 L64,27 M61,27 L67,27"/>
+  <!-- CG monogram tile, top-right -->
+  <g transform="translate(1040, 100)">
+    <rect x="0" y="0" width="56" height="56" rx="12" fill="url(#cgBg)"/>
+    <text x="28" y="40" font-family="Geist, Inter, sans-serif" font-size="28" font-weight="700" fill="#ffffff" letter-spacing="-1.4" text-anchor="middle">CG</text>
+  </g>
+
+  <!-- Brand emblem (left half, anchored center) -->
+  <image href="data:image/png;base64,${LOGO_B64}" x="80" y="200" width="280" height="280" preserveAspectRatio="xMidYMid meet"/>
+
+  <!-- Headline + supporting copy -->
+  <g font-family="Geist, Inter, -apple-system, 'Helvetica Neue', Arial, sans-serif">
+    <text x="420" y="240" font-size="66" font-weight="600" fill="#ffffff" letter-spacing="-2.8">We clear the way.</text>
+    <text x="420" y="306" font-size="66" font-weight="600" fill="#ffffff" opacity="0.4" letter-spacing="-2.8">You build what's next.</text>
+
+    <text x="420" y="375" font-size="20" font-weight="400" fill="#ffffff" opacity="0.7">Interior &amp; Outdoor Demolition · Hauling · Site Cleanup</text>
+    <text x="420" y="405" font-size="20" font-weight="400" fill="#ffffff" opacity="0.7">Lot Clearing · Property Maintenance</text>
+
+    <!-- Hairline divider before contact -->
+    <line x1="420" y1="450" x2="1120" y2="450" stroke="#ffffff" stroke-opacity="0.12" stroke-width="1"/>
+
+    <text x="420" y="500" font-size="34" font-weight="600" fill="#ffffff" letter-spacing="-1">(239) 234-3061</text>
+    <text x="420" y="528" font-size="13" font-weight="500" fill="#ffffff" opacity="0.45" letter-spacing="3" font-family="'Geist Mono', monospace">CAPE CORAL · NAPLES · LICENSED &amp; INSURED</text>
+  </g>
+
+  <!-- Bottom signature row -->
+  <g font-family="'Geist Mono', ui-monospace, monospace">
+    <text x="80" y="595" font-size="12" font-weight="500" fill="#ffffff" opacity="0.4" letter-spacing="3">EST. SW FL · LOCALLY OWNED</text>
+    <text x="1120" y="595" font-size="13" font-weight="600" fill="#ff9b3d" letter-spacing="4" text-anchor="end">LET'S GATOR DONE.</text>
   </g>
 </svg>
 SVG

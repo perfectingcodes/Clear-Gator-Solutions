@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="cg-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ff9b3d"/>
+      <stop offset="100%" stop-color="#f97316"/>
+    </linearGradient>
+    <linearGradient id="cg-shine" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <!-- rounded-square brand tile -->
+  <rect width="64" height="64" rx="14" fill="url(#cg-bg)"/>
+  <rect width="64" height="64" rx="14" fill="url(#cg-shine)"/>
+  <!-- thin inner border for crispness at small sizes -->
+  <rect x="0.5" y="0.5" width="63" height="63" rx="13.5" fill="none" stroke="#000000" stroke-opacity="0.08"/>
+  <!-- CG monogram, weighted for legibility at 16px -->
+  <text x="32" y="44.5"
+        text-anchor="middle"
+        font-family="Geist, Inter, -apple-system, 'Segoe UI', sans-serif"
+        font-size="34"
+        font-weight="700"
+        letter-spacing="-1.8"
+        fill="#ffffff">CG</text>
+</svg>
