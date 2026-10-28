@@ -80,20 +80,57 @@ export default {
           busy: "rgb(239 68 68)",
           offline: "rgb(156 163 175)",
         },
+        /* ─────────────────────────────────────────────────────────
+           Clear Gator — brand palette v2
+             Hi-Vis Lime  #C6F432  (primary accent, was "orange")
+             Gulf Teal    #367588  (secondary, was "green")
+             Deep Gulf    #1C4A57  (dark teal)
+             Shell Rock   #EFE9DC  (warm bone / soft surface)
+             Asphalt      #121412  (near-black for text + CTA fill)
+
+           NOTE: we repoint the existing `gator-orange*` and `gator-green*`
+           tokens to the new palette instead of renaming them, so every
+           existing className in the codebase inherits the new brand
+           without touching every file. The semantic names in prose are
+           lime/teal — the token names stayed for backwards compatibility.
+           ───────────────────────────────────────────────────────── */
         gator: {
-          green: "hsl(150 65% 28% / <alpha-value>)",
-          "green-dark": "hsl(150 65% 18% / <alpha-value>)",
-          "green-light": "hsl(150 55% 42% / <alpha-value>)",
-          slate: "hsl(215 16% 22% / <alpha-value>)",
+          /* Gulf Teal family — was green */
+          green:         "hsl(194 42% 37% / <alpha-value>)",  /* Gulf Teal   #367588 */
+          "green-dark":  "hsl(194 52% 23% / <alpha-value>)",  /* Deep Gulf   #1C4A57 */
+          "green-light": "hsl(194 40% 48% / <alpha-value>)",  /* Lifted teal #4A95AB */
+          slate:         "hsl(215 16% 22% / <alpha-value>)",
           "slate-light": "hsl(215 12% 44% / <alpha-value>)",
-          orange: "hsl(25 95% 50% / <alpha-value>)",
-          "orange-dark": "hsl(25 90% 40% / <alpha-value>)",
-          "orange-light": "hsl(30 100% 62% / <alpha-value>)",
+          /* Hi-Vis Lime family — was orange */
+          orange:        "hsl(75 90% 58% / <alpha-value>)",   /* Hi-Vis Lime #C6F432 */
+          "orange-dark": "hsl(75 100% 42% / <alpha-value>)",  /* Pressed    #9FD400 */
+          "orange-light":"hsl(75 95% 68% / <alpha-value>)",   /* Soft       #D5F85F */
+        },
+        /* Explicit palette aliases — use these in new code */
+        lime: {
+          DEFAULT: "hsl(75 90% 58% / <alpha-value>)",  /* #C6F432 */
+          dark:    "hsl(75 100% 42% / <alpha-value>)",
+          light:   "hsl(75 95% 68% / <alpha-value>)",
+        },
+        teal: {
+          DEFAULT: "hsl(194 42% 37% / <alpha-value>)", /* Gulf Teal */
+          deep:    "hsl(194 52% 23% / <alpha-value>)", /* Deep Gulf */
+          light:   "hsl(194 40% 48% / <alpha-value>)",
+        },
+        shell: {
+          DEFAULT: "hsl(42 36% 90% / <alpha-value>)",  /* Shell Rock #EFE9DC */
+          warm:    "hsl(36 40% 85% / <alpha-value>)",
+        },
+        asphalt: {
+          DEFAULT: "hsl(120 7% 7% / <alpha-value>)",   /* #121412 */
+          50:      "hsl(120 6% 11% / <alpha-value>)",
+          100:     "hsl(120 5% 17% / <alpha-value>)",
         },
         ink: {
-          DEFAULT: "hsl(220 14% 7% / <alpha-value>)",
-          50: "hsl(220 10% 12% / <alpha-value>)",
-          100: "hsl(220 10% 18% / <alpha-value>)",
+          /* Repointed to the new Asphalt for continuity */
+          DEFAULT: "hsl(120 7% 7% / <alpha-value>)",
+          50:      "hsl(120 6% 11% / <alpha-value>)",
+          100:     "hsl(120 5% 17% / <alpha-value>)",
         },
       },
       fontFamily: {

@@ -298,7 +298,7 @@ export default function HeroQuoteForm() {
                 type="submit"
                 disabled={submit.isPending}
                 data-testid="hero-form-submit"
-                className="flex-1 h-12 sm:h-11 rounded-md bg-gator-orange hover:bg-gator-orange-dark text-white font-semibold text-sm flex items-center justify-center gap-2 transition-colors focus-ring disabled:opacity-70"
+                className="flex-1 h-12 sm:h-11 rounded-md bg-gator-orange hover:bg-gator-orange-dark text-asphalt font-semibold text-sm flex items-center justify-center gap-2 transition-colors focus-ring disabled:opacity-70"
               >
                 {submit.isPending ? (
                   <>

@@ -170,7 +170,7 @@ export default function TermsPage() {
             <Button variant="outline">Privacy Policy</Button>
           </Link>
           <Link href="/estimate">
-            <Button className="bg-gator-orange hover:bg-gator-orange-dark text-white">
+            <Button className="bg-gator-orange hover:bg-gator-orange-dark text-asphalt">
               Get a Free Estimate
             </Button>
           </Link>

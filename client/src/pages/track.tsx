@@ -70,7 +70,7 @@ function StatusRail({ status }: { status: string }) {
                 ${done
                   ? "bg-primary border-primary text-primary-foreground"
                   : active
-                  ? "bg-gator-orange border-gator-orange text-white shadow-md shadow-gator-orange/30"
+                  ? "bg-gator-orange border-gator-orange text-asphalt shadow-md shadow-gator-orange/30"
                   : "bg-muted border-border text-muted-foreground"
                 }`}>
                 {done ? <CheckCircle2 className="w-4 h-4" /> : <span className="text-xs font-bold">{i + 1}</span>}

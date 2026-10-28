@@ -347,9 +347,9 @@ function MobileMenu({ onClose }: { onClose: () => void }) {
           {/* Quick CTAs */}
           <div className="grid grid-cols-2 gap-3 p-5">
             <Link href="/estimate" onClick={onClose}>
-              <div className="group rounded-lg bg-gator-orange text-white p-4 active:bg-gator-orange-dark transition-colors h-full flex flex-col justify-between min-h-[100px] shadow-lg shadow-gator-orange/25">
+              <div className="group rounded-lg bg-gator-orange text-asphalt p-4 active:bg-gator-orange-dark transition-colors h-full flex flex-col justify-between min-h-[100px] shadow-lg shadow-gator-orange/25">
                 <div>
-                  <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-white/85 mb-1.5">Get</div>
+                  <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-asphalt/75 mb-1.5">Get</div>
                   <div className="font-display text-lg font-bold tracking-tight leading-tight">Free Estimate</div>
                 </div>
                 <ArrowRight className="w-4 h-4 self-end" strokeWidth={2.4} />

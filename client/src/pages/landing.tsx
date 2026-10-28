@@ -697,7 +697,7 @@ export default function LandingPage() {
             <Link href="/estimate">
               <Button
                 size="lg"
-                className="bg-gator-orange hover:bg-gator-orange-dark text-white font-semibold gap-2 text-base px-8 h-12 rounded-md shadow-lg shadow-gator-orange/30"
+                className="bg-gator-orange hover:bg-gator-orange-dark text-asphalt font-semibold gap-2 text-base px-8 h-12 rounded-md shadow-lg shadow-gator-orange/30"
                 data-testid="footer-cta-estimate"
               >
                 Request an Estimate
@@ -843,7 +843,7 @@ export default function LandingPage() {
         href="tel:+12392343061"
         data-testid="mobile-call-now-bar"
         aria-label="Call Clear Gator at 239-234-3061"
-        className="sm:hidden fixed bottom-0 left-0 right-0 z-50 bg-gator-orange text-white flex items-center gap-3.5 active:bg-gator-orange-dark transition-colors border-t border-gator-orange-dark/40"
+        className="sm:hidden fixed bottom-0 left-0 right-0 z-50 bg-gator-orange text-asphalt flex items-center gap-3.5 active:bg-gator-orange-dark transition-colors border-t border-gator-orange-dark/40"
         style={{
           paddingTop: "14px",
           paddingBottom: "calc(env(safe-area-inset-bottom, 0px) + 14px)",
@@ -851,18 +851,18 @@ export default function LandingPage() {
           paddingRight: "18px",
         }}
       >
-        <span className="flex items-center justify-center w-11 h-11 rounded-full bg-white/15 flex-shrink-0">
+        <span className="flex items-center justify-center w-11 h-11 rounded-full bg-asphalt/15 flex-shrink-0">
           <PhoneCall className="w-5 h-5" strokeWidth={2.4} />
         </span>
         <span className="flex flex-col leading-tight flex-1 min-w-0 text-left">
-          <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-white/90">
+          <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-asphalt/85">
             Tap to Call · 24h Reply
           </span>
           <span className="font-display text-lg font-semibold tracking-[-0.01em]">
             (239) 234-3061
           </span>
         </span>
-        <ArrowRight className="w-5 h-5 text-white/85 flex-shrink-0" strokeWidth={2.4} />
+        <ArrowRight className="w-5 h-5 text-asphalt/85 flex-shrink-0" strokeWidth={2.4} />
       </a>
     </div>
   );

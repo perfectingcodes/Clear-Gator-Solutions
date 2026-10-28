@@ -65,7 +65,7 @@ function StepIndicator({ currentStep }: { currentStep: number }) {
                   ${done
                     ? "bg-primary border-primary text-primary-foreground"
                     : active
-                    ? "bg-gator-orange border-gator-orange text-white shadow-lg shadow-gator-orange/25"
+                    ? "bg-gator-orange border-gator-orange text-asphalt shadow-lg shadow-gator-orange/25"
                     : "bg-background border-border text-muted-foreground"
                   }`}>
                   {done ? <CheckCircle2 className="w-4 h-4" /> : <span>{i + 1}</span>}
@@ -503,7 +503,7 @@ export default function EstimatePage() {
                     onClick={handleSubmit}
                     disabled={submitMutation.isPending}
                     data-testid="button-submit-estimate"
-                    className="bg-gator-orange hover:bg-gator-orange-dark text-white font-bold gap-2 shadow-lg shadow-gator-orange/25 px-8"
+                    className="bg-gator-orange hover:bg-gator-orange-dark text-asphalt font-bold gap-2 shadow-lg shadow-gator-orange/25 px-8"
                   >
                     {submitMutation.isPending ? "Submitting..." : "Submit Estimate Request"}
                     {!submitMutation.isPending && <CheckCircle2 className="w-4 h-4" />}

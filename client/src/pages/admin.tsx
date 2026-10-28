@@ -1098,7 +1098,7 @@ function CrewSection({ crew, loading, onChanged }: { crew: CrewMember[]; loading
                   <span className={`text-[10px] font-semibold px-2 py-1 rounded-md border ${CREW_STATUS_COLORS[c.status] || ""}`}>{c.status}</span>
                 </div>
                 <a href={`tel:${c.phone}`} className="group flex items-center gap-3 p-3 rounded-md bg-muted/40 border border-border/60 hover:border-gator-orange hover:bg-gator-orange/5 transition-colors mb-2">
-                  <div className="w-9 h-9 rounded-md bg-gator-orange text-white flex items-center justify-center flex-shrink-0">
+                  <div className="w-9 h-9 rounded-md bg-gator-orange text-asphalt flex items-center justify-center flex-shrink-0">
                     <Phone className="w-4 h-4" strokeWidth={2.2} />
                   </div>
                   <div className="leading-tight">

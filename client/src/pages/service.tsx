@@ -108,7 +108,7 @@ export default function ServicePage() {
 
             <div className="flex flex-wrap items-center gap-4 mb-10">
               <Link href="/estimate">
-                <Button size="lg" className="bg-gator-orange hover:bg-gator-orange-dark text-white font-semibold gap-2 px-7 h-12 rounded-md shadow-lg shadow-gator-orange/30">
+                <Button size="lg" className="bg-gator-orange hover:bg-gator-orange-dark text-asphalt font-semibold gap-2 px-7 h-12 rounded-md shadow-lg shadow-gator-orange/30">
                   Request a Quote <ArrowRight className="w-4 h-4" />
                 </Button>
               </Link>
@@ -392,7 +392,7 @@ export default function ServicePage() {
           </p>
           <div className="flex flex-wrap justify-center gap-3">
             <Link href="/estimate">
-              <Button size="lg" className="bg-gator-orange hover:bg-gator-orange-dark text-white font-semibold gap-2 px-8 h-12 rounded-md shadow-lg shadow-gator-orange/30">
+              <Button size="lg" className="bg-gator-orange hover:bg-gator-orange-dark text-asphalt font-semibold gap-2 px-8 h-12 rounded-md shadow-lg shadow-gator-orange/30">
                 Get Your Free Estimate <ArrowRight className="w-4 h-4" />
               </Button>
             </Link>
@@ -428,7 +428,7 @@ export default function ServicePage() {
       {/* Mobile sticky call bar */}
       <a
         href="tel:+12392343061"
-        className="sm:hidden fixed bottom-0 left-0 right-0 z-50 bg-gator-orange text-white flex items-center gap-3.5 active:bg-gator-orange-dark transition-colors border-t border-gator-orange-dark/40"
+        className="sm:hidden fixed bottom-0 left-0 right-0 z-50 bg-gator-orange text-asphalt flex items-center gap-3.5 active:bg-gator-orange-dark transition-colors border-t border-gator-orange-dark/40"
         style={{
           paddingTop: "14px",
           paddingBottom: "calc(env(safe-area-inset-bottom, 0px) + 14px)",

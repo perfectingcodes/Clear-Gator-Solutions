@@ -143,7 +143,7 @@ export default function PrivacyPage() {
             <Button variant="outline">Terms &amp; Conditions</Button>
           </Link>
           <Link href="/estimate">
-            <Button className="bg-gator-orange hover:bg-gator-orange-dark text-white">
+            <Button className="bg-gator-orange hover:bg-gator-orange-dark text-asphalt">
               Get a Free Estimate
             </Button>
           </Link>
