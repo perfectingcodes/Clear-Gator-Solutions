@@ -1,15 +1,14 @@
 import { Link, useRoute } from "wouter";
-import { Button } from "@/components/ui/button";
 import {
-  ArrowRight, ArrowLeft, PhoneCall, CheckCircle2,
+  ArrowRight, PhoneCall, CheckCircle2,
   Hammer, Construction, Truck, HardHat, Leaf, Droplets,
-  ShieldCheck, Clock, MapPin, ChevronRight,
+  ShieldCheck, Clock, MapPin, ChevronRight, Facebook, Instagram, Twitter,
 } from "lucide-react";
 import { usePageMeta } from "@/hooks/use-page-meta";
 import { useReveal } from "@/hooks/use-reveal";
 import { getService, SERVICES } from "@/data/services";
 import { CITIES } from "@/data/cities";
-import { SERVICE_IMAGES } from "@/data/page-images";
+import { SERVICE_IMAGES, FALLBACK_HERO } from "@/data/page-images";
 import LeadFormCompact from "@/components/lead-form-compact";
 import MainNav from "@/components/main-nav";
 import JsonLd, { breadcrumbLd, faqLd, localBusinessLd, serviceLd, BASE_URL } from "@/components/json-ld";
@@ -36,14 +35,11 @@ export default function ServicePage() {
 
   if (!service) return <NotFound />;
   const Icon = ICONS[service.icon];
-  const accentText = service.accent === "orange" ? "text-gator-orange" : "text-primary";
-  const accentBg = service.accent === "orange" ? "bg-gator-orange" : "bg-primary";
-  const images = SERVICE_IMAGES[service.slug];
-  // Cross-link: pick 3 other services to surface at the bottom
+  const hero = SERVICE_IMAGES[service.slug]?.hero ?? FALLBACK_HERO;
   const otherServices = SERVICES.filter((s) => s.slug !== service.slug).slice(0, 3);
 
   return (
-    <div className="min-h-screen bg-background text-foreground pb-[calc(72px+env(safe-area-inset-bottom,0px))] sm:pb-0">
+    <div className="min-h-screen bg-shell text-asphalt pb-[calc(72px+env(safe-area-inset-bottom,0px))] sm:pb-0">
       <JsonLd id="biz" data={localBusinessLd()} />
       <JsonLd id="svc" data={serviceLd({ name: service.name, description: service.description, slug: service.slug })} />
       <JsonLd id="faq" data={faqLd(service.faq)} />
@@ -56,78 +52,66 @@ export default function ServicePage() {
       <MainNav />
 
       {/* Breadcrumbs */}
-      <div className="border-b border-border/60 bg-muted/30">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 text-xs font-mono text-muted-foreground flex items-center gap-2">
-          <Link href="/" className="hover:text-foreground">Home</Link>
+      <div className="bg-asphalt text-shell/60 border-b border-asphalt/80">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 text-xs font-mono uppercase tracking-[0.18em] flex items-center gap-2">
+          <Link href="/" className="hover:text-gator-orange transition-colors">Home</Link>
           <ChevronRight className="w-3 h-3 opacity-60" />
-          <Link href="/#services" className="hover:text-foreground">Services</Link>
+          <Link href="/#services" className="hover:text-gator-orange transition-colors">Services</Link>
           <ChevronRight className="w-3 h-3 opacity-60" />
-          <span className="text-foreground">{service.name}</span>
+          <span className="text-shell">{service.name}</span>
         </div>
       </div>
 
-      {/* Hero */}
-      <section className="relative bg-ink text-white overflow-hidden">
-        {/* Brand-controlled construction photo backdrop */}
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-[0.22]"
-          style={{ backgroundImage: "url('/images/hero-construction.png')" }}
-          aria-hidden="true"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink/85 to-ink/40" aria-hidden="true" />
-        <div className="absolute inset-0 bg-gradient-to-t from-ink via-transparent to-transparent" aria-hidden="true" />
-        <div className="absolute -top-1/3 right-0 w-[60%] aspect-square rounded-full bg-gator-orange/[0.08] blur-3xl pointer-events-none" aria-hidden="true" />
-        <img src={logoImg} alt="" aria-hidden="true" className="absolute -bottom-16 -right-16 w-[480px] h-[480px] object-contain opacity-[0.06] pointer-events-none hidden md:block select-none" />
+      {/* ── HERO — photo-dominant ── */}
+      <section className="relative overflow-hidden bg-asphalt">
+        <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url('${hero}')` }} aria-hidden="true" />
+        <div className="absolute inset-0 bg-gradient-to-br from-asphalt/90 via-asphalt/70 to-asphalt/55" aria-hidden="true" />
+        <div className="absolute inset-0 bg-gradient-to-t from-asphalt via-asphalt/40 to-transparent" aria-hidden="true" />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-16 sm:pt-24 sm:pb-24 grid lg:grid-cols-12 gap-x-12 gap-y-10 items-start">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-14 sm:pt-20 lg:pt-28 pb-16 sm:pb-24 grid lg:grid-cols-12 gap-x-12 gap-y-10 items-start">
           <div className="lg:col-span-7">
-            <div className="flex items-center gap-3 mb-6">
-              <span className="font-mono text-[11px] tracking-[0.22em] uppercase text-gator-orange-light">{service.category}</span>
-              <span className="h-px w-8 bg-white/25" aria-hidden="true" />
-              <span className="font-mono text-[11px] tracking-[0.22em] uppercase text-white/55">Southwest Florida</span>
-            </div>
-
-            <div className="inline-flex items-center gap-3 mb-6 px-3 py-1.5 rounded-full bg-white/8 border border-white/15 backdrop-blur-sm">
-              <div className={`w-6 h-6 rounded-md ${service.accent === "orange" ? "bg-gator-orange/20" : "bg-primary/20"} flex items-center justify-center`}>
-                <Icon className={`w-3.5 h-3.5 ${service.accent === "orange" ? "text-gator-orange-light" : "text-gator-green-light"}`} strokeWidth={2.4} />
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 backdrop-blur-sm mb-6">
+              <div className="w-6 h-6 rounded-md bg-gator-orange flex items-center justify-center">
+                <Icon className="w-3.5 h-3.5 text-asphalt" strokeWidth={2.4} />
               </div>
-              <span className="font-mono text-[10px] tracking-[0.22em] uppercase text-white/70">Service</span>
+              <span className="font-mono text-[10px] sm:text-[11px] font-semibold tracking-[0.22em] uppercase text-white/90">
+                {service.category}
+              </span>
             </div>
 
-            <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-semibold leading-[1.02] tracking-[-0.03em] mb-4 text-balance">
-              {service.name}.
+            <h1 className="font-display font-black uppercase text-white leading-[0.9] tracking-[-0.035em] text-balance mb-6 text-[clamp(2.25rem,7vw,5.5rem)]">
+              {service.name.split(" ")[0]}<br />
+              <span className="text-gator-orange">{service.name.split(" ").slice(1).join(" ") || "Done Right."}</span>
             </h1>
 
-            <p className="text-lg sm:text-xl text-white/85 font-medium mb-6 leading-[1.45] max-w-xl text-balance">
+            <p className="text-base sm:text-xl text-white/85 leading-[1.5] max-w-2xl mb-6 text-pretty">
               {service.lede}
             </p>
 
-            <div className="space-y-4 text-sm sm:text-base text-white/65 leading-[1.65] mb-8 max-w-2xl">
+            <div className="space-y-4 text-sm sm:text-base text-white/70 leading-[1.7] mb-8 max-w-2xl">
               {service.intro.map((p, i) => <p key={i}>{p}</p>)}
             </div>
 
-            <div className="flex flex-wrap items-center gap-4 mb-10">
-              <Link href="/estimate">
-                <Button size="lg" className="bg-gator-orange hover:bg-gator-orange-dark text-asphalt font-semibold gap-2 px-7 h-12 rounded-md shadow-lg shadow-gator-orange/30">
-                  Request a Quote <ArrowRight className="w-4 h-4" />
-                </Button>
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-10 max-w-xl">
+              <Link href="/estimate" className="flex-1 sm:flex-initial">
+                <button className="w-full h-14 px-7 rounded-md bg-gator-orange hover:bg-gator-orange-dark text-asphalt font-black uppercase text-sm tracking-[0.1em] inline-flex items-center justify-center gap-2 transition-all shadow-lg shadow-black/30">
+                  Request a Quote
+                  <ArrowRight className="w-4 h-4" strokeWidth={2.6} />
+                </button>
               </Link>
-              <a href="tel:+12392343061" className="inline-flex items-center gap-3 group">
-                <span className="w-11 h-11 rounded-full bg-white/10 border border-white/20 flex items-center justify-center group-hover:bg-gator-orange group-hover:border-gator-orange transition-colors">
-                  <PhoneCall className="w-4 h-4 text-white" strokeWidth={2.2} />
-                </span>
-                <span>
-                  <span className="block font-mono text-[10px] tracking-[0.22em] uppercase text-white/60 leading-none mb-1">Direct line</span>
-                  <span className="block text-white text-lg sm:text-base font-semibold tracking-tight leading-none">(239) 234-3061</span>
-                </span>
+              <a href="tel:+12392343061" className="flex-1 sm:flex-initial">
+                <button className="w-full h-14 px-7 rounded-md border-2 border-white/30 hover:border-white hover:bg-white/5 text-white font-black uppercase text-sm tracking-[0.1em] inline-flex items-center justify-center gap-2 transition-all">
+                  <PhoneCall className="w-4 h-4 text-gator-orange" strokeWidth={2.4} />
+                  (239) 234-3061
+                </button>
               </a>
             </div>
 
-            <dl className="grid grid-cols-3 gap-x-6 max-w-md border-t border-white/10 pt-5">
+            <dl className="grid grid-cols-3 gap-x-6 max-w-md border-t border-white/15 pt-5">
               {service.stats.map(({ value, label }) => (
                 <div key={label}>
-                  <dt className="font-display text-base font-semibold text-white tracking-tight">{value}</dt>
-                  <dd className="text-white/55 text-[10px] font-mono uppercase tracking-wide mt-0.5">{label}</dd>
+                  <dt className="font-display font-black uppercase text-sm sm:text-base text-shell tracking-tight">{value}</dt>
+                  <dd className="text-shell/55 text-[10px] font-mono uppercase tracking-wide mt-1">{label}</dd>
                 </div>
               ))}
             </dl>
@@ -139,288 +123,351 @@ export default function ServicePage() {
         </div>
       </section>
 
-      {/* What's included */}
-      <section className="relative py-16 sm:py-24 px-4 sm:px-6 lg:px-8">
+      {/* ── SCOPE — what's actually included ── */}
+      <section className="relative py-16 sm:py-24 lg:py-28 px-4 sm:px-6 lg:px-8 bg-shell">
         <div ref={reveal1} className="max-w-7xl mx-auto reveal">
-          <div className="grid lg:grid-cols-12 gap-8 sm:gap-12 mb-12 items-end">
-            <div className="lg:col-span-5">
-              <div className="font-mono text-[11px] tracking-[0.22em] uppercase text-gator-orange mb-3">02 / Scope</div>
-              <h2 className="font-display text-4xl sm:text-5xl font-semibold tracking-[-0.025em] leading-[1.02] text-balance">
-                What's actually <br /><span className="text-muted-foreground/60">included.</span>
-              </h2>
+          <div className="text-center mb-12 sm:mb-16">
+            <div className="font-mono text-[11px] sm:text-xs font-semibold tracking-[0.3em] uppercase text-teal mb-4">
+              What's Included
             </div>
-            <div className="lg:col-span-6 lg:col-start-7">
-              <p className="text-base text-muted-foreground leading-[1.65] max-w-lg">
-                We price the scope you see here, in writing, before we start. If something turns out bigger than the walk-through showed, you'll hear from us before we go past the quote.
-              </p>
-            </div>
+            <h2 className="font-display font-black uppercase text-[clamp(2rem,6vw,4rem)] leading-[0.95] tracking-[-0.03em] text-asphalt text-balance">
+              Scope,<br /><span className="text-teal">in Writing.</span>
+            </h2>
+            <p className="mt-6 text-asphalt/70 text-base sm:text-lg leading-[1.6] max-w-xl mx-auto">
+              We price what you see here, line by line, before we start. If something turns out bigger than the walk-through, you'll hear from us before we go past the quote.
+            </p>
           </div>
 
-          <ul className="grid sm:grid-cols-2 gap-px bg-border/60 ring-1 ring-border/60 rounded-lg overflow-hidden">
+          <ul className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
             {service.scope.map((s) => (
-              <li key={s.label} className="bg-card p-5 sm:p-6">
-                <div className="flex items-center gap-2 mb-2">
-                  <span className={`w-1.5 h-1.5 rounded-full ${accentBg}`} />
-                  <h3 className="font-display font-bold text-base tracking-tight">{s.label}</h3>
+              <li
+                key={s.label}
+                className="group relative overflow-hidden rounded-xl bg-asphalt text-shell p-6 sm:p-7 transition-all duration-500 hover:-translate-y-1 hover:shadow-xl hover:shadow-asphalt/30"
+              >
+                <div className="w-10 h-10 rounded-md bg-gator-orange flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-500">
+                  <CheckCircle2 className="w-5 h-5 text-asphalt" strokeWidth={2.4} />
                 </div>
-                <p className="text-sm text-muted-foreground leading-[1.65]">{s.detail}</p>
+                <h3 className="font-display font-black uppercase text-lg leading-tight tracking-tight text-shell mb-2.5">
+                  {s.label}
+                </h3>
+                <p className="text-shell/65 text-sm leading-[1.6]">{s.detail}</p>
               </li>
             ))}
           </ul>
 
           {service.doNot && service.doNot.length > 0 && (
-            <div className="mt-8 p-5 sm:p-6 rounded-lg border border-border/60 bg-muted/20">
-              <div className="font-mono text-[10px] tracking-[0.22em] uppercase text-muted-foreground mb-3">What we won't do</div>
-              <ul className="space-y-2.5 text-sm">
+            <div className="mt-10 sm:mt-14 p-6 sm:p-8 rounded-xl border border-asphalt/15 bg-asphalt/5">
+              <div className="font-mono text-[11px] font-semibold tracking-[0.3em] uppercase text-teal mb-4">
+                What We Won't Do
+              </div>
+              <ul className="grid sm:grid-cols-2 gap-x-8 gap-y-3 text-sm">
                 {service.doNot.map((d) => (
-                  <li key={d} className="flex items-start gap-2.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-muted-foreground/60 mt-2 flex-shrink-0" />
-                    <span className="text-foreground/80 leading-[1.6]">{d}</span>
+                  <li key={d} className="flex items-start gap-3">
+                    <span className="w-1.5 h-1.5 rounded-full bg-gator-orange mt-2 flex-shrink-0" />
+                    <span className="text-asphalt/80 leading-[1.6]">{d}</span>
                   </li>
                 ))}
               </ul>
-              <p className="text-xs text-muted-foreground mt-4">Setting expectations up front is part of doing this honestly.</p>
+              <p className="text-xs text-asphalt/60 mt-5">Setting expectations up front is part of doing this honestly.</p>
             </div>
           )}
         </div>
       </section>
 
-      {/* Editorial brand-card break */}
-      <section className="relative bg-background">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="relative rounded-2xl overflow-hidden ring-1 ring-border/60 bg-ink">
-            <div
-              className="absolute inset-0 bg-cover bg-center opacity-25"
-              style={{ backgroundImage: "url('/images/hero-construction.png')" }}
-              aria-hidden="true"
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink/80 to-ink/30" aria-hidden="true" />
-            <img src={logoImg} alt="" aria-hidden="true" className="absolute -bottom-12 -right-12 w-[360px] h-[360px] object-contain opacity-[0.08] pointer-events-none hidden md:block" />
+      {/* ── PROCESS ── */}
+      <section className="relative overflow-hidden bg-asphalt text-shell py-16 sm:py-24 lg:py-28">
+        <div className="absolute -top-40 -right-40 w-[500px] h-[500px] rounded-full bg-teal/15 blur-3xl pointer-events-none" aria-hidden="true" />
+        <img src={logoImg} alt="" aria-hidden="true" className="absolute -right-20 bottom-0 w-[400px] h-[400px] object-contain opacity-[0.04] pointer-events-none hidden md:block" />
 
-            <div className="relative grid md:grid-cols-12 gap-6 sm:gap-10 p-6 sm:p-10 lg:p-14 items-center">
-              <div className="md:col-span-7">
-                <div className="font-mono text-[10px] sm:text-[11px] tracking-[0.22em] uppercase text-gator-orange-light mb-3 sm:mb-4">
-                  On the job
-                </div>
-                <h3 className="font-display text-2xl sm:text-3xl lg:text-4xl font-semibold text-white tracking-[-0.025em] leading-[1.1] mb-3 sm:mb-4 text-balance">
-                  {service.name} <span className="text-white/45">done the Gator way.</span>
-                </h3>
-                <p className="text-white/65 text-sm sm:text-base leading-[1.65] max-w-xl">
-                  Same crew, same standards, same write-it-down honesty — from the
-                  first walk-through to the final sweep.
-                </p>
-              </div>
-              <div className="md:col-span-5 md:pl-6 md:border-l border-white/10">
-                <dl className="grid grid-cols-2 gap-x-6 gap-y-6">
-                  {service.stats.map(({ value, label }) => (
-                    <div key={label} className="col-span-2 sm:col-span-1">
-                      <dt className="font-display text-2xl sm:text-3xl font-semibold text-white tracking-tight leading-none">{value}</dt>
-                      <dd className="text-white/55 text-[10px] sm:text-[11px] font-mono uppercase tracking-wide mt-1.5">{label}</dd>
-                    </div>
-                  ))}
-                  <div className="col-span-2 pt-3 border-t border-white/10 mt-1">
-                    <Link href="/estimate">
-                      <span className="inline-flex items-center gap-2 text-white text-sm font-semibold border-b border-white/30 hover:border-gator-orange-light hover:text-gator-orange-light pb-0.5 transition-colors cursor-pointer">
-                        Request a quote
-                        <ArrowRight className="w-3.5 h-3.5" strokeWidth={2.4} />
-                      </span>
-                    </Link>
-                  </div>
-                </dl>
-              </div>
+        <div ref={reveal2} className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
+          <div className="text-center mb-12 sm:mb-16">
+            <div className="font-mono text-[11px] sm:text-xs font-semibold tracking-[0.3em] uppercase text-gator-orange mb-4">
+              The Process
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Process */}
-      <section className="relative py-16 sm:py-24 bg-muted/30">
-        <div ref={reveal2} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
-          <div className="grid lg:grid-cols-12 gap-8 sm:gap-12 mb-12 items-end">
-            <div className="lg:col-span-5">
-              <div className="font-mono text-[11px] tracking-[0.22em] uppercase text-gator-orange mb-3">03 / Process</div>
-              <h2 className="font-display text-4xl sm:text-5xl font-semibold tracking-[-0.025em] leading-[1.02] text-balance">
-                How it runs.
-              </h2>
-            </div>
-            <div className="lg:col-span-6 lg:col-start-7">
-              <p className="text-base text-muted-foreground leading-[1.65] max-w-lg">
-                Four steps from first call to drive-off. No back-and-forth, no surprises.
-              </p>
-            </div>
+            <h2 className="font-display font-black uppercase text-[clamp(2rem,6vw,4rem)] leading-[0.95] tracking-[-0.03em] text-shell text-balance">
+              How It Runs.<br /><span className="text-gator-orange">Four Steps.</span>
+            </h2>
           </div>
 
-          <ol className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-border/60 ring-1 ring-border/60 rounded-lg overflow-hidden">
+          <ol className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
             {service.process.map((p) => (
-              <li key={p.step} className="bg-background p-6 sm:p-7 flex flex-col gap-3">
-                <div className="flex items-center justify-between">
-                  <span className={`font-display text-3xl font-semibold tracking-[-0.04em] leading-none ${accentText}`}>{p.step}</span>
+              <li
+                key={p.step}
+                className="group relative rounded-xl bg-white/[0.03] border border-white/10 p-6 sm:p-7 hover:bg-white/[0.06] hover:border-gator-orange/40 transition-all duration-500"
+              >
+                <div className="flex items-center justify-between mb-5">
+                  <span className="font-display font-black text-5xl text-gator-orange tracking-[-0.04em] leading-none">
+                    {p.step}
+                  </span>
                 </div>
-                <div className="h-px bg-border/80" />
-                <div>
-                  <h3 className="font-display text-lg font-bold mb-2 tracking-tight">{p.title}</h3>
-                  <p className="text-muted-foreground text-sm leading-[1.65]">{p.detail}</p>
-                </div>
+                <h3 className="font-display font-black uppercase text-lg sm:text-xl leading-tight tracking-tight text-shell mb-2.5">
+                  {p.title}
+                </h3>
+                <p className="text-shell/65 text-sm leading-[1.6]">{p.detail}</p>
               </li>
             ))}
           </ol>
         </div>
       </section>
 
-      {/* Why us */}
-      <section className="relative py-16 sm:py-24 px-4 sm:px-6 lg:px-8">
+      {/* ── WHY US ── */}
+      <section className="relative py-16 sm:py-24 lg:py-28 px-4 sm:px-6 lg:px-8 bg-shell">
         <div ref={reveal3} className="max-w-7xl mx-auto reveal">
-          <div className="grid lg:grid-cols-12 gap-8 sm:gap-12 mb-12 items-end">
-            <div className="lg:col-span-5">
-              <div className="font-mono text-[11px] tracking-[0.22em] uppercase text-gator-orange mb-3">04 / Why us</div>
-              <h2 className="font-display text-4xl sm:text-5xl font-semibold tracking-[-0.025em] leading-[1.02] text-balance">
-                Why people pick<br /><span className="text-muted-foreground/60">Clear Gator for this.</span>
-              </h2>
+          <div className="text-center mb-12 sm:mb-16">
+            <div className="font-mono text-[11px] sm:text-xs font-semibold tracking-[0.3em] uppercase text-teal mb-4">
+              Why Clear Gator
             </div>
-            <div className="lg:col-span-6 lg:col-start-7">
-              <p className="text-base text-muted-foreground leading-[1.65] max-w-lg">
-                Specifics. Not "professionalism" and "quality" — the actual reasons customers come back.
-              </p>
-            </div>
+            <h2 className="font-display font-black uppercase text-[clamp(2rem,6vw,4rem)] leading-[0.95] tracking-[-0.03em] text-asphalt text-balance">
+              Why People<br /><span className="text-teal">Come Back.</span>
+            </h2>
+            <p className="mt-6 text-asphalt/70 text-base sm:text-lg leading-[1.6] max-w-xl mx-auto">
+              Specifics — not "professionalism" or "quality" — the actual reasons customers rebook.
+            </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 gap-5">
+          <div className="grid sm:grid-cols-2 gap-5 sm:gap-6">
             {service.reasons.map((r) => (
-              <div key={r.title} className="border border-border/70 rounded-lg p-5 sm:p-6 bg-card">
-                <CheckCircle2 className={`w-5 h-5 mb-3 ${accentText}`} strokeWidth={2.2} />
-                <h3 className="font-display font-bold text-base mb-2 tracking-tight">{r.title}</h3>
-                <p className="text-sm text-muted-foreground leading-[1.65]">{r.body}</p>
+              <div
+                key={r.title}
+                className="group relative overflow-hidden rounded-xl bg-asphalt text-shell p-6 sm:p-8 hover:-translate-y-1 hover:shadow-xl hover:shadow-asphalt/30 transition-all duration-500"
+              >
+                <div className="w-12 h-12 rounded-lg bg-gator-orange flex items-center justify-center mb-5 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500">
+                  <CheckCircle2 className="w-6 h-6 text-asphalt" strokeWidth={2.4} />
+                </div>
+                <h3 className="font-display font-black uppercase text-lg sm:text-xl leading-tight tracking-tight text-shell mb-2.5">
+                  {r.title}
+                </h3>
+                <p className="text-shell/65 text-sm sm:text-base leading-[1.6]">{r.body}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* FAQ */}
-      <section className="relative py-16 sm:py-24 bg-muted/30">
-        <div ref={reveal4} className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
-          <div className="font-mono text-[11px] tracking-[0.22em] uppercase text-gator-orange mb-3">05 / FAQ</div>
-          <h2 className="font-display text-4xl sm:text-5xl font-semibold tracking-[-0.025em] leading-[1.02] mb-10 text-balance">
-            Common questions.
-          </h2>
-          <ul className="divide-y divide-border/70 border-y border-border/70">
+      {/* ── FAQ ── */}
+      <section className="relative py-16 sm:py-24 lg:py-28 bg-asphalt text-shell overflow-hidden">
+        <div className="absolute -top-40 -left-40 w-[500px] h-[500px] rounded-full bg-gator-orange/10 blur-3xl pointer-events-none" aria-hidden="true" />
+
+        <div ref={reveal4} className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
+          <div className="text-center mb-12 sm:mb-16">
+            <div className="font-mono text-[11px] sm:text-xs font-semibold tracking-[0.3em] uppercase text-gator-orange mb-4">
+              Frequently Asked
+            </div>
+            <h2 className="font-display font-black uppercase text-[clamp(2rem,6vw,4rem)] leading-[0.95] tracking-[-0.03em] text-shell text-balance">
+              Common<br /><span className="text-gator-orange">Questions.</span>
+            </h2>
+          </div>
+
+          <ul className="space-y-4">
             {service.faq.map((f) => (
-              <li key={f.q} className="py-5">
-                <div className="font-display font-bold text-base mb-2 tracking-tight">{f.q}</div>
-                <div className="text-sm text-muted-foreground leading-[1.7]">{f.a}</div>
+              <li
+                key={f.q}
+                className="group rounded-xl bg-white/[0.03] border border-white/10 p-5 sm:p-6 hover:bg-white/[0.06] hover:border-gator-orange/40 transition-all duration-300"
+              >
+                <div className="font-display font-black uppercase text-base sm:text-lg leading-tight tracking-tight text-shell mb-2.5">
+                  {f.q}
+                </div>
+                <div className="text-shell/70 text-sm sm:text-base leading-[1.7]">{f.a}</div>
               </li>
             ))}
           </ul>
-          <p className="mt-8 text-sm text-muted-foreground">
-            Question not answered? <a href="tel:+12392343061" className="text-foreground font-semibold border-b border-foreground/30 hover:border-gator-orange hover:text-gator-orange transition-colors">Call (239) 234-3061</a> — we'll talk through your specific job.
+
+          <p className="mt-10 text-center text-shell/70 text-sm sm:text-base">
+            Not answered?{" "}
+            <a href="tel:+12392343061" className="text-shell font-black border-b-2 border-gator-orange hover:text-gator-orange transition-colors">
+              Call (239) 234-3061
+            </a>{" "}
+            — we'll talk through your job.
           </p>
         </div>
       </section>
 
-      {/* Service areas */}
-      <section className="relative py-16 sm:py-24 border-y border-border/60">
-        <div ref={reveal5} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
-          <div className="grid lg:grid-cols-12 gap-8 sm:gap-12 mb-10 items-end">
-            <div className="lg:col-span-5">
-              <div className="font-mono text-[11px] tracking-[0.22em] uppercase text-gator-orange mb-3">06 / Coverage</div>
-              <h2 className="font-display text-3xl sm:text-4xl font-semibold tracking-[-0.025em] leading-[1.05] text-balance">
-                {service.name} across<br /><span className="text-muted-foreground/60">Southwest Florida.</span>
-              </h2>
+      {/* ── Coverage: service areas ── */}
+      <section className="relative py-16 sm:py-24 lg:py-28 px-4 sm:px-6 lg:px-8 bg-shell">
+        <div ref={reveal5} className="max-w-7xl mx-auto reveal">
+          <div className="text-center mb-12 sm:mb-16">
+            <div className="font-mono text-[11px] sm:text-xs font-semibold tracking-[0.3em] uppercase text-teal mb-4">
+              Where We Work
             </div>
-            <div className="lg:col-span-6 lg:col-start-7">
-              <p className="text-base text-muted-foreground leading-[1.65] max-w-lg">
-                Same crew, same standards, same accountability — wherever your project is.
-              </p>
-            </div>
+            <h2 className="font-display font-black uppercase text-[clamp(2rem,6vw,4rem)] leading-[0.95] tracking-[-0.03em] text-asphalt text-balance">
+              {service.name}<br /><span className="text-teal">Across SW Florida.</span>
+            </h2>
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-px bg-border/60 ring-1 ring-border/60 rounded-lg overflow-hidden">
+
+          <ul className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
             {CITIES.map((c) => (
-              <Link key={c.slug} href={`/service-areas/${c.slug}`}>
-                <div className="group bg-background hover:bg-muted/40 transition-colors p-5 flex items-center justify-between cursor-pointer">
-                  <span className="font-display font-semibold text-sm tracking-tight">{c.name}</span>
-                  <ArrowRight className="w-3.5 h-3.5 text-muted-foreground/50 group-hover:text-gator-orange group-hover:translate-x-0.5 transition-all" />
-                </div>
-              </Link>
+              <li key={c.slug}>
+                <Link href={`/service-areas/${c.slug}`}>
+                  <article className="group relative h-full p-5 rounded-xl bg-asphalt text-shell hover:bg-teal transition-all duration-500 hover:-translate-y-1 cursor-pointer">
+                    <div className="flex items-start justify-between mb-5">
+                      <div className="w-9 h-9 rounded-md bg-gator-orange flex items-center justify-center">
+                        <MapPin className="w-4 h-4 text-asphalt" strokeWidth={2.4} />
+                      </div>
+                      <ArrowRight className="w-4 h-4 text-shell/40 group-hover:text-gator-orange group-hover:translate-x-1 transition-all" strokeWidth={2.4} />
+                    </div>
+                    <h3 className="font-display font-black uppercase text-base sm:text-lg leading-tight tracking-tight text-shell">
+                      {c.name}
+                    </h3>
+                  </article>
+                </Link>
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
       </section>
 
-      {/* More services — cross-link to keep visitors moving */}
-      <section className="relative py-16 sm:py-20 bg-muted/30 border-t border-border/60">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-wrap items-end justify-between gap-4 mb-8">
+      {/* ── Other services ── */}
+      <section className="relative py-16 sm:py-24 bg-asphalt text-shell overflow-hidden">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-10 sm:mb-14">
             <div>
-              <div className="font-mono text-[11px] tracking-[0.22em] uppercase text-gator-orange mb-3">07 / More from Clear Gator</div>
-              <h2 className="font-display text-2xl sm:text-3xl font-semibold tracking-[-0.025em]">
-                Other things <span className="text-muted-foreground/60">we handle.</span>
+              <div className="font-mono text-[11px] sm:text-xs font-semibold tracking-[0.3em] uppercase text-gator-orange mb-3">
+                More from Clear Gator
+              </div>
+              <h2 className="font-display font-black uppercase text-[clamp(1.75rem,4.5vw,3rem)] leading-[0.95] tracking-[-0.03em] text-shell">
+                Other Things<br /><span className="text-gator-orange">We Handle.</span>
               </h2>
             </div>
-            <Link href="/#services" className="text-xs font-semibold uppercase tracking-wider text-foreground border-b border-foreground/30 hover:border-gator-orange hover:text-gator-orange pb-0.5 transition-colors">
-              View all services →
+            <Link href="/#services">
+              <span className="inline-flex items-center gap-2 text-shell font-black uppercase text-xs tracking-[0.18em] border-b-2 border-gator-orange pb-1 hover:text-gator-orange transition-colors cursor-pointer">
+                All Services
+                <ArrowRight className="w-3.5 h-3.5" strokeWidth={2.6} />
+              </span>
             </Link>
           </div>
-          <div className="grid sm:grid-cols-3 gap-px bg-border/60 ring-1 ring-border/60 rounded-lg overflow-hidden">
-            {otherServices.map((s) => (
-              <Link key={s.slug} href={`/services/${s.slug}`}>
-                <article className="group bg-card p-5 sm:p-6 hover:bg-foreground hover:text-background transition-colors duration-500 h-full flex flex-col cursor-pointer">
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="font-display font-bold text-lg tracking-tight">{s.name}</span>
-                    <ArrowRight className="w-4 h-4 text-muted-foreground/40 group-hover:text-gator-orange-light group-hover:translate-x-0.5 transition-all" />
-                  </div>
-                  <p className="text-sm text-muted-foreground group-hover:text-background/70 leading-[1.6] flex-1">{s.lede}</p>
-                </article>
-              </Link>
-            ))}
+
+          <div className="grid sm:grid-cols-3 gap-5 sm:gap-6">
+            {otherServices.map((s) => {
+              const sImg = SERVICE_IMAGES[s.slug]?.hero ?? FALLBACK_HERO;
+              return (
+                <Link key={s.slug} href={`/services/${s.slug}`}>
+                  <article className="group relative overflow-hidden rounded-xl bg-asphalt border border-white/10 h-full cursor-pointer hover:border-gator-orange/50 hover:-translate-y-1 transition-all duration-500">
+                    <div className="relative aspect-[16/10] overflow-hidden">
+                      <div className="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-700" style={{ backgroundImage: `url('${sImg}')` }} aria-hidden="true" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-asphalt via-asphalt/40 to-transparent" aria-hidden="true" />
+                      <div className="absolute bottom-4 left-5 right-5">
+                        <h3 className="font-display font-black uppercase text-xl leading-tight tracking-tight text-shell">
+                          {s.name}
+                        </h3>
+                      </div>
+                    </div>
+                    <div className="p-5 sm:p-6">
+                      <p className="text-shell/70 text-sm leading-[1.6] mb-5">{s.lede}</p>
+                      <span className="inline-flex items-center gap-2 text-gator-orange font-black uppercase text-xs tracking-[0.18em] group-hover:gap-3 transition-all">
+                        Learn More
+                        <ArrowRight className="w-4 h-4" strokeWidth={2.6} />
+                      </span>
+                    </div>
+                  </article>
+                </Link>
+              );
+            })}
           </div>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="relative py-20 sm:py-32 bg-ink overflow-hidden">
-        <img src={logoImg} alt="" aria-hidden="true" className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[58%] w-[560px] h-[560px] object-contain opacity-[0.05] pointer-events-none select-none hidden md:block" />
-        <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <img src={logoImg} alt="Clear Gator emblem" className="h-16 w-16 mx-auto object-contain mb-6" />
-          <div className="font-mono text-gator-orange-light tracking-[0.32em] text-[11px] font-medium uppercase mb-6">
-            Let's Gator Done.
+      {/* ── FINAL CTA ── */}
+      <section className="relative overflow-hidden bg-asphalt">
+        <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url('${hero}')` }} aria-hidden="true" />
+        <div className="absolute inset-0 bg-gradient-to-br from-asphalt/85 via-asphalt/70 to-teal/70" aria-hidden="true" />
+        <div className="absolute inset-0 bg-gradient-to-t from-asphalt via-asphalt/40 to-transparent" aria-hidden="true" />
+
+        <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28 text-center">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 backdrop-blur-sm mb-6">
+            <span className="w-1.5 h-1.5 rounded-full bg-gator-orange animate-pulse" aria-hidden="true" />
+            <span className="font-mono text-[10px] sm:text-[11px] font-semibold tracking-[0.22em] uppercase text-white/90">
+              Ready when you are
+            </span>
           </div>
-          <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-semibold text-white tracking-[-0.03em] leading-[1.02] mb-6 text-balance">
-            Ready to talk about<br /><span className="text-white/45">your {service.name.toLowerCase()} project?</span>
+
+          <h2 className="font-display font-black uppercase text-[clamp(2.5rem,8vw,6rem)] leading-[0.9] tracking-[-0.035em] text-white text-balance mb-6">
+            Let's<br />
+            <span className="text-gator-orange">Clear It.</span>
           </h2>
-          <p className="text-white/75 mb-8 text-base sm:text-lg leading-[1.65] max-w-xl mx-auto">
+
+          <p className="text-white/80 text-base sm:text-xl leading-[1.5] max-w-2xl mx-auto mb-10">
             24-hour estimate turnaround. Same-week starts common. No commitment to ask.
           </p>
-          <div className="flex flex-wrap justify-center gap-3">
-            <Link href="/estimate">
-              <Button size="lg" className="bg-gator-orange hover:bg-gator-orange-dark text-asphalt font-semibold gap-2 px-8 h-12 rounded-md shadow-lg shadow-gator-orange/30">
-                Get Your Free Estimate <ArrowRight className="w-4 h-4" />
-              </Button>
+
+          <div className="flex flex-col sm:flex-row justify-center items-stretch sm:items-center gap-3 sm:gap-4 max-w-xl mx-auto">
+            <Link href="/estimate" className="flex-1">
+              <button className="w-full h-14 px-7 rounded-md bg-gator-orange hover:bg-gator-orange-dark text-asphalt font-black uppercase text-sm tracking-[0.1em] inline-flex items-center justify-center gap-2 transition-all shadow-xl shadow-black/40">
+                Get a Free Estimate
+                <ArrowRight className="w-4 h-4" strokeWidth={2.6} />
+              </button>
             </Link>
-            <a href="tel:+12392343061">
-              <Button size="lg" variant="outline" className="border-white/20 text-white bg-transparent hover:bg-white/5 px-7 h-12 rounded-md gap-2 font-semibold">
-                <PhoneCall className="w-4 h-4 text-gator-orange-light" /> (239) 234-3061
-              </Button>
+            <a href="tel:+12392343061" className="flex-1">
+              <button className="w-full h-14 px-7 rounded-md border-2 border-white/30 hover:border-white hover:bg-white/5 text-white font-black uppercase text-sm tracking-[0.1em] inline-flex items-center justify-center gap-2 transition-all">
+                <PhoneCall className="w-4 h-4 text-gator-orange" strokeWidth={2.4} />
+                (239) 234-3061
+              </button>
             </a>
           </div>
-          <div className="flex flex-wrap justify-center items-center gap-6 mt-10 text-xs font-mono text-white/45 tracking-wide uppercase">
-            <span className="flex items-center gap-2"><ShieldCheck className="w-3.5 h-3.5 text-gator-orange-light" /> Licensed &amp; Insured</span>
-            <span className="flex items-center gap-2"><Clock className="w-3.5 h-3.5 text-gator-orange-light" /> 24h Reply</span>
-            <span className="flex items-center gap-2"><MapPin className="w-3.5 h-3.5 text-gator-orange-light" /> SW Florida</span>
+
+          <div className="flex flex-wrap justify-center items-center gap-5 sm:gap-7 mt-10 text-xs font-mono text-white/55 tracking-wide uppercase">
+            <span className="flex items-center gap-2"><ShieldCheck className="w-3.5 h-3.5 text-gator-orange" /> Licensed &amp; Insured</span>
+            <span className="flex items-center gap-2"><Clock className="w-3.5 h-3.5 text-gator-orange" /> 24h Reply</span>
+            <span className="flex items-center gap-2"><MapPin className="w-3.5 h-3.5 text-gator-orange" /> SW Florida</span>
           </div>
         </div>
       </section>
 
-      <footer className="bg-ink text-white/55 py-10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row gap-3 sm:gap-0 items-start sm:items-center justify-between text-xs">
-          <div className="flex items-center gap-2.5">
-            <img src={logoImg} alt="" aria-hidden="true" className="h-5 w-5 object-contain" />
-            <span>&copy; {new Date().getFullYear()} Clear Gator Construction Services</span>
+      {/* Footer */}
+      <footer className="relative bg-asphalt text-shell/55 pt-16 pb-10 border-t border-white/10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
+            <div>
+              <div className="flex items-center gap-3 mb-5">
+                <img src={logoImg} alt="Clear Gator Logo" className="h-10 w-10 object-contain" />
+                <div className="font-display font-black text-lg text-shell tracking-tight uppercase">Clear Gator</div>
+              </div>
+              <p className="text-sm leading-[1.65] mb-5 text-shell/55 max-w-sm">
+                Demolition, hauling, cleanup, landscaping &amp; pressure washing for Southwest Florida.
+              </p>
+              <div className="flex gap-2">
+                {[Facebook, Instagram, Twitter].map((Ic, i) => (
+                  <a key={i} href="#" className="w-9 h-9 rounded-md border border-white/10 hover:border-gator-orange hover:text-gator-orange flex items-center justify-center transition-colors">
+                    <Ic className="w-4 h-4" />
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <div className="font-mono text-[11px] font-semibold tracking-[0.22em] uppercase text-shell/40 mb-4">Services</div>
+              <ul className="space-y-2 text-sm">
+                {SERVICES.map((s) => (
+                  <li key={s.slug}><Link href={`/services/${s.slug}`} className="hover:text-shell transition-colors">{s.name}</Link></li>
+                ))}
+              </ul>
+            </div>
+
+            <div>
+              <div className="font-mono text-[11px] font-semibold tracking-[0.22em] uppercase text-shell/40 mb-4">Company</div>
+              <ul className="space-y-2 text-sm">
+                <li><Link href="/estimate" className="hover:text-shell transition-colors">Free Estimate</Link></li>
+                <li><Link href="/track" className="hover:text-shell transition-colors">Track a Job</Link></li>
+                <li><Link href="/privacy" className="hover:text-shell transition-colors">Privacy</Link></li>
+                <li><Link href="/terms" className="hover:text-shell transition-colors">Terms</Link></li>
+              </ul>
+            </div>
+
+            <div>
+              <div className="font-mono text-[11px] font-semibold tracking-[0.22em] uppercase text-shell/40 mb-4">Contact</div>
+              <a href="tel:+12392343061" className="block mb-3 group">
+                <div className="font-display text-xl font-black text-shell tracking-tight group-hover:text-gator-orange transition-colors">(239) 234-3061</div>
+                <div className="text-xs text-shell/40 mt-1">Mon–Sat · 7a–6p</div>
+              </a>
+              <div className="text-sm text-shell/60">Cape Coral · Naples<br />Southwest Florida</div>
+            </div>
           </div>
-          <div className="flex items-center gap-5">
-            <Link href="/" className="hover:text-white">Home</Link>
-            <Link href="/estimate" className="hover:text-white">Estimate</Link>
-            <Link href="/privacy" className="hover:text-white">Privacy</Link>
-            <Link href="/terms" className="hover:text-white">Terms</Link>
+
+          <div className="border-t border-white/10 pt-7 flex flex-col md:flex-row gap-3 md:gap-0 items-start md:items-center justify-between text-xs">
+            <div className="text-shell/40">&copy; {new Date().getFullYear()} Clear Gator Construction Services.</div>
+            <div className="flex items-center gap-2.5">
+              <img src={logoImg} alt="" aria-hidden="true" className="h-5 w-5 object-contain" />
+              <span className="font-mono text-gator-orange tracking-[0.3em] text-[11px] font-semibold uppercase">Let's Gator Done.</span>
+            </div>
           </div>
         </div>
       </footer>
@@ -429,21 +476,16 @@ export default function ServicePage() {
       <a
         href="tel:+12392343061"
         className="sm:hidden fixed bottom-0 left-0 right-0 z-50 bg-gator-orange text-asphalt flex items-center gap-3.5 active:bg-gator-orange-dark transition-colors border-t border-gator-orange-dark/40"
-        style={{
-          paddingTop: "14px",
-          paddingBottom: "calc(env(safe-area-inset-bottom, 0px) + 14px)",
-          paddingLeft: "18px",
-          paddingRight: "18px",
-        }}
+        style={{ paddingTop: "14px", paddingBottom: "calc(env(safe-area-inset-bottom, 0px) + 14px)", paddingLeft: "18px", paddingRight: "18px" }}
       >
-        <span className="flex items-center justify-center w-11 h-11 rounded-full bg-white/15 flex-shrink-0">
+        <span className="flex items-center justify-center w-11 h-11 rounded-full bg-asphalt/15 flex-shrink-0">
           <PhoneCall className="w-5 h-5" strokeWidth={2.4} />
         </span>
         <span className="flex flex-col leading-tight flex-1 min-w-0">
-          <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-white/90">Tap to Call · 24h Reply</span>
-          <span className="font-display text-lg font-semibold">(239) 234-3061</span>
+          <span className="font-mono text-[11px] font-black uppercase tracking-[0.18em] text-asphalt/85">Tap to Call · 24h Reply</span>
+          <span className="font-display text-lg font-black">(239) 234-3061</span>
         </span>
-        <ArrowRight className="w-5 h-5 text-white/85 flex-shrink-0" strokeWidth={2.4} />
+        <ArrowRight className="w-5 h-5 text-asphalt/85 flex-shrink-0" strokeWidth={2.4} />
       </a>
     </div>
   );

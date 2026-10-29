@@ -5,6 +5,7 @@ import { GatorScales, SectionRule } from "@/components/swamp-decor";
 import MainNav from "@/components/main-nav";
 import { useReveal } from "@/hooks/use-reveal";
 import logoImg from "@assets/clear_gator_1775663894887.png";
+import { SERVICE_IMAGES, FALLBACK_HERO } from "@/data/page-images";
 import {
   Truck, HardHat, PhoneCall, CheckCircle2,
   ArrowRight, Clock, Shield,
@@ -267,15 +268,15 @@ export default function LandingPage() {
             {services.map((svc, i) => (
               <Link key={svc.title} href={`/services/${svc.slug}`}>
                 <article className="group relative h-full flex flex-col overflow-hidden rounded-xl bg-asphalt text-shell transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl hover:shadow-asphalt/30 cursor-pointer">
-                  {/* Photo-style header: deep gulf → asphalt gradient with iconography */}
-                  <div className="relative aspect-[16/10] overflow-hidden bg-gradient-to-br from-teal via-teal/70 to-asphalt">
-                    {/* subtle brand photo texture */}
+                  {/* Per-service photo header */}
+                  <div className="relative aspect-[16/10] overflow-hidden bg-asphalt">
                     <div
-                      className="absolute inset-0 bg-cover bg-center opacity-20 mix-blend-overlay group-hover:opacity-30 group-hover:scale-105 transition-all duration-700"
-                      style={{ backgroundImage: "url('/images/hero-construction.png')" }}
+                      className="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-all duration-700"
+                      style={{ backgroundImage: `url('${SERVICE_IMAGES[svc.slug]?.hero ?? FALLBACK_HERO}')` }}
                       aria-hidden="true"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-asphalt/80 via-asphalt/20 to-transparent" aria-hidden="true" />
+                    <div className="absolute inset-0 bg-gradient-to-br from-asphalt/70 via-asphalt/40 to-teal/60 group-hover:from-asphalt/60 group-hover:via-asphalt/30 transition-all duration-500" aria-hidden="true" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-asphalt via-asphalt/40 to-transparent" aria-hidden="true" />
                     {/* big icon */}
                     <div className="absolute top-5 left-5 w-14 h-14 rounded-lg bg-gator-orange flex items-center justify-center shadow-lg shadow-black/40">
                       <svc.icon className="w-7 h-7 text-asphalt" strokeWidth={2.4} />
