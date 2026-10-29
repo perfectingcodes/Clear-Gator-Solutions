@@ -60,8 +60,16 @@ app.use((req, res, next) => {
 });
 
 (async () => {
-  const { seedDatabase } = await import("./seed");
-  await seedDatabase();
+  // Seeding is best-effort — if DATABASE_URL isn't reachable (e.g. local
+  // preview without Postgres running) we still want the server to boot so
+  // the UI is browseable. API routes that need the DB will fail at request
+  // time with their own 500s.
+  try {
+    const { seedDatabase } = await import("./seed");
+    await seedDatabase();
+  } catch (err) {
+    log(`seed skipped: ${(err as Error).message}`);
+  }
   await registerRoutes(httpServer, app);
 
   app.use((err: any, _req: Request, res: Response, next: NextFunction) => {
@@ -92,12 +100,15 @@ app.use((req, res, next) => {
   // this serves both the API and the client.
   // It is the only port that is not firewalled.
   const port = parseInt(process.env.PORT || "5000", 10);
+  // reusePort is a Linux-only socket option (ENOTSUP on macOS). Only enable
+  // it on Linux where the hosting environment supports it.
+  const listenOpts: { port: number; host: string; reusePort?: boolean } = {
+    port,
+    host: "0.0.0.0",
+  };
+  if (process.platform === "linux") listenOpts.reusePort = true;
   httpServer.listen(
-    {
-      port,
-      host: "0.0.0.0",
-      reusePort: true,
-    },
+    listenOpts,
     () => {
       log(`serving on port ${port}`);
     },

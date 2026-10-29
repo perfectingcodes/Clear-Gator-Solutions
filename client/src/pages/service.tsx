@@ -2,7 +2,7 @@ import { Link, useRoute } from "wouter";
 import { Button } from "@/components/ui/button";
 import {
   ArrowRight, ArrowLeft, PhoneCall, CheckCircle2,
-  Hammer, Construction, Truck, HardHat, TreePine, Wrench,
+  Hammer, Construction, Truck, HardHat, TreePine, Wrench, Leaf, Droplets,
   ShieldCheck, Clock, MapPin, ChevronRight,
 } from "lucide-react";
 import { usePageMeta } from "@/hooks/use-page-meta";
@@ -16,7 +16,7 @@ import JsonLd, { breadcrumbLd, faqLd, localBusinessLd, serviceLd, BASE_URL } fro
 import NotFound from "@/pages/not-found";
 import logoImg from "@assets/clear_gator_1775663894887.png";
 
-const ICONS = { Hammer, Construction, Truck, HardHat, TreePine, Wrench } as const;
+const ICONS = { Hammer, Construction, Truck, HardHat, TreePine, Wrench, Leaf, Droplets } as const;
 
 export default function ServicePage() {
   const [, params] = useRoute<{ slug: string }>("/services/:slug");

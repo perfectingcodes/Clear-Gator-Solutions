@@ -3,13 +3,13 @@ import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import {
   Menu, X, PhoneCall, ArrowRight, ChevronDown,
-  Hammer, Construction, Truck, HardHat, TreePine, Wrench, MapPin,
+  Hammer, Construction, Truck, HardHat, TreePine, Wrench, Leaf, Droplets, MapPin,
 } from "lucide-react";
 import { SERVICES } from "@/data/services";
 import { CITIES } from "@/data/cities";
 import logoImg from "@assets/clear_gator_1775663894887.png";
 
-const ICONS = { Hammer, Construction, Truck, HardHat, TreePine, Wrench } as const;
+const ICONS = { Hammer, Construction, Truck, HardHat, TreePine, Wrench, Leaf, Droplets } as const;
 
 /**
  * MainNav — sticky top navigation used across landing / service / city pages.
@@ -197,7 +197,7 @@ function MegaMenuServices({ onClose }: { onClose: () => void }) {
         <div className="col-span-3">
           <div className="font-mono text-[11px] tracking-[0.22em] uppercase text-gator-orange mb-3">02 / Capabilities</div>
           <h3 className="font-display text-2xl font-semibold tracking-tight leading-tight mb-3">
-            Six disciplines.<br /><span className="text-muted-foreground/60">One Gator crew.</span>
+            Eight disciplines.<br /><span className="text-muted-foreground/60">One Gator crew.</span>
           </h3>
           <p className="text-sm text-muted-foreground leading-relaxed mb-5">
             From interior gut-outs to property maintenance — same standards across every line.

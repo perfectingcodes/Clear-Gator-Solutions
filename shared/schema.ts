@@ -26,6 +26,8 @@ export const SERVICE_TYPES = [
   "Site Cleanup",
   "Lot Clearing",
   "Property Maintenance",
+  "Landscaping",
+  "Pressure Washing",
 ] as const;
 export type ServiceType = typeof SERVICE_TYPES[number];
 

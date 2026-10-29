@@ -16,7 +16,7 @@ export type ServiceContent = {
   /** Hero overline tag */
   category: string;
   /** Lucide icon name — resolved in the page component */
-  icon: "Hammer" | "Construction" | "Truck" | "HardHat" | "TreePine" | "Wrench";
+  icon: "Hammer" | "Construction" | "Truck" | "HardHat" | "TreePine" | "Wrench" | "Leaf" | "Droplets";
   /** Brand accent group */
   accent: "orange" | "green";
   /** SEO */
@@ -384,6 +384,124 @@ export const SERVICES: ServiceContent[] = [
       { value: "Same week", label: "common start" },
       { value: "Block", label: "scheduled" },
       { value: "Texture-matched", label: "drywall patches" },
+    ],
+  },
+
+  {
+    slug: "landscaping",
+    name: "Landscaping",
+    category: "Yards · Palms · Install",
+    icon: "Leaf",
+    accent: "green",
+    title: "Landscaping in Southwest Florida — Install, Refresh & Repair",
+    description:
+      "Residential and commercial landscaping across Cape Coral, Naples, Fort Myers and SW Florida. Sod and fresh mulch, hedge and palm trimming, new-plant installs, lot refresh after clearing or repair.",
+    lede:
+      "Florida grows back fast. We put it back right — tight hedges, straight edges, sod that takes, and palms that don't look like they lost a fight.",
+    intro: [
+      "Our landscaping crew is the one you call when the yard needs more than a mow — after a clearing, before a listing, between seasons, or when a cold front took out the hedges you spent three years growing in.",
+      "We install sod and fresh mulch, trim and shape hedges, prune palms to the proper boot height, replace plants a hurricane or hard freeze took out, and leave crisp edges along every bed. We work alongside our own lot-clearing and hauling crews, so dirt in / dirt out doesn't become a three-contractor problem.",
+    ],
+    scope: [
+      { label: "Sod Install & Repair",       detail: "St. Augustine, Zoysia, Bahia. Pallet runs for full-yard installs or patch work for storm-torn sections." },
+      { label: "Mulch & Rock Beds",          detail: "Pine straw, cypress, hardwood, or shell/rock. Weed-barrier underlay and clean bed edges included." },
+      { label: "Hedge & Shrub Trimming",     detail: "Reset to shape, lower a wall of overgrown viburnum, or keep a privacy hedge on monthly rotation." },
+      { label: "Palm Trimming",              detail: "Queen, royal, foxtail, sylvester, coconut. Boots cleaned, seed pods pulled, hazard fronds dropped." },
+      { label: "Plant Install",              detail: "Front-of-house refreshes, hurricane replacements, HOA-friendly plantings for gated communities." },
+      { label: "Light Hardscape",            detail: "Edging install, paver patch, gravel paths. Nothing bigger than we can do right." },
+      { label: "Post-Project Finish",        detail: "After we clear a lot or demo a pool, we close the loop with the right ground cover and plantings." },
+    ],
+    process: [
+      { step: "01", title: "Walk-Through",       detail: "We meet you on site, measure what needs doing, and talk through plant choices, maintenance load, and HOA rules if they apply." },
+      { step: "02", title: "Written Scope",      detail: "Line-item estimate inside 24 hours — plants, materials, labor, and haul-off spelled out." },
+      { step: "03", title: "Install",            detail: "Plants in, sod laid, mulch spread, edges cut. Daily clean-up so nothing festers on the driveway." },
+      { step: "04", title: "Walk + Water",       detail: "Final walk with you, watering schedule written down, and we check in after week one if we installed new sod." },
+    ],
+    reasons: [
+      { title: "Florida-plant literate",     body: "We know what survives August and what doesn't. If you want it, we'll put it in — but we'll tell you first if it's wrong for your lot." },
+      { title: "HOA + gated-community aware", body: "We handle landscape protocols for Bonita Bay, Pelican Bay, Babcock, Mediterra. COI, hours, and plant-list rules all handled." },
+      { title: "One-crew finish",            body: "If we cleared the lot or demo'd a feature, the same company closes the loop. No handoff between contractors." },
+      { title: "Storm response ready",       body: "After a storm, hedge resets and palm clean-up fill our schedule. Call early — we work the order we hear from people." },
+    ],
+    doNot: [
+      "Full landscape design plans — we'll install from your designer's plan; we don't produce master plans.",
+      "Irrigation system installs or major repair — we partner with licensed irrigators.",
+      "Tree work over ~30 ft or anything requiring a certified arborist — we sub with a trusted arborist for those.",
+    ],
+    faq: [
+      { q: "Do you do ongoing maintenance?",
+        a: "Monthly rotations for hedges and lawn edging on rental and commercial properties, yes. We don't do routine mowing — that's a landscaper's mow contract." },
+      { q: "Can you replace plants my previous landscaper killed?",
+        a: "Yes. We'll walk the beds, pull what's dead, and plant replacements the same day where possible. Same-day stock depends on what you need." },
+      { q: "Will you install sod in July?",
+        a: "Yes, but we'll be straight — Florida summer sod needs more water than spring installs. We'll leave you a schedule and check back in week one." },
+      { q: "Do you handle palm boots?",
+        a: "Routinely. Boot cleaning and seed-pod removal are the two most-requested palm services we run." },
+    ],
+    stats: [
+      { value: "Same week", label: "common start" },
+      { value: "Pallet-run", label: "sod sizing" },
+      { value: "HOA-ready", label: "COI on file" },
+    ],
+  },
+
+  {
+    slug: "pressure-washing",
+    name: "Pressure Washing",
+    category: "Exterior Reset",
+    icon: "Droplets",
+    accent: "orange",
+    title: "Pressure Washing in SW Florida — Soft Wash, Driveways, Pool Decks",
+    description:
+      "Residential and commercial pressure washing across Cape Coral, Naples, Fort Myers and SW Florida. House soft-washing, driveways, pool decks, roof wash, fence restore, screen enclosures.",
+    lede:
+      "Florida grime builds fast. We blast it off the right way — soft-wash on anything delicate, hot-water pressure on everything else, and nothing left streaked.",
+    intro: [
+      "Pressure washing is one of those things that looks the same from the truck until the first stripe shows up on the house. We don't leave stripes. We soft-wash siding, screens, and painted surfaces, and we save the real pressure for driveways, decks, and pool patios where it belongs.",
+      "Common jobs: whole-house soft wash before listing or paint, driveway and sidewalk refresh, pool-deck mold and algae removal, fence restoration, screen-enclosure wash, and the slow-building roof stains that make the whole house read tired. We treat the surface and the plants around it right — detergent choices by material, rinses that don't drown your landscaping.",
+    ],
+    scope: [
+      { label: "House Soft Wash",       detail: "Vinyl, stucco, Hardie, painted. Low-pressure chemistry that lifts the dirt without blasting the finish." },
+      { label: "Driveway & Walkway",    detail: "Concrete, pavers, stamped. Oil-stain treatment on top of a hot-pressure wash." },
+      { label: "Pool Deck",             detail: "Paver, Kool-Deck, aggregate. Algae and mold off, sealer-friendly rinses." },
+      { label: "Roof Wash",             detail: "Soft-wash only — never pressure on shingles or tile. Removes black streaks, algae, and lichen." },
+      { label: "Fence Restoration",     detail: "Wood, vinyl, aluminum. Weathered-wood brightening and vinyl rinse." },
+      { label: "Screen Enclosure Wash", detail: "Lanai and pool-cage frames + screens. Removes mildew without stretching the mesh." },
+      { label: "Commercial Exterior",   detail: "Storefronts, dumpster pads, walkways. After-hours scheduling for retail." },
+    ],
+    process: [
+      { step: "01", title: "Walk-Through",   detail: "We look at surfaces, flag anything delicate (older paint, loose caulk, lanai mesh), and check landscape runoff." },
+      { step: "02", title: "Written Quote",  detail: "Written estimate inside 24 hours with surfaces, chemistry choice, and timing spelled out." },
+      { step: "03", title: "Protect + Wash", detail: "Plant protection in place, outlets covered, chemistry matched to each surface. Daily rinse so nothing dries weird." },
+      { step: "04", title: "Walk + Sign-Off", detail: "Walk the property with you so anything we missed gets a second pass before we pack up." },
+    ],
+    reasons: [
+      { title: "No stripes",              body: "Technique first. Soft-wash where it belongs, pressure where it earns its keep. You won't see our lap lines after." },
+      { title: "Plant-safe chemistry",     body: "Detergents and rinses tuned so your gardenias don't come out of this looking crispy." },
+      { title: "Pre-listing ready",        body: "Realtor-and-stager pace. We can show up the day before a listing goes live and leave the exterior camera-ready." },
+      { title: "Commercial after-hours",   body: "Storefronts and dumpster pads overnight so your business doesn't close for the wash." },
+    ],
+    doNot: [
+      "Sealer application — we leave sealers to the paver/deck sealing specialists we work with.",
+      "Painting touch-ups after wash — we hand that back to your painter (or our property-maintenance crew).",
+      "Window washing beyond the exterior rinse — real interior/exterior detail is a window-cleaning specialty.",
+    ],
+    faq: [
+      { q: "Can you wash my tile roof?",
+        a: "Yes — soft-wash only. Pressure on tile roofs will crack them. We use low-pressure chemistry that lifts the black streaks and algae without touching the tile integrity." },
+      { q: "What about my landscaping during the wash?",
+        a: "We pre-water the beds, cover anything sensitive, and rinse soap off plants during the wash so detergents never sit." },
+      { q: "How long does a whole-house wash take?",
+        a: "Most single-story 2,000–3,000 sq ft houses are a half-day. Two-story or larger lots push into a full day." },
+      { q: "Driveway oil stains — can you get them out?",
+        a: "Most fresh stains, yes. Baked-in oil that's been there a decade is a maybe — we'll tell you what we think at the walk-through." },
+      { q: "Do you wash before painting?",
+        a: "All the time. We prep-wash houses for paint crews and coordinate on timing so the paint goes on dry." },
+    ],
+    stats: [
+      { value: "Half-day",   label: "typical house wash" },
+      { value: "Soft-wash",  label: "on anything delicate" },
+      { value: "Plant-safe", label: "chemistry" },
     ],
   },
 ];

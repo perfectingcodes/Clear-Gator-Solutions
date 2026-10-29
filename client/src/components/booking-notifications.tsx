@@ -25,6 +25,8 @@ const SERVICES = [
   "Site Cleanup",
   "Lot Clearing",
   "Property Maintenance",
+  "Landscaping",
+  "Pressure Washing",
 ];
 
 const NOTIFY_INTERVAL_MS = 4 * 60 * 1000;

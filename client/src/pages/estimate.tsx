@@ -16,7 +16,7 @@ import logoImg from "@assets/clear_gator_1775663894887.png";
 import {
   ArrowLeft, ArrowRight, CheckCircle2, Upload,
   HardHat, Truck, Shield, Clock, Star, MapPin,
-  Hammer, TreePine, Wrench, PhoneCall, Construction
+  Hammer, TreePine, Wrench, PhoneCall, Construction, Leaf, Droplets
 } from "lucide-react";
 
 const SERVICE_OPTIONS = [
@@ -26,6 +26,8 @@ const SERVICE_OPTIONS = [
   { id: "Site Cleanup", label: "Site Cleanup", icon: HardHat, desc: "Post-construction, jobsite, bathroom & dust/debris cleanup", color: "text-primary", selectedBg: "bg-primary/8 border-primary", glow: "shadow-primary/15" },
   { id: "Lot Clearing", label: "Lot Clearing", icon: TreePine, desc: "Yard debris, lot clearing, brush & abandoned property cleanouts", color: "text-primary", selectedBg: "bg-primary/8 border-primary", glow: "shadow-primary/15" },
   { id: "Property Maintenance", label: "Property Maintenance", icon: Wrench, desc: "Interior & exterior painting, repairs, installs & punch lists", color: "text-gator-orange", selectedBg: "bg-gator-orange/8 border-gator-orange", glow: "shadow-gator-orange/15" },
+  { id: "Landscaping", label: "Landscaping", icon: Leaf, desc: "Sod, mulch, hedge & palm trimming, plant installs, lot refresh", color: "text-primary", selectedBg: "bg-primary/8 border-primary", glow: "shadow-primary/15" },
+  { id: "Pressure Washing", label: "Pressure Wash", icon: Droplets, desc: "House, driveway, pool deck, roof wash, fences, screen enclosures", color: "text-gator-orange", selectedBg: "bg-gator-orange/8 border-gator-orange", glow: "shadow-gator-orange/15" },
 ];
 
 const step1Schema = z.object({ serviceType: z.string().min(1, "Please select a service type") });

@@ -9,21 +9,22 @@
   --opaque-button-border-intensity: -8;
   --elevate-1: rgba(0,0,0, .03);
   --elevate-2: rgba(0,0,0, .08);
-  --background: 0 0% 100%;
-  --foreground: 150 8% 12%;
-  --border: 0 0% 92%;
-  --card: 0 0% 98%;
-  --card-foreground: 150 8% 12%;
-  --card-border: 0 0% 95%;
-  --sidebar: 0 0% 96%;
-  --sidebar-foreground: 150 8% 12%;
-  --sidebar-border: 0 0% 93%;
+  /* Shell Rock #EFE9DC — warm bone base surface */
+  --background: 42 36% 92%;
+  --foreground: 120 7% 10%;             /* Asphalt #121412 */
+  --border: 42 20% 82%;
+  --card: 42 40% 96%;                   /* lifted Shell Rock */
+  --card-foreground: 120 7% 10%;
+  --card-border: 42 24% 85%;
+  --sidebar: 42 32% 94%;
+  --sidebar-foreground: 120 7% 10%;
+  --sidebar-border: 42 20% 85%;
   --sidebar-primary: 194 42% 37%;         /* Gulf Teal */
   --sidebar-primary-foreground: 42 36% 95%;
-  --sidebar-accent: 150 4% 90%;
-  --sidebar-accent-foreground: 150 8% 12%;
+  --sidebar-accent: 42 24% 88%;
+  --sidebar-accent-foreground: 120 7% 10%;
   --sidebar-ring: 194 42% 37%;
-  --popover: 0 0% 94%;
+  --popover: 42 32% 94%;
   --popover-foreground: 120 7% 10%;
   --popover-border: 0 0% 91%;
   --primary: 194 42% 37%;                 /* Gulf Teal — buttons, links, focus */
@@ -332,21 +333,32 @@
     box-shadow: 0 0 0 1px rgb(255 255 255 / 0.08);
   }
 
-  /* Editorial dark surface — Asphalt (#121412) with a hint of cool depth */
+  /* Dark coastal surface — Deep Gulf (#1C4A57) over Asphalt (#121412) */
   .bg-ink {
+    background:
+      linear-gradient(180deg, hsl(194 52% 23%) 0%, hsl(120 7% 8%) 100%);
+  }
+
+  /* Pure Asphalt variant when you want flat near-black */
+  .bg-asphalt {
     background: hsl(120 7% 7%);
   }
 
-  /* Subtle vignette for hero — Gulf-Teal glow top-right, deepens to Asphalt */
+  /* Hero — Deep Gulf top with a Hi-Vis Lime glow and deeper Asphalt bottom */
   .bg-ink-hero {
     background:
-      radial-gradient(ellipse 60% 50% at 90% 0%, hsl(194 52% 23% / 0.26) 0%, transparent 60%),
-      linear-gradient(180deg, hsl(120 7% 8%) 0%, hsl(120 7% 5%) 100%);
+      radial-gradient(ellipse 70% 50% at 85% 0%, hsl(75 90% 58% / 0.14) 0%, transparent 60%),
+      linear-gradient(180deg, hsl(194 52% 23%) 0%, hsl(120 7% 8%) 100%);
   }
 
-  /* Warm bone surface — Shell Rock (#EFE9DC) for calmer light sections */
+  /* Warm bone surface — Shell Rock for calmer light sections */
   .bg-shell {
-    background: hsl(42 36% 90%);
+    background: hsl(42 36% 92%);
+  }
+
+  /* Lifted Shell Rock for cards + raised surfaces */
+  .bg-shell-lifted {
+    background: hsl(42 40% 96%);
   }
 }
 

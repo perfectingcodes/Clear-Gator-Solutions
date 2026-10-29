@@ -13,6 +13,8 @@ const SERVICES = [
   "Site Cleanup",
   "Lot Clearing",
   "Maintenance",
+  "Landscaping",
+  "Pressure Wash",
 ];
 
 type Lead = {

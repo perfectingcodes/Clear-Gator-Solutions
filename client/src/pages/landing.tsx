@@ -10,7 +10,7 @@ import {
   Truck, HardHat, PhoneCall, CheckCircle2,
   ArrowRight, Clock, Shield,
   FileText, DollarSign, Search, Facebook, Instagram, Twitter,
-  Hammer, TreePine, Handshake, Wrench, Construction
+  Hammer, TreePine, Handshake, Wrench, Construction, Leaf, Droplets
 } from "lucide-react";
 
 const SERVICE_AREAS = [
@@ -85,6 +85,26 @@ const services = [
     iconBg: "bg-gator-orange/10",
     iconColor: "text-gator-orange",
   },
+  {
+    slug: "landscaping",
+    icon: Leaf,
+    title: "Landscaping",
+    description: "Install, refresh, and repair — sod and mulch, hedge and palm trimming, new-plant installs, lot refresh after clearing. We close the loop so dirt in / dirt out isn't a three-contractor problem.",
+    features: ["Sod & Mulch Install", "Hedge & Palm Trimming", "Plant Install", "Light Hardscape", "Post-Project Finish"],
+    accent: "bg-primary",
+    iconBg: "bg-primary/10",
+    iconColor: "text-primary",
+  },
+  {
+    slug: "pressure-washing",
+    icon: Droplets,
+    title: "Pressure Washing",
+    description: "Whole-house soft wash, driveways, pool decks, roof wash, fences, screen enclosures. Technique first — soft-wash where it belongs, pressure where it earns its keep. No stripes.",
+    features: ["House Soft Wash", "Driveway & Walkway", "Pool Deck", "Roof Wash", "Fence Restoration"],
+    accent: "bg-gator-orange",
+    iconBg: "bg-gator-orange/10",
+    iconColor: "text-gator-orange",
+  },
 ];
 
 const stats = [
@@ -128,12 +148,12 @@ export default function LandingPage() {
         <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-transparent to-transparent" aria-hidden="true" />
         <div className="absolute -top-1/3 right-0 w-[55%] aspect-square rounded-full bg-gator-orange/[0.06] blur-3xl pointer-events-none" aria-hidden="true" />
 
-        {/* Brand watermark — actual logo, low opacity, anchored bottom-right */}
+        {/* Brand watermark — actual logo, anchored bottom-right at a readable opacity */}
         <img
           src={logoImg}
           alt=""
           aria-hidden="true"
-          className="absolute -bottom-20 -right-20 w-[560px] h-[560px] object-contain opacity-[0.06] pointer-events-none hidden md:block select-none"
+          className="absolute -bottom-20 -right-20 w-[560px] h-[560px] object-contain opacity-[0.14] pointer-events-none hidden md:block select-none"
         />
 
         <div className="relative z-10 max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 pt-20 sm:pt-28 pb-16 sm:pb-24 grid lg:grid-cols-12 gap-x-12 gap-y-10 sm:gap-y-14 items-center">
@@ -263,6 +283,47 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* Brand showcase ribbon — logo as the hero on Shell Rock bone */}
+      <section className="relative bg-shell overflow-hidden border-y border-border/60">
+        <div className="absolute inset-0 opacity-30 pointer-events-none" aria-hidden="true" style={{
+          backgroundImage: "radial-gradient(circle at 20% 50%, hsl(75 90% 58% / 0.08) 0, transparent 40%), radial-gradient(circle at 80% 50%, hsl(194 42% 37% / 0.08) 0, transparent 40%)",
+        }} />
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14 grid lg:grid-cols-12 gap-8 sm:gap-10 items-center">
+          <div className="lg:col-span-5 flex justify-center lg:justify-start order-1 lg:order-none">
+            <div className="relative">
+              <div className="absolute -inset-6 rounded-full bg-gator-orange/15 blur-3xl pointer-events-none" aria-hidden="true" />
+              <img
+                src={logoImg}
+                alt="Clear Gator — Cleanup and Site Reset"
+                className="relative h-44 w-44 sm:h-56 sm:w-56 lg:h-64 lg:w-64 object-contain drop-shadow-[0_10px_32px_rgba(28,74,87,0.25)]"
+              />
+            </div>
+          </div>
+          <div className="lg:col-span-7 order-2 lg:order-none">
+            <div className="font-mono text-[11px] font-medium tracking-[0.22em] uppercase text-primary mb-3">
+              01 / Who we are
+            </div>
+            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-[-0.025em] leading-[1.05] mb-4 text-balance">
+              Clear Gator.<br />
+              <span className="text-muted-foreground/70">Cleanup &amp; Site Reset.</span>
+            </h2>
+            <p className="text-base sm:text-lg text-foreground/75 leading-[1.6] max-w-xl text-balance mb-6">
+              A Southwest Florida construction crew that handles the dirty parts of a project end-to-end —
+              demo it, haul it, clear it, clean it, maintain it, make it look sharp. One crew. One standard.
+            </p>
+            <div className="flex flex-wrap items-center gap-4">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-asphalt text-shell border border-asphalt">
+                <span className="w-1.5 h-1.5 rounded-full bg-gator-orange" />
+                <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em]">Let's Gator Done.</span>
+              </div>
+              <div className="font-mono text-xs text-muted-foreground tracking-wide">
+                CAPE CORAL · NAPLES · FORT MYERS · GULF COAST
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Customer-type trust strip — who we work with, no logos, just confidence */}
       <section className="relative bg-ink text-white py-6 sm:py-7 overflow-hidden border-b border-white/5">
         <img src={logoImg} alt="" aria-hidden="true" className="absolute -right-8 top-1/2 -translate-y-1/2 h-32 w-32 object-contain opacity-[0.05] pointer-events-none hidden sm:block" />
@@ -307,7 +368,7 @@ export default function LandingPage() {
                 <SectionRule className="w-16 h-1.5 text-gator-orange/60" />
               </div>
               <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-[-0.025em] text-balance leading-[0.98]">
-                Six disciplines.<br />
+                Eight disciplines.<br />
                 <span className="text-muted-foreground/60">One Gator crew.</span>
               </h2>
             </div>
