@@ -1,26 +1,21 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "wouter";
-import { Button } from "@/components/ui/button";
 import {
   Menu, X, PhoneCall, ArrowRight, ChevronDown,
   Hammer, Construction, Truck, HardHat, Leaf, Droplets, MapPin,
 } from "lucide-react";
 import { SERVICES } from "@/data/services";
 import { CITIES } from "@/data/cities";
+import { SERVICE_IMAGES, CITY_IMAGES, FALLBACK_HERO } from "@/data/page-images";
 import logoImg from "@assets/clear_gator_1775663894887.png";
 
 const ICONS = { Hammer, Construction, Truck, HardHat, Leaf, Droplets } as const;
 
 /**
- * MainNav — sticky top navigation used across landing / service / city pages.
+ * MainNav — sticky top navigation used across every public page.
  *
- * Dropdowns are click-to-toggle so they don't disappear when the mouse moves
- * between trigger and panel (the previous hover-only approach had a gap
- * between the trigger and the dropdown that closed it mid-move). Outside
- * clicks and Escape close any open menu.
- *
- * Mobile menu is a full-screen, slide-in panel with a brand hero, big
- * tappable CTAs, staggered nav lists, and a "Let's Gator Done." sign-off.
+ * Dark Asphalt bar with an oversized logo breakout, uppercase nav links,
+ * lime phone CTA, and dark mega menus that use per-item photo backdrops.
  */
 export default function MainNav() {
   const [location] = useLocation();
@@ -28,13 +23,11 @@ export default function MainNav() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const headerRef = useRef<HTMLElement | null>(null);
 
-  // Close menus whenever the route changes
   useEffect(() => {
     setOpenMenu(null);
     setMobileOpen(false);
   }, [location]);
 
-  // Outside-click closes the desktop dropdown
   useEffect(() => {
     if (!openMenu) return;
     const onDocClick = (e: MouseEvent) => {
@@ -45,7 +38,6 @@ export default function MainNav() {
     return () => document.removeEventListener("mousedown", onDocClick);
   }, [openMenu]);
 
-  // Lock body scroll when mobile drawer is open
   useEffect(() => {
     if (mobileOpen) {
       const prev = document.body.style.overflow;
@@ -54,7 +46,6 @@ export default function MainNav() {
     }
   }, [mobileOpen]);
 
-  // Escape closes everything
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
@@ -73,10 +64,13 @@ export default function MainNav() {
     <>
       <header
         ref={headerRef}
-        className="sticky top-0 z-50 bg-asphalt text-shell border-b border-asphalt/80"
+        className="sticky top-0 z-50 bg-asphalt text-shell border-b border-white/5"
       >
+        {/* lime accent rail */}
+        <div className="absolute top-0 inset-x-0 h-0.5 bg-gradient-to-r from-transparent via-gator-orange to-transparent opacity-60" aria-hidden="true" />
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-18 flex items-center justify-between gap-4">
-          {/* Horizontal logo lockup — oversized emblem breaking out of the bar */}
+          {/* Oversized emblem breakout */}
           <Link
             href="/"
             className="relative flex items-center gap-3 group flex-shrink-0 z-10"
@@ -89,13 +83,13 @@ export default function MainNav() {
             />
             <div className="hidden sm:block leading-none">
               <div className="font-display font-black text-xl sm:text-[22px] tracking-[-0.01em] text-shell uppercase">Clear Gator</div>
-              <div className="font-mono text-[9px] font-medium tracking-[0.22em] uppercase text-shell/55 mt-1">
+              <div className="font-mono text-[9px] font-black tracking-[0.3em] uppercase text-gator-orange mt-1.5">
                 Cleanup &amp; Site Reset
               </div>
             </div>
           </Link>
 
-          {/* Desktop nav — all caps, light on dark */}
+          {/* Desktop nav */}
           <nav className="hidden lg:flex items-center gap-1 text-sm flex-1 justify-center">
             <NavTrigger label="SERVICES"      isOpen={openMenu === "services"} onToggle={() => toggle("services")} />
             <NavTrigger label="SERVICE AREAS" isOpen={openMenu === "areas"}    onToggle={() => toggle("areas")} />
@@ -104,31 +98,29 @@ export default function MainNav() {
             <NavLink href="/track">TRACK JOB</NavLink>
           </nav>
 
-          {/* Right side — big lime phone CTA */}
+          {/* Right side: lime phone CTA + hamburger */}
           <div className="flex items-center gap-3 flex-shrink-0">
             <a
               href="tel:+12392343061"
-              className="inline-flex items-center gap-2 bg-gator-orange hover:bg-gator-orange-dark text-asphalt font-bold rounded-md px-3 sm:px-4 h-10 sm:h-11 transition-colors shadow-[0_6px_20px_-6px_rgba(198,244,50,0.55)]"
+              className="inline-flex items-center gap-2 bg-gator-orange hover:bg-gator-orange-dark text-asphalt font-black uppercase tracking-[0.1em] rounded-md px-3 sm:px-4 h-10 sm:h-11 transition-colors shadow-[0_8px_24px_-6px_rgba(198,244,50,0.5)]"
               aria-label="Call Clear Gator at 239-234-3061"
             >
-              <PhoneCall className="w-4 h-4" strokeWidth={2.6} />
-              <span className="hidden md:inline tracking-tight text-sm">(239) 234-3061</span>
+              <PhoneCall className="w-4 h-4" strokeWidth={2.8} />
+              <span className="hidden md:inline text-sm">(239) 234-3061</span>
               <span className="md:hidden text-sm">Call</span>
             </a>
 
-            {/* Mobile hamburger */}
             <button
               type="button"
               onClick={() => setMobileOpen(true)}
               aria-label="Open menu"
-              className="lg:hidden inline-flex items-center justify-center w-10 h-10 rounded-md border border-shell/20 text-shell hover:bg-shell/10 transition-colors"
+              className="lg:hidden inline-flex items-center justify-center w-10 h-10 rounded-md border border-shell/20 text-shell hover:bg-shell/10 hover:border-gator-orange hover:text-gator-orange transition-colors"
             >
               <Menu className="w-5 h-5" />
             </button>
           </div>
         </div>
 
-        {/* Desktop mega menus */}
         {openMenu === "services" && (
           <MegaMenuServices key="m-services" onClose={() => setOpenMenu(null)} />
         )}
@@ -137,7 +129,6 @@ export default function MainNav() {
         )}
       </header>
 
-      {/* Mobile overlay (lives outside the sticky header so it covers everything) */}
       {mobileOpen && <MobileMenu onClose={() => setMobileOpen(false)} />}
     </>
   );
@@ -150,10 +141,10 @@ function NavLink({ href, children }: { href: string; children: React.ReactNode }
   return (
     <a
       href={href}
-      className="relative px-4 py-2 font-bold text-[13px] tracking-wide text-shell/80 hover:text-shell transition-colors group"
+      className="relative px-4 py-2 font-black text-[13px] tracking-wide text-shell/80 hover:text-shell transition-colors group"
     >
       {children}
-      <span className="absolute left-4 right-4 -bottom-0.5 h-px bg-gator-orange origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
+      <span className="absolute left-4 right-4 -bottom-0.5 h-0.5 bg-gator-orange origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
     </a>
   );
 }
@@ -171,14 +162,14 @@ function NavTrigger({
       onClick={onToggle}
       aria-haspopup="true"
       aria-expanded={isOpen}
-      className={`relative inline-flex items-center gap-1.5 px-4 py-2 font-bold text-[13px] tracking-wide transition-colors group ${
+      className={`relative inline-flex items-center gap-1.5 px-4 py-2 font-black text-[13px] tracking-wide transition-colors group ${
         isOpen ? "text-shell" : "text-shell/80 hover:text-shell"
       }`}
     >
       {label}
-      <ChevronDown className={`w-3.5 h-3.5 transition-transform ${isOpen ? "rotate-180" : ""}`} strokeWidth={2.4} />
+      <ChevronDown className={`w-3.5 h-3.5 transition-transform ${isOpen ? "rotate-180" : ""}`} strokeWidth={2.6} />
       <span
-        className={`absolute left-4 right-4 -bottom-0.5 h-px bg-gator-orange origin-left transition-transform ${
+        className={`absolute left-4 right-4 -bottom-0.5 h-0.5 bg-gator-orange origin-left transition-transform ${
           isOpen ? "scale-x-100" : "scale-x-0"
         }`}
         aria-hidden="true"
@@ -188,27 +179,40 @@ function NavTrigger({
 }
 
 /* ─────────────────────────────────────────────────────────────
-   Mega menu: Services
+   Mega menu: Services — dark asphalt with photo cards
    ───────────────────────────────────────────────────────────── */
 function MegaMenuServices({ onClose }: { onClose: () => void }) {
   return (
-    <div className="absolute left-0 right-0 top-full bg-background border-b border-border shadow-xl animate-nav-drop">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 grid grid-cols-12 gap-8">
+    <div className="absolute left-0 right-0 top-full bg-asphalt text-shell border-b border-white/10 shadow-2xl shadow-black/40 animate-nav-drop overflow-hidden">
+      {/* ambient brand glow */}
+      <div className="absolute -top-32 right-0 w-[500px] h-[500px] rounded-full bg-gator-orange/[0.08] blur-3xl pointer-events-none" aria-hidden="true" />
+      <div className="absolute -bottom-20 left-0 w-[400px] h-[400px] rounded-full bg-teal/[0.1] blur-3xl pointer-events-none" aria-hidden="true" />
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 grid grid-cols-12 gap-8">
         <div className="col-span-3">
-          <div className="font-mono text-[11px] tracking-[0.22em] uppercase text-gator-orange mb-3">02 / Capabilities</div>
-          <h3 className="font-display text-2xl font-semibold tracking-tight leading-tight mb-3">
-            Eight disciplines.<br /><span className="text-muted-foreground/60">One Gator crew.</span>
+          <div className="font-mono text-[11px] font-black tracking-[0.3em] uppercase text-gator-orange mb-4">
+            Services
+          </div>
+          <h3 className="font-display font-black uppercase text-3xl leading-[0.95] tracking-[-0.03em] text-shell mb-4">
+            Six Disciplines.<br /><span className="text-gator-orange">One Crew.</span>
           </h3>
-          <p className="text-sm text-muted-foreground leading-relaxed mb-5">
-            From interior gut-outs to property maintenance — same standards across every line.
+          <p className="text-sm text-shell/60 leading-[1.65] mb-6">
+            From interior gut-outs to pressure washing — same standards across every line.
           </p>
-          <Link href="/#services" onClick={onClose} className="text-xs font-semibold uppercase tracking-wider text-foreground border-b border-foreground/30 hover:border-gator-orange hover:text-gator-orange pb-0.5 transition-colors">
-            View on home →
+          <Link
+            href="/#services"
+            onClick={onClose}
+            className="inline-flex items-center gap-2 text-shell font-black uppercase text-xs tracking-[0.18em] border-b-2 border-gator-orange pb-1 hover:text-gator-orange transition-colors"
+          >
+            View All
+            <ArrowRight className="w-3.5 h-3.5" strokeWidth={2.6} />
           </Link>
         </div>
-        <ul className="col-span-9 grid grid-cols-2 gap-x-6 gap-y-2">
+
+        <ul className="col-span-9 grid grid-cols-3 gap-3">
           {SERVICES.map((s, i) => {
             const Icon = ICONS[s.icon];
+            const img = SERVICE_IMAGES[s.slug]?.hero ?? FALLBACK_HERO;
             return (
               <li
                 key={s.slug}
@@ -216,18 +220,30 @@ function MegaMenuServices({ onClose }: { onClose: () => void }) {
                 style={{ ["--stagger-index" as never]: i } as React.CSSProperties}
               >
                 <Link href={`/services/${s.slug}`} onClick={onClose}>
-                  <div className="group flex items-start gap-3 p-3 -mx-3 rounded-md hover:bg-muted/50 transition-colors cursor-pointer">
-                    <div className="w-9 h-9 rounded-md bg-gator-orange/10 flex items-center justify-center flex-shrink-0 group-hover:bg-gator-orange/15 transition-colors">
-                      <Icon className="w-4 h-4 text-gator-orange" strokeWidth={2.2} />
-                    </div>
-                    <div className="min-w-0 flex-1">
-                      <div className="flex items-center justify-between gap-2">
-                        <div className="font-display font-semibold text-sm tracking-tight">{s.name}</div>
-                        <ArrowRight className="w-3 h-3 text-muted-foreground/40 group-hover:text-gator-orange group-hover:translate-x-0.5 transition-all flex-shrink-0" />
+                  <article className="group relative h-full rounded-lg overflow-hidden bg-white/[0.03] border border-white/10 hover:border-gator-orange/50 transition-all duration-300 cursor-pointer">
+                    <div className="relative aspect-[16/9] overflow-hidden">
+                      <div
+                        className="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-500"
+                        style={{ backgroundImage: `url('${img}')` }}
+                        aria-hidden="true"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-asphalt via-asphalt/40 to-transparent" aria-hidden="true" />
+                      <div className="absolute top-3 left-3 w-8 h-8 rounded-md bg-gator-orange flex items-center justify-center">
+                        <Icon className="w-4 h-4 text-asphalt" strokeWidth={2.4} />
                       </div>
-                      <p className="text-xs text-muted-foreground leading-snug mt-0.5">{s.category}</p>
                     </div>
-                  </div>
+                    <div className="p-3 flex items-center justify-between gap-2">
+                      <div className="min-w-0">
+                        <div className="font-display font-black uppercase text-sm text-shell tracking-tight leading-tight truncate">
+                          {s.name}
+                        </div>
+                        <div className="font-mono text-[9px] font-black tracking-[0.22em] uppercase text-shell/50 mt-0.5 truncate">
+                          {s.category}
+                        </div>
+                      </div>
+                      <ArrowRight className="w-3.5 h-3.5 text-shell/40 group-hover:text-gator-orange group-hover:translate-x-0.5 transition-all flex-shrink-0" strokeWidth={2.4} />
+                    </div>
+                  </article>
                 </Link>
               </li>
             );
@@ -239,47 +255,70 @@ function MegaMenuServices({ onClose }: { onClose: () => void }) {
 }
 
 /* ─────────────────────────────────────────────────────────────
-   Mega menu: Service Areas
+   Mega menu: Service Areas — dark asphalt with photo cards
    ───────────────────────────────────────────────────────────── */
 function MegaMenuAreas({ onClose }: { onClose: () => void }) {
   return (
-    <div className="absolute left-0 right-0 top-full bg-background border-b border-border shadow-xl animate-nav-drop">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 grid grid-cols-12 gap-8">
+    <div className="absolute left-0 right-0 top-full bg-asphalt text-shell border-b border-white/10 shadow-2xl shadow-black/40 animate-nav-drop overflow-hidden">
+      <div className="absolute -top-32 left-0 w-[500px] h-[500px] rounded-full bg-teal/[0.1] blur-3xl pointer-events-none" aria-hidden="true" />
+      <div className="absolute -bottom-20 right-0 w-[400px] h-[400px] rounded-full bg-gator-orange/[0.08] blur-3xl pointer-events-none" aria-hidden="true" />
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 grid grid-cols-12 gap-8">
         <div className="col-span-3">
-          <div className="font-mono text-[11px] tracking-[0.22em] uppercase text-gator-orange mb-3">05 / Gator Country</div>
-          <h3 className="font-display text-2xl font-semibold tracking-tight leading-tight mb-3">
-            Eight cities,<br /><span className="text-muted-foreground/60">one route.</span>
+          <div className="font-mono text-[11px] font-black tracking-[0.3em] uppercase text-gator-orange mb-4">
+            Gator Country
+          </div>
+          <h3 className="font-display font-black uppercase text-3xl leading-[0.95] tracking-[-0.03em] text-shell mb-4">
+            Eight Cities.<br /><span className="text-gator-orange">One Route.</span>
           </h3>
-          <p className="text-sm text-muted-foreground leading-relaxed mb-5">
-            Cape Coral, Naples, Fort Myers, and everywhere in between. Local crew, weekly route.
+          <p className="text-sm text-shell/60 leading-[1.65] mb-6">
+            Cape Coral, Naples, Fort Myers and everywhere in between. Local crew, weekly route.
           </p>
-          <Link href="/#service-areas" onClick={onClose} className="text-xs font-semibold uppercase tracking-wider text-foreground border-b border-foreground/30 hover:border-gator-orange hover:text-gator-orange pb-0.5 transition-colors">
-            View on home →
+          <Link
+            href="/#service-areas"
+            onClick={onClose}
+            className="inline-flex items-center gap-2 text-shell font-black uppercase text-xs tracking-[0.18em] border-b-2 border-gator-orange pb-1 hover:text-gator-orange transition-colors"
+          >
+            View All
+            <ArrowRight className="w-3.5 h-3.5" strokeWidth={2.6} />
           </Link>
         </div>
-        <ul className="col-span-9 grid grid-cols-2 gap-x-6 gap-y-2">
-          {CITIES.map((c, i) => (
-            <li
-              key={c.slug}
-              className="animate-nav-stagger"
-              style={{ ["--stagger-index" as never]: i } as React.CSSProperties}
-            >
-              <Link href={`/service-areas/${c.slug}`} onClick={onClose}>
-                <div className="group flex items-start gap-3 p-3 -mx-3 rounded-md hover:bg-muted/50 transition-colors cursor-pointer">
-                  <div className="w-9 h-9 rounded-md bg-primary/10 flex items-center justify-center flex-shrink-0 group-hover:bg-primary/15 transition-colors">
-                    <MapPin className="w-4 h-4 text-primary" strokeWidth={2.2} />
-                  </div>
-                  <div className="min-w-0 flex-1">
-                    <div className="flex items-center justify-between gap-2">
-                      <div className="font-display font-semibold text-sm tracking-tight">{c.name}</div>
-                      <ArrowRight className="w-3 h-3 text-muted-foreground/40 group-hover:text-gator-orange group-hover:translate-x-0.5 transition-all flex-shrink-0" />
+
+        <ul className="col-span-9 grid grid-cols-4 gap-3">
+          {CITIES.map((c, i) => {
+            const img = CITY_IMAGES[c.slug]?.hero ?? FALLBACK_HERO;
+            return (
+              <li
+                key={c.slug}
+                className="animate-nav-stagger"
+                style={{ ["--stagger-index" as never]: i } as React.CSSProperties}
+              >
+                <Link href={`/service-areas/${c.slug}`} onClick={onClose}>
+                  <article className="group relative h-full rounded-lg overflow-hidden bg-white/[0.03] border border-white/10 hover:border-gator-orange/50 transition-all duration-300 cursor-pointer">
+                    <div className="relative aspect-[16/10] overflow-hidden">
+                      <div
+                        className="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-500"
+                        style={{ backgroundImage: `url('${img}')` }}
+                        aria-hidden="true"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-asphalt via-asphalt/40 to-transparent" aria-hidden="true" />
+                      <div className="absolute top-2 left-2 w-7 h-7 rounded-md bg-gator-orange flex items-center justify-center">
+                        <MapPin className="w-3.5 h-3.5 text-asphalt" strokeWidth={2.4} />
+                      </div>
                     </div>
-                    <p className="text-xs text-muted-foreground leading-snug mt-0.5">{c.county}</p>
-                  </div>
-                </div>
-              </Link>
-            </li>
-          ))}
+                    <div className="p-3">
+                      <div className="font-display font-black uppercase text-sm text-shell tracking-tight leading-tight truncate">
+                        {c.name}
+                      </div>
+                      <div className="font-mono text-[9px] font-black tracking-[0.22em] uppercase text-shell/50 mt-0.5 truncate">
+                        {c.county.replace(" County", "")}
+                      </div>
+                    </div>
+                  </article>
+                </Link>
+              </li>
+            );
+          })}
         </ul>
       </div>
     </div>
@@ -287,34 +326,35 @@ function MegaMenuAreas({ onClose }: { onClose: () => void }) {
 }
 
 /* ─────────────────────────────────────────────────────────────
-   Mobile full-screen menu — award-winning
+   Mobile full-screen menu — dark asphalt
    ───────────────────────────────────────────────────────────── */
 function MobileMenu({ onClose }: { onClose: () => void }) {
   return (
     <div className="fixed inset-0 z-[100] lg:hidden">
-      {/* Backdrop */}
       <div
-        className="absolute inset-0 bg-black/40 backdrop-blur-sm animate-nav-overlay"
+        className="absolute inset-0 bg-asphalt/80 backdrop-blur-sm animate-nav-overlay"
         onClick={onClose}
         aria-hidden="true"
       />
 
-      {/* Sliding panel — full width on mobile, drawer on larger screens */}
-      <div className="absolute inset-y-0 right-0 w-full sm:w-[440px] bg-background shadow-2xl animate-nav-panel flex flex-col overflow-hidden">
+      <div className="absolute inset-y-0 right-0 w-full sm:w-[440px] bg-asphalt text-shell shadow-2xl animate-nav-panel flex flex-col overflow-hidden">
         {/* Top bar */}
-        <div className="flex items-center justify-between px-5 py-4 border-b border-border flex-shrink-0">
-          <Link href="/" onClick={onClose} className="flex items-center gap-2.5" aria-label="Clear Gator — Home">
-            <img src={logoImg} alt="Clear Gator Logo" className="h-11 w-11 object-contain" />
+        <div className="flex items-center justify-between px-5 py-4 border-b border-white/10 flex-shrink-0 bg-asphalt relative">
+          <div className="absolute top-0 inset-x-0 h-0.5 bg-gradient-to-r from-transparent via-gator-orange to-transparent opacity-70" aria-hidden="true" />
+          <Link href="/" onClick={onClose} className="flex items-center gap-3" aria-label="Clear Gator — Home">
+            <img src={logoImg} alt="Clear Gator Logo" className="h-14 w-14 object-contain -my-3" />
             <div className="leading-none">
-              <div className="font-display font-semibold text-base tracking-[-0.02em]">Clear Gator</div>
-              <div className="font-mono text-[9px] tracking-[0.24em] uppercase text-muted-foreground mt-1">SWFL</div>
+              <div className="font-display font-black text-base tracking-tight uppercase text-shell">Clear Gator</div>
+              <div className="font-mono text-[9px] font-black tracking-[0.3em] uppercase text-gator-orange mt-1">
+                SWFL
+              </div>
             </div>
           </Link>
           <button
             type="button"
             onClick={onClose}
             aria-label="Close menu"
-            className="inline-flex items-center justify-center w-10 h-10 rounded-md border border-border text-foreground hover:bg-muted/50 transition-colors"
+            className="inline-flex items-center justify-center w-10 h-10 rounded-md border border-white/15 text-shell hover:bg-white/5 hover:border-gator-orange hover:text-gator-orange transition-colors"
           >
             <X className="w-5 h-5" />
           </button>
@@ -323,52 +363,56 @@ function MobileMenu({ onClose }: { onClose: () => void }) {
         {/* Scroll container */}
         <div className="flex-1 overflow-y-auto overscroll-contain">
           {/* Brand hero */}
-          <div className="relative bg-ink text-white overflow-hidden">
-            <div className="absolute inset-0 bg-cover bg-center opacity-25" style={{ backgroundImage: "url('/images/hero-construction.png')" }} aria-hidden="true" />
-            <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/85 to-ink/40" aria-hidden="true" />
-            <img src={logoImg} alt="" aria-hidden="true" className="absolute -right-8 -bottom-8 w-44 h-44 object-contain opacity-[0.08] pointer-events-none" />
-            <div className="relative p-5 pb-6">
-              <div className="flex items-center gap-2 mb-3 font-mono text-[10px] uppercase tracking-[0.24em] text-gator-orange-light font-semibold">
-                <span className="relative flex h-2 w-2">
-                  <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-60 animate-ping" />
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
+          <div className="relative overflow-hidden border-b border-white/10">
+            <div
+              className="absolute inset-0 bg-cover bg-center opacity-50"
+              style={{ backgroundImage: "url('/images/stock/crew-boots.jpg')" }}
+              aria-hidden="true"
+            />
+            <div className="absolute inset-0 bg-gradient-to-br from-asphalt/90 via-asphalt/70 to-teal/50" aria-hidden="true" />
+            <div className="absolute inset-0 bg-gradient-to-t from-asphalt via-asphalt/30 to-transparent" aria-hidden="true" />
+
+            <div className="relative p-6">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 border border-white/20 backdrop-blur-sm mb-4">
+                <span className="w-1.5 h-1.5 rounded-full bg-gator-orange animate-pulse" />
+                <span className="font-mono text-[10px] font-black uppercase tracking-[0.22em] text-shell/90">
+                  24h Reply
                 </span>
-                Available · 24-hour reply
               </div>
-              <h2 className="font-display text-2xl font-semibold tracking-[-0.02em] leading-[1.05] mb-1 text-balance">
-                Let's Gator Done.
+              <h2 className="font-display font-black uppercase text-3xl leading-[0.95] tracking-[-0.025em] text-shell mb-2">
+                Let's Gator<br /><span className="text-gator-orange">Done.</span>
               </h2>
-              <p className="text-sm text-white/70 leading-[1.55]">
-                Demolition, hauling, cleanup, landscaping &amp; pressure washing — Cape Coral, Naples, Fort Myers and across SW Florida.
+              <p className="text-sm text-shell/70 leading-[1.55] max-w-xs">
+                Demolition, hauling, cleanup, landscaping &amp; pressure washing — SW Florida.
               </p>
             </div>
           </div>
 
-          {/* Quick CTAs */}
+          {/* CTAs */}
           <div className="grid grid-cols-2 gap-3 p-5">
             <Link href="/estimate" onClick={onClose}>
-              <div className="group rounded-lg bg-gator-orange text-asphalt p-4 active:bg-gator-orange-dark transition-colors h-full flex flex-col justify-between min-h-[100px] shadow-lg shadow-gator-orange/25">
+              <div className="group rounded-lg bg-gator-orange text-asphalt p-4 active:bg-gator-orange-dark transition-colors h-full flex flex-col justify-between min-h-[110px] shadow-lg shadow-gator-orange/25">
                 <div>
-                  <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-asphalt/75 mb-1.5">Get</div>
-                  <div className="font-display text-lg font-bold tracking-tight leading-tight">Free Estimate</div>
+                  <div className="font-mono text-[10px] font-black uppercase tracking-[0.22em] text-asphalt/70 mb-1.5">Get</div>
+                  <div className="font-display font-black uppercase text-lg tracking-tight leading-tight">Free Estimate</div>
                 </div>
-                <ArrowRight className="w-4 h-4 self-end" strokeWidth={2.4} />
+                <ArrowRight className="w-4 h-4 self-end" strokeWidth={2.6} />
               </div>
             </Link>
             <a href="tel:+12392343061" onClick={onClose}>
-              <div className="group rounded-lg bg-foreground text-background p-4 active:bg-foreground/90 transition-colors h-full flex flex-col justify-between min-h-[100px]">
+              <div className="group rounded-lg bg-white/[0.05] border border-white/15 text-shell p-4 active:bg-white/10 transition-colors h-full flex flex-col justify-between min-h-[110px]">
                 <div>
-                  <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-background/65 mb-1.5">Call</div>
-                  <div className="font-display text-lg font-bold tracking-tight leading-tight">(239) 234-3061</div>
+                  <div className="font-mono text-[10px] font-black uppercase tracking-[0.22em] text-shell/55 mb-1.5">Call</div>
+                  <div className="font-display font-black text-lg tracking-tight leading-tight">(239) 234-3061</div>
                 </div>
-                <PhoneCall className="w-4 h-4 self-end" strokeWidth={2.4} />
+                <PhoneCall className="w-4 h-4 self-end text-gator-orange" strokeWidth={2.6} />
               </div>
             </a>
           </div>
 
           {/* Services */}
-          <NavGroup eyebrow="02 / Services" title="What we handle">
-            <ul className="space-y-px bg-border/60 rounded-lg overflow-hidden ring-1 ring-border/60">
+          <NavGroup eyebrow="Services" title="What We Handle">
+            <ul className="space-y-2.5">
               {SERVICES.map((s, i) => {
                 const Icon = ICONS[s.icon];
                 return (
@@ -378,15 +422,15 @@ function MobileMenu({ onClose }: { onClose: () => void }) {
                     style={{ ["--stagger-index" as never]: i + 1 } as React.CSSProperties}
                   >
                     <Link href={`/services/${s.slug}`} onClick={onClose}>
-                      <div className="flex items-center gap-3.5 px-4 py-4 bg-background active:bg-muted/50 transition-colors">
-                        <div className="w-10 h-10 rounded-md bg-gator-orange/10 flex items-center justify-center flex-shrink-0">
-                          <Icon className="w-4 h-4 text-gator-orange" strokeWidth={2.2} />
+                      <div className="flex items-center gap-3.5 px-4 py-3.5 rounded-md bg-white/[0.03] border border-white/10 active:bg-white/[0.07] hover:border-gator-orange/40 transition-colors">
+                        <div className="w-10 h-10 rounded-md bg-gator-orange flex items-center justify-center flex-shrink-0">
+                          <Icon className="w-4 h-4 text-asphalt" strokeWidth={2.4} />
                         </div>
                         <div className="flex-1 min-w-0">
-                          <div className="font-display font-semibold text-base tracking-tight leading-tight">{s.name}</div>
-                          <div className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground mt-1">{s.category}</div>
+                          <div className="font-display font-black uppercase text-sm text-shell tracking-tight leading-tight">{s.name}</div>
+                          <div className="font-mono text-[9px] font-black uppercase tracking-[0.22em] text-shell/45 mt-0.5">{s.category}</div>
                         </div>
-                        <ArrowRight className="w-4 h-4 text-muted-foreground/50 flex-shrink-0" />
+                        <ArrowRight className="w-4 h-4 text-shell/40 flex-shrink-0" />
                       </div>
                     </Link>
                   </li>
@@ -396,8 +440,8 @@ function MobileMenu({ onClose }: { onClose: () => void }) {
           </NavGroup>
 
           {/* Cities */}
-          <NavGroup eyebrow="05 / Gator Country" title="Where we work">
-            <ul className="grid grid-cols-2 gap-px bg-border/60 rounded-lg overflow-hidden ring-1 ring-border/60">
+          <NavGroup eyebrow="Gator Country" title="Where We Work">
+            <ul className="grid grid-cols-2 gap-2">
               {CITIES.map((c, i) => (
                 <li
                   key={c.slug}
@@ -405,11 +449,10 @@ function MobileMenu({ onClose }: { onClose: () => void }) {
                   style={{ ["--stagger-index" as never]: i + 1 } as React.CSSProperties}
                 >
                   <Link href={`/service-areas/${c.slug}`} onClick={onClose}>
-                    <div className="flex items-center gap-2 px-4 py-3.5 bg-background active:bg-muted/50 transition-colors h-full">
-                      <MapPin className="w-3.5 h-3.5 text-gator-orange flex-shrink-0" />
+                    <div className="flex items-center gap-2.5 px-3 py-3 rounded-md bg-white/[0.03] border border-white/10 active:bg-white/[0.07] hover:border-gator-orange/40 transition-colors h-full">
+                      <MapPin className="w-3.5 h-3.5 text-gator-orange flex-shrink-0" strokeWidth={2.6} />
                       <div className="flex-1 min-w-0">
-                        <div className="font-display font-semibold text-sm tracking-tight leading-tight">{c.name}</div>
-                        <div className="font-mono text-[9px] uppercase tracking-[0.18em] text-muted-foreground mt-0.5">{c.county.replace(" County", "")}</div>
+                        <div className="font-display font-black uppercase text-xs text-shell tracking-tight leading-tight">{c.name}</div>
                       </div>
                     </div>
                   </Link>
@@ -419,8 +462,8 @@ function MobileMenu({ onClose }: { onClose: () => void }) {
           </NavGroup>
 
           {/* More */}
-          <NavGroup eyebrow="More" title="Other pages">
-            <ul className="space-y-px bg-border/60 rounded-lg overflow-hidden ring-1 ring-border/60">
+          <NavGroup eyebrow="More" title="Other Pages">
+            <ul className="space-y-2">
               {[
                 { href: "/track",          label: "Track an existing job" },
                 { href: "/#how-it-works",  label: "The Gator Way (process)" },
@@ -433,9 +476,9 @@ function MobileMenu({ onClose }: { onClose: () => void }) {
                   style={{ ["--stagger-index" as never]: i + 1 } as React.CSSProperties}
                 >
                   <Link href={href} onClick={onClose}>
-                    <div className="flex items-center justify-between px-4 py-3.5 bg-background active:bg-muted/50 transition-colors">
-                      <span className="font-medium text-sm">{label}</span>
-                      <ArrowRight className="w-4 h-4 text-muted-foreground/50" />
+                    <div className="flex items-center justify-between px-4 py-3 rounded-md bg-white/[0.03] border border-white/10 active:bg-white/[0.07] hover:border-gator-orange/40 transition-colors">
+                      <span className="font-semibold text-sm text-shell/85">{label}</span>
+                      <ArrowRight className="w-4 h-4 text-shell/40" />
                     </div>
                   </Link>
                 </li>
@@ -444,12 +487,12 @@ function MobileMenu({ onClose }: { onClose: () => void }) {
           </NavGroup>
 
           {/* Footer signature */}
-          <div className="px-5 py-6 mt-2 border-t border-border bg-muted/30 flex items-center justify-between text-xs">
+          <div className="px-5 py-6 mt-2 border-t border-white/10 bg-white/[0.02] flex items-center justify-between text-xs">
             <div className="flex items-center gap-2.5">
               <img src={logoImg} alt="" aria-hidden="true" className="h-5 w-5 object-contain" />
-              <span className="font-mono uppercase tracking-[0.24em] text-gator-orange font-semibold">Let's Gator Done.</span>
+              <span className="font-mono uppercase tracking-[0.3em] text-gator-orange font-black">Let's Gator Done.</span>
             </div>
-            <span className="text-muted-foreground">&copy; {new Date().getFullYear()}</span>
+            <span className="text-shell/40">&copy; {new Date().getFullYear()}</span>
           </div>
         </div>
       </div>
@@ -459,12 +502,10 @@ function MobileMenu({ onClose }: { onClose: () => void }) {
 
 function NavGroup({ eyebrow, title, children }: { eyebrow: string; title: string; children: React.ReactNode }) {
   return (
-    <div className="px-5 py-6 border-t border-border first-of-type:border-t">
-      <div className="flex items-center justify-between mb-4">
-        <div>
-          <div className="font-mono text-[10px] tracking-[0.24em] uppercase text-gator-orange font-semibold mb-1">{eyebrow}</div>
-          <div className="font-display text-lg font-semibold tracking-tight">{title}</div>
-        </div>
+    <div className="px-5 py-6 border-t border-white/10">
+      <div className="mb-4">
+        <div className="font-mono text-[10px] font-black tracking-[0.3em] uppercase text-gator-orange mb-1.5">{eyebrow}</div>
+        <div className="font-display font-black uppercase text-xl text-shell tracking-tight">{title}</div>
       </div>
       {children}
     </div>

@@ -1,7 +1,7 @@
 import { Link, useRoute } from "wouter";
 import {
   ArrowRight, PhoneCall, MapPin, ShieldCheck, Clock, ChevronRight,
-  CheckCircle2, Facebook, Instagram, Twitter,
+  CheckCircle2,
 } from "lucide-react";
 import { usePageMeta } from "@/hooks/use-page-meta";
 import { useReveal } from "@/hooks/use-reveal";
@@ -10,6 +10,7 @@ import { SERVICES } from "@/data/services";
 import { CITY_IMAGES, SERVICE_IMAGES, FALLBACK_HERO } from "@/data/page-images";
 import LeadFormCompact from "@/components/lead-form-compact";
 import MainNav from "@/components/main-nav";
+import SiteFooter from "@/components/site-footer";
 import JsonLd, { breadcrumbLd, faqLd, localBusinessLd, placeLd, BASE_URL } from "@/components/json-ld";
 import NotFound from "@/pages/not-found";
 import logoImg from "@assets/clear_gator_1775663894887.png";
@@ -376,64 +377,7 @@ export default function ServiceAreaPage() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="relative bg-asphalt text-shell/55 pt-16 pb-10 border-t border-white/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
-            <div>
-              <div className="flex items-center gap-3 mb-5">
-                <img src={logoImg} alt="Clear Gator Logo" className="h-10 w-10 object-contain" />
-                <div className="font-display font-black text-lg text-shell tracking-tight uppercase">Clear Gator</div>
-              </div>
-              <p className="text-sm leading-[1.65] mb-5 text-shell/55 max-w-sm">
-                Demolition, hauling, cleanup, landscaping &amp; pressure washing for Southwest Florida.
-              </p>
-              <div className="flex gap-2">
-                {[Facebook, Instagram, Twitter].map((Ic, i) => (
-                  <a key={i} href="#" className="w-9 h-9 rounded-md border border-white/10 hover:border-gator-orange hover:text-gator-orange flex items-center justify-center transition-colors">
-                    <Ic className="w-4 h-4" />
-                  </a>
-                ))}
-              </div>
-            </div>
-
-            <div>
-              <div className="font-mono text-[11px] font-semibold tracking-[0.22em] uppercase text-shell/40 mb-4">Services</div>
-              <ul className="space-y-2 text-sm">
-                {SERVICES.map((s) => (
-                  <li key={s.slug}><Link href={`/services/${s.slug}`} className="hover:text-shell transition-colors">{s.name}</Link></li>
-                ))}
-              </ul>
-            </div>
-
-            <div>
-              <div className="font-mono text-[11px] font-semibold tracking-[0.22em] uppercase text-shell/40 mb-4">Service Areas</div>
-              <ul className="space-y-2 text-sm">
-                {CITIES.map((c) => (
-                  <li key={c.slug}><Link href={`/service-areas/${c.slug}`} className="hover:text-shell transition-colors">{c.name}</Link></li>
-                ))}
-              </ul>
-            </div>
-
-            <div>
-              <div className="font-mono text-[11px] font-semibold tracking-[0.22em] uppercase text-shell/40 mb-4">Contact</div>
-              <a href="tel:+12392343061" className="block mb-3 group">
-                <div className="font-display text-xl font-black text-shell tracking-tight group-hover:text-gator-orange transition-colors">(239) 234-3061</div>
-                <div className="text-xs text-shell/40 mt-1">Mon–Sat · 7a–6p</div>
-              </a>
-              <div className="text-sm text-shell/60">Cape Coral · Naples<br />Southwest Florida</div>
-            </div>
-          </div>
-
-          <div className="border-t border-white/10 pt-7 flex flex-col md:flex-row gap-3 md:gap-0 items-start md:items-center justify-between text-xs">
-            <div className="text-shell/40">&copy; {new Date().getFullYear()} Clear Gator Construction Services.</div>
-            <div className="flex items-center gap-2.5">
-              <img src={logoImg} alt="" aria-hidden="true" className="h-5 w-5 object-contain" />
-              <span className="font-mono text-gator-orange tracking-[0.3em] text-[11px] font-semibold uppercase">Let's Gator Done.</span>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <SiteFooter />
 
       {/* Mobile sticky call bar */}
       <a

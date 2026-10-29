@@ -3,13 +3,14 @@ import { Button } from "@/components/ui/button";
 import { usePageMeta } from "@/hooks/use-page-meta";
 import { GatorScales, SectionRule } from "@/components/swamp-decor";
 import MainNav from "@/components/main-nav";
+import SiteFooter from "@/components/site-footer";
 import { useReveal } from "@/hooks/use-reveal";
 import logoImg from "@assets/clear_gator_1775663894887.png";
 import { SERVICE_IMAGES, FALLBACK_HERO } from "@/data/page-images";
 import {
   Truck, HardHat, PhoneCall, CheckCircle2,
   ArrowRight, Clock, Shield,
-  FileText, DollarSign, Search, Facebook, Instagram, Twitter, MapPin,
+  FileText, DollarSign, Search, MapPin,
   Hammer, Handshake, Construction, Leaf, Droplets
 } from "lucide-react";
 
@@ -638,133 +639,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <footer className="relative bg-ink text-white/55 pt-20 pb-10">
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid sm:grid-cols-2 lg:grid-cols-12 gap-10 mb-16">
-            <div className="lg:col-span-5">
-              <div className="flex items-center gap-3 mb-5">
-                <img src={logoImg} alt="Clear Gator Logo" className="h-12 w-12 object-contain" />
-                <div className="leading-none">
-                  <div className="font-display font-semibold text-xl text-white tracking-tight">Clear Gator</div>
-                  <div className="text-[9px] font-semibold tracking-[0.32em] uppercase text-white/40 mt-1.5">
-                    Construction Services
-                  </div>
-                </div>
-              </div>
-              <p className="text-sm leading-[1.7] mb-5 text-white/50 max-w-md">
-                Interior &amp; outdoor demolition, hauling, site cleanup, landscaping, and pressure washing for Southwest Florida.
-              </p>
-              <div className="flex items-center gap-2 mb-7 font-mono text-[10px] font-medium tracking-[0.22em] uppercase text-white/35">
-                <span className="w-6 h-px bg-white/25" aria-hidden="true" />
-                <span>Est. SW FL · Locally Owned · Licensed &amp; Insured</span>
-              </div>
-              <div className="flex gap-2">
-                {[
-                  { Icon: Facebook, label: "Facebook" },
-                  { Icon: Instagram, label: "Instagram" },
-                  { Icon: Twitter, label: "Twitter" },
-                ].map(({ Icon, label }) => (
-                  <a
-                    key={label}
-                    href="#"
-                    aria-label={label}
-                    className="w-9 h-9 rounded-md border border-white/10 hover:border-white/30 hover:bg-white/5 flex items-center justify-center transition-colors"
-                  >
-                    <Icon className="w-3.5 h-3.5" />
-                  </a>
-                ))}
-              </div>
-            </div>
-            <div className="lg:col-span-2 lg:col-start-7">
-              <div className="font-mono text-[11px] font-medium tracking-[0.22em] uppercase text-white/40 mb-5">Services</div>
-              <ul className="space-y-2.5 text-sm">
-                {services.map((s) => (
-                  <li key={s.title}>
-                    <Link href={`/services/${s.slug}`} className="hover:text-white transition-colors">{s.title}</Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="lg:col-span-2">
-              <div className="font-mono text-[11px] font-medium tracking-[0.22em] uppercase text-white/40 mb-5">Company</div>
-              <ul className="space-y-2.5 text-sm">
-                <li><Link href="/estimate" className="hover:text-white transition-colors">Free Estimate</Link></li>
-                <li><Link href="/track" className="hover:text-white transition-colors">Track a Job</Link></li>
-                <li><Link href="/privacy" className="hover:text-white transition-colors">Privacy</Link></li>
-                <li><Link href="/terms" className="hover:text-white transition-colors">Terms</Link></li>
-                <li><Link href="/admin" className="hover:text-white transition-colors">Staff Login</Link></li>
-              </ul>
-            </div>
-            <div className="lg:col-span-3">
-              <div className="font-mono text-[11px] font-medium tracking-[0.22em] uppercase text-white/40 mb-5">Contact</div>
-              <a
-                href="tel:+12392343061"
-                className="block group mb-4"
-                aria-label="Call Clear Gator"
-              >
-                <div className="font-display text-2xl font-bold text-white tracking-tight leading-none group-hover:text-gator-orange-light transition-colors">
-                  (239) 234-3061
-                </div>
-                <div className="text-xs text-white/40 mt-1">Mon–Sat, 7am–6pm</div>
-              </a>
-              <div className="text-sm text-white/70 leading-[1.7]">
-                Cape Coral · Naples<br />
-                Southwest Florida
-              </div>
-            </div>
-          </div>
-          {/* Sitemap row — services + cities for crawlability and discovery */}
-          <div className="grid sm:grid-cols-2 gap-8 mb-10 pt-10 border-t border-white/10">
-            <div>
-              <div className="font-mono text-[10px] font-medium tracking-[0.22em] uppercase text-white/40 mb-4">All Services</div>
-              <ul className="grid grid-cols-1 gap-y-2 text-sm text-white/70">
-                {services.map((s) => (
-                  <li key={s.title}>
-                    <Link href={`/services/${s.slug}`} className="hover:text-white transition-colors">
-                      {s.title} in SW Florida
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <div className="font-mono text-[10px] font-medium tracking-[0.22em] uppercase text-white/40 mb-4">Service Areas</div>
-              <ul className="grid grid-cols-2 gap-y-2 gap-x-4 text-sm text-white/70">
-                {SERVICE_AREAS.map((city) => (
-                  <li key={city}>
-                    <Link
-                      href={`/service-areas/${city.toLowerCase().replace(/\s+/g, "-").replace(/\./g, "")}`}
-                      className="hover:text-white transition-colors"
-                    >
-                      {city}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-
-          {/* Big tagline band */}
-          <div className="border-t border-white/10 pt-10 sm:pt-14 mb-10 text-center">
-            <div className="font-display font-black uppercase text-[clamp(1.75rem,5vw,3.5rem)] leading-[0.95] tracking-[-0.025em] text-white/90">
-              Clear Spaces.<br className="sm:hidden" />
-              <span className="text-gator-orange sm:ml-3">Brighter Tomorrows.</span>
-            </div>
-          </div>
-
-          <div className="border-t border-white/10 pt-7 flex flex-col md:flex-row gap-4 md:gap-0 items-start md:items-center justify-between text-xs">
-            <div className="text-white/40">
-              &copy; {new Date().getFullYear()} Clear Gator Construction Services. All rights reserved.
-            </div>
-            <div className="flex items-center gap-2.5">
-              <img src={logoImg} alt="" aria-hidden="true" className="h-5 w-5 object-contain" />
-              <div className="font-mono text-gator-orange tracking-[0.32em] text-[11px] font-medium uppercase">
-                Let's Gator Done.
-              </div>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <SiteFooter />
 
       {/* Mobile sticky Call CTA — solid edge-to-edge orange bar */}
       <a

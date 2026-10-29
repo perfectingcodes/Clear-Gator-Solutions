@@ -12,6 +12,7 @@ import PrivacyPage from "@/pages/privacy";
 import TermsPage from "@/pages/terms";
 import ServicePage from "@/pages/service";
 import ServiceAreaPage from "@/pages/service-area";
+import LpPage from "@/pages/lp";
 import BookingNotifications from "@/components/booking-notifications";
 import SupportBot from "@/components/support-bot";
 import { usePageviewTracking } from "@/hooks/use-analytics";
@@ -30,6 +31,7 @@ function Router() {
       <Route path="/terms" component={TermsPage} />
       <Route path="/services/:slug" component={ServicePage} />
       <Route path="/service-areas/:slug" component={ServiceAreaPage} />
+      <Route path="/lp/:slug" component={LpPage} />
       <Route component={NotFound} />
     </Switch>
   );
