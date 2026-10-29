@@ -19,7 +19,7 @@ import {
   Hammer, PhoneCall, Construction, Leaf, Droplets,
 } from "lucide-react";
 
-const HERO = "/images/stock/crew-boots.jpg";
+const HERO = "/images/stock/florida-home.jpg";
 
 const SERVICE_OPTIONS = [
   { id: "Interior Demolition", label: "Interior Demo", icon: Hammer, desc: "Floor removal, cabinets, drywall, bathroom & kitchen tear-outs" },

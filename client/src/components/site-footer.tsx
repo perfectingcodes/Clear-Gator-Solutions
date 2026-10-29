@@ -4,7 +4,7 @@ import { SERVICES } from "@/data/services";
 import { CITIES } from "@/data/cities";
 import logoImg from "@assets/clear_gator_1775663894887.png";
 
-const TAGLINE_BG = "/images/stock/site-sunset.jpg";
+const TAGLINE_BG = "/images/stock/florida-home.jpg";
 
 export default function SiteFooter() {
   return (

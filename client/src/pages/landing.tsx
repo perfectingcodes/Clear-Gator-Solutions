@@ -30,8 +30,8 @@ const services = [
     slug: "interior-demolition",
     icon: Hammer,
     title: "Interior Demolition",
-    description: "Non-structural interior demolition for residential and commercial projects — from single-room tear-outs to full gut jobs. Structural elements always protected.",
-    features: ["Floor Removal", "Cabinet Removal", "Drywall Removal", "Bathroom Demo", "Kitchen Tear Outs"],
+    description: "Getting ready for a renovation? We handle the dirty part — kitchen tear-outs, bath gut-outs, old floors and drywall. Floors protected, dust contained, debris hauled.",
+    features: ["Kitchen Tear-Outs", "Bathroom Gut-Outs", "Floor Removal", "Drywall & Plaster", "Popcorn Ceiling"],
     accent: "bg-gator-orange",
     iconBg: "bg-gator-orange/10",
     iconColor: "text-gator-orange",
@@ -40,8 +40,8 @@ const services = [
     slug: "outdoor-demolition",
     icon: Construction,
     title: "Outdoor Demolition",
-    description: "Exterior tear-downs done right — pools, sheds, fences, decks, concrete pads, and driveways. We handle the heavy lifting, the load-out, and the final grade.",
-    features: ["Pool Demolition", "Shed & Fence Removal", "Concrete & Driveway", "Deck & Patio Tear-Out", "Pergola & Outbuilding"],
+    description: "Pool you don't want? Shed falling apart? Old deck wrecked by the last storm? We take it out, haul it off, and leave the yard flat and clean.",
+    features: ["Pool Removal", "Shed & Fence Removal", "Concrete & Driveway", "Deck & Patio Tear-Out", "Storm Debris"],
     accent: "bg-gator-orange",
     iconBg: "bg-gator-orange/10",
     iconColor: "text-gator-orange",
@@ -49,9 +49,9 @@ const services = [
   {
     slug: "hauling",
     icon: Truck,
-    title: "Hauling",
-    description: "Fast, reliable haul-away for any size project. We load it, we haul it — straightforward load-and-go pricing with no hidden fees.",
-    features: ["Construction Debris", "Renovation Waste", "Dump Runs", "Bulk Trash", "Post-Demo Cleanup"],
+    title: "Junk Hauling",
+    description: "Garage full of stuff that needs to go? Old furniture, broken appliances, renovation debris, yard pile? Point at it. We load it. We haul it. Flat-rate, same-day.",
+    features: ["Garage Cleanouts", "Old Furniture", "Appliance Removal", "Yard Debris", "Rental Turnovers"],
     accent: "bg-primary",
     iconBg: "bg-primary/10",
     iconColor: "text-primary",
@@ -60,8 +60,8 @@ const services = [
     slug: "site-cleanup",
     icon: HardHat,
     title: "Site Cleanup",
-    description: "Thorough cleanup for construction and renovation sites. We leave every job site spotless and ready for the next phase.",
-    features: ["Post-Construction", "Jobsite Cleanup", "Final Bathroom Cleanup", "Dust & Debris"],
+    description: "Renovation done and construction dust everywhere? Just moved into a new house? We handle move-in deep cleans and post-renovation detail — floor to ceiling.",
+    features: ["Post-Renovation", "Move-In Deep Clean", "HEPA Dust Removal", "Kitchen & Bath Detail", "Pre-Listing"],
     accent: "bg-primary",
     iconBg: "bg-primary/10",
     iconColor: "text-primary",
@@ -69,9 +69,9 @@ const services = [
   {
     slug: "landscaping",
     icon: Leaf,
-    title: "Landscaping",
-    description: "Install, refresh, and repair — sod and mulch, hedge and palm trimming, new-plant installs, lot refresh after clearing. We close the loop so dirt in / dirt out isn't a three-contractor problem.",
-    features: ["Sod & Mulch Install", "Hedge & Palm Trimming", "Plant Install", "Light Hardscape", "Post-Project Finish"],
+    title: "Lawn Care",
+    description: "Weekly lawn care for Southwest Florida homes. Mow, edge, line-trim, blow-off every walkway and driveway — same day each week, flat-rate per visit.",
+    features: ["Weekly Mowing", "Clean Edges", "Line Trim", "Blow-Off", "Hedge Trim", "Mulch Refresh"],
     accent: "bg-primary",
     iconBg: "bg-primary/10",
     iconColor: "text-primary",
@@ -80,8 +80,8 @@ const services = [
     slug: "pressure-washing",
     icon: Droplets,
     title: "Pressure Washing",
-    description: "Whole-house soft wash, driveways, pool decks, roof wash, fences, screen enclosures. Technique first — soft-wash where it belongs, pressure where it earns its keep. No stripes.",
-    features: ["House Soft Wash", "Driveway & Walkway", "Pool Deck", "Roof Wash", "Fence Restoration"],
+    description: "Whole-house soft wash, driveway refresh, pool deck, roof streaks, lanai cage. No stripes, plant-safe chemistry, your house looking brand-new.",
+    features: ["House Soft Wash", "Driveway & Walkway", "Pool Deck", "Roof Wash", "Lanai Cage"],
     accent: "bg-gator-orange",
     iconBg: "bg-gator-orange/10",
     iconColor: "text-gator-orange",
@@ -97,9 +97,9 @@ const howItWorks = [
 
 export default function LandingPage() {
   usePageMeta({
-    title: "Clear Gator — Demolition, Hauling, Landscaping & Pressure Washing in SW Florida",
+    title: "Clear Gator — Demolition, Junk Hauling, Lawn Care & Pressure Washing in SW Florida",
     description:
-      "Interior & outdoor demolition, hauling, site cleanup, landscaping, and pressure washing for Cape Coral, Naples & Southwest Florida. Licensed & insured. Let's Gator Done. Call (239) 234-3061.",
+      "Residential demolition, junk hauling, move-in cleanup, weekly lawn care, and pressure washing for Cape Coral, Naples & Southwest Florida homes. Licensed & insured. Let's Gator Done. Call (239) 234-3061.",
   });
 
   const servicesReveal = useReveal<HTMLDivElement>();
@@ -116,7 +116,7 @@ export default function LandingPage() {
       <section className="relative overflow-hidden bg-asphalt">
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: "url('/images/hero-construction.png')" }}
+          style={{ backgroundImage: "url('/images/stock/florida-home.jpg')" }}
           aria-hidden="true"
         />
         {/* Darken for text legibility */}
@@ -128,7 +128,7 @@ export default function LandingPage() {
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 backdrop-blur-sm mb-6 sm:mb-8">
             <span className="w-1.5 h-1.5 rounded-full bg-gator-orange animate-pulse" aria-hidden="true" />
             <span className="font-mono text-[10px] sm:text-[11px] font-semibold tracking-[0.22em] uppercase text-white/90">
-              Demolition · Hauling · Landscaping
+              Demolition · Junk Hauling · Lawn Care
             </span>
           </div>
 
@@ -140,7 +140,7 @@ export default function LandingPage() {
 
           {/* Lede */}
           <p className="text-base sm:text-xl text-white/80 leading-[1.5] max-w-2xl mb-8 sm:mb-10 text-pretty">
-            Demolition, hauling, site cleanup, landscaping, and pressure washing for contractors and homeowners across Southwest Florida.
+            Demolition, junk hauling, move-in cleanup, weekly lawn care, and pressure washing for Southwest Florida homes.
           </p>
 
           {/* Two CTAs */}
@@ -231,14 +231,14 @@ export default function LandingPage() {
               {[...Array(2)].map((_, dup) => (
                 <div key={dup} className="flex items-center" aria-hidden={dup === 1}>
                   {[
-                    "General Contractors",
-                    "Custom Home Builders",
-                    "Property Managers",
                     "Homeowners",
-                    "Short-Term Rental Operators",
-                    "Commercial Developers",
+                    "Snowbirds",
+                    "Rental Owners",
                     "Realtors",
-                    "Insurance Adjusters",
+                    "Property Managers",
+                    "Flippers",
+                    "First-Time Buyers",
+                    "HOA Communities",
                   ].map((c, i) => (
                     <span key={`${dup}-${i}`} className="flex items-center mx-5 sm:mx-7 text-asphalt/70 text-sm sm:text-base font-display font-black uppercase tracking-tight">
                       {c}
@@ -593,7 +593,7 @@ export default function LandingPage() {
         {/* Photo backdrop */}
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: "url('/images/hero-construction.png')" }}
+          style={{ backgroundImage: "url('/images/stock/florida-home.jpg')" }}
           aria-hidden="true"
         />
         <div className="absolute inset-0 bg-gradient-to-br from-asphalt/85 via-asphalt/70 to-teal/70" aria-hidden="true" />

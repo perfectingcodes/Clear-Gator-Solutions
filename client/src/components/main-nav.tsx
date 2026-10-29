@@ -70,21 +70,26 @@ export default function MainNav() {
         <div className="absolute top-0 inset-x-0 h-0.5 bg-gradient-to-r from-transparent via-gator-orange to-transparent opacity-60" aria-hidden="true" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-18 flex items-center justify-between gap-4">
-          {/* Oversized emblem breakout */}
+          {/* Logo lockup — framed emblem + wordmark, fits the bar */}
           <Link
             href="/"
-            className="relative flex items-center gap-3 group flex-shrink-0 z-10"
+            className="flex items-center gap-3 group flex-shrink-0"
             aria-label="Clear Gator — Home"
           >
-            <img
-              src={logoImg}
-              alt="Clear Gator Logo"
-              className="relative h-20 w-20 sm:h-28 sm:w-28 lg:h-32 lg:w-32 object-contain transition-transform group-hover:scale-[1.04] drop-shadow-[0_12px_28px_rgba(0,0,0,0.45)] -my-6 sm:-my-10 lg:-my-12"
-            />
+            <span className="relative inline-flex items-center justify-center w-11 h-11 sm:w-12 sm:h-12 rounded-md bg-gradient-to-br from-shell/[0.08] to-shell/[0.02] ring-1 ring-shell/15 group-hover:ring-gator-orange/50 transition-colors overflow-hidden">
+              <img
+                src={logoImg}
+                alt="Clear Gator Logo"
+                className="w-[135%] h-[135%] object-contain transition-transform group-hover:scale-[1.06]"
+              />
+            </span>
             <div className="hidden sm:block leading-none">
-              <div className="font-display font-black text-xl sm:text-[22px] tracking-[-0.01em] text-shell uppercase">Clear Gator</div>
-              <div className="font-mono text-[9px] font-black tracking-[0.3em] uppercase text-gator-orange mt-1.5">
-                Cleanup &amp; Site Reset
+              <div className="font-display font-black text-lg sm:text-[19px] tracking-[-0.01em] text-shell uppercase">Clear Gator</div>
+              <div className="flex items-center gap-1.5 mt-1">
+                <span className="w-3 h-px bg-gator-orange" aria-hidden="true" />
+                <span className="font-mono text-[9px] font-black tracking-[0.26em] uppercase text-gator-orange">
+                  Cleanup &amp; Site Reset
+                </span>
               </div>
             </div>
           </Link>
@@ -366,7 +371,7 @@ function MobileMenu({ onClose }: { onClose: () => void }) {
           <div className="relative overflow-hidden border-b border-white/10">
             <div
               className="absolute inset-0 bg-cover bg-center opacity-50"
-              style={{ backgroundImage: "url('/images/stock/crew-boots.jpg')" }}
+              style={{ backgroundImage: "url('/images/stock/florida-home.jpg')" }}
               aria-hidden="true"
             />
             <div className="absolute inset-0 bg-gradient-to-br from-asphalt/90 via-asphalt/70 to-teal/50" aria-hidden="true" />

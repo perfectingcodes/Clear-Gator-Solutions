@@ -3,7 +3,7 @@ import { ArrowLeft, ArrowRight, PhoneCall } from "lucide-react";
 import MainNav from "@/components/main-nav";
 import logoImg from "@assets/clear_gator_1775663894887.png";
 
-const HERO = "/images/stock/site-sunset.jpg";
+const HERO = "/images/stock/palm-neighborhood.jpg";
 
 export default function NotFound() {
   return (

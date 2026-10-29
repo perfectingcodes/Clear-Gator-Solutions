@@ -1,12 +1,12 @@
 /**
  * Hero / card backdrop imagery used across the site.
  *
- * Local stock photos sit under /images/stock/ so pages never hotlink external
- * CDNs — that's what caused the "Eiffel Tower on a service page" problem
- * before. If an entry is missing, pages fall back to the construction shot.
+ * Local residential-focused stock photos sit under /images/stock/ so pages
+ * never hotlink external CDNs. If an entry is missing, pages fall back to
+ * a safe default.
  */
 
-const FALLBACK_HERO = "/images/hero-construction.png";
+const FALLBACK_HERO = "/images/stock/florida-home.jpg";
 
 export type PageImage = {
   hero: string;
@@ -14,23 +14,23 @@ export type PageImage = {
 };
 
 export const SERVICE_IMAGES: Record<string, PageImage> = {
-  "interior-demolition": { hero: "/images/stock/demo-interior.jpg" },
-  "outdoor-demolition":  { hero: "/images/stock/demo-outdoor.jpg" },
-  hauling:               { hero: "/images/stock/hauling.jpg" },
-  "site-cleanup":        { hero: "/images/stock/cleanup.jpg" },
-  landscaping:           { hero: "/images/stock/landscaping.jpg" },
-  "pressure-washing":    { hero: "/images/stock/pressure-wash.jpg" },
+  "interior-demolition": { hero: "/images/stock/kitchen-reno.jpg" },
+  "outdoor-demolition":  { hero: "/images/stock/pool-backyard.jpg" },
+  hauling:               { hero: "/images/stock/garage-clean.jpg" },
+  "site-cleanup":        { hero: "/images/stock/clean-home.jpg" },
+  landscaping:           { hero: "/images/stock/lawn-mow.jpg" },
+  "pressure-washing":    { hero: "/images/stock/house-wash.jpg" },
 };
 
 export const CITY_IMAGES: Record<string, PageImage> = {
-  "cape-coral":     { hero: "/images/stock/cape-coral.jpg" },
+  "cape-coral":     { hero: "/images/stock/florida-home.jpg" },
   "fort-myers":     { hero: "/images/stock/home-exterior.jpg" },
-  naples:           { hero: "/images/stock/site-sunset.jpg" },
-  "bonita-springs": { hero: "/images/stock/landscaping.jpg" },
-  "punta-gorda":    { hero: "/images/stock/truck-site.jpg" },
-  "sanibel-island": { hero: "/images/stock/site-aerial.jpg" },
-  "babcock-ranch":  { hero: "/images/stock/crew-boots.jpg" },
-  "st-james-city":  { hero: "/images/stock/blueprint.jpg" },
+  naples:           { hero: "/images/stock/palm-neighborhood.jpg" },
+  "bonita-springs": { hero: "/images/stock/lawn-mow2.jpg" },
+  "punta-gorda":    { hero: "/images/stock/pool-backyard.jpg" },
+  "sanibel-island": { hero: "/images/stock/backyard-fence.jpg" },
+  "babcock-ranch":  { hero: "/images/stock/lawn-mow.jpg" },
+  "st-james-city":  { hero: "/images/stock/house-wash.jpg" },
 };
 
 export { FALLBACK_HERO };

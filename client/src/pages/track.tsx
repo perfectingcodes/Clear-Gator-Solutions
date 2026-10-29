@@ -11,7 +11,7 @@ import {
 } from "lucide-react";
 import type { Job, JobPhoto } from "@shared/schema";
 
-const HERO = "/images/stock/truck-site.jpg";
+const HERO = "/images/stock/florida-home.jpg";
 const STATUS_STEPS = ["Scheduled", "In Progress", "Completed"];
 
 const STATUS_CONFIG: Record<string, { icon: React.ElementType; label: string }> = {
