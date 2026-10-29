@@ -73,55 +73,47 @@ export default function MainNav() {
     <>
       <header
         ref={headerRef}
-        className="sticky top-0 z-50 bg-background/85 backdrop-blur-md border-b border-border/70"
+        className="sticky top-0 z-50 bg-asphalt text-shell border-b border-asphalt/80"
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between gap-4 py-3">
-          {/* Logo lockup */}
-          <Link href="/" className="flex items-center gap-3 group flex-shrink-0" aria-label="Clear Gator — Home">
-            <img src={logoImg} alt="Clear Gator Logo" className="h-12 w-12 sm:h-10 sm:w-10 object-contain transition-transform group-hover:scale-[1.04]" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between gap-4 py-2.5">
+          {/* Horizontal logo lockup — emblem + wordmark side by side */}
+          <Link href="/" className="flex items-center gap-2.5 group flex-shrink-0" aria-label="Clear Gator — Home">
+            <img src={logoImg} alt="Clear Gator Logo" className="h-11 w-11 sm:h-12 sm:w-12 object-contain transition-transform group-hover:scale-[1.04]" />
             <div className="hidden sm:block leading-none">
-              <div className="font-display font-semibold text-lg sm:text-xl tracking-[-0.02em] text-foreground">Clear Gator</div>
-              <div className="flex items-center gap-1.5 font-mono text-[10px] font-medium tracking-[0.22em] uppercase text-muted-foreground mt-1">
-                <span>Construction Services</span>
-                <span className="text-muted-foreground/40">·</span>
-                <span className="text-gator-orange">SWFL</span>
+              <div className="font-display font-black text-xl sm:text-[22px] tracking-[-0.01em] text-shell uppercase">Clear Gator</div>
+              <div className="font-mono text-[9px] font-medium tracking-[0.22em] uppercase text-shell/55 mt-1">
+                Cleanup &amp; Site Reset
               </div>
             </div>
           </Link>
 
-          {/* Desktop nav */}
+          {/* Desktop nav — all caps, light on dark */}
           <nav className="hidden lg:flex items-center gap-1 text-sm flex-1 justify-center">
-            <NavTrigger label="Services"      isOpen={openMenu === "services"} onToggle={() => toggle("services")} />
-            <NavTrigger label="Service Areas" isOpen={openMenu === "areas"}    onToggle={() => toggle("areas")} />
-            <NavLink href="/#how-it-works">The Gator Way</NavLink>
-            <NavLink href="/estimate">Estimate</NavLink>
-            <NavLink href="/track">Track Job</NavLink>
+            <NavTrigger label="SERVICES"      isOpen={openMenu === "services"} onToggle={() => toggle("services")} />
+            <NavTrigger label="SERVICE AREAS" isOpen={openMenu === "areas"}    onToggle={() => toggle("areas")} />
+            <NavLink href="/#how-it-works">OUR WORK</NavLink>
+            <NavLink href="/estimate">ESTIMATE</NavLink>
+            <NavLink href="/track">TRACK JOB</NavLink>
           </nav>
 
-          {/* Right side */}
+          {/* Right side — big lime phone CTA */}
           <div className="flex items-center gap-3 flex-shrink-0">
             <a
               href="tel:+12392343061"
-              className="hidden md:inline-flex items-center gap-2 text-sm font-medium text-foreground hover:text-gator-orange transition-colors"
+              className="inline-flex items-center gap-2 bg-gator-orange hover:bg-gator-orange-dark text-asphalt font-bold rounded-md px-3 sm:px-4 h-10 sm:h-11 transition-colors shadow-[0_6px_20px_-6px_rgba(198,244,50,0.55)]"
               aria-label="Call Clear Gator at 239-234-3061"
             >
-              <PhoneCall className="w-3.5 h-3.5 text-gator-orange" strokeWidth={2.2} />
-              <span className="hidden xl:inline">(239) 234-3061</span>
-              <span className="xl:hidden">Call</span>
+              <PhoneCall className="w-4 h-4" strokeWidth={2.6} />
+              <span className="hidden md:inline tracking-tight text-sm">(239) 234-3061</span>
+              <span className="md:hidden text-sm">Call</span>
             </a>
-            <span className="hidden md:block h-5 w-px bg-border" aria-hidden="true" />
-            <Link href="/estimate">
-              <Button size="sm" className="bg-foreground hover:bg-foreground/90 text-background font-semibold rounded-md shadow-sm">
-                Free Estimate
-              </Button>
-            </Link>
 
             {/* Mobile hamburger */}
             <button
               type="button"
               onClick={() => setMobileOpen(true)}
               aria-label="Open menu"
-              className="lg:hidden inline-flex items-center justify-center w-10 h-10 rounded-md border border-border text-foreground hover:bg-muted/50 transition-colors"
+              className="lg:hidden inline-flex items-center justify-center w-10 h-10 rounded-md border border-shell/20 text-shell hover:bg-shell/10 transition-colors"
             >
               <Menu className="w-5 h-5" />
             </button>
@@ -150,10 +142,10 @@ function NavLink({ href, children }: { href: string; children: React.ReactNode }
   return (
     <a
       href={href}
-      className="relative px-3 py-2 font-medium text-muted-foreground hover:text-foreground transition-colors group"
+      className="relative px-4 py-2 font-bold text-[13px] tracking-wide text-shell/80 hover:text-shell transition-colors group"
     >
       {children}
-      <span className="absolute left-3 right-3 -bottom-0.5 h-px bg-foreground origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
+      <span className="absolute left-4 right-4 -bottom-0.5 h-px bg-gator-orange origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
     </a>
   );
 }
@@ -171,14 +163,14 @@ function NavTrigger({
       onClick={onToggle}
       aria-haspopup="true"
       aria-expanded={isOpen}
-      className={`relative inline-flex items-center gap-1.5 px-3 py-2 font-medium transition-colors group ${
-        isOpen ? "text-foreground" : "text-muted-foreground hover:text-foreground"
+      className={`relative inline-flex items-center gap-1.5 px-4 py-2 font-bold text-[13px] tracking-wide transition-colors group ${
+        isOpen ? "text-shell" : "text-shell/80 hover:text-shell"
       }`}
     >
       {label}
-      <ChevronDown className={`w-3.5 h-3.5 transition-transform ${isOpen ? "rotate-180" : ""}`} strokeWidth={2.2} />
+      <ChevronDown className={`w-3.5 h-3.5 transition-transform ${isOpen ? "rotate-180" : ""}`} strokeWidth={2.4} />
       <span
-        className={`absolute left-3 right-3 -bottom-0.5 h-px bg-gator-orange origin-left transition-transform ${
+        className={`absolute left-4 right-4 -bottom-0.5 h-px bg-gator-orange origin-left transition-transform ${
           isOpen ? "scale-x-100" : "scale-x-0"
         }`}
         aria-hidden="true"

@@ -2,7 +2,6 @@ import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { usePageMeta } from "@/hooks/use-page-meta";
 import { GatorScales, SectionRule } from "@/components/swamp-decor";
-import HeroQuoteForm from "@/components/hero-quote-form";
 import MainNav from "@/components/main-nav";
 import { useReveal } from "@/hooks/use-reveal";
 import logoImg from "@assets/clear_gator_1775663894887.png";
@@ -138,96 +137,80 @@ export default function LandingPage() {
     <div className="min-h-screen bg-background text-foreground pb-[calc(72px+env(safe-area-inset-bottom,0px))] sm:pb-0">
       <MainNav />
 
-      <section className="relative overflow-hidden bg-ink-hero">
+      {/* ── HERO — photo-dominant overlay, reference-style ── */}
+      <section className="relative overflow-hidden bg-asphalt">
         <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-[0.22]"
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{ backgroundImage: "url('/images/hero-construction.png')" }}
           aria-hidden="true"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/60 to-black/25" aria-hidden="true" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-transparent to-transparent" aria-hidden="true" />
-        <div className="absolute -top-1/3 right-0 w-[55%] aspect-square rounded-full bg-gator-orange/[0.06] blur-3xl pointer-events-none" aria-hidden="true" />
+        {/* Darken for text legibility */}
+        <div className="absolute inset-0 bg-gradient-to-br from-asphalt/90 via-asphalt/70 to-asphalt/55" aria-hidden="true" />
+        <div className="absolute inset-0 bg-gradient-to-t from-asphalt via-asphalt/40 to-transparent" aria-hidden="true" />
 
-        {/* Brand watermark — actual logo, anchored bottom-right at a readable opacity */}
-        <img
-          src={logoImg}
-          alt=""
-          aria-hidden="true"
-          className="absolute -bottom-20 -right-20 w-[560px] h-[560px] object-contain opacity-[0.14] pointer-events-none hidden md:block select-none"
-        />
-
-        <div className="relative z-10 max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 pt-20 sm:pt-28 pb-16 sm:pb-24 grid lg:grid-cols-12 gap-x-12 gap-y-10 sm:gap-y-14 items-center">
-          <div className="lg:col-span-7 xl:col-span-7">
-            <div className="flex items-center gap-3 mb-6 sm:mb-8">
-              <span className="font-mono text-[11px] tracking-[0.22em] uppercase text-gator-orange-light">
-                01 / Clear Gator
-              </span>
-              <span className="h-px w-8 bg-white/25" aria-hidden="true" />
-              <span className="font-mono text-[11px] tracking-[0.22em] uppercase text-white/50">
-                SW Florida
-              </span>
-            </div>
-
-            <h1 className="font-display text-4xl sm:text-6xl lg:text-7xl xl:text-[5rem] font-semibold text-white leading-[1.02] sm:leading-[0.98] mb-6 sm:mb-7 tracking-[-0.03em] sm:tracking-[-0.035em] text-balance">
-              We clear the way.<br />
-              <span className="text-white/45">You build </span>
-              <span className="relative text-white">
-                what's next
-                <span className="absolute -bottom-1 left-0 w-full h-[3px] bg-gator-orange" aria-hidden="true" />
-              </span>
-              <span className="text-white/45">.</span>
-            </h1>
-
-            <p className="text-base sm:text-lg text-white/75 mb-8 sm:mb-10 leading-[1.6] max-w-xl text-pretty">
-              Interior &amp; outdoor demolition, hauling, site cleanup, lot clearing, and property maintenance for contractors and homeowners across Southwest Florida.
-            </p>
-
-            <div className="flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-4 sm:gap-x-6 sm:gap-y-3 mb-10 sm:mb-12">
-              <a href="tel:+12392343061" className="group inline-flex items-center gap-3" data-testid="hero-cta-call">
-                <span className="w-11 h-11 rounded-full bg-white/10 border border-white/20 flex items-center justify-center group-hover:bg-gator-orange group-hover:border-gator-orange transition-colors">
-                  <PhoneCall className="w-4 h-4 text-white" strokeWidth={2.2} />
-                </span>
-                <span>
-                  <span className="block font-mono text-[10px] tracking-[0.22em] uppercase text-white/60 leading-none mb-1">
-                    Direct line
-                  </span>
-                  <span className="block text-white text-lg sm:text-base font-semibold tracking-tight leading-none">
-                    (239) 234-3061
-                  </span>
-                </span>
-              </a>
-              <span className="hidden sm:block h-8 w-px bg-white/15" aria-hidden="true" />
-              <Link href="/track">
-                <button
-                  className="text-white/70 hover:text-white text-sm font-semibold underline underline-offset-[6px] decoration-white/30 hover:decoration-gator-orange decoration-1 transition-all text-left"
-                  data-testid="hero-cta-track"
-                >
-                  Track an existing job
-                </button>
-              </Link>
-            </div>
-
-            <dl className="grid grid-cols-3 gap-x-4 sm:gap-x-6 gap-y-1 max-w-md border-t border-white/10 pt-5 sm:pt-6">
-              {[
-                { label: "Licensed", sub: "& Insured" },
-                { label: "24-Hour", sub: "Quote Reply" },
-                { label: "Local", sub: "SW Florida" },
-              ].map(({ label, sub }) => (
-                <div key={label}>
-                  <dt className="font-display text-sm sm:text-base font-semibold text-white tracking-tight">{label}</dt>
-                  <dd className="text-white/55 text-[10px] sm:text-[11px] tracking-wide font-mono uppercase mt-0.5">{sub}</dd>
-                </div>
-              ))}
-            </dl>
+        <div className="relative z-10 max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 pt-16 sm:pt-24 lg:pt-32 pb-20 sm:pb-28 lg:pb-36">
+          {/* Service eyebrow pill */}
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 backdrop-blur-sm mb-6 sm:mb-8">
+            <span className="w-1.5 h-1.5 rounded-full bg-gator-orange animate-pulse" aria-hidden="true" />
+            <span className="font-mono text-[10px] sm:text-[11px] font-semibold tracking-[0.22em] uppercase text-white/90">
+              Demolition · Hauling · Property Maintenance
+            </span>
           </div>
 
-          <div className="lg:col-span-5 xl:col-span-5">
-            <HeroQuoteForm />
+          {/* Massive headline */}
+          <h1 className="font-display font-black uppercase text-white leading-[0.9] tracking-[-0.035em] text-balance mb-6 sm:mb-8 max-w-5xl text-[clamp(2.5rem,8vw,6.5rem)]">
+            Clear the way<br />
+            <span className="text-gator-orange">for what's next.</span>
+          </h1>
+
+          {/* Lede */}
+          <p className="text-base sm:text-xl text-white/80 leading-[1.5] max-w-2xl mb-8 sm:mb-10 text-pretty">
+            Interior &amp; outdoor demolition, hauling, site cleanup, lot clearing, and property maintenance for contractors and homeowners across Southwest Florida.
+          </p>
+
+          {/* Two CTAs */}
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-10 sm:mb-14 max-w-xl">
+            <Link href="/estimate" className="flex-1 sm:flex-initial">
+              <button
+                className="w-full h-14 px-7 rounded-md bg-gator-orange hover:bg-gator-orange-dark text-asphalt font-black uppercase text-sm tracking-[0.1em] inline-flex items-center justify-center gap-2 transition-all shadow-lg shadow-black/30"
+                data-testid="hero-cta-estimate"
+              >
+                Get a Free Estimate
+                <ArrowRight className="w-4 h-4" strokeWidth={2.6} />
+              </button>
+            </Link>
+            <a href="#services" className="flex-1 sm:flex-initial">
+              <button
+                className="w-full h-14 px-7 rounded-md border-2 border-white/30 hover:border-white hover:bg-white/5 text-white font-black uppercase text-sm tracking-[0.1em] inline-flex items-center justify-center gap-2 transition-all"
+                data-testid="hero-cta-services"
+              >
+                Our Services
+              </button>
+            </a>
+          </div>
+
+          {/* Trust pill strip */}
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-3 sm:gap-x-4">
+            {[
+              { icon: Clock, label: "On Time, On Budget" },
+              { icon: Shield, label: "Licensed & Insured" },
+              { icon: CheckCircle2, label: "Serving SW Florida" },
+            ].map(({ icon: Icon, label }) => (
+              <div
+                key={label}
+                className="inline-flex items-center gap-2 px-3.5 py-2 rounded-full bg-white/[0.06] border border-white/15 backdrop-blur-sm"
+              >
+                <Icon className="w-3.5 h-3.5 text-gator-orange flex-shrink-0" strokeWidth={2.4} />
+                <span className="text-white/90 text-xs sm:text-sm font-semibold tracking-tight">
+                  {label}
+                </span>
+              </div>
+            ))}
           </div>
         </div>
 
-        {/* Marquee ticker — service areas + signature mark */}
-        <div className="relative z-10 border-t border-white/10 bg-black/30 backdrop-blur-sm">
+        {/* Area marquee */}
+        <div className="relative z-10 border-t border-white/10 bg-black/40 backdrop-blur-sm">
           <div className="overflow-hidden">
             <div className="flex animate-marquee whitespace-nowrap py-3.5">
               {[...Array(2)].map((_, dup) => (
@@ -245,7 +228,7 @@ export default function LandingPage() {
                   ].map((c, i) => (
                     <span key={`${dup}-${i}`} className="flex items-center text-white/45 mx-6 text-xs font-mono uppercase tracking-[0.22em]">
                       {c === "Let's Gator Done." ? (
-                        <span className="flex items-center gap-2 text-gator-orange-light font-semibold">
+                        <span className="flex items-center gap-2 text-gator-orange font-semibold">
                           <img src={logoImg} alt="" aria-hidden="true" className="h-5 w-5 object-contain" />
                           {c}
                         </span>
@@ -357,61 +340,66 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <section id="services" className="relative py-16 sm:py-32 px-4 sm:px-6 lg:px-8">
+      {/* ── OUR SERVICES — REAL WORK. REAL RESULTS. ── */}
+      <section id="services" className="relative py-16 sm:py-28 lg:py-32 px-4 sm:px-6 lg:px-8 bg-shell">
         <div ref={servicesReveal} className="max-w-7xl mx-auto reveal">
-          <div className="grid lg:grid-cols-12 gap-8 sm:gap-12 lg:gap-20 mb-12 sm:mb-16 lg:mb-20 items-end">
-            <div className="lg:col-span-5">
-              <div className="flex items-center gap-3 mb-6">
-                <span className="font-mono text-[11px] font-medium tracking-[0.22em] uppercase text-gator-orange">
-                  02 / Capabilities
-                </span>
-                <SectionRule className="w-16 h-1.5 text-gator-orange/60" />
-              </div>
-              <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-[-0.025em] text-balance leading-[0.98]">
-                Eight disciplines.<br />
-                <span className="text-muted-foreground/60">One Gator crew.</span>
-              </h2>
+          <div className="text-center mb-12 sm:mb-16">
+            <div className="font-mono text-[11px] sm:text-xs font-semibold tracking-[0.3em] uppercase text-teal mb-4">
+              Our Services
             </div>
-            <div className="lg:col-span-6 lg:col-start-7">
-              <p className="text-base sm:text-lg text-muted-foreground leading-[1.65] text-balance max-w-lg">
-                From interior and outdoor demolition to ongoing property maintenance, Clear Gator handles each phase of a project with the same crew, the same standards, and the same accountability.
-              </p>
-            </div>
+            <h2 className="font-display font-black uppercase text-[clamp(2rem,6vw,4.5rem)] leading-[0.95] tracking-[-0.03em] text-asphalt text-balance">
+              Real Work.<br />
+              <span className="text-teal">Real Results.</span>
+            </h2>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-border/60 ring-1 ring-border/60 rounded-lg overflow-hidden">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
             {services.map((svc, i) => (
               <Link key={svc.title} href={`/services/${svc.slug}`}>
-                <article className="group relative bg-card p-6 sm:p-8 transition-all duration-500 hover:bg-foreground hover:text-background active:bg-foreground/95 active:text-background cursor-pointer overflow-hidden">
-                  {/* hover sweep line */}
-                  <span
-                    className="absolute top-0 left-0 right-0 h-px bg-gator-orange origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500"
-                    aria-hidden="true"
-                  />
-                  <div className="flex items-start justify-between mb-8">
-                    <div className={`w-11 h-11 rounded-md ${svc.iconBg} flex items-center justify-center transition-all duration-500 group-hover:bg-gator-orange/20`}>
-                      <svc.icon className={`w-5 h-5 ${svc.iconColor} transition-colors duration-500 group-hover:text-gator-orange-light`} strokeWidth={2} />
+                <article className="group relative h-full flex flex-col overflow-hidden rounded-xl bg-asphalt text-shell transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl hover:shadow-asphalt/30 cursor-pointer">
+                  {/* Photo-style header: deep gulf → asphalt gradient with iconography */}
+                  <div className="relative aspect-[16/10] overflow-hidden bg-gradient-to-br from-teal via-teal/70 to-asphalt">
+                    {/* subtle brand photo texture */}
+                    <div
+                      className="absolute inset-0 bg-cover bg-center opacity-20 mix-blend-overlay group-hover:opacity-30 group-hover:scale-105 transition-all duration-700"
+                      style={{ backgroundImage: "url('/images/hero-construction.png')" }}
+                      aria-hidden="true"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-asphalt/80 via-asphalt/20 to-transparent" aria-hidden="true" />
+                    {/* big icon */}
+                    <div className="absolute top-5 left-5 w-14 h-14 rounded-lg bg-gator-orange flex items-center justify-center shadow-lg shadow-black/40">
+                      <svc.icon className="w-7 h-7 text-asphalt" strokeWidth={2.4} />
                     </div>
-                    <span className="font-mono text-[11px] tracking-[0.18em] text-muted-foreground/50 group-hover:text-background/40 transition-colors">
+                    <span className="absolute top-5 right-5 font-mono text-[11px] font-semibold tracking-[0.22em] uppercase text-shell/70">
                       /0{i + 1}
                     </span>
+                    <div className="absolute bottom-5 left-5 right-5">
+                      <h3 className="font-display font-black uppercase text-2xl sm:text-3xl leading-[0.95] tracking-tight text-shell">
+                        {svc.title}
+                      </h3>
+                    </div>
                   </div>
-                  <h3 className="font-display text-2xl font-bold mb-3 tracking-tight">{svc.title}</h3>
-                  <p className="text-muted-foreground text-sm leading-[1.65] mb-6 group-hover:text-background/65 transition-colors duration-500">
-                    {svc.description}
-                  </p>
-                  <ul className="space-y-2 mb-8 text-sm">
-                    {svc.features.map((f) => (
-                      <li key={f} className="flex items-center gap-3 text-foreground/80 group-hover:text-background/80 transition-colors duration-500">
-                        <span className="w-1 h-1 rounded-full bg-gator-orange flex-shrink-0" />
-                        {f}
-                      </li>
-                    ))}
-                  </ul>
-                  <span className="inline-flex items-center gap-2 text-sm font-semibold border-b border-foreground/30 group-hover:border-gator-orange-light pb-0.5 transition-all">
-                    Learn more &amp; request a quote
-                    <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5" strokeWidth={2.4} />
-                  </span>
+
+                  {/* Body */}
+                  <div className="relative flex-1 p-6 sm:p-7 flex flex-col bg-asphalt">
+                    <p className="text-shell/70 text-sm leading-[1.6] mb-5 flex-1">
+                      {svc.description}
+                    </p>
+                    <ul className="flex flex-wrap gap-1.5 mb-6">
+                      {svc.features.slice(0, 3).map((f) => (
+                        <li
+                          key={f}
+                          className="inline-flex items-center px-2.5 py-1 rounded-full bg-white/[0.06] border border-white/10 text-shell/75 text-[11px] font-medium"
+                        >
+                          {f}
+                        </li>
+                      ))}
+                    </ul>
+                    <span className="inline-flex items-center gap-2 text-gator-orange font-black uppercase text-xs tracking-[0.18em] group-hover:gap-3 transition-all">
+                      Learn More
+                      <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" strokeWidth={2.6} />
+                    </span>
+                  </div>
                 </article>
               </Link>
             ))}
@@ -419,29 +407,49 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Editorial pull quote — owner voice */}
-      <section className="relative bg-background py-16 sm:py-28 border-y border-border/60 overflow-hidden">
-        <img src={logoImg} alt="" aria-hidden="true" className="absolute -left-12 sm:-left-20 top-1/2 -translate-y-1/2 h-48 w-48 sm:h-64 sm:w-64 object-contain opacity-[0.05] pointer-events-none select-none" />
-        <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center gap-3 mb-6 sm:mb-8">
-            <span className="font-mono text-[11px] font-medium tracking-[0.22em] uppercase text-gator-orange">
-              On the record
-            </span>
-            <span className="h-px flex-1 bg-border max-w-[120px]" />
-          </div>
-          <blockquote className="font-display text-3xl sm:text-5xl lg:text-6xl font-semibold tracking-[-0.025em] leading-[1.04] text-balance">
-            <span aria-hidden="true" className="text-gator-orange/70 mr-1">“</span>
-            In Southwest Florida, when something needs to come down, come up, or
-            <span className="text-muted-foreground/60"> get hauled away</span> —
-            <span className="text-gator-orange"> we want to be the call.</span>
-            <span aria-hidden="true" className="text-gator-orange/70 ml-1">”</span>
-          </blockquote>
-          <div className="mt-8 sm:mt-10 flex items-center gap-3">
-            <img src={logoImg} alt="" aria-hidden="true" className="h-9 w-9 object-contain" />
-            <div className="leading-none">
-              <div className="font-display text-sm font-semibold tracking-tight">Clear Gator Crew</div>
-              <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground mt-1">Cape Coral · Naples · Fort Myers</div>
+      {/* ── WHY CHOOSE — dark trust section ── */}
+      <section className="relative overflow-hidden bg-asphalt text-shell py-16 sm:py-24 lg:py-32">
+        {/* ambient brand glow */}
+        <div className="absolute -top-40 -right-40 w-[600px] h-[600px] rounded-full bg-teal/15 blur-3xl pointer-events-none" aria-hidden="true" />
+        <div className="absolute -bottom-40 -left-40 w-[500px] h-[500px] rounded-full bg-gator-orange/10 blur-3xl pointer-events-none" aria-hidden="true" />
+        <img
+          src={logoImg}
+          alt=""
+          aria-hidden="true"
+          className="absolute -right-20 bottom-0 w-[480px] h-[480px] object-contain opacity-[0.04] pointer-events-none select-none hidden md:block"
+        />
+
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-14 sm:mb-20">
+            <div className="font-mono text-[11px] sm:text-xs font-semibold tracking-[0.3em] uppercase text-gator-orange mb-4">
+              Why Choose Clear Gator
             </div>
+            <h2 className="font-display font-black uppercase text-[clamp(2rem,6vw,4.5rem)] leading-[0.95] tracking-[-0.03em] text-shell text-balance">
+              Work Harder.<br />
+              <span className="text-gator-orange">Cleaner. Better.</span>
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
+            {[
+              { icon: Handshake, title: "Local & Trusted", body: "Boots on the ground across SW Florida. We live here, we build here." },
+              { icon: Shield, title: "Licensed & Insured", body: "Fully licensed and insured. Every job, every crew, every time." },
+              { icon: Clock, title: "On Time & Responsive", body: "24-hour quote reply. We show up when we said. If plans change, you hear it first." },
+              { icon: CheckCircle2, title: "Quality Results", body: "We don't trade speed for damage. Floor protection, daily cleanup, call-back-free work." },
+            ].map(({ icon: Icon, title, body }) => (
+              <div
+                key={title}
+                className="group relative rounded-xl bg-white/[0.03] border border-white/10 p-6 sm:p-7 hover:bg-white/[0.06] hover:border-gator-orange/40 transition-all duration-500"
+              >
+                <div className="w-14 h-14 rounded-lg bg-gator-orange flex items-center justify-center mb-5 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500">
+                  <Icon className="w-7 h-7 text-asphalt" strokeWidth={2.4} />
+                </div>
+                <h3 className="font-display font-black uppercase text-lg sm:text-xl leading-tight tracking-tight text-shell mb-2.5">
+                  {title}
+                </h3>
+                <p className="text-shell/65 text-sm leading-[1.6]">{body}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -718,62 +726,52 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* ── Final CTA ── */}
-      <section className="relative py-20 sm:py-40 bg-ink overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/30 pointer-events-none" aria-hidden="true" />
-        <div className="absolute -top-1/2 left-1/2 -translate-x-1/2 w-[120%] aspect-square rounded-full bg-gator-orange/[0.06] blur-3xl pointer-events-none" aria-hidden="true" />
-
-        {/* Large brand emblem behind the headline */}
-        <img
-          src={logoImg}
-          alt=""
+      {/* ── FINAL CTA — LET'S CLEAR IT. ── */}
+      <section className="relative overflow-hidden bg-asphalt">
+        {/* Photo backdrop */}
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: "url('/images/hero-construction.png')" }}
           aria-hidden="true"
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[58%] w-[680px] h-[680px] object-contain opacity-[0.05] pointer-events-none select-none hidden md:block"
         />
+        <div className="absolute inset-0 bg-gradient-to-br from-asphalt/85 via-asphalt/70 to-teal/70" aria-hidden="true" />
+        <div className="absolute inset-0 bg-gradient-to-t from-asphalt via-asphalt/40 to-transparent" aria-hidden="true" />
 
-        <div ref={ctaReveal} className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center reveal">
-          <img
-            src={logoImg}
-            alt="Clear Gator emblem"
-            className="h-20 w-20 mx-auto object-contain mb-6 drop-shadow-[0_8px_24px_rgba(0,0,0,0.4)]"
-          />
-          <div className="flex items-center justify-center gap-3 mb-8">
-            <span className="h-px w-8 bg-gator-orange-light/40" aria-hidden="true" />
-            <span className="font-mono text-gator-orange-light tracking-[0.32em] text-[11px] font-medium uppercase">
-              Let's Gator Done.
+        <div ref={ctaReveal} className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28 lg:py-36 text-center reveal">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 backdrop-blur-sm mb-6 sm:mb-8">
+            <span className="w-1.5 h-1.5 rounded-full bg-gator-orange animate-pulse" aria-hidden="true" />
+            <span className="font-mono text-[10px] sm:text-[11px] font-semibold tracking-[0.22em] uppercase text-white/90">
+              Ready when you are
             </span>
-            <span className="h-px w-8 bg-gator-orange-light/40" aria-hidden="true" />
           </div>
-          <h2 className="font-display text-5xl sm:text-6xl lg:text-7xl font-semibold text-white tracking-[-0.035em] leading-[0.96] mb-8 text-balance">
-            Bring us the site.<br />
-            <span className="text-white/40">We'll bring</span><br className="sm:hidden" />
-            <span className="text-white/40"> the Gator crew.</span>
+
+          <h2 className="font-display font-black uppercase text-[clamp(2.75rem,10vw,7.5rem)] leading-[0.9] tracking-[-0.035em] text-white text-balance mb-6 sm:mb-8">
+            Let's<br />
+            <span className="text-gator-orange">Clear It.</span>
           </h2>
-          <p className="text-white/75 mb-10 sm:mb-12 text-base sm:text-lg leading-[1.65] max-w-xl mx-auto text-balance">
+
+          <p className="text-white/80 text-base sm:text-xl leading-[1.5] max-w-2xl mx-auto mb-10 sm:mb-12 text-pretty">
             Free estimates returned within 24 hours. No commitment. No hidden line items.
-            <br className="hidden sm:block" />
-            <span className="text-white/55"> Just the work, done right.</span>
+            Just the work, done right.
           </p>
-          <div className="flex flex-wrap justify-center items-center gap-3">
-            <Link href="/estimate">
-              <Button
-                size="lg"
-                className="bg-gator-orange hover:bg-gator-orange-dark text-asphalt font-semibold gap-2 text-base px-8 h-12 rounded-md shadow-lg shadow-gator-orange/30"
+
+          <div className="flex flex-col sm:flex-row justify-center items-stretch sm:items-center gap-3 sm:gap-4 max-w-xl mx-auto">
+            <Link href="/estimate" className="flex-1">
+              <button
+                className="w-full h-14 px-7 rounded-md bg-gator-orange hover:bg-gator-orange-dark text-asphalt font-black uppercase text-sm tracking-[0.1em] inline-flex items-center justify-center gap-2 transition-all shadow-xl shadow-black/40"
                 data-testid="footer-cta-estimate"
               >
-                Request an Estimate
-                <ArrowRight className="w-4 h-4" />
-              </Button>
+                Get a Free Estimate
+                <ArrowRight className="w-4 h-4" strokeWidth={2.6} />
+              </button>
             </Link>
-            <a href="tel:+12392343061">
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-white/20 text-white bg-transparent hover:bg-white/5 text-base px-7 h-12 rounded-md gap-2 font-semibold"
+            <a href="tel:+12392343061" className="flex-1">
+              <button
+                className="w-full h-14 px-7 rounded-md border-2 border-white/30 hover:border-white hover:bg-white/5 text-white font-black uppercase text-sm tracking-[0.1em] inline-flex items-center justify-center gap-2 transition-all"
               >
-                <PhoneCall className="w-4 h-4 text-gator-orange-light" strokeWidth={2.2} />
+                <PhoneCall className="w-4 h-4 text-gator-orange" strokeWidth={2.4} />
                 (239) 234-3061
-              </Button>
+              </button>
             </a>
           </div>
         </div>
@@ -885,13 +883,21 @@ export default function LandingPage() {
             </div>
           </div>
 
+          {/* Big tagline band */}
+          <div className="border-t border-white/10 pt-10 sm:pt-14 mb-10 text-center">
+            <div className="font-display font-black uppercase text-[clamp(1.75rem,5vw,3.5rem)] leading-[0.95] tracking-[-0.025em] text-white/90">
+              Clear Spaces.<br className="sm:hidden" />
+              <span className="text-gator-orange sm:ml-3">Brighter Tomorrows.</span>
+            </div>
+          </div>
+
           <div className="border-t border-white/10 pt-7 flex flex-col md:flex-row gap-4 md:gap-0 items-start md:items-center justify-between text-xs">
             <div className="text-white/40">
               &copy; {new Date().getFullYear()} Clear Gator Construction Services. All rights reserved.
             </div>
             <div className="flex items-center gap-2.5">
               <img src={logoImg} alt="" aria-hidden="true" className="h-5 w-5 object-contain" />
-              <div className="font-mono text-gator-orange-light tracking-[0.32em] text-[11px] font-medium uppercase">
+              <div className="font-mono text-gator-orange tracking-[0.32em] text-[11px] font-medium uppercase">
                 Let's Gator Done.
               </div>
             </div>
