@@ -69,53 +69,48 @@ export default function ServicePage() {
         <div className="absolute inset-0 bg-gradient-to-br from-asphalt/90 via-asphalt/70 to-asphalt/55" aria-hidden="true" />
         <div className="absolute inset-0 bg-gradient-to-t from-asphalt via-asphalt/40 to-transparent" aria-hidden="true" />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-14 sm:pt-20 lg:pt-28 pb-16 sm:pb-24 grid lg:grid-cols-12 gap-x-12 gap-y-10 items-start">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 sm:pt-14 lg:pt-20 pb-12 sm:pb-16 grid lg:grid-cols-12 gap-x-10 gap-y-8 items-center">
           <div className="lg:col-span-7">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 backdrop-blur-sm mb-6">
-              <div className="w-6 h-6 rounded-md bg-gator-orange flex items-center justify-center">
-                <Icon className="w-3.5 h-3.5 text-asphalt" strokeWidth={2.4} />
+            <div className="inline-flex items-center gap-2 px-3.5 py-2 rounded-full bg-white/10 border border-white/20 backdrop-blur-sm mb-5">
+              <div className="w-7 h-7 rounded-md bg-gator-orange flex items-center justify-center">
+                <Icon className="w-4 h-4 text-asphalt" strokeWidth={2.6} />
               </div>
-              <span className="font-mono text-[10px] sm:text-[11px] font-semibold tracking-[0.22em] uppercase text-white/90">
+              <span className="font-mono text-[10px] sm:text-[11px] font-black tracking-[0.22em] uppercase text-white/90">
                 {service.category}
               </span>
             </div>
 
-            <h1 className="font-display font-black uppercase text-white leading-[0.9] tracking-[-0.035em] text-balance mb-6 text-[clamp(2.25rem,7vw,5.5rem)]">
+            <h1 className="font-display font-black uppercase text-white leading-[0.9] tracking-[-0.035em] text-balance mb-5 text-[clamp(2.25rem,7vw,5rem)]">
               {service.name.split(" ")[0]}<br />
               <span className="text-gator-orange">{service.name.split(" ").slice(1).join(" ") || "Done Right."}</span>
             </h1>
 
-            <p className="text-base sm:text-xl text-white/85 leading-[1.5] max-w-2xl mb-6 text-pretty">
+            <p className="text-base sm:text-lg text-white/85 leading-[1.5] max-w-xl mb-7 text-pretty">
               {service.lede}
             </p>
 
-            <div className="space-y-4 text-sm sm:text-base text-white/70 leading-[1.7] mb-8 max-w-2xl">
-              {service.intro.map((p, i) => <p key={i}>{p}</p>)}
-            </div>
-
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-10 max-w-xl">
-              <Link href="/estimate" className="flex-1 sm:flex-initial">
-                <button className="w-full h-14 px-7 rounded-md bg-gator-orange hover:bg-gator-orange-dark text-asphalt font-black uppercase text-sm tracking-[0.1em] inline-flex items-center justify-center gap-2 transition-all shadow-lg shadow-black/30">
+            {/* Prominent contact CTAs */}
+            <div className="flex flex-col sm:flex-row gap-3 mb-6 max-w-xl">
+              <a href="tel:+12392343061" className="flex-1">
+                <button className="w-full h-14 px-6 rounded-md bg-gator-orange hover:bg-gator-orange-dark text-asphalt font-black uppercase text-sm tracking-[0.1em] inline-flex items-center justify-center gap-2 transition-all shadow-xl shadow-black/40">
+                  <PhoneCall className="w-5 h-5" strokeWidth={2.6} />
+                  (239) 234-3061
+                </button>
+              </a>
+              <Link href="/estimate" className="flex-1">
+                <button className="w-full h-14 px-6 rounded-md border-2 border-white/30 hover:border-white hover:bg-white/5 text-white font-black uppercase text-sm tracking-[0.1em] inline-flex items-center justify-center gap-2 transition-all">
                   Request a Quote
                   <ArrowRight className="w-4 h-4" strokeWidth={2.6} />
                 </button>
               </Link>
-              <a href="tel:+12392343061" className="flex-1 sm:flex-initial">
-                <button className="w-full h-14 px-7 rounded-md border-2 border-white/30 hover:border-white hover:bg-white/5 text-white font-black uppercase text-sm tracking-[0.1em] inline-flex items-center justify-center gap-2 transition-all">
-                  <PhoneCall className="w-4 h-4 text-gator-orange" strokeWidth={2.4} />
-                  (239) 234-3061
-                </button>
-              </a>
             </div>
 
-            <dl className="grid grid-cols-3 gap-x-6 max-w-md border-t border-white/15 pt-5">
-              {service.stats.map(({ value, label }) => (
-                <div key={label}>
-                  <dt className="font-display font-black uppercase text-sm sm:text-base text-shell tracking-tight">{value}</dt>
-                  <dd className="text-shell/55 text-[10px] font-mono uppercase tracking-wide mt-1">{label}</dd>
-                </div>
-              ))}
-            </dl>
+            {/* Trust pills */}
+            <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-xs sm:text-sm font-mono text-white/70">
+              <span className="flex items-center gap-1.5"><Clock className="w-3.5 h-3.5 text-gator-orange" strokeWidth={2.6} /> 24h Reply</span>
+              <span className="flex items-center gap-1.5"><ShieldCheck className="w-3.5 h-3.5 text-gator-orange" strokeWidth={2.6} /> Licensed &amp; Insured</span>
+              <span className="flex items-center gap-1.5"><MapPin className="w-3.5 h-3.5 text-gator-orange" strokeWidth={2.6} /> SW Florida</span>
+            </div>
           </div>
 
           <div className="lg:col-span-5">
@@ -123,6 +118,15 @@ export default function ServicePage() {
           </div>
         </div>
       </section>
+
+      {/* ── Intro — moved below the hero so hero stays simple ── */}
+      {service.intro.length > 0 && (
+        <section className="relative py-10 sm:py-14 bg-shell border-b border-asphalt/10">
+          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4 text-asphalt/80 leading-[1.75] text-base sm:text-lg">
+            {service.intro.map((p, i) => <p key={i}>{p}</p>)}
+          </div>
+        </section>
+      )}
 
       {/* ── SCOPE — what's actually included ── */}
       <section className="relative py-16 sm:py-24 lg:py-28 px-4 sm:px-6 lg:px-8 bg-shell">

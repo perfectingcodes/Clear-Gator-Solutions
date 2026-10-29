@@ -250,123 +250,49 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* ── OUR SERVICES — editorial 1-up + grid ── */}
-      <section id="services" className="relative py-16 sm:py-24 lg:py-28 px-4 sm:px-6 lg:px-8 bg-shell overflow-hidden">
-        {/* Editorial header — asymmetric, left-weighted */}
+      {/* ── OUR SERVICES — compact 3-up grid ── */}
+      <section id="services" className="relative py-14 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-shell">
         <div ref={servicesReveal} className="max-w-7xl mx-auto reveal">
-          <div className="grid lg:grid-cols-12 gap-x-10 gap-y-8 items-end mb-10 sm:mb-14">
-            <div className="lg:col-span-8">
-              <div className="flex items-center gap-3 mb-4">
-                <span className="font-display font-black text-5xl sm:text-6xl text-gator-orange tracking-[-0.04em] leading-none">
-                  06
-                </span>
-                <div className="h-px w-10 bg-asphalt/30" aria-hidden="true" />
-                <span className="font-mono text-[11px] sm:text-xs font-black tracking-[0.3em] uppercase text-teal">
-                  Services for Homes
-                </span>
-              </div>
-              <h2 className="font-display font-black uppercase text-[clamp(2.25rem,7vw,5rem)] leading-[0.92] tracking-[-0.035em] text-asphalt text-balance">
-                Everything your<br />
-                <span className="text-teal">yard, driveway</span><br />
-                &amp; walls need.
-              </h2>
+          {/* Tight centered header */}
+          <div className="text-center mb-10 sm:mb-12">
+            <div className="font-mono text-[11px] font-black tracking-[0.3em] uppercase text-teal mb-3">
+              Our Services
             </div>
-            <div className="lg:col-span-4">
-              <p className="text-asphalt/70 text-base sm:text-lg leading-[1.6] text-pretty border-l-2 border-gator-orange pl-5">
-                Six crews under one roof — demo, haul, clean, mow, soft-wash. One call, one standard, one invoice. We own every step from the first walk-through to the last blow-off.
-              </p>
-            </div>
+            <h2 className="font-display font-black uppercase text-[clamp(1.75rem,5vw,3.5rem)] leading-[0.95] tracking-[-0.03em] text-asphalt text-balance">
+              Real Work.<br className="sm:hidden" />
+              <span className="text-teal sm:ml-3">Real Results.</span>
+            </h2>
           </div>
 
-          {/* Featured hero service — Lawn Care (the one most homeowners book first) */}
-          {(() => {
-            const featured = services.find((s) => s.slug === "landscaping")!;
-            return (
-              <Link href={`/services/${featured.slug}`}>
-                <article className="group relative overflow-hidden rounded-2xl bg-asphalt text-shell mb-5 sm:mb-6 cursor-pointer transition-all duration-500 hover:shadow-[0_30px_80px_-20px_rgba(0,0,0,0.5)]">
-                  <div className="grid lg:grid-cols-12 gap-0 min-h-[340px] sm:min-h-[400px]">
-                    {/* Image side */}
-                    <div className="relative lg:col-span-7 min-h-[260px] lg:min-h-full overflow-hidden">
-                      <div
-                        className="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-700"
-                        style={{ backgroundImage: `url('${SERVICE_IMAGES[featured.slug]?.hero ?? FALLBACK_HERO}')` }}
-                        aria-hidden="true"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-asphalt/20 to-asphalt lg:to-asphalt" aria-hidden="true" />
-                      <div className="absolute inset-0 bg-gradient-to-t from-asphalt/60 via-transparent to-transparent lg:hidden" aria-hidden="true" />
-                      {/* Featured label */}
-                      <div className="absolute top-5 left-5 inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gator-orange text-asphalt font-mono text-[10px] font-black tracking-[0.22em] uppercase shadow-lg shadow-black/40">
-                        <span className="w-1.5 h-1.5 rounded-full bg-asphalt animate-pulse" />
-                        Most booked
-                      </div>
-                    </div>
-                    {/* Text side */}
-                    <div className="relative lg:col-span-5 p-7 sm:p-10 lg:p-12 flex flex-col justify-center bg-asphalt">
-                      <div className="flex items-center gap-3 mb-5">
-                        <div className="w-11 h-11 rounded-md bg-gator-orange flex items-center justify-center flex-shrink-0">
-                          <featured.icon className="w-5 h-5 text-asphalt" strokeWidth={2.6} />
-                        </div>
-                        <span className="font-mono text-[10px] font-black tracking-[0.26em] uppercase text-gator-orange">
-                          Mow · Edge · Trim
-                        </span>
-                      </div>
-                      <h3 className="font-display font-black uppercase text-3xl sm:text-4xl lg:text-5xl leading-[0.95] tracking-[-0.03em] text-shell mb-4">
-                        {featured.title}
-                      </h3>
-                      <p className="text-shell/70 text-base leading-[1.6] mb-6">
-                        {featured.description}
-                      </p>
-                      <ul className="flex flex-wrap gap-1.5 mb-7">
-                        {featured.features.slice(0, 4).map((f) => (
-                          <li key={f} className="inline-flex items-center px-2.5 py-1 rounded-full bg-white/[0.06] border border-white/10 text-shell/80 text-[11px] font-semibold">
-                            {f}
-                          </li>
-                        ))}
-                      </ul>
-                      <span className="inline-flex items-center gap-2 text-gator-orange font-black uppercase text-sm tracking-[0.18em] group-hover:gap-3 transition-all">
-                        Weekly Service
-                        <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" strokeWidth={2.6} />
-                      </span>
-                    </div>
-                  </div>
-                </article>
-              </Link>
-            );
-          })()}
-
-          {/* 5 secondary services — smaller tiles, 2-col mobile, 3-col lg */}
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
-            {services.filter((s) => s.slug !== "landscaping").map((svc, i) => (
+          {/* Uniform compact 3-up grid */}
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
+            {services.map((svc, i) => (
               <Link key={svc.title} href={`/services/${svc.slug}`}>
-                <article className="group relative h-full flex flex-col overflow-hidden rounded-xl bg-asphalt text-shell transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl hover:shadow-asphalt/30 cursor-pointer">
-                  <div className="relative aspect-[16/10] overflow-hidden bg-asphalt">
+                <article className="group relative h-full flex flex-col overflow-hidden rounded-xl bg-asphalt text-shell transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-asphalt/25 cursor-pointer">
+                  <div className="relative aspect-[16/9] overflow-hidden">
                     <div
-                      className="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-all duration-700"
+                      className="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-500"
                       style={{ backgroundImage: `url('${SERVICE_IMAGES[svc.slug]?.hero ?? FALLBACK_HERO}')` }}
                       aria-hidden="true"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-br from-asphalt/70 via-asphalt/40 to-teal/60 group-hover:from-asphalt/60 group-hover:via-asphalt/30 transition-all duration-500" aria-hidden="true" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-asphalt via-asphalt/40 to-transparent" aria-hidden="true" />
-                    <div className="absolute top-4 left-4 w-11 h-11 rounded-md bg-gator-orange flex items-center justify-center shadow-lg shadow-black/40">
-                      <svc.icon className="w-5 h-5 text-asphalt" strokeWidth={2.4} />
+                    <div className="absolute inset-0 bg-gradient-to-t from-asphalt via-asphalt/40 to-asphalt/10" aria-hidden="true" />
+                    <div className="absolute top-3 left-3 w-14 h-14 rounded-lg bg-gator-orange flex items-center justify-center shadow-lg shadow-black/40">
+                      <svc.icon className="w-7 h-7 text-asphalt" strokeWidth={2.6} />
                     </div>
-                    <span className="absolute top-5 right-5 font-mono text-[10px] font-black tracking-[0.22em] uppercase text-shell/60">
-                      /0{i + 2}
+                    <span className="absolute top-3.5 right-3.5 font-mono text-[10px] font-black tracking-[0.22em] uppercase text-shell/60">
+                      /0{i + 1}
                     </span>
-                    <div className="absolute bottom-4 left-4 right-4">
-                      <h3 className="font-display font-black uppercase text-xl sm:text-2xl leading-[0.95] tracking-tight text-shell">
+                    <div className="absolute bottom-3 left-3 right-3">
+                      <h3 className="font-display font-black uppercase text-lg sm:text-xl leading-[0.95] tracking-tight text-shell">
                         {svc.title}
                       </h3>
                     </div>
                   </div>
-                  <div className="relative flex-1 p-5 sm:p-6 flex flex-col bg-asphalt">
-                    <p className="text-shell/65 text-[13px] leading-[1.6] mb-4 flex-1">
+                  <div className="relative flex-1 p-4 sm:p-5 flex items-center justify-between gap-3">
+                    <p className="text-shell/70 text-xs sm:text-[13px] leading-[1.55] flex-1 line-clamp-2">
                       {svc.description}
                     </p>
-                    <span className="inline-flex items-center gap-2 text-gator-orange font-black uppercase text-[11px] tracking-[0.2em] group-hover:gap-3 transition-all pt-3 border-t border-white/10">
-                      Learn More
-                      <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" strokeWidth={2.6} />
-                    </span>
+                    <ArrowRight className="w-4 h-4 text-gator-orange flex-shrink-0 group-hover:translate-x-1 transition-transform" strokeWidth={2.6} />
                   </div>
                 </article>
               </Link>
@@ -375,257 +301,126 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* ── WHY CHOOSE — dark trust section ── */}
-      <section className="relative overflow-hidden bg-asphalt text-shell py-16 sm:py-24 lg:py-32">
-        {/* ambient brand glow */}
-        <div className="absolute -top-40 -right-40 w-[600px] h-[600px] rounded-full bg-teal/15 blur-3xl pointer-events-none" aria-hidden="true" />
-        <div className="absolute -bottom-40 -left-40 w-[500px] h-[500px] rounded-full bg-gator-orange/10 blur-3xl pointer-events-none" aria-hidden="true" />
-        <img
-          src={logoImg}
-          alt=""
-          aria-hidden="true"
-          className="absolute -right-20 bottom-0 w-[480px] h-[480px] object-contain opacity-[0.04] pointer-events-none select-none hidden md:block"
-        />
+      {/* ── WHY CHOOSE — compact dark trust strip ── */}
+      <section className="relative overflow-hidden bg-asphalt text-shell py-12 sm:py-16 lg:py-20">
+        <div className="absolute -top-40 -right-40 w-[500px] h-[500px] rounded-full bg-teal/10 blur-3xl pointer-events-none" aria-hidden="true" />
+        <div className="absolute -bottom-40 -left-40 w-[400px] h-[400px] rounded-full bg-gator-orange/8 blur-3xl pointer-events-none" aria-hidden="true" />
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-12 gap-x-10 gap-y-10 lg:gap-y-14 items-center">
-            {/* Left — big photo column */}
-            <div className="lg:col-span-5 relative order-1 lg:order-none">
-              <div className="relative aspect-[4/5] sm:aspect-[5/6] lg:aspect-[4/5] overflow-hidden rounded-2xl">
-                <div
-                  className="absolute inset-0 bg-cover bg-center"
-                  style={{ backgroundImage: "url('/images/stock/florida-home.jpg')" }}
-                  aria-hidden="true"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-asphalt via-asphalt/30 to-transparent" aria-hidden="true" />
-                {/* overlay stats pill */}
-                <div className="absolute bottom-6 left-6 right-6">
-                  <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gator-orange text-asphalt font-mono text-[10px] font-black tracking-[0.22em] uppercase mb-3">
-                    <span className="w-1.5 h-1.5 rounded-full bg-asphalt" />
-                    SW Florida · Est. 2026
-                  </div>
-                  <div className="font-display font-black uppercase text-2xl sm:text-3xl text-shell leading-[0.95] tracking-tight">
-                    Boots on<br />the ground.
-                  </div>
-                </div>
-              </div>
-              {/* Floating stat card */}
-              <div className="hidden sm:block absolute -right-4 -bottom-6 lg:-right-6 lg:-bottom-8 rounded-xl bg-gator-orange text-asphalt p-5 shadow-2xl shadow-black/40 rotate-[-2deg] max-w-[200px]">
-                <div className="font-mono text-[9px] font-black uppercase tracking-[0.26em] mb-1">
-                  Avg Reply
-                </div>
-                <div className="font-display font-black text-4xl leading-none tracking-[-0.03em]">
-                  &lt;24h
-                </div>
-                <div className="font-mono text-[10px] font-semibold uppercase tracking-[0.18em] mt-1 opacity-80">
-                  Every quote, every time
-                </div>
-              </div>
+        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Tight centered header */}
+          <div className="text-center mb-10 sm:mb-12">
+            <div className="font-mono text-[11px] font-black tracking-[0.3em] uppercase text-gator-orange mb-3">
+              Why Clear Gator
             </div>
-
-            {/* Right — editorial header + numbered reasons */}
-            <div className="lg:col-span-7 lg:pl-6">
-              <div className="flex items-center gap-3 mb-5">
-                <span className="font-mono text-[11px] font-black tracking-[0.3em] uppercase text-gator-orange">
-                  Why Clear Gator
-                </span>
-                <div className="h-px flex-1 bg-shell/15 max-w-[120px]" aria-hidden="true" />
-              </div>
-              <h2 className="font-display font-black uppercase text-[clamp(2.25rem,6vw,4.5rem)] leading-[0.9] tracking-[-0.035em] text-shell text-balance mb-10 sm:mb-12">
-                Work Harder.<br />
-                <span className="text-gator-orange">Cleaner. Better.</span>
-              </h2>
-
-              <ol className="space-y-5 sm:space-y-6">
-                {[
-                  { num: "01", icon: Handshake, title: "Local & Trusted", body: "We live in Cape Coral. We work the same streets you drive. This is home — not a route." },
-                  { num: "02", icon: Shield, title: "Licensed & Insured", body: "Fully licensed and insured. If something's not right, you have recourse — not a disconnected phone number." },
-                  { num: "03", icon: Clock, title: "On Time & Responsive", body: "24-hour quote reply. We show up when we said we would. If plans change, you hear it before the appointment window." },
-                  { num: "04", icon: CheckCircle2, title: "Quality Results", body: "We don't trade speed for damage. Floor protection, daily cleanup, no call-backs. You're not chasing us after the job." },
-                ].map(({ num, icon: Icon, title, body }) => (
-                  <li
-                    key={num}
-                    className="group relative grid grid-cols-[auto_1fr] gap-5 sm:gap-7 items-start pb-5 sm:pb-6 border-b border-white/10 last:border-b-0"
-                  >
-                    <div className="flex flex-col items-center gap-2">
-                      <span className="font-display font-black text-4xl sm:text-5xl text-gator-orange tracking-[-0.04em] leading-none">
-                        {num}
-                      </span>
-                      <div className="w-9 h-9 rounded-md bg-white/[0.05] border border-white/15 group-hover:bg-gator-orange group-hover:border-gator-orange flex items-center justify-center transition-colors duration-300">
-                        <Icon className="w-4 h-4 text-shell/70 group-hover:text-asphalt transition-colors" strokeWidth={2.4} />
-                      </div>
-                    </div>
-                    <div>
-                      <h3 className="font-display font-black uppercase text-lg sm:text-2xl leading-tight tracking-tight text-shell mb-1.5">
-                        {title}
-                      </h3>
-                      <p className="text-shell/65 text-sm sm:text-base leading-[1.6]">{body}</p>
-                    </div>
-                  </li>
-                ))}
-              </ol>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── THE GATOR WAY — editorial timeline ── */}
-      <section id="how-it-works" className="relative py-16 sm:py-24 lg:py-28 px-4 sm:px-6 lg:px-8 bg-shell overflow-hidden">
-        <div ref={howReveal} className="max-w-7xl mx-auto reveal">
-          <div className="grid lg:grid-cols-12 gap-x-10 gap-y-6 items-end mb-10 sm:mb-16">
-            <div className="lg:col-span-7">
-              <div className="flex items-center gap-3 mb-4">
-                <span className="font-display font-black text-5xl sm:text-6xl text-asphalt/15 tracking-[-0.04em] leading-none">
-                  04
-                </span>
-                <div className="h-px w-10 bg-asphalt/30" aria-hidden="true" />
-                <span className="font-mono text-[11px] font-black tracking-[0.3em] uppercase text-teal">
-                  The Gator Way
-                </span>
-              </div>
-              <h2 className="font-display font-black uppercase text-[clamp(2.25rem,7vw,5rem)] leading-[0.92] tracking-[-0.035em] text-asphalt text-balance">
-                From first call<br />
-                <span className="text-teal">to drive-off.</span>
-              </h2>
-            </div>
-            <div className="lg:col-span-5">
-              <p className="text-asphalt/70 text-base sm:text-lg leading-[1.6] text-pretty border-l-2 border-gator-orange pl-5">
-                Four steps. No back-and-forth, no surprises, no hidden line items. The job runs the way we told you it would.
-              </p>
-            </div>
+            <h2 className="font-display font-black uppercase text-[clamp(1.75rem,5vw,3.5rem)] leading-[0.95] tracking-[-0.03em] text-shell text-balance">
+              Work Harder.<br className="sm:hidden" />
+              <span className="text-gator-orange sm:ml-3">Cleaner. Better.</span>
+            </h2>
           </div>
 
-          {/* Horizontal timeline rail */}
-          <div className="relative">
-            {/* Connecting dashed rail (desktop) */}
-            <div className="hidden lg:block absolute top-[52px] left-[8%] right-[8%] h-px pointer-events-none" aria-hidden="true">
-              <div className="w-full h-full border-t-2 border-dashed border-asphalt/15" />
-            </div>
-
-            <ol className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-5 lg:gap-6">
-              {howItWorks.map(({ step, title, desc, icon: Icon }, idx) => (
-                <li key={step} className="relative">
-                  {/* Numbered badge node */}
-                  <div className="flex justify-center mb-4 lg:mb-6">
-                    <div className="relative">
-                      <div className="w-[104px] h-[104px] rounded-full bg-asphalt text-shell flex items-center justify-center shadow-xl shadow-asphalt/30 ring-4 ring-shell relative z-10">
-                        <span className="font-display font-black text-4xl text-gator-orange tracking-[-0.04em] leading-none">
-                          {step}
-                        </span>
-                      </div>
-                      {/* Floating icon chip */}
-                      <div className="absolute -top-1 -right-1 w-10 h-10 rounded-md bg-gator-orange flex items-center justify-center shadow-lg shadow-black/40 z-20 ring-4 ring-shell">
-                        <Icon className="w-4 h-4 text-asphalt" strokeWidth={2.6} />
-                      </div>
-                      {/* Mobile connector arrow */}
-                      {idx < howItWorks.length - 1 && (
-                        <div className="lg:hidden absolute left-full top-1/2 -translate-y-1/2 ml-4 w-6 h-px bg-asphalt/30 hidden sm:block" aria-hidden="true" />
-                      )}
-                    </div>
-                  </div>
-                  <div className="text-center lg:px-2">
-                    <h3 className="font-display font-black uppercase text-lg sm:text-xl leading-tight tracking-tight text-asphalt mb-2">
-                      {title}
-                    </h3>
-                    <p className="text-asphalt/65 text-sm leading-[1.6] text-balance">{desc}</p>
-                  </div>
-                </li>
-              ))}
-            </ol>
-          </div>
-
-          {/* Footer CTA */}
-          <div className="mt-14 sm:mt-16 pt-8 border-t border-asphalt/15 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-            <div className="flex items-center gap-3">
-              <div className="w-2 h-2 rounded-full bg-gator-orange animate-pulse" aria-hidden="true" />
-              <span className="font-mono text-[11px] font-black tracking-[0.26em] uppercase text-asphalt/70">
-                24h quote reply · Same-week starts
-              </span>
-            </div>
-            <Link href="/estimate">
-              <span className="inline-flex items-center gap-2 text-asphalt font-black uppercase text-xs tracking-[0.18em] border-b-2 border-gator-orange pb-0.5 hover:text-teal transition-colors cursor-pointer">
-                Start a Project
-                <ArrowRight className="w-3.5 h-3.5" strokeWidth={2.6} />
-              </span>
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* ── THE GATOR PROMISE — four things we stake the name on ── */}
-      <section className="relative overflow-hidden bg-asphalt text-shell py-16 sm:py-24 lg:py-32">
-        <div className="absolute -top-40 -left-40 w-[500px] h-[500px] rounded-full bg-teal/15 blur-3xl pointer-events-none" aria-hidden="true" />
-        <img
-          src={logoImg}
-          alt=""
-          aria-hidden="true"
-          className="absolute -right-24 -bottom-24 w-[460px] h-[460px] object-contain opacity-[0.04] pointer-events-none select-none hidden md:block"
-        />
-
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Big pull quote — the editorial centerpiece */}
-          <div className="grid lg:grid-cols-12 gap-x-10 gap-y-10 items-start mb-14 sm:mb-20">
-            <div className="lg:col-span-7">
-              <div className="flex items-center gap-3 mb-6">
-                <span className="font-mono text-[11px] font-black tracking-[0.3em] uppercase text-gator-orange">
-                  The Gator Promise
-                </span>
-                <div className="h-px flex-1 bg-shell/15 max-w-[160px]" aria-hidden="true" />
-              </div>
-              <blockquote className="font-display font-black uppercase text-[clamp(2rem,5.5vw,4.25rem)] leading-[0.95] tracking-[-0.035em] text-shell text-balance">
-                <span className="text-gator-orange">"</span>The bar's named<br />
-                after us.{" "}
-                <span className="text-shell/50">We don't</span><br />
-                <span className="text-shell/50">lower it.</span>
-                <span className="text-gator-orange">"</span>
-              </blockquote>
-              <div className="mt-6 flex items-center gap-3">
-                <img src={logoImg} alt="" aria-hidden="true" className="h-10 w-10 object-contain" />
-                <div className="leading-tight">
-                  <div className="font-mono text-[10px] font-black tracking-[0.3em] uppercase text-gator-orange">
-                    — Clear Gator Crew
-                  </div>
-                  <div className="font-mono text-[10px] text-shell/50 tracking-[0.22em] uppercase mt-1">
-                    Cape Coral · Est. 2026
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="lg:col-span-5 lg:pt-20">
-              <p className="text-shell/65 text-base sm:text-lg leading-[1.7] text-pretty border-l-2 border-gator-orange pl-5">
-                Four things, no excuses. Every job, every crew. If any of these slip, you've got standing to hold us to it — because we told you first.
-              </p>
-            </div>
-          </div>
-
-          {/* Horizontal row of 4 promise commitments */}
-          <ol className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-white/10 rounded-xl overflow-hidden border border-white/10">
+          {/* Compact 4-up grid — icon-forward */}
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
             {[
-              { num: "I.",   title: "We Show Up",       body: "Appointment windows kept. If plans change, you hear from us before the window — not after." },
-              { num: "II.",  title: "We Quote Honest",  body: "Written scope, dump fees included. If something runs bigger, we tell you before we go past the number." },
-              { num: "III.", title: "We Clean As We Go", body: "Floor protection, plastic walls where it matters, daily clean-up. Not a dust-covered mess at the end." },
-              { num: "IV.",  title: "We Stand By It",   body: "If something isn't right, we come back and make it right. No chasing us for a callback." },
-            ].map((p) => (
-              <li key={p.num} className="group bg-asphalt p-6 sm:p-7 hover:bg-white/[0.03] transition-colors duration-300">
-                <div className="flex items-baseline justify-between mb-5">
-                  <span className="font-display font-black text-4xl text-gator-orange tracking-[-0.04em] leading-none">
-                    {p.num}
-                  </span>
-                  <span className="font-mono text-[9px] font-black uppercase tracking-[0.26em] text-shell/35 pt-1">
-                    Promise
-                  </span>
+              { icon: Handshake,     title: "Local & Trusted",     body: "SW Florida crew. Same streets you drive." },
+              { icon: Shield,        title: "Licensed & Insured",  body: "Covered on every job, every crew." },
+              { icon: Clock,         title: "24h Response",        body: "Quote reply inside the day. On-time starts." },
+              { icon: CheckCircle2,  title: "Quality Results",     body: "Clean lines. No call-backs. We stand by it." },
+            ].map(({ icon: Icon, title, body }) => (
+              <div
+                key={title}
+                className="group relative rounded-xl bg-white/[0.04] border border-white/10 p-5 sm:p-6 text-center hover:bg-white/[0.07] hover:border-gator-orange/40 transition-all duration-300"
+              >
+                <div className="w-16 h-16 rounded-xl bg-gator-orange flex items-center justify-center mx-auto mb-4 shadow-lg shadow-black/40 group-hover:scale-110 transition-transform duration-300">
+                  <Icon className="w-8 h-8 text-asphalt" strokeWidth={2.4} />
                 </div>
-                <h3 className="font-display font-black uppercase text-base sm:text-lg leading-tight tracking-tight text-shell mb-2">
-                  {p.title}
+                <h3 className="font-display font-black uppercase text-sm sm:text-base leading-tight tracking-tight text-shell mb-1.5">
+                  {title}
                 </h3>
-                <p className="text-shell/60 text-sm leading-[1.6]">{p.body}</p>
+                <p className="text-shell/60 text-xs sm:text-[13px] leading-[1.5]">{body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── THE GATOR WAY — compact 4-card grid ── */}
+      <section id="how-it-works" className="relative py-14 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-shell">
+        <div ref={howReveal} className="max-w-7xl mx-auto reveal">
+          <div className="text-center mb-10 sm:mb-12">
+            <div className="font-mono text-[11px] font-black tracking-[0.3em] uppercase text-teal mb-3">
+              The Gator Way
+            </div>
+            <h2 className="font-display font-black uppercase text-[clamp(1.75rem,5vw,3.5rem)] leading-[0.95] tracking-[-0.03em] text-asphalt text-balance">
+              From first call<br className="sm:hidden" />
+              <span className="text-teal sm:ml-3">to drive-off.</span>
+            </h2>
+          </div>
+
+          <ol className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
+            {howItWorks.map(({ step, title, desc, icon: Icon }) => (
+              <li
+                key={step}
+                className="group relative overflow-hidden rounded-xl bg-asphalt text-shell p-5 sm:p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-asphalt/25"
+              >
+                <div className="flex items-center justify-between mb-4">
+                  <span className="font-display font-black text-4xl text-gator-orange tracking-[-0.04em] leading-none">
+                    {step}
+                  </span>
+                  <div className="w-14 h-14 rounded-lg bg-gator-orange flex items-center justify-center shadow-lg shadow-black/40 group-hover:scale-110 transition-transform duration-300">
+                    <Icon className="w-7 h-7 text-asphalt" strokeWidth={2.4} />
+                  </div>
+                </div>
+                <h3 className="font-display font-black uppercase text-base sm:text-lg leading-tight tracking-tight text-shell mb-1.5">
+                  {title}
+                </h3>
+                <p className="text-shell/65 text-[13px] leading-[1.55]">{desc}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      {/* ── THE GATOR PROMISE — compact ── */}
+      <section className="relative overflow-hidden bg-asphalt text-shell py-12 sm:py-16 lg:py-20">
+        <div className="absolute -top-32 -left-32 w-[400px] h-[400px] rounded-full bg-teal/10 blur-3xl pointer-events-none" aria-hidden="true" />
+
+        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-10 sm:mb-12">
+            <div className="font-mono text-[11px] font-black tracking-[0.3em] uppercase text-gator-orange mb-3">
+              The Gator Promise
+            </div>
+            <h2 className="font-display font-black uppercase text-[clamp(1.75rem,5vw,3.5rem)] leading-[0.95] tracking-[-0.03em] text-shell text-balance">
+              Named after us.<br className="sm:hidden" />
+              <span className="text-gator-orange sm:ml-3">We stand on it.</span>
+            </h2>
+          </div>
+
+          {/* Four promises — icon-forward compact grid */}
+          <ol className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
+            {[
+              { icon: Clock,         title: "We Show Up",         body: "Windows kept. Early notice if plans change." },
+              { icon: FileText,      title: "We Quote Honest",    body: "Written scope. Dump fees in the number." },
+              { icon: HardHat,       title: "We Clean As We Go",  body: "Floor protection, daily sweep, debris loaded." },
+              { icon: CheckCircle2,  title: "We Stand By It",     body: "Something off? We come back and fix it." },
+            ].map(({ icon: Icon, title, body }) => (
+              <li
+                key={title}
+                className="group relative rounded-xl bg-white/[0.04] border border-white/10 p-5 sm:p-6 text-center hover:bg-white/[0.07] hover:border-gator-orange/40 transition-all duration-300"
+              >
+                <div className="w-16 h-16 rounded-xl bg-gator-orange flex items-center justify-center mx-auto mb-4 shadow-lg shadow-black/40 group-hover:scale-110 transition-transform duration-300">
+                  <Icon className="w-8 h-8 text-asphalt" strokeWidth={2.4} />
+                </div>
+                <h3 className="font-display font-black uppercase text-sm sm:text-base leading-tight tracking-tight text-shell mb-1.5">
+                  {title}
+                </h3>
+                <p className="text-shell/60 text-xs sm:text-[13px] leading-[1.5]">{body}</p>
               </li>
             ))}
           </ol>
 
-          <div className="mt-10 sm:mt-12 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <div className="mt-8 sm:mt-10 flex justify-center">
             <Link href="/estimate">
-              <button className="inline-flex items-center gap-2 h-12 px-7 rounded-md bg-gator-orange hover:bg-gator-orange-dark text-asphalt font-black uppercase text-sm tracking-[0.1em] transition-all shadow-lg shadow-black/30">
+              <button className="inline-flex items-center gap-2 h-11 px-6 rounded-md bg-gator-orange hover:bg-gator-orange-dark text-asphalt font-black uppercase text-sm tracking-[0.1em] transition-all shadow-lg shadow-black/30">
                 Put Us to Work
                 <ArrowRight className="w-4 h-4" strokeWidth={2.6} />
               </button>
@@ -634,88 +429,42 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* ── SERVICE AREAS — SW FLORIDA ── */}
-      <section id="service-areas" className="relative py-16 sm:py-24 lg:py-28 px-4 sm:px-6 lg:px-8 bg-shell overflow-hidden">
-        <div ref={areasReveal} className="max-w-7xl mx-auto reveal">
-          <div className="grid lg:grid-cols-12 gap-x-10 gap-y-8 items-end mb-10 sm:mb-14">
-            <div className="lg:col-span-7">
-              <div className="flex items-center gap-3 mb-4">
-                <span className="font-display font-black text-5xl sm:text-6xl text-gator-orange tracking-[-0.04em] leading-none">
-                  08
-                </span>
-                <div className="h-px w-10 bg-asphalt/30" aria-hidden="true" />
-                <span className="font-mono text-[11px] font-black tracking-[0.3em] uppercase text-teal">
-                  Gator Country
-                </span>
-              </div>
-              <h2 className="font-display font-black uppercase text-[clamp(2.25rem,7vw,5rem)] leading-[0.92] tracking-[-0.035em] text-asphalt text-balance">
-                Southwest Florida.<br />
-                <span className="text-teal">End to end.</span>
-              </h2>
+      {/* ── SERVICE AREAS — compact city strip ── */}
+      <section id="service-areas" className="relative py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 bg-shell">
+        <div ref={areasReveal} className="max-w-6xl mx-auto reveal">
+          <div className="text-center mb-8 sm:mb-10">
+            <div className="font-mono text-[11px] font-black tracking-[0.3em] uppercase text-teal mb-3">
+              Gator Country
             </div>
-            <div className="lg:col-span-5">
-              <p className="text-asphalt/70 text-base sm:text-lg leading-[1.6] text-pretty border-l-2 border-gator-orange pl-5">
-                Headquartered in Cape Coral. Weekly route from Punta Gorda to Naples, with a boat for the islands. Same crew, same day, every week.
-              </p>
-            </div>
+            <h2 className="font-display font-black uppercase text-[clamp(1.75rem,5vw,3.5rem)] leading-[0.95] tracking-[-0.03em] text-asphalt text-balance">
+              Southwest Florida.<br className="sm:hidden" />
+              <span className="text-teal sm:ml-3">End to end.</span>
+            </h2>
           </div>
 
-          {/* Featured cities — 2 up with photos */}
-          <div className="grid lg:grid-cols-2 gap-5 sm:gap-6 mb-5 sm:mb-6">
-            {["Cape Coral", "Naples"].map((city) => {
+          {/* Single compact grid — all 8 cities */}
+          <ul className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-3.5 mb-7">
+            {SERVICE_AREAS.map((city) => {
               const slug = city.toLowerCase().replace(/\s+/g, "-").replace(/\./g, "");
-              const img = (CITY_IMAGES as Record<string, { hero: string }>)[slug]?.hero ?? FALLBACK_HERO;
               const isHQ = city === "Cape Coral";
-              return (
-                <Link key={city} href={`/service-areas/${slug}`}>
-                  <article className="group relative aspect-[16/10] sm:aspect-[16/9] overflow-hidden rounded-2xl bg-asphalt cursor-pointer transition-all duration-500 hover:shadow-2xl hover:shadow-asphalt/40">
-                    <div
-                      className="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-700"
-                      style={{ backgroundImage: `url('${img}')` }}
-                      aria-hidden="true"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-br from-asphalt/55 via-asphalt/30 to-asphalt/70" aria-hidden="true" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-asphalt via-transparent to-transparent" aria-hidden="true" />
-                    <div className="absolute top-5 left-5 flex items-center gap-2">
-                      <div className="w-9 h-9 rounded-md bg-gator-orange flex items-center justify-center">
-                        <MapPin className="w-4 h-4 text-asphalt" strokeWidth={2.6} />
-                      </div>
-                      {isHQ && (
-                        <span className="font-mono text-[10px] font-black tracking-[0.26em] uppercase text-gator-orange px-2.5 py-1 rounded-full bg-asphalt/60 backdrop-blur">
-                          HQ
-                        </span>
-                      )}
-                    </div>
-                    <ArrowRight className="absolute top-5 right-5 w-5 h-5 text-shell/60 group-hover:text-gator-orange group-hover:translate-x-1 transition-all" strokeWidth={2.4} />
-                    <div className="absolute bottom-6 left-6 right-6">
-                      <h3 className="font-display font-black uppercase text-3xl sm:text-4xl leading-[0.95] tracking-tight text-shell">
-                        {city}
-                      </h3>
-                      <p className="mt-1.5 text-shell/75 text-xs font-mono uppercase tracking-[0.22em]">
-                        {isHQ ? "Where it all starts" : "Flagship coverage"}
-                      </p>
-                    </div>
-                  </article>
-                </Link>
-              );
-            })}
-          </div>
-
-          {/* 6 smaller cities */}
-          <ul className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
-            {SERVICE_AREAS.filter((c) => c !== "Cape Coral" && c !== "Naples").map((city) => {
-              const slug = city.toLowerCase().replace(/\s+/g, "-").replace(/\./g, "");
               return (
                 <li key={city} data-testid={`chip-city-${slug}`}>
                   <Link href={`/service-areas/${slug}`}>
-                    <article className="group relative h-full px-4 py-5 rounded-lg bg-asphalt text-shell hover:bg-teal transition-all duration-300 cursor-pointer">
-                      <div className="flex items-center gap-2 mb-3">
-                        <MapPin className="w-3.5 h-3.5 text-gator-orange" strokeWidth={2.6} />
-                        <ArrowRight className="w-3.5 h-3.5 text-shell/40 group-hover:text-shell group-hover:translate-x-0.5 transition-all ml-auto" strokeWidth={2.4} />
+                    <article className="group relative h-full flex items-center gap-3 px-4 py-3.5 rounded-lg bg-asphalt text-shell hover:bg-teal transition-all duration-300 cursor-pointer">
+                      <div className="w-10 h-10 rounded-md bg-gator-orange flex items-center justify-center flex-shrink-0">
+                        <MapPin className="w-5 h-5 text-asphalt" strokeWidth={2.6} />
                       </div>
-                      <h3 className="font-display font-black uppercase text-sm sm:text-base leading-tight tracking-tight text-shell">
-                        {city}
-                      </h3>
+                      <div className="min-w-0 flex-1">
+                        <h3 className="font-display font-black uppercase text-sm leading-tight tracking-tight text-shell truncate">
+                          {city}
+                        </h3>
+                        {isHQ && (
+                          <span className="font-mono text-[9px] font-black tracking-[0.22em] uppercase text-gator-orange">
+                            HQ · Est. 2026
+                          </span>
+                        )}
+                      </div>
+                      <ArrowRight className="w-4 h-4 text-shell/40 group-hover:text-shell group-hover:translate-x-0.5 transition-all flex-shrink-0" strokeWidth={2.4} />
                     </article>
                   </Link>
                 </li>
@@ -723,21 +472,13 @@ export default function LandingPage() {
             })}
           </ul>
 
-          <div className="mt-10 sm:mt-14 pt-7 border-t border-asphalt/15 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-            <p className="text-asphalt/70 text-sm sm:text-base">
-              Not on the list?{" "}
-              <a href="tel:+12392343061" className="text-asphalt font-black border-b-2 border-gator-orange hover:text-teal transition-colors">
-                Call us
-              </a>{" "}
-              — we travel for the right job.
-            </p>
-            <div className="flex items-center gap-3">
-              <div className="w-2 h-2 rounded-full bg-gator-orange animate-pulse" aria-hidden="true" />
-              <span className="font-mono text-[11px] font-black tracking-[0.26em] uppercase text-asphalt/60">
-                Weekly route · same day each week
-              </span>
-            </div>
-          </div>
+          <p className="text-center text-asphalt/70 text-sm">
+            Not on the list?{" "}
+            <a href="tel:+12392343061" className="text-asphalt font-black border-b-2 border-gator-orange hover:text-teal transition-colors">
+              Call us
+            </a>{" "}
+            — we travel for the right job.
+          </p>
         </div>
       </section>
 
