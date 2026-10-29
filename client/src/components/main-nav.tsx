@@ -64,27 +64,25 @@ export default function MainNav() {
     <>
       <header
         ref={headerRef}
-        className="sticky top-0 z-50 bg-asphalt text-shell border-b border-white/5"
+        className="sticky top-0 z-50 text-shell"
       >
-        {/* lime accent rail */}
-        <div className="absolute top-0 inset-x-0 h-0.5 bg-gradient-to-r from-transparent via-gator-orange to-transparent opacity-60" aria-hidden="true" />
+        {/* Dark asphalt bar — bg lives on this inner div, so logo can overflow above it */}
+        <div className="relative bg-asphalt/95 backdrop-blur-sm border-b border-white/5">
+          {/* lime accent rail */}
+          <div className="absolute top-0 inset-x-0 h-0.5 bg-gradient-to-r from-transparent via-gator-orange to-transparent opacity-60" aria-hidden="true" />
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-18 flex items-center justify-between gap-4">
-          {/* Logo lockup — oversized badge that sticks out below the bar */}
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-18 flex items-center justify-between gap-4">
+          {/* Raw emblem — bursts above the top of the asphalt fill */}
           <Link
             href="/"
-            className="relative flex items-center gap-4 group flex-shrink-0 z-10"
+            className="relative flex items-center gap-3 group flex-shrink-0 z-10"
             aria-label="Clear Gator — Home"
           >
-            <span className="relative inline-flex items-center justify-center w-[72px] h-[72px] sm:w-[88px] sm:h-[88px] lg:w-[100px] lg:h-[100px] -my-4 sm:-my-6 lg:-my-8 rounded-full bg-gradient-to-br from-shell/[0.09] via-shell/[0.04] to-asphalt ring-2 ring-shell/15 group-hover:ring-gator-orange/60 transition-all duration-300 shadow-[0_12px_32px_-8px_rgba(0,0,0,0.55),inset_0_1px_0_0_rgba(255,255,255,0.08)]">
-              {/* Lime accent arc */}
-              <span className="absolute inset-0 rounded-full border-2 border-gator-orange/0 group-hover:border-gator-orange/30 transition-colors duration-500" aria-hidden="true" />
-              <img
-                src={logoImg}
-                alt="Clear Gator Logo"
-                className="w-[130%] h-[130%] object-contain transition-transform duration-300 group-hover:scale-[1.05]"
-              />
-            </span>
+            <img
+              src={logoImg}
+              alt="Clear Gator Logo"
+              className="h-[88px] w-[88px] sm:h-[116px] sm:w-[116px] lg:h-[136px] lg:w-[136px] object-contain transition-transform duration-300 group-hover:scale-[1.04] drop-shadow-[0_10px_22px_rgba(0,0,0,0.55)] -mt-6 sm:-mt-10 lg:-mt-14"
+            />
             <div className="hidden sm:block leading-none">
               <div className="font-display font-black text-xl lg:text-[22px] tracking-[-0.01em] text-shell uppercase">Clear Gator</div>
               <div className="flex items-center gap-2 mt-1.5">
@@ -134,6 +132,7 @@ export default function MainNav() {
         {openMenu === "areas" && (
           <MegaMenuAreas key="m-areas" onClose={() => setOpenMenu(null)} />
         )}
+        </div>
       </header>
 
       {mobileOpen && <MobileMenu onClose={() => setMobileOpen(false)} />}

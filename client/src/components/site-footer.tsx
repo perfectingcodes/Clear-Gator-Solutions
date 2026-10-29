@@ -1,10 +1,10 @@
 import { Link } from "wouter";
-import { Facebook, Instagram, Twitter, PhoneCall, Mail, MapPin } from "lucide-react";
+import { Facebook, Instagram, Twitter, PhoneCall, MapPin } from "lucide-react";
 import { SERVICES } from "@/data/services";
 import { CITIES } from "@/data/cities";
 import logoImg from "@assets/clear_gator_1775663894887.png";
 
-const TAGLINE_BG = "/images/stock/florida-home.jpg";
+const TAGLINE_BG = "/images/stock/home-suburban.jpg";
 
 export default function SiteFooter() {
   return (
@@ -15,7 +15,7 @@ export default function SiteFooter() {
         <div className="absolute inset-0 bg-gradient-to-br from-asphalt/92 via-asphalt/80 to-teal/55" aria-hidden="true" />
         <div className="absolute inset-0 bg-gradient-to-t from-asphalt via-asphalt/40 to-transparent" aria-hidden="true" />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-20 lg:py-24 text-center">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 text-center">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 backdrop-blur-sm mb-6">
             <img src={logoImg} alt="" aria-hidden="true" className="h-4 w-4 object-contain" />
             <span className="font-mono text-[10px] sm:text-[11px] font-semibold tracking-[0.3em] uppercase text-white/90">

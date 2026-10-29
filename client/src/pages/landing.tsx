@@ -250,11 +250,10 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* ── OUR SERVICES — compact 3-up grid ── */}
-      <section id="services" className="relative py-14 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-shell">
+      {/* ── OUR SERVICES — mobile-first tight grid ── */}
+      <section id="services" className="relative py-12 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-shell">
         <div ref={servicesReveal} className="max-w-7xl mx-auto reveal">
-          {/* Tight centered header */}
-          <div className="text-center mb-10 sm:mb-12">
+          <div className="text-center mb-8 sm:mb-12">
             <div className="font-mono text-[11px] font-black tracking-[0.3em] uppercase text-teal mb-3">
               Our Services
             </div>
@@ -264,8 +263,32 @@ export default function LandingPage() {
             </h2>
           </div>
 
-          {/* Uniform compact 3-up grid */}
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
+          {/* MOBILE: 2-col compact tiles, no photos. SM+: photo cards */}
+          <div className="grid grid-cols-2 gap-3 sm:hidden">
+            {services.map((svc) => (
+              <Link key={svc.slug} href={`/services/${svc.slug}`}>
+                <article className="group relative aspect-square overflow-hidden rounded-xl bg-asphalt text-shell flex flex-col justify-between p-4 active:scale-[0.97] transition-transform">
+                  <div className="w-12 h-12 rounded-lg bg-gator-orange flex items-center justify-center shadow-lg shadow-black/40">
+                    <svc.icon className="w-6 h-6 text-asphalt" strokeWidth={2.6} />
+                  </div>
+                  <div>
+                    <h3 className="font-display font-black uppercase text-base leading-[0.95] tracking-tight text-shell">
+                      {svc.title}
+                    </h3>
+                    <div className="flex items-center justify-between mt-2">
+                      <span className="font-mono text-[9px] font-black tracking-[0.22em] uppercase text-shell/50">
+                        View
+                      </span>
+                      <ArrowRight className="w-4 h-4 text-gator-orange" strokeWidth={2.6} />
+                    </div>
+                  </div>
+                </article>
+              </Link>
+            ))}
+          </div>
+
+          {/* Desktop (sm+): photo cards */}
+          <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
             {services.map((svc, i) => (
               <Link key={svc.title} href={`/services/${svc.slug}`}>
                 <article className="group relative h-full flex flex-col overflow-hidden rounded-xl bg-asphalt text-shell transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-asphalt/25 cursor-pointer">
@@ -442,29 +465,36 @@ export default function LandingPage() {
             </h2>
           </div>
 
-          {/* Single compact grid — all 8 cities */}
-          <ul className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-3.5 mb-7">
+          {/* Single compact grid — all 8 cities. Mobile uses stacked layout to avoid truncation */}
+          <ul className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3.5 mb-7">
             {SERVICE_AREAS.map((city) => {
               const slug = city.toLowerCase().replace(/\s+/g, "-").replace(/\./g, "");
               const isHQ = city === "Cape Coral";
               return (
                 <li key={city} data-testid={`chip-city-${slug}`}>
                   <Link href={`/service-areas/${slug}`}>
-                    <article className="group relative h-full flex items-center gap-3 px-4 py-3.5 rounded-lg bg-asphalt text-shell hover:bg-teal transition-all duration-300 cursor-pointer">
-                      <div className="w-10 h-10 rounded-md bg-gator-orange flex items-center justify-center flex-shrink-0">
-                        <MapPin className="w-5 h-5 text-asphalt" strokeWidth={2.6} />
+                    <article className="group relative h-full flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 px-3 py-3 sm:px-4 sm:py-3.5 rounded-lg bg-asphalt text-shell hover:bg-teal transition-all duration-300 cursor-pointer">
+                      <div className="flex items-center justify-between sm:contents">
+                        <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-md bg-gator-orange flex items-center justify-center flex-shrink-0">
+                          <MapPin className="w-4 h-4 sm:w-5 sm:h-5 text-asphalt" strokeWidth={2.6} />
+                        </div>
+                        {isHQ && (
+                          <span className="sm:hidden font-mono text-[9px] font-black tracking-[0.22em] uppercase text-gator-orange">
+                            HQ
+                          </span>
+                        )}
                       </div>
                       <div className="min-w-0 flex-1">
-                        <h3 className="font-display font-black uppercase text-sm leading-tight tracking-tight text-shell truncate">
+                        <h3 className="font-display font-black uppercase text-[13px] sm:text-sm leading-tight tracking-tight text-shell">
                           {city}
                         </h3>
                         {isHQ && (
-                          <span className="font-mono text-[9px] font-black tracking-[0.22em] uppercase text-gator-orange">
+                          <span className="hidden sm:inline font-mono text-[9px] font-black tracking-[0.22em] uppercase text-gator-orange">
                             HQ · Est. 2026
                           </span>
                         )}
                       </div>
-                      <ArrowRight className="w-4 h-4 text-shell/40 group-hover:text-shell group-hover:translate-x-0.5 transition-all flex-shrink-0" strokeWidth={2.4} />
+                      <ArrowRight className="hidden sm:block w-4 h-4 text-shell/40 group-hover:text-shell group-hover:translate-x-0.5 transition-all flex-shrink-0" strokeWidth={2.4} />
                     </article>
                   </Link>
                 </li>
