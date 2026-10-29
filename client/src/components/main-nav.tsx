@@ -70,24 +70,26 @@ export default function MainNav() {
         <div className="absolute top-0 inset-x-0 h-0.5 bg-gradient-to-r from-transparent via-gator-orange to-transparent opacity-60" aria-hidden="true" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-18 flex items-center justify-between gap-4">
-          {/* Logo lockup — framed emblem + wordmark, fits the bar */}
+          {/* Logo lockup — oversized badge that sticks out below the bar */}
           <Link
             href="/"
-            className="flex items-center gap-3 group flex-shrink-0"
+            className="relative flex items-center gap-4 group flex-shrink-0 z-10"
             aria-label="Clear Gator — Home"
           >
-            <span className="relative inline-flex items-center justify-center w-11 h-11 sm:w-12 sm:h-12 rounded-md bg-gradient-to-br from-shell/[0.08] to-shell/[0.02] ring-1 ring-shell/15 group-hover:ring-gator-orange/50 transition-colors overflow-hidden">
+            <span className="relative inline-flex items-center justify-center w-[72px] h-[72px] sm:w-[88px] sm:h-[88px] lg:w-[100px] lg:h-[100px] -my-4 sm:-my-6 lg:-my-8 rounded-full bg-gradient-to-br from-shell/[0.09] via-shell/[0.04] to-asphalt ring-2 ring-shell/15 group-hover:ring-gator-orange/60 transition-all duration-300 shadow-[0_12px_32px_-8px_rgba(0,0,0,0.55),inset_0_1px_0_0_rgba(255,255,255,0.08)]">
+              {/* Lime accent arc */}
+              <span className="absolute inset-0 rounded-full border-2 border-gator-orange/0 group-hover:border-gator-orange/30 transition-colors duration-500" aria-hidden="true" />
               <img
                 src={logoImg}
                 alt="Clear Gator Logo"
-                className="w-[135%] h-[135%] object-contain transition-transform group-hover:scale-[1.06]"
+                className="w-[130%] h-[130%] object-contain transition-transform duration-300 group-hover:scale-[1.05]"
               />
             </span>
             <div className="hidden sm:block leading-none">
-              <div className="font-display font-black text-lg sm:text-[19px] tracking-[-0.01em] text-shell uppercase">Clear Gator</div>
-              <div className="flex items-center gap-1.5 mt-1">
-                <span className="w-3 h-px bg-gator-orange" aria-hidden="true" />
-                <span className="font-mono text-[9px] font-black tracking-[0.26em] uppercase text-gator-orange">
+              <div className="font-display font-black text-xl lg:text-[22px] tracking-[-0.01em] text-shell uppercase">Clear Gator</div>
+              <div className="flex items-center gap-2 mt-1.5">
+                <span className="w-4 h-0.5 bg-gator-orange" aria-hidden="true" />
+                <span className="font-mono text-[9px] lg:text-[10px] font-black tracking-[0.28em] uppercase text-gator-orange">
                   Cleanup &amp; Site Reset
                 </span>
               </div>
