@@ -3,13 +3,13 @@ import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import {
   Menu, X, PhoneCall, ArrowRight, ChevronDown,
-  Hammer, Construction, Truck, HardHat, TreePine, Wrench, Leaf, Droplets, MapPin,
+  Hammer, Construction, Truck, HardHat, Leaf, Droplets, MapPin,
 } from "lucide-react";
 import { SERVICES } from "@/data/services";
 import { CITIES } from "@/data/cities";
 import logoImg from "@assets/clear_gator_1775663894887.png";
 
-const ICONS = { Hammer, Construction, Truck, HardHat, TreePine, Wrench, Leaf, Droplets } as const;
+const ICONS = { Hammer, Construction, Truck, HardHat, Leaf, Droplets } as const;
 
 /**
  * MainNav — sticky top navigation used across landing / service / city pages.
@@ -75,10 +75,18 @@ export default function MainNav() {
         ref={headerRef}
         className="sticky top-0 z-50 bg-asphalt text-shell border-b border-asphalt/80"
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between gap-4 py-2.5">
-          {/* Horizontal logo lockup — emblem + wordmark side by side */}
-          <Link href="/" className="flex items-center gap-2.5 group flex-shrink-0" aria-label="Clear Gator — Home">
-            <img src={logoImg} alt="Clear Gator Logo" className="h-11 w-11 sm:h-12 sm:w-12 object-contain transition-transform group-hover:scale-[1.04]" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-18 flex items-center justify-between gap-4">
+          {/* Horizontal logo lockup — oversized emblem breaking out of the bar */}
+          <Link
+            href="/"
+            className="relative flex items-center gap-3 group flex-shrink-0 z-10"
+            aria-label="Clear Gator — Home"
+          >
+            <img
+              src={logoImg}
+              alt="Clear Gator Logo"
+              className="relative h-20 w-20 sm:h-28 sm:w-28 lg:h-32 lg:w-32 object-contain transition-transform group-hover:scale-[1.04] drop-shadow-[0_12px_28px_rgba(0,0,0,0.45)] -my-6 sm:-my-10 lg:-my-12"
+            />
             <div className="hidden sm:block leading-none">
               <div className="font-display font-black text-xl sm:text-[22px] tracking-[-0.01em] text-shell uppercase">Clear Gator</div>
               <div className="font-mono text-[9px] font-medium tracking-[0.22em] uppercase text-shell/55 mt-1">
@@ -331,7 +339,7 @@ function MobileMenu({ onClose }: { onClose: () => void }) {
                 Let's Gator Done.
               </h2>
               <p className="text-sm text-white/70 leading-[1.55]">
-                Demolition, hauling, cleanup, lot clearing &amp; property maintenance — Cape Coral, Naples, Fort Myers and across SW Florida.
+                Demolition, hauling, cleanup, landscaping &amp; pressure washing — Cape Coral, Naples, Fort Myers and across SW Florida.
               </p>
             </div>
           </div>

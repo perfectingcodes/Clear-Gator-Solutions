@@ -11,8 +11,6 @@ const SERVICES = [
   "Outdoor Demo",
   "Hauling",
   "Site Cleanup",
-  "Lot Clearing",
-  "Maintenance",
   "Landscaping",
   "Pressure Wash",
 ];

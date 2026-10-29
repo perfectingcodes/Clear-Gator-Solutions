@@ -8,8 +8,8 @@ import logoImg from "@assets/clear_gator_1775663894887.png";
 import {
   Truck, HardHat, PhoneCall, CheckCircle2,
   ArrowRight, Clock, Shield,
-  FileText, DollarSign, Search, Facebook, Instagram, Twitter,
-  Hammer, TreePine, Handshake, Wrench, Construction, Leaf, Droplets
+  FileText, DollarSign, Search, Facebook, Instagram, Twitter, MapPin,
+  Hammer, Handshake, Construction, Leaf, Droplets
 } from "lucide-react";
 
 const SERVICE_AREAS = [
@@ -65,26 +65,6 @@ const services = [
     iconColor: "text-primary",
   },
   {
-    slug: "lot-clearing",
-    icon: TreePine,
-    title: "Lot Clearing",
-    description: "Full lot and land clearing for residential and commercial properties — from overgrown yards to abandoned property cleanouts.",
-    features: ["Yard Debris Removal", "Lot Clearing", "Brush & Trash", "Abandoned Property"],
-    accent: "bg-primary",
-    iconBg: "bg-primary/10",
-    iconColor: "text-primary",
-  },
-  {
-    slug: "property-maintenance",
-    icon: Wrench,
-    title: "Property Maintenance",
-    description: "Skilled property maintenance for homes, rentals, and commercial spaces — interior and exterior painting, repairs, installs, and the standing list of small jobs that keep a property sharp.",
-    features: ["Interior & Exterior Painting", "Drywall Repair", "Door & Trim Install", "Fixture Replacement", "Routine Punch Lists"],
-    accent: "bg-gator-orange",
-    iconBg: "bg-gator-orange/10",
-    iconColor: "text-gator-orange",
-  },
-  {
     slug: "landscaping",
     icon: Leaf,
     title: "Landscaping",
@@ -106,13 +86,6 @@ const services = [
   },
 ];
 
-const stats = [
-  { value: "Licensed", label: "& Fully Insured" },
-  { value: "Local", label: "Southwest Florida" },
-  { value: "Free", label: "Project Estimates" },
-  { value: "24hr", label: "Quote Turnaround" },
-];
-
 const howItWorks = [
   { step: "01", title: "Request a Free Estimate", desc: "Fill out our quick form with your project details and upload photos.", icon: FileText },
   { step: "02", title: "Get Your Quote", desc: "Our team reviews your project and sends a detailed estimate within 24 hours.", icon: DollarSign },
@@ -122,9 +95,9 @@ const howItWorks = [
 
 export default function LandingPage() {
   usePageMeta({
-    title: "Clear Gator — Demolition, Hauling & Property Maintenance in SW Florida",
+    title: "Clear Gator — Demolition, Hauling, Landscaping & Pressure Washing in SW Florida",
     description:
-      "Interior & outdoor demolition, hauling, site cleanup, lot clearing, and property maintenance for Cape Coral, Naples & Southwest Florida. Licensed & insured. Let's Gator Done. Call (239) 234-3061.",
+      "Interior & outdoor demolition, hauling, site cleanup, landscaping, and pressure washing for Cape Coral, Naples & Southwest Florida. Licensed & insured. Let's Gator Done. Call (239) 234-3061.",
   });
 
   const servicesReveal = useReveal<HTMLDivElement>();
@@ -153,7 +126,7 @@ export default function LandingPage() {
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 backdrop-blur-sm mb-6 sm:mb-8">
             <span className="w-1.5 h-1.5 rounded-full bg-gator-orange animate-pulse" aria-hidden="true" />
             <span className="font-mono text-[10px] sm:text-[11px] font-semibold tracking-[0.22em] uppercase text-white/90">
-              Demolition · Hauling · Property Maintenance
+              Demolition · Hauling · Landscaping
             </span>
           </div>
 
@@ -165,7 +138,7 @@ export default function LandingPage() {
 
           {/* Lede */}
           <p className="text-base sm:text-xl text-white/80 leading-[1.5] max-w-2xl mb-8 sm:mb-10 text-pretty">
-            Interior &amp; outdoor demolition, hauling, site cleanup, lot clearing, and property maintenance for contractors and homeowners across Southwest Florida.
+            Demolition, hauling, site cleanup, landscaping, and pressure washing for contractors and homeowners across Southwest Florida.
           </p>
 
           {/* Two CTAs */}
@@ -245,74 +218,11 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <section className="relative bg-background border-b border-border/60">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-border/70 md:py-2">
-            {stats.map(({ value, label }, i) => (
-              <div
-                key={label}
-                className={`flex flex-col gap-1.5 py-7 sm:py-8 px-5 sm:px-7 ${i >= 2 ? "border-t md:border-t-0 border-border/70" : ""}`}
-              >
-                <span className="text-[10px] font-semibold tracking-[0.28em] text-muted-foreground/70 uppercase">
-                  0{i + 1}
-                </span>
-                <div className="font-display text-xl sm:text-2xl font-bold text-foreground leading-none tracking-tight">
-                  {value}
-                </div>
-                <div className="text-muted-foreground text-xs sm:text-sm leading-snug">{label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Brand showcase ribbon — logo as the hero on Shell Rock bone */}
-      <section className="relative bg-shell overflow-hidden border-y border-border/60">
-        <div className="absolute inset-0 opacity-30 pointer-events-none" aria-hidden="true" style={{
-          backgroundImage: "radial-gradient(circle at 20% 50%, hsl(75 90% 58% / 0.08) 0, transparent 40%), radial-gradient(circle at 80% 50%, hsl(194 42% 37% / 0.08) 0, transparent 40%)",
-        }} />
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14 grid lg:grid-cols-12 gap-8 sm:gap-10 items-center">
-          <div className="lg:col-span-5 flex justify-center lg:justify-start order-1 lg:order-none">
-            <div className="relative">
-              <div className="absolute -inset-6 rounded-full bg-gator-orange/15 blur-3xl pointer-events-none" aria-hidden="true" />
-              <img
-                src={logoImg}
-                alt="Clear Gator — Cleanup and Site Reset"
-                className="relative h-44 w-44 sm:h-56 sm:w-56 lg:h-64 lg:w-64 object-contain drop-shadow-[0_10px_32px_rgba(28,74,87,0.25)]"
-              />
-            </div>
-          </div>
-          <div className="lg:col-span-7 order-2 lg:order-none">
-            <div className="font-mono text-[11px] font-medium tracking-[0.22em] uppercase text-primary mb-3">
-              01 / Who we are
-            </div>
-            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-[-0.025em] leading-[1.05] mb-4 text-balance">
-              Clear Gator.<br />
-              <span className="text-muted-foreground/70">Cleanup &amp; Site Reset.</span>
-            </h2>
-            <p className="text-base sm:text-lg text-foreground/75 leading-[1.6] max-w-xl text-balance mb-6">
-              A Southwest Florida construction crew that handles the dirty parts of a project end-to-end —
-              demo it, haul it, clear it, clean it, maintain it, make it look sharp. One crew. One standard.
-            </p>
-            <div className="flex flex-wrap items-center gap-4">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-asphalt text-shell border border-asphalt">
-                <span className="w-1.5 h-1.5 rounded-full bg-gator-orange" />
-                <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em]">Let's Gator Done.</span>
-              </div>
-              <div className="font-mono text-xs text-muted-foreground tracking-wide">
-                CAPE CORAL · NAPLES · FORT MYERS · GULF COAST
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Customer-type trust strip — who we work with, no logos, just confidence */}
-      <section className="relative bg-ink text-white py-6 sm:py-7 overflow-hidden border-b border-white/5">
-        <img src={logoImg} alt="" aria-hidden="true" className="absolute -right-8 top-1/2 -translate-y-1/2 h-32 w-32 object-contain opacity-[0.05] pointer-events-none hidden sm:block" />
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row gap-3 sm:gap-6 items-start sm:items-center">
-          <div className="font-mono text-[10px] sm:text-[11px] font-semibold tracking-[0.28em] uppercase text-gator-orange-light flex-shrink-0">
-            Trusted by
+      {/* ── TRUSTED BY — one-line credential strip ── */}
+      <section className="relative bg-shell border-b border-border/60">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 sm:py-6 flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-6">
+          <div className="font-mono text-[10px] sm:text-[11px] font-semibold tracking-[0.3em] uppercase text-teal flex-shrink-0">
+            Trusted By
           </div>
           <div className="overflow-hidden flex-1 -mx-4 sm:mx-0 mask-fade-x">
             <div className="flex animate-marquee whitespace-nowrap">
@@ -328,9 +238,9 @@ export default function LandingPage() {
                     "Realtors",
                     "Insurance Adjusters",
                   ].map((c, i) => (
-                    <span key={`${dup}-${i}`} className="flex items-center mx-5 sm:mx-7 text-white/70 text-sm sm:text-base font-display font-semibold tracking-tight">
+                    <span key={`${dup}-${i}`} className="flex items-center mx-5 sm:mx-7 text-asphalt/70 text-sm sm:text-base font-display font-black uppercase tracking-tight">
                       {c}
-                      <span className="mx-5 sm:mx-7 text-white/15">·</span>
+                      <span className="mx-5 sm:mx-7 text-asphalt/20">·</span>
                     </span>
                   ))}
                 </div>
@@ -454,78 +364,66 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <section id="how-it-works" className="relative py-16 sm:py-32 bg-muted/30 dark:bg-muted/10">
-        <div ref={howReveal} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
-          <div className="grid lg:grid-cols-12 gap-12 lg:gap-20 mb-16 items-end">
-            <div className="lg:col-span-5">
-              <div className="flex items-center gap-3 mb-6">
-                <span className="font-mono text-[11px] font-medium tracking-[0.22em] uppercase text-gator-orange">
-                  03 / The Gator Way
-                </span>
-                <SectionRule className="w-16 h-1.5 text-gator-orange/60" />
-              </div>
-              <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-[-0.025em] text-balance leading-[0.98]">
-                Four steps.<br />
-                <span className="text-muted-foreground/60">No back-and-forth.</span><br />
-                No surprises.
-              </h2>
+      {/* ── THE GATOR WAY — HOW IT WORKS ── */}
+      <section id="how-it-works" className="relative py-16 sm:py-28 lg:py-32 px-4 sm:px-6 lg:px-8 bg-shell">
+        <div ref={howReveal} className="max-w-7xl mx-auto reveal">
+          <div className="text-center mb-12 sm:mb-16">
+            <div className="font-mono text-[11px] sm:text-xs font-semibold tracking-[0.3em] uppercase text-teal mb-4">
+              The Gator Way
             </div>
-            <div className="lg:col-span-6 lg:col-start-7">
-              <p className="text-base sm:text-lg text-muted-foreground leading-[1.65] text-balance max-w-lg">
-                Four steps from first call to invoice. No back-and-forth, no surprises, no hidden line items.
-              </p>
-            </div>
+            <h2 className="font-display font-black uppercase text-[clamp(2rem,6vw,4.5rem)] leading-[0.95] tracking-[-0.03em] text-asphalt text-balance">
+              Four Steps.<br />
+              <span className="text-teal">No Surprises.</span>
+            </h2>
           </div>
 
-          <ol className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-border/60 ring-1 ring-border/60 rounded-lg overflow-hidden">
+          <ol className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
             {howItWorks.map(({ step, title, desc, icon: Icon }) => (
-              <li key={step} className="group relative bg-background p-7 sm:p-8 flex flex-col gap-4 transition-colors duration-300 hover:bg-muted/30">
-                <span
-                  className="absolute top-0 left-0 right-0 h-px bg-gator-orange origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500"
-                  aria-hidden="true"
-                />
-                <div className="flex items-center justify-between">
-                  <span className="font-display text-3xl font-semibold text-gator-orange tracking-[-0.04em] leading-none">
+              <li
+                key={step}
+                className="group relative overflow-hidden rounded-xl bg-asphalt text-shell p-6 sm:p-7 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl hover:shadow-asphalt/30"
+              >
+                <span className="absolute top-0 left-0 right-0 h-1 bg-gator-orange origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500" aria-hidden="true" />
+                <div className="flex items-center justify-between mb-6">
+                  <span className="font-display font-black text-5xl text-gator-orange tracking-[-0.04em] leading-none">
                     {step}
                   </span>
-                  <Icon className="w-4 h-4 text-muted-foreground/50 group-hover:text-foreground transition-colors duration-300" strokeWidth={2} />
+                  <div className="w-11 h-11 rounded-md bg-white/[0.06] border border-white/10 flex items-center justify-center group-hover:bg-gator-orange group-hover:border-gator-orange transition-colors duration-300">
+                    <Icon className="w-5 h-5 text-shell/80 group-hover:text-asphalt transition-colors duration-300" strokeWidth={2.2} />
+                  </div>
                 </div>
-                <div className="h-px bg-border/80" />
-                <div>
-                  <h3 className="font-display text-lg font-bold mb-2 tracking-tight">{title}</h3>
-                  <p className="text-muted-foreground text-sm leading-[1.65]">{desc}</p>
-                </div>
+                <h3 className="font-display font-black uppercase text-lg sm:text-xl leading-tight tracking-tight text-shell mb-2.5">
+                  {title}
+                </h3>
+                <p className="text-shell/65 text-sm leading-[1.6]">{desc}</p>
               </li>
             ))}
           </ol>
         </div>
       </section>
 
-      {/* ── The Gator Promise ── */}
-      <section className="relative py-16 sm:py-32 bg-background overflow-hidden">
-        <img src={logoImg} alt="" aria-hidden="true" className="absolute -right-16 -bottom-20 w-[420px] h-[420px] object-contain opacity-[0.04] pointer-events-none select-none hidden md:block" />
+      {/* ── THE GATOR PROMISE — four things we stake the name on ── */}
+      <section className="relative overflow-hidden bg-asphalt text-shell py-16 sm:py-24 lg:py-32">
+        <div className="absolute -top-40 -left-40 w-[500px] h-[500px] rounded-full bg-teal/15 blur-3xl pointer-events-none" aria-hidden="true" />
+        <img
+          src={logoImg}
+          alt=""
+          aria-hidden="true"
+          className="absolute -right-24 -bottom-24 w-[460px] h-[460px] object-contain opacity-[0.04] pointer-events-none select-none hidden md:block"
+        />
+
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-12 gap-8 sm:gap-12 lg:gap-20 mb-12 sm:mb-16 items-end">
-            <div className="lg:col-span-5">
-              <div className="flex items-center gap-3 mb-5 sm:mb-6">
-                <span className="font-mono text-[11px] font-medium tracking-[0.22em] uppercase text-gator-orange">
-                  04 / The Gator Promise
-                </span>
-                <SectionRule className="w-16 h-1.5 text-gator-orange/60" />
-              </div>
-              <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-[-0.025em] text-balance leading-[0.98]">
-                Four things<br />
-                <span className="text-muted-foreground/60">we stake the name on.</span>
-              </h2>
+          <div className="text-center mb-14 sm:mb-20">
+            <div className="font-mono text-[11px] sm:text-xs font-semibold tracking-[0.3em] uppercase text-gator-orange mb-4">
+              The Gator Promise
             </div>
-            <div className="lg:col-span-6 lg:col-start-7">
-              <p className="text-base sm:text-lg text-muted-foreground leading-[1.65] text-balance max-w-lg">
-                The bar's named after us. We don't lower it.
-              </p>
-            </div>
+            <h2 className="font-display font-black uppercase text-[clamp(2rem,6vw,4.5rem)] leading-[0.95] tracking-[-0.03em] text-shell text-balance">
+              The Bar's Named<br />
+              <span className="text-gator-orange">After Us.</span>
+            </h2>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-border/60 ring-1 ring-border/60 rounded-lg overflow-hidden">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
             {[
               {
                 num: "I.",
@@ -535,7 +433,7 @@ export default function LandingPage() {
               {
                 num: "II.",
                 title: "We Quote Honest",
-                body: "Written estimate, scope spelled out, dump fees included. If something turns out bigger than the walk-through showed, you hear from us before we go past the quote.",
+                body: "Written estimate, scope spelled out, dump fees included. If something runs bigger than the walk-through showed, you hear from us before we go past the quote.",
               },
               {
                 num: "III.",
@@ -548,180 +446,142 @@ export default function LandingPage() {
                 body: "If something we did isn't right, we come back and make it right. You're not chasing us for a callback.",
               },
             ].map((p) => (
-              <div key={p.num} className="bg-card p-6 sm:p-7 flex flex-col gap-4">
-                <div className="flex items-center justify-between">
-                  <span className="font-display text-2xl font-semibold text-gator-orange tracking-tight">
+              <div
+                key={p.num}
+                className="group relative rounded-xl bg-white/[0.03] border border-white/10 p-6 sm:p-7 hover:bg-white/[0.06] hover:border-gator-orange/40 transition-all duration-500"
+              >
+                <div className="flex items-center justify-between mb-5">
+                  <span className="font-display font-black text-4xl text-gator-orange tracking-[-0.04em] leading-none">
                     {p.num}
                   </span>
-                  <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground/60">Promise</span>
+                  <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-shell/40">Promise</span>
                 </div>
-                <div className="h-px bg-border/80" />
-                <div>
-                  <h3 className="font-display text-lg font-bold mb-2 tracking-tight">{p.title}</h3>
-                  <p className="text-sm text-muted-foreground leading-[1.65]">{p.body}</p>
-                </div>
+                <h3 className="font-display font-black uppercase text-lg sm:text-xl leading-tight tracking-tight text-shell mb-2.5">
+                  {p.title}
+                </h3>
+                <p className="text-shell/65 text-sm leading-[1.6]">{p.body}</p>
               </div>
             ))}
           </div>
 
-          <div className="mt-10 sm:mt-12 flex flex-wrap items-center justify-between gap-4 pt-6 border-t border-border/60">
-            <div className="flex items-center gap-3">
-              <img src={logoImg} alt="" aria-hidden="true" className="h-7 w-7 object-contain" />
-              <span className="font-mono text-[11px] uppercase tracking-[0.32em] text-gator-orange font-semibold">
-                Let's Gator Done.
-              </span>
-            </div>
+          <div className="mt-12 sm:mt-16 flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link href="/estimate">
-              <span className="inline-flex items-center gap-2 text-sm font-semibold text-foreground border-b border-foreground/30 hover:border-gator-orange hover:text-gator-orange pb-0.5 transition-colors cursor-pointer">
-                Put us to work
-                <ArrowRight className="w-3.5 h-3.5" strokeWidth={2.4} />
-              </span>
+              <button className="inline-flex items-center gap-2 h-12 px-7 rounded-md bg-gator-orange hover:bg-gator-orange-dark text-asphalt font-black uppercase text-sm tracking-[0.1em] transition-all shadow-lg shadow-black/30">
+                Put Us to Work
+                <ArrowRight className="w-4 h-4" strokeWidth={2.6} />
+              </button>
             </Link>
           </div>
         </div>
       </section>
 
-      {/* ── Service Areas ── */}
-      <section id="service-areas" className="relative py-16 sm:py-32 border-y border-border/60">
-        <div ref={areasReveal} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
-          <div className="grid lg:grid-cols-12 gap-8 sm:gap-12 lg:gap-20 items-center">
-            <div className="lg:col-span-5">
-              <div className="flex items-center gap-3 mb-5 sm:mb-6">
-                <span className="font-mono text-[11px] font-medium tracking-[0.22em] uppercase text-gator-orange">
-                  05 / Gator Country
-                </span>
-                <SectionRule className="w-16 h-1.5 text-gator-orange/60" />
-              </div>
-              <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-[-0.025em] text-balance leading-[0.98] mb-6">
-                Southwest Florida,<br />
-                <span className="text-muted-foreground/60">end to end.</span>
-              </h2>
-              <p className="text-base text-muted-foreground leading-[1.65] mb-6 max-w-md">
-                Headquartered in Cape Coral. We work the entire SWFL corridor — from the islands to the ranch — with the same crew on every job.
-              </p>
-              <p className="text-sm text-muted-foreground">
-                Not on the list?{" "}
-                <a href="tel:+12392343061" className="text-foreground font-semibold border-b border-foreground/40 hover:border-gator-orange hover:text-gator-orange transition-colors">
-                  Call us
-                </a>{" "}
-                — we travel for the right job.
-              </p>
+      {/* ── SERVICE AREAS — SW FLORIDA ── */}
+      <section id="service-areas" className="relative py-16 sm:py-28 lg:py-32 px-4 sm:px-6 lg:px-8 bg-shell">
+        <div ref={areasReveal} className="max-w-7xl mx-auto reveal">
+          <div className="text-center mb-12 sm:mb-16">
+            <div className="font-mono text-[11px] sm:text-xs font-semibold tracking-[0.3em] uppercase text-teal mb-4">
+              Service Areas
             </div>
-
-            <div className="lg:col-span-6 lg:col-start-7">
-              <ul className="grid grid-cols-2 sm:grid-cols-2 divide-y divide-x divide-border/70 border border-border/70 rounded-lg overflow-hidden">
-                {SERVICE_AREAS.map((city, i) => (
-                  <li
-                    key={city}
-                    data-testid={`chip-city-${city.toLowerCase().replace(/\s+/g, "-").replace(/\./g, "")}`}
-                    className={`p-0 bg-background ${
-                      i < 2 ? "border-t-0" : ""
-                    } ${i % 2 === 0 ? "border-l-0" : ""}`}
-                  >
-                    <Link
-                      href={`/service-areas/${city.toLowerCase().replace(/\s+/g, "-").replace(/\./g, "")}`}
-                      className="group flex items-center justify-between px-5 py-4 hover:bg-muted/40 transition-colors"
-                    >
-                      <span className="font-display font-bold text-foreground text-sm sm:text-base tracking-tight">
-                        {city}
-                      </span>
-                      <ArrowRight className="w-3.5 h-3.5 text-muted-foreground/40 group-hover:text-gator-orange group-hover:translate-x-0.5 transition-all" />
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            <h2 className="font-display font-black uppercase text-[clamp(2rem,6vw,4.5rem)] leading-[0.95] tracking-[-0.03em] text-asphalt text-balance">
+              Southwest Florida.<br />
+              <span className="text-teal">End to End.</span>
+            </h2>
+            <p className="mt-6 text-asphalt/70 text-base sm:text-lg leading-[1.6] max-w-xl mx-auto">
+              Headquartered in Cape Coral. Same crew, same standards, from the islands to the ranch.
+            </p>
           </div>
-        </div>
-      </section>
 
-      {/* ── Contractor Partnership ── */}
-      <section className="relative py-16 sm:py-32 bg-ink overflow-hidden">
-        <GatorScales className="absolute inset-0 w-full h-full text-white/5 pointer-events-none" />
-        <div ref={tradeReveal} className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
-          <div className="grid lg:grid-cols-12 gap-8 sm:gap-12 lg:gap-16 items-start">
-            <div className="lg:col-span-5">
-              <div className="flex items-center gap-3 mb-6">
-                <span className="font-mono text-[11px] font-medium tracking-[0.22em] uppercase text-gator-orange">
-                  06 / Trade Partners
-                </span>
-                <SectionRule className="w-16 h-1.5 text-gator-orange/60" />
-              </div>
-              <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-semibold text-white tracking-[-0.025em] leading-[0.98] mb-7 text-balance">
-                Built to be<br />
-                <span className="text-white/40">a contractor's</span><br />
-                first call.
-              </h2>
-              <p className="text-white/70 leading-[1.65] text-base mb-9 max-w-md">
-                We extend your crew without extending your liability. Job-site ready work,
-                fast turnaround, and partner pricing for steady rotation.
-              </p>
-              <Link href="/estimate">
-                <Button
-                  size="lg"
-                  className="bg-white text-ink hover:bg-white/90 font-semibold gap-2 px-7 h-12 rounded-md"
-                  data-testid="contractor-cta-partner"
+          <ul className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
+            {SERVICE_AREAS.map((city) => (
+              <li
+                key={city}
+                data-testid={`chip-city-${city.toLowerCase().replace(/\s+/g, "-").replace(/\./g, "")}`}
+              >
+                <Link
+                  href={`/service-areas/${city.toLowerCase().replace(/\s+/g, "-").replace(/\./g, "")}`}
                 >
-                  Become a Trade Partner
-                  <ArrowRight className="w-4 h-4" />
-                </Button>
-              </Link>
-            </div>
+                  <article className="group relative h-full p-5 sm:p-6 rounded-xl bg-asphalt text-shell hover:bg-teal transition-all duration-500 hover:-translate-y-1 hover:shadow-xl hover:shadow-asphalt/30 cursor-pointer">
+                    <div className="flex items-start justify-between mb-6">
+                      <div className="w-10 h-10 rounded-md bg-gator-orange flex items-center justify-center">
+                        <MapPin className="w-5 h-5 text-asphalt" strokeWidth={2.4} />
+                      </div>
+                      <ArrowRight className="w-4 h-4 text-shell/40 group-hover:text-gator-orange group-hover:translate-x-1 transition-all" strokeWidth={2.4} />
+                    </div>
+                    <h3 className="font-display font-black uppercase text-lg sm:text-xl leading-tight tracking-tight text-shell">
+                      {city}
+                    </h3>
+                    <p className="mt-1 text-shell/60 text-xs font-mono uppercase tracking-[0.18em]">
+                      Gator Country
+                    </p>
+                  </article>
+                </Link>
+              </li>
+            ))}
+          </ul>
 
-            <div className="lg:col-span-7">
-              <dl className="grid sm:grid-cols-2 gap-px bg-white/10 ring-1 ring-white/10 rounded-lg overflow-hidden">
-                {[
-                  {
-                    icon: Clock,
-                    label: "Fast Turnaround",
-                    desc: "Same-day and next-day availability on most services — your build timeline stays intact.",
-                  },
-                  {
-                    icon: Shield,
-                    label: "Licensed & Insured",
-                    desc: "We show up when we say we will. Insured and OSHA-aware so your liability stays clean.",
-                  },
-                  {
-                    icon: DollarSign,
-                    label: "Partner Pricing",
-                    desc: "Volume rates and priority scheduling available for trade partners on regular rotation.",
-                  },
-                  {
-                    icon: PhoneCall,
-                    label: "Direct Line",
-                    desc: "Trade partners reach our crew leads directly — no queue, no triage, no runaround.",
-                  },
-                ].map(({ icon: Icon, label, desc }) => (
-                  <div key={label} className="bg-ink p-7 lg:p-8">
-                    <Icon className="w-4 h-4 text-gator-orange-light mb-5" strokeWidth={2.2} />
-                    <dt className="font-display text-white text-lg font-bold mb-2 tracking-tight">{label}</dt>
-                    <dd className="text-white/65 text-sm leading-[1.65]">{desc}</dd>
-                  </div>
-                ))}
-              </dl>
-            </div>
+          <div className="mt-12 sm:mt-14 text-center">
+            <p className="text-asphalt/70 text-sm sm:text-base">
+              Not on the list?{" "}
+              <a href="tel:+12392343061" className="text-asphalt font-black border-b-2 border-gator-orange hover:text-teal transition-colors">
+                Call us
+              </a>{" "}
+              — we travel for the right job.
+            </p>
           </div>
         </div>
       </section>
 
-      {/* ── Conversion trust strip — concrete numbers right above the close ── */}
-      <section className="relative py-10 sm:py-12 bg-background border-y border-border/60">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-border/60 ring-1 ring-border/60 rounded-lg overflow-hidden">
+      {/* ── CONTRACTOR PARTNERSHIP — a contractor's first call ── */}
+      <section className="relative overflow-hidden bg-asphalt text-shell py-16 sm:py-24 lg:py-32">
+        <div className="absolute -top-40 -right-40 w-[500px] h-[500px] rounded-full bg-gator-orange/10 blur-3xl pointer-events-none" aria-hidden="true" />
+        <GatorScales className="absolute inset-0 w-full h-full text-shell/[0.03] pointer-events-none" />
+
+        <div ref={tradeReveal} className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
+          <div className="text-center mb-14 sm:mb-20">
+            <div className="font-mono text-[11px] sm:text-xs font-semibold tracking-[0.3em] uppercase text-gator-orange mb-4">
+              Trade Partners
+            </div>
+            <h2 className="font-display font-black uppercase text-[clamp(2rem,6vw,4.5rem)] leading-[0.95] tracking-[-0.03em] text-shell text-balance">
+              A Contractor's<br />
+              <span className="text-gator-orange">First Call.</span>
+            </h2>
+            <p className="mt-6 text-shell/75 text-base sm:text-lg leading-[1.6] max-w-xl mx-auto">
+              We extend your crew without extending your liability. Job-site ready work, fast turnaround, partner pricing for steady rotation.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 mb-12 sm:mb-14">
             {[
-              { kpi: "24 hrs", label: "Average quote turnaround" },
-              { kpi: "Same week", label: "Common project start" },
-              { kpi: "8 cities", label: "Southwest Florida coverage" },
-              { kpi: "Insured", label: "COI sent on request" },
-            ].map(({ kpi, label }) => (
-              <div key={label} className="bg-card p-5 sm:p-6 flex items-center gap-4 sm:gap-5">
-                <CheckCircle2 className="w-5 h-5 sm:w-6 sm:h-6 text-gator-orange flex-shrink-0" strokeWidth={2.2} />
-                <div className="leading-tight">
-                  <div className="font-display text-base sm:text-lg font-bold tracking-tight">{kpi}</div>
-                  <div className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground mt-1">{label}</div>
+              { icon: Clock, label: "Fast Turnaround", desc: "Same-day and next-day availability on most services — your build timeline stays intact." },
+              { icon: Shield, label: "Licensed & Insured", desc: "We show up when we say we will. Insured and OSHA-aware so your liability stays clean." },
+              { icon: DollarSign, label: "Partner Pricing", desc: "Volume rates and priority scheduling for trade partners on regular rotation." },
+              { icon: PhoneCall, label: "Direct Line", desc: "Trade partners reach our crew leads directly — no queue, no triage, no runaround." },
+            ].map(({ icon: Icon, label, desc }) => (
+              <div
+                key={label}
+                className="group relative rounded-xl bg-white/[0.03] border border-white/10 p-6 sm:p-7 hover:bg-white/[0.06] hover:border-gator-orange/40 transition-all duration-500"
+              >
+                <div className="w-12 h-12 rounded-lg bg-gator-orange flex items-center justify-center mb-5 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500">
+                  <Icon className="w-6 h-6 text-asphalt" strokeWidth={2.4} />
                 </div>
+                <div className="font-display font-black uppercase text-base sm:text-lg leading-tight tracking-tight text-shell mb-2">
+                  {label}
+                </div>
+                <div className="text-shell/65 text-sm leading-[1.6]">{desc}</div>
               </div>
             ))}
+          </div>
+
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Link href="/estimate">
+              <button
+                data-testid="contractor-cta-partner"
+                className="inline-flex items-center gap-2 h-12 px-7 rounded-md bg-gator-orange hover:bg-gator-orange-dark text-asphalt font-black uppercase text-sm tracking-[0.1em] transition-all shadow-lg shadow-black/40"
+              >
+                Become a Trade Partner
+                <ArrowRight className="w-4 h-4" strokeWidth={2.6} />
+              </button>
+            </Link>
           </div>
         </div>
       </section>
@@ -791,7 +651,7 @@ export default function LandingPage() {
                 </div>
               </div>
               <p className="text-sm leading-[1.7] mb-5 text-white/50 max-w-md">
-                Interior &amp; outdoor demolition, hauling, site cleanup, lot clearing, and property maintenance for Southwest Florida.
+                Interior &amp; outdoor demolition, hauling, site cleanup, landscaping, and pressure washing for Southwest Florida.
               </p>
               <div className="flex items-center gap-2 mb-7 font-mono text-[10px] font-medium tracking-[0.22em] uppercase text-white/35">
                 <span className="w-6 h-px bg-white/25" aria-hidden="true" />

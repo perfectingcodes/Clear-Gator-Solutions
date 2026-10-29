@@ -16,7 +16,7 @@ export type ServiceContent = {
   /** Hero overline tag */
   category: string;
   /** Lucide icon name — resolved in the page component */
-  icon: "Hammer" | "Construction" | "Truck" | "HardHat" | "TreePine" | "Wrench" | "Leaf" | "Droplets";
+  icon: "Hammer" | "Construction" | "Truck" | "HardHat" | "Leaf" | "Droplets";
   /** Brand accent group */
   accent: "orange" | "green";
   /** SEO */
@@ -269,125 +269,6 @@ export const SERVICES: ServiceContent[] = [
   },
 
   {
-    slug: "lot-clearing",
-    name: "Lot Clearing",
-    category: "Land Prep",
-    icon: "TreePine",
-    accent: "green",
-    title: "Lot Clearing in SW Florida — Brush, Trees, Abandoned Property",
-    description:
-      "Residential and commercial lot clearing across Cape Coral, Lehigh Acres, Babcock Ranch, and Southwest Florida. Brush removal, light tree work, abandoned property cleanouts, build-ready prep.",
-    lede:
-      "If you bought the lot expecting to build and the brush has other plans — we'll clear it. If the rental down the street is two years past mowed — we'll handle that too.",
-    intro: [
-      "Florida grows back fast. A lot you bought two summers ago is a different lot today. We clear residential and commercial parcels for build-ready prep, overgrown rental cleanups, abandoned property recoveries, and the bayou backyard your in-laws never tackle.",
-      "Common workflow: walk the lot, mark protected trees and palms (lots of cities have ordinances), clear brush and saplings, handle small/medium tree work in-house, partner with a certified arborist for anything tall or risky, haul everything off, and leave a graded edge ready for survey, permit, or the next phase.",
-    ],
-    scope: [
-      { label: "Brush & Sapling Clearing",  detail: "Up to 4\" diameter, full-property or selective. Mowed, mulched on site, or hauled — your call." },
-      { label: "Overgrowth Removal",         detail: "Vines, palmetto, overgrown ornamentals, fence-line invasives." },
-      { label: "Light Tree Work",            detail: "Trees up to ~30 ft and under 12\" caliper with no critical clearance issues. Anything bigger, we sub in an arborist." },
-      { label: "Abandoned Property Cleanout", detail: "Yard debris, dumped material, junk piles, structures past their prime." },
-      { label: "Build-Ready Prep",           detail: "Stump grind, root rake, grade pass. Survey-ready lot edge." },
-      { label: "Post-Hurricane",             detail: "Storm debris, downed limbs, fence wreckage. We move fast in the days after." },
-    ],
-    process: [
-      { step: "01", title: "Lot Walk",          detail: "We walk the parcel with you, mark protected trees per local code, and flag anything that affects pricing." },
-      { step: "02", title: "Quote + Permits",   detail: "Written estimate, and we'll tell you when you need a tree-removal permit (Cape Coral, Naples, etc. have specifics)." },
-      { step: "03", title: "Clear",             detail: "Brush down, trees handled, debris loaded. Equipment matched to access and ground conditions." },
-      { step: "04", title: "Final Grade",       detail: "Stump grind if requested, root rake, light grade. Lot ready for survey or build prep." },
-    ],
-    reasons: [
-      { title: "We know the codes",      body: "Cape Coral protected trees, Naples landscape ordinances, Lee County permits — we work in them every week." },
-      { title: "Equipment for the access", body: "Skid-steers, mulchers, mini-excavators. We bring what your gate will take." },
-      { title: "Honest with tree work", body: "We do what we can in-house. Anything that needs a climber and a rigging plan, we'll connect you with an arborist we trust." },
-      { title: "Storm response",        body: "After hurricanes, we run heavy. Call early — we work the schedule we hear." },
-    ],
-    doNot: [
-      "Climbing live canopies — we partner with certified arborists for those.",
-      "Land surveys — your civil engineer or surveyor handles that.",
-      "Wetland delineation — that's an environmental consultant's job.",
-    ],
-    faq: [
-      { q: "Do I need a permit to clear my lot?",
-        a: "In Cape Coral, Naples, Lee County, and most SW Florida cities — yes if you're removing protected trees. Brush and ornamentals are usually fine. We'll tell you what we know; the permit is yours." },
-      { q: "How fast can you clear a quarter-acre?",
-        a: "Most quarter-acre clears are 1 day of work. Half-acre with light tree work, 2 days. We quote the day count up front." },
-      { q: "Will you grind stumps?",
-        a: "Yes — quoted as a line item. Grind depth quoted to your needs (4\" for grass, 12\" for foundations)." },
-      { q: "Can you handle invasives like Brazilian pepper?",
-        a: "Yes. We cut, treat the cut stump to prevent regrowth, and haul." },
-      { q: "Do you mow ongoing?",
-        a: "We don't do routine mowing — that's a landscaper's contract. We do clearing, not maintenance." },
-    ],
-    stats: [
-      { value: "1/4 ac/day",  label: "typical clearing pace" },
-      { value: "Build-ready", label: "final grade" },
-      { value: "Permit-aware", label: "every city we work" },
-    ],
-  },
-
-  {
-    slug: "property-maintenance",
-    name: "Property Maintenance",
-    category: "Repairs · Painting · Punch Lists",
-    icon: "Wrench",
-    accent: "orange",
-    title: "Property Maintenance in SW Florida — Painting, Repairs, Punch Lists",
-    description:
-      "Interior and exterior painting, drywall repair, door and trim installs, fixture replacement, and routine punch lists for homes, rentals, and commercial spaces in Cape Coral, Naples, and Southwest Florida.",
-    lede:
-      "Standing list of small jobs that never seem to get done? That's what we exist for. We show up, we knock them out, we leave.",
-    intro: [
-      "Property maintenance is the work nobody calls a big contractor for — and the work that keeps a property sharp. We do painting, drywall patch and repair, door and trim install, fixture replacements, hardware swaps, and the punch lists that always live in your phone notes.",
-      "Most of our maintenance work is for homeowners between renovations, property managers running short-term rentals, and small commercial spaces. We block hours so you know what you're paying for, and we show up when we said we would.",
-    ],
-    scope: [
-      { label: "Interior Painting",       detail: "Walls, ceilings, trim, doors. Repaints, accent walls, full-house refreshes between rentals." },
-      { label: "Exterior Painting",       detail: "Houses, lanais, sheds, fences. Pressure-wash, prime, paint." },
-      { label: "Drywall Repair",          detail: "Hole patches, water-damage repair, full-sheet replacement. Texture-matched." },
-      { label: "Door & Trim Install",     detail: "Pre-hung doors, casing, base, crown. Sticky pocket doors fixed." },
-      { label: "Fixture Replacement",     detail: "Faucets, toilets, ceiling fans, vanities, kitchen sinks. (Tied-in plumbing connections handled by licensed plumbing partner when needed.)" },
-      { label: "Hardware & Finish Swaps", detail: "Knobs, pulls, hinges, switch plates. Looks small, reads expensive." },
-      { label: "Routine Punch Lists",     detail: "The standing list of 'someday' fixes. Email it to us; we'll quote and schedule." },
-    ],
-    process: [
-      { step: "01", title: "List + Quote",  detail: "Send us the list (text, email, or walk-through). We quote line items so you can pick what stays in scope." },
-      { step: "02", title: "Schedule",       detail: "Half-day or full-day blocks. Rolling weekly visits for property managers with rotations." },
-      { step: "03", title: "Execute",        detail: "We work the list. If something turns out bigger than expected, we tell you before we go past the quote." },
-      { step: "04", title: "Walk + Sign-Off", detail: "Walk the list with you, document anything we didn't get to, schedule the next visit if needed." },
-    ],
-    reasons: [
-      { title: "Block scheduling",        body: "Half-days and full-days, not 'we'll be there sometime Tuesday.' Your time matters." },
-      { title: "Same crew, every visit",  body: "Property managers especially — same painter, same drywaller, same standards each rotation." },
-      { title: "Honest scoping",          body: "If your hole patch turns out to be a leaking pipe, we'll tell you before we paint over it." },
-      { title: "Texture matching",        body: "Drywall patches you can't see. Spray, knockdown, orange peel — we match." },
-    ],
-    doNot: [
-      "Major plumbing or electrical work — we partner with licensed pros for anything past fixture swaps.",
-      "Roofing repairs requiring permits — we'll point you to a roofer.",
-      "HVAC service — that's a licensed HVAC company's territory.",
-    ],
-    faq: [
-      { q: "Minimum job?",
-        a: "Half-day. If you've only got a single hole patch, we'll combine you with a neighbor or pair it with a future visit." },
-      { q: "Can you handle rental turnovers?",
-        a: "Yes. Same-day turnovers are tight — schedule 2–5 days out and we'll have it done before your next guest." },
-      { q: "Will you bring paint?",
-        a: "Either way. You can supply (we'll use what you give us) or we'll bring Sherwin-Williams pulled to your color." },
-      { q: "Do you fix sticky doors?",
-        a: "Constantly. Door drag from settling is the most-fixed thing on our list." },
-      { q: "Are you insured?",
-        a: "Yes, fully insured. COI sent to property managers on request." },
-    ],
-    stats: [
-      { value: "Same week", label: "common start" },
-      { value: "Block", label: "scheduled" },
-      { value: "Texture-matched", label: "drywall patches" },
-    ],
-  },
-
-  {
     slug: "landscaping",
     name: "Landscaping",
     category: "Yards · Palms · Install",
@@ -400,7 +281,7 @@ export const SERVICES: ServiceContent[] = [
       "Florida grows back fast. We put it back right — tight hedges, straight edges, sod that takes, and palms that don't look like they lost a fight.",
     intro: [
       "Our landscaping crew is the one you call when the yard needs more than a mow — after a clearing, before a listing, between seasons, or when a cold front took out the hedges you spent three years growing in.",
-      "We install sod and fresh mulch, trim and shape hedges, prune palms to the proper boot height, replace plants a hurricane or hard freeze took out, and leave crisp edges along every bed. We work alongside our own lot-clearing and hauling crews, so dirt in / dirt out doesn't become a three-contractor problem.",
+      "We install sod and fresh mulch, trim and shape hedges, prune palms to the proper boot height, replace plants a hurricane or hard freeze took out, and leave crisp edges along every bed. We work alongside our own demo and hauling crews, so dirt in / dirt out doesn't become a three-contractor problem.",
     ],
     scope: [
       { label: "Sod Install & Repair",       detail: "St. Augustine, Zoysia, Bahia. Pallet runs for full-yard installs or patch work for storm-torn sections." },
@@ -483,7 +364,7 @@ export const SERVICES: ServiceContent[] = [
     ],
     doNot: [
       "Sealer application — we leave sealers to the paver/deck sealing specialists we work with.",
-      "Painting touch-ups after wash — we hand that back to your painter (or our property-maintenance crew).",
+      "Painting touch-ups after wash — we hand that back to your painter.",
       "Window washing beyond the exterior rinse — real interior/exterior detail is a window-cleaning specialty.",
     ],
     faq: [

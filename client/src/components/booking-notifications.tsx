@@ -23,8 +23,6 @@ const SERVICES = [
   "Outdoor Demolition",
   "Hauling",
   "Site Cleanup",
-  "Lot Clearing",
-  "Property Maintenance",
   "Landscaping",
   "Pressure Washing",
 ];

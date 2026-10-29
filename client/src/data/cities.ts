@@ -56,7 +56,7 @@ export const CITIES: CityContent[] = [
       { label: "Full Interior Gut-Outs", detail: "1970s and 80s ranch homes inland — full strip-down ahead of major renovations." },
       { label: "New-Build Cleanup",     detail: "Post-construction final cleans for spec builders south of Pine Island, and rolling cleanup for active GCs." },
       { label: "Hurricane Cleanup",     detail: "Yard debris, downed fences, broken pool screens. We run heavy after named storms." },
-      { label: "Vacant Lot Clearing",   detail: "Overgrown lots that haven't been touched since the buyer bought them. Brush, palmetto, fence-line invasives." },
+      { label: "Pressure Washing",      detail: "Whole-house soft wash, driveway refresh, pool-deck mold removal before a listing or paint." },
     ],
     neighborhoods: [
       "Yacht Club", "Pelican", "Cape Harbour", "Tarpon Point", "Sands", "Hancock", "Burnt Store", "Mariner", "Caloosahatchee", "Trafalgar", "Coral Lakes",
@@ -102,7 +102,7 @@ export const CITIES: CityContent[] = [
       { label: "Historic Home Demo", detail: "Selective interior demo on McGregor and downtown Craftsman / Mid-Century homes. We protect what's worth keeping." },
       { label: "Commercial Fit-Outs", detail: "Strip-outs of dated office and retail space along Cleveland, Daniels, and Colonial corridors." },
       { label: "Post-Construction Cleanups", detail: "New-build final cleans east of I-75 for spec and semi-custom builders." },
-      { label: "Property Maintenance",        detail: "Rental turnovers and routine maintenance for landlords across the city." },
+      { label: "Rental Pressure Washing",    detail: "Driveway, lanai, and whole-house soft washes between tenants for landlords across the city." },
     ],
     neighborhoods: [
       "Downtown River District", "Edison Park", "McGregor", "Dean Park", "Fort Myers Shores", "East Fort Myers", "Whiskey Creek", "San Carlos Park",
@@ -146,7 +146,7 @@ export const CITIES: CityContent[] = [
       { label: "Estate Renovation Demo", detail: "Selective interior demo for major estate renovations across Old Naples and Port Royal area." },
       { label: "Gated Community Cleanups", detail: "Post-construction finals for builders working in Pelican Bay, Mediterra, Vineyards, etc." },
       { label: "Pool Conversions", detail: "Outdated pool tear-outs ahead of design-build rebuilds." },
-      { label: "Property Maintenance for Seasonal Homes", detail: "Off-season repairs, painting, and turnovers for snowbird-owned properties." },
+      { label: "Seasonal Pressure Washing", detail: "Pre-season house, lanai, and pool-deck washes for snowbird-owned estates returning for the winter." },
     ],
     neighborhoods: [
       "Old Naples", "Aqualane Shores", "Port Royal", "Pelican Bay", "Park Shore", "Vineyards", "Mediterra", "Quail Creek", "Pine Ridge",
@@ -272,9 +272,9 @@ export const CITIES: CityContent[] = [
     ],
     commonWork: [
       { label: "Storm Debris & Structure Removal", detail: "Houses too far gone to repair, slabs needing removal, accumulated storm debris on private lots." },
-      { label: "Lot Clearing for Rebuild",         detail: "Site prep for elevated new construction." },
+      { label: "Site Prep & Hauling",              detail: "Debris haul-off and site reset for elevated new construction." },
       { label: "Construction Cleanup",             detail: "Final cleans for the new builds going up across the island." },
-      { label: "Resort & Vacation Rental Maintenance", detail: "Maintenance and repair for rental-managed properties." },
+      { label: "Resort & Vacation Rental Washes",  detail: "Pressure washing and landscape refresh for rental-managed properties between stays." },
     ],
     neighborhoods: [
       "East End", "Mid-Island", "West End", "Captiva Drive corridor", "Beach Cottages district",
@@ -358,7 +358,7 @@ export const CITIES: CityContent[] = [
       { label: "Canal Property Cleanup",   detail: "Storm debris, downed vegetation, fence section runs along the canal-front." },
       { label: "Storm Debris Removal",     detail: "Pine Island sits exposed. After named storms, we're on-island fast." },
       { label: "Renovation Demo",          detail: "Light interior demo for the older cottage stock undergoing renovation." },
-      { label: "Property Maintenance",     detail: "Paint, drywall, trim, and routine fixes for weekend and full-time owners." },
+      { label: "Pressure Washing",         detail: "Soft wash on salt-air siding, dock boards, and lanais for weekend and full-time owners." },
     ],
     neighborhoods: [
       "St. James City", "Bokeelia", "Pineland", "Pine Island Center", "Cherry Estates",

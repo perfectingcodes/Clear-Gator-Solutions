@@ -26,8 +26,6 @@ export const SERVICE_IMAGES: Record<string, PageImage> = {
   "outdoor-demolition":    { hero: FALLBACK_HERO },
   hauling:                 { hero: FALLBACK_HERO },
   "site-cleanup":          { hero: FALLBACK_HERO },
-  "lot-clearing":          { hero: FALLBACK_HERO },
-  "property-maintenance":  { hero: FALLBACK_HERO },
 };
 
 export const CITY_IMAGES: Record<string, PageImage> = {
