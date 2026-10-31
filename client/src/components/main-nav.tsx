@@ -79,7 +79,7 @@ export default function MainNav() {
             <img
               src={logoImg}
               alt="Clear Gator Construction Services"
-              className="absolute left-0 -top-2 sm:-top-3 lg:-top-4 h-32 w-32 sm:h-48 sm:w-48 lg:h-64 lg:w-64 object-contain transition-transform duration-300 group-hover:scale-[1.04] drop-shadow-[0_14px_28px_rgba(0,0,0,0.65)]"
+              className="absolute left-0 -top-5 sm:-top-7 lg:-top-10 h-32 w-32 sm:h-48 sm:w-48 lg:h-64 lg:w-64 object-contain transition-transform duration-300 group-hover:scale-[1.04] drop-shadow-[0_14px_28px_rgba(0,0,0,0.65)]"
             />
           </Link>
 
