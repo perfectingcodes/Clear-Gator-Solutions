@@ -365,16 +365,19 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* ── THE GATOR WAY — badge-forward 3-step ── */}
-      <section id="how-it-works" className="relative py-14 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-shell overflow-hidden">
-        <div ref={howReveal} className="max-w-7xl mx-auto reveal">
+      {/* ── THE GATOR WAY — badge-forward 3-step on dark asphalt ── */}
+      <section id="how-it-works" className="relative py-14 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-asphalt text-shell overflow-hidden">
+        <div className="absolute -top-40 right-0 w-[500px] h-[500px] rounded-full bg-teal/10 blur-3xl pointer-events-none" aria-hidden="true" />
+        <div className="absolute -bottom-40 left-0 w-[400px] h-[400px] rounded-full bg-gator-orange/10 blur-3xl pointer-events-none" aria-hidden="true" />
+
+        <div ref={howReveal} className="relative max-w-7xl mx-auto reveal">
           <div className="text-center mb-12 sm:mb-16">
-            <div className="font-mono text-[11px] font-black tracking-[0.3em] uppercase text-teal mb-3">
+            <div className="font-mono text-[11px] font-black tracking-[0.3em] uppercase text-gator-orange mb-3">
               The Gator Way
             </div>
-            <h2 className="font-display font-black uppercase text-[clamp(1.75rem,5vw,3.5rem)] leading-[0.95] tracking-[-0.03em] text-asphalt text-balance">
+            <h2 className="font-display font-black uppercase text-[clamp(1.75rem,5vw,3.5rem)] leading-[0.95] tracking-[-0.03em] text-shell text-balance">
               From first call<br className="sm:hidden" />
-              <span className="text-teal sm:ml-3">to drive-off.</span>
+              <span className="text-gator-orange sm:ml-3">to drive-off.</span>
             </h2>
           </div>
 
@@ -392,29 +395,29 @@ export default function LandingPage() {
                   </div>
                 )}
 
-                {/* Big badge image */}
+                {/* Big badge image — original black bg blends into asphalt */}
                 <div className="relative mb-5 sm:mb-6 transition-transform duration-500 group-hover:scale-[1.04] group-hover:-rotate-1">
                   <img
                     src={badge}
                     alt={`Step ${step}: ${title}`}
-                    className="w-48 h-48 sm:w-56 sm:h-56 lg:w-64 lg:h-64 object-contain drop-shadow-[0_14px_28px_rgba(0,0,0,0.35)]"
+                    className="w-48 h-48 sm:w-56 sm:h-56 lg:w-64 lg:h-64 object-contain drop-shadow-[0_14px_28px_rgba(0,0,0,0.45)]"
                   />
                 </div>
 
                 {/* Body */}
                 <div className="max-w-xs">
-                  <h3 className="font-display font-black uppercase text-lg sm:text-xl leading-tight tracking-tight text-asphalt mb-2">
+                  <h3 className="font-display font-black uppercase text-lg sm:text-xl leading-tight tracking-tight text-shell mb-2">
                     {title}
                   </h3>
-                  <p className="text-asphalt/65 text-[13px] sm:text-sm leading-[1.55]">{desc}</p>
+                  <p className="text-shell/65 text-[13px] sm:text-sm leading-[1.55]">{desc}</p>
                 </div>
               </li>
             ))}
           </ol>
 
           {/* Trailing CTA strip */}
-          <div className="mt-12 sm:mt-16 flex flex-col sm:flex-row items-center justify-between gap-4 pt-6 border-t border-asphalt/15">
-            <div className="flex items-center gap-3 text-asphalt/70">
+          <div className="mt-12 sm:mt-16 flex flex-col sm:flex-row items-center justify-between gap-4 pt-6 border-t border-white/10">
+            <div className="flex items-center gap-3 text-shell/70">
               <span className="w-2 h-2 rounded-full bg-gator-orange animate-pulse" />
               <span className="font-mono text-[11px] font-black uppercase tracking-[0.26em]">
                 24h reply · Same-week starts
