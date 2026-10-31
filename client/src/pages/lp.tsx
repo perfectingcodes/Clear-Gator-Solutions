@@ -49,15 +49,14 @@ export default function LpPage() {
       <JsonLd id="faq" data={faqLd(topFaq)} />
 
       {/* ── MINIMAL AD-NAV — logo + phone only ── */}
-      <header className="sticky top-0 z-50 text-shell">
-        <div className="relative bg-asphalt/95 backdrop-blur-sm border-b border-white/5">
-          <div className="absolute top-0 inset-x-0 h-0.5 bg-gradient-to-r from-transparent via-gator-orange to-transparent opacity-60" aria-hidden="true" />
-          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-18 flex items-center justify-between gap-4">
-          <Link href="/" className="relative flex items-center gap-3 flex-shrink-0 group z-10" aria-label="Clear Gator — Home">
+      <header className="sticky top-0 z-50 text-shell bg-asphalt/95 backdrop-blur-sm border-b border-white/5">
+        <div className="absolute top-0 inset-x-0 h-0.5 bg-gradient-to-r from-transparent via-gator-orange to-transparent opacity-60" aria-hidden="true" />
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 sm:h-24 lg:h-28 flex items-center justify-between gap-4">
+          <Link href="/" className="flex items-center gap-3 flex-shrink-0 group" aria-label="Clear Gator — Home">
             <img
               src={logoImg}
               alt="Clear Gator Logo"
-              className="h-[88px] w-[88px] sm:h-[116px] sm:w-[116px] lg:h-[136px] lg:w-[136px] object-contain transition-transform duration-300 group-hover:scale-[1.04] drop-shadow-[0_10px_22px_rgba(0,0,0,0.55)] -mt-6 sm:-mt-10 lg:-mt-14"
+              className="h-16 w-16 sm:h-20 sm:w-20 lg:h-24 lg:w-24 object-contain transition-transform duration-300 group-hover:scale-[1.05] drop-shadow-[0_6px_16px_rgba(0,0,0,0.55)]"
             />
             <div className="hidden sm:block leading-none">
               <div className="font-display font-black text-xl lg:text-[22px] tracking-[-0.01em] text-shell uppercase">Clear Gator</div>
@@ -81,7 +80,6 @@ export default function LpPage() {
               <span className="hidden md:inline text-sm">(239) 234-3061</span>
               <span className="md:hidden text-sm">Call</span>
             </a>
-          </div>
           </div>
         </div>
       </header>
