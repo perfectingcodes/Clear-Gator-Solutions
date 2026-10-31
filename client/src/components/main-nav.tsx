@@ -69,17 +69,17 @@ export default function MainNav() {
         {/* lime accent rail */}
         <div className="absolute top-0 inset-x-0 h-0.5 bg-gradient-to-r from-transparent via-gator-orange to-transparent opacity-60" aria-hidden="true" />
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-24 sm:h-32 lg:h-40 flex items-center justify-between gap-4">
-          {/* Logo-only lockup — oversized emblem, no wordmark */}
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 lg:h-24 flex items-center justify-between gap-4">
+          {/* Logo breakout — emblem overflows the nav bar down into the page */}
           <Link
             href="/"
-            className="flex items-center group flex-shrink-0"
             aria-label="Clear Gator Construction Services — Home"
+            className="relative h-full w-24 sm:w-32 lg:w-44 flex-shrink-0 group"
           >
             <img
               src={logoImg}
               alt="Clear Gator Construction Services"
-              className="h-20 w-20 sm:h-28 sm:w-28 lg:h-36 lg:w-36 object-contain transition-transform duration-300 group-hover:scale-[1.05] drop-shadow-[0_8px_20px_rgba(0,0,0,0.6)]"
+              className="absolute left-0 top-0 h-28 w-28 sm:h-40 sm:w-40 lg:h-56 lg:w-56 object-contain transition-transform duration-300 group-hover:scale-[1.04] drop-shadow-[0_14px_28px_rgba(0,0,0,0.65)]"
             />
           </Link>
 
