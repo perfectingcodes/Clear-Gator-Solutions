@@ -148,7 +148,7 @@ export default function ServicePage() {
         <div ref={r1} className="max-w-7xl mx-auto reveal">
           <div className="grid lg:grid-cols-12 gap-x-10 gap-y-8 items-start">
             {/* Left visual — big icon tile over photo */}
-            <div className="lg:col-span-4 lg:sticky lg:top-24">
+            <div className="relative lg:col-span-4 lg:sticky lg:top-24">
               <div className="relative aspect-[4/5] sm:aspect-video lg:aspect-[4/5] overflow-hidden rounded-2xl">
                 <div
                   className="absolute inset-0 bg-cover bg-center"
@@ -169,6 +169,14 @@ export default function ServicePage() {
                   </div>
                 </div>
               </div>
+              {service.slug === "landscaping" && (
+                <img
+                  src="/images/badges/lawn-gator.png"
+                  alt=""
+                  aria-hidden="true"
+                  className="pointer-events-none select-none absolute -top-8 -right-4 sm:-top-12 sm:-right-8 lg:-top-14 lg:-right-10 w-28 sm:w-40 lg:w-48 rotate-[-10deg] drop-shadow-[0_18px_30px_rgba(0,0,0,0.55)]"
+                />
+              )}
             </div>
 
             {/* Right list — icon + label only, no long descriptions */}
