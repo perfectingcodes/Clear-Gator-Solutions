@@ -102,8 +102,8 @@ export default function LpPage() {
             </div>
 
             <h1 className="font-display font-black uppercase text-white leading-[0.9] tracking-[-0.035em] text-balance mb-6 text-[clamp(2.25rem,7vw,5.5rem)]">
-              {service.name.split(" ")[0]}<br />
-              <span className="text-gator-orange">{service.name.split(" ").slice(1).join(" ") || "Done Right."}</span>
+              {service.heroHeadline.line1}<br />
+              <span className="text-gator-orange">{service.heroHeadline.line2}</span>
             </h1>
 
             <p className="text-base sm:text-xl text-white/90 leading-[1.5] max-w-2xl mb-7 text-pretty font-medium">

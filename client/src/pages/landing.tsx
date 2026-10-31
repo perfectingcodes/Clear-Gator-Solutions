@@ -25,26 +25,7 @@ const SERVICE_AREAS = [
 ];
 
 const services = [
-  {
-    slug: "interior-demolition",
-    icon: Hammer,
-    title: "Interior Demolition",
-    description: "Getting ready for a renovation? We handle the dirty part — kitchen tear-outs, bath gut-outs, old floors and drywall. Floors protected, dust contained, debris hauled.",
-    features: ["Kitchen Tear-Outs", "Bathroom Gut-Outs", "Floor Removal", "Drywall & Plaster", "Popcorn Ceiling"],
-    accent: "bg-gator-orange",
-    iconBg: "bg-gator-orange/10",
-    iconColor: "text-gator-orange",
-  },
-  {
-    slug: "outdoor-demolition",
-    icon: Construction,
-    title: "Outdoor Demolition",
-    description: "Pool you don't want? Shed falling apart? Old deck wrecked by the last storm? We take it out, haul it off, and leave the yard flat and clean.",
-    features: ["Pool Removal", "Shed & Fence Removal", "Concrete & Driveway", "Deck & Patio Tear-Out", "Storm Debris"],
-    accent: "bg-gator-orange",
-    iconBg: "bg-gator-orange/10",
-    iconColor: "text-gator-orange",
-  },
+
   {
     slug: "hauling",
     icon: Truck,
@@ -64,6 +45,26 @@ const services = [
     accent: "bg-primary",
     iconBg: "bg-primary/10",
     iconColor: "text-primary",
+  },
+  {
+    slug: "interior-demolition",
+    icon: Hammer,
+    title: "Interior Demolition",
+    description: "Getting ready for a renovation? We handle the dirty part — kitchen tear-outs, bath gut-outs, old floors and drywall. Floors protected, dust contained, debris hauled.",
+    features: ["Kitchen Tear-Outs", "Bathroom Gut-Outs", "Floor Removal", "Drywall & Plaster", "Popcorn Ceiling"],
+    accent: "bg-gator-orange",
+    iconBg: "bg-gator-orange/10",
+    iconColor: "text-gator-orange",
+  },
+  {
+    slug: "outdoor-demolition",
+    icon: Construction,
+    title: "Outdoor Demolition",
+    description: "Pool you don't want? Shed falling apart? Old deck wrecked by the last storm? We take it out, haul it off, and leave the yard flat and clean.",
+    features: ["Pool Removal", "Shed & Fence Removal", "Concrete & Driveway", "Deck & Patio Tear-Out", "Storm Debris"],
+    accent: "bg-gator-orange",
+    iconBg: "bg-gator-orange/10",
+    iconColor: "text-gator-orange",
   },
   {
     slug: "landscaping",
@@ -95,9 +96,9 @@ const howItWorks = [
 
 export default function LandingPage() {
   usePageMeta({
-    title: "Clear Gator — Demolition, Junk Hauling, Lawn Care & Pressure Washing in SW Florida",
+    title: "Clear Gator — Junk Hauling, Site Cleanup & Demolition in SW Florida",
     description:
-      "Residential demolition, junk hauling, move-in cleanup, weekly lawn care, and pressure washing for Cape Coral, Naples & Southwest Florida homes. Licensed & insured. Let's Gator Done. Call (239) 234-3061.",
+      "Same-day junk hauling, post-renovation and move-in cleanup, interior and outdoor demolition, lawn care, and pressure washing for Cape Coral, Naples & Southwest Florida homes. Licensed & insured. Let's Gator Done. Call (239) 234-3061.",
   });
 
   const servicesReveal = useReveal<HTMLDivElement>();
@@ -125,19 +126,19 @@ export default function LandingPage() {
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 backdrop-blur-sm mb-6 sm:mb-8">
             <span className="w-1.5 h-1.5 rounded-full bg-gator-orange animate-pulse" aria-hidden="true" />
             <span className="font-mono text-[10px] sm:text-[11px] font-semibold tracking-[0.22em] uppercase text-white/90">
-              Demolition · Junk Hauling · Lawn Care
+              Junk Hauling · Site Cleanup · Demolition
             </span>
           </div>
 
           {/* Massive headline */}
           <h1 className="font-display font-black uppercase text-white leading-[0.9] tracking-[-0.035em] text-balance mb-6 sm:mb-8 max-w-5xl text-[clamp(2.5rem,8vw,6.5rem)]">
-            Clear the way<br />
-            <span className="text-gator-orange">for what's next.</span>
+            Point. Load.<br />
+            <span className="text-gator-orange">Gone today.</span>
           </h1>
 
           {/* Lede */}
           <p className="text-base sm:text-xl text-white/80 leading-[1.5] max-w-2xl mb-8 sm:mb-10 text-pretty">
-            Demolition, junk hauling, move-in cleanup, weekly lawn care, and pressure washing for Southwest Florida homes.
+            Same-day junk hauling and post-renovation cleanup for SW Florida homes — plus demolition, lawn care, and pressure washing when you need the whole crew.
           </p>
 
           {/* Two CTAs */}

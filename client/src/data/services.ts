@@ -15,6 +15,8 @@ export type ServiceContent = {
   name: string;
   /** Hero overline tag */
   category: string;
+  /** Two-line hero headline — line2 is lime-accented. Falls back to a split name. */
+  heroHeadline: { line1: string; line2: string };
   /** Lucide icon name — resolved in the page component */
   icon: "Hammer" | "Construction" | "Truck" | "HardHat" | "Leaf" | "Droplets";
   /** Brand accent group */
@@ -42,9 +44,121 @@ export type ServiceContent = {
 
 export const SERVICES: ServiceContent[] = [
   {
+    slug: "hauling",
+    name: "Junk Hauling",
+    category: "Junk · Debris · Bulk",
+    heroHeadline: { line1: "Point. Load.", line2: "Gone today." },
+    icon: "Truck",
+    accent: "green",
+    title: "Junk Hauling for SW Florida Homes — Garage, Attic, Yard, Debris",
+    description:
+      "Same-day junk hauling and bulk trash removal for SW Florida homes. Garage cleanouts, old furniture, appliances, renovation debris, yard waste. We load it, we haul it, flat-rate pricing — no hourly meter.",
+    lede:
+      "Garage full of stuff that needs to go? Old furniture, broken appliances, renovation debris, yard pile? Point at it. We load it. We haul it.",
+    intro: [
+      "Hauling is the service you call when you want something out of your house and gone today. Garage and attic cleanouts, old appliances, mattresses and furniture, hot-tub removal, yard debris, renovation leftovers.",
+      "We run our own dump trucks across Southwest Florida and quote flat-rate by the load — no hourly meter, no mystery fees. You don't lift anything unless you want to. We're insured, we show up when we said, and we leave your driveway cleaner than we found it.",
+    ],
+    scope: [
+      { label: "Garage & Attic Cleanouts", detail: "Years of \"someday\" piles — out in a morning. We'll even set aside anything you still want." },
+      { label: "Furniture & Appliances",   detail: "Couches, mattresses, old fridges, washers, dryers, exercise equipment, hot tubs. We disconnect and haul." },
+      { label: "Renovation Debris",        detail: "The pile left behind after your renovation. Drywall, tile, old cabinets, flooring — gone same day." },
+      { label: "Yard Debris",              detail: "Downed limbs, hedge trimmings, fence sections, the pile under the oak tree. Storm cleanups run heavy — call early." },
+      { label: "Estate & Rental Cleanouts", detail: "Full-house cleanouts between tenants, estate downsizes, snowbird exits. Fast, discreet." },
+      { label: "Hot Tub & Playset Removal", detail: "Awkward backyard items that need two people and a plan. We bring both." },
+    ],
+    process: [
+      { step: "01", title: "Text Us a Photo",  detail: "Snap a photo of the pile or the room. We quote a flat price inside the hour, most days." },
+      { step: "02", title: "Pick a Window",     detail: "Same-day or next-day for most jobs. Give us a two-hour arrival window that works for you." },
+      { step: "03", title: "We Load",           detail: "Our crew loads everything — garage, upstairs, backyard. You don't have to lift a thing." },
+      { step: "04", title: "Clean & Go",        detail: "Driveway and work area swept before we leave. Payment on completion — cash, card, or ACH." },
+    ],
+    reasons: [
+      { title: "Flat-rate, not hourly",     body: "Hourly meters feel like a parking app. We quote the load up front and that's the number." },
+      { title: "Same-day common",           body: "If a truck is open and you're inside our route, we'll knock it out today." },
+      { title: "You don't lift anything",    body: "That's the whole point. Point, we load, we haul." },
+      { title: "Clean driveway when we leave", body: "Yard, driveway, and work area swept before we pull away." },
+    ],
+    faq: [
+      { q: "Do I have to be home?",
+        a: "No. Lots of customers send a gate code or garage code and a photo of the pile. We handle it and send you a photo when we're done." },
+      { q: "What can't you haul?",
+        a: "Hazardous stuff — paint thinner, automotive fluids, asbestos, car batteries — needs a licensed hazmat hauler. Pretty much everything else, we'll take." },
+      { q: "How fast can you come?",
+        a: "Same day or next day most weeks. Snap a photo and text us to find out." },
+      { q: "Do you bring a dumpster?",
+        a: "We can — but for one-shot cleanouts, our load-and-go usually beats renting a dumpster for the week." },
+      { q: "How do you charge?",
+        a: "Flat rate by the truckload. We quote the price up front and that's the price — no hourly surprises." },
+    ],
+    stats: [
+      { value: "Same-day", label: "pickup" },
+      { value: "Flat-rate", label: "by truckload" },
+      { value: "No lifting", label: "for you" },
+    ],
+  },
+
+  {
+    slug: "site-cleanup",
+    name: "Site Cleanup",
+    category: "Post-Reno · Move-In Ready",
+    heroHeadline: { line1: "Dust everywhere?", line2: "Not for long." },
+    icon: "HardHat",
+    accent: "green",
+    title: "Post-Renovation & Move-In Cleanup for SW Florida Homes",
+    description:
+      "Post-renovation cleanup and move-in-ready cleans for Southwest Florida homes. Fine drywall dust gone, floors detailed, kitchens and baths wiped down — your contractor leaves, your house looks finished.",
+    lede:
+      "Renovation's done and the construction dust is everywhere? Just bought a house and want it move-in clean? We handle both — floor to ceiling, fixtures to fingerprints.",
+    intro: [
+      "Site cleanup is the step between \"the renovation is done\" and \"the house feels like yours again.\" Fine drywall dust settles on every surface for weeks if it's not cleaned right the first time. We handle it right the first time — HEPA vacuums, microfiber, the whole house.",
+      "We also do move-in cleans for homes just sold or just bought, pre-listing cleans to help a house show better, and detail cleans after a big home project. One crew, one standard, done when we say it's done.",
+    ],
+    scope: [
+      { label: "Post-Renovation Clean",     detail: "Fine construction dust lifted off every surface — walls, trim, floors, cabinets, ceiling fans. Not just wiped around." },
+      { label: "Move-In Deep Clean",         detail: "Kitchen inside the cabinets and oven, bathrooms down to the grout, floors detailed. Ready for the first night in your home." },
+      { label: "Pre-Listing Clean",          detail: "A sharp clean before the photographer shows up. Houses show better when the baseboards aren't dusty." },
+      { label: "Bathroom & Kitchen Detail",  detail: "Caulk lines wiped, grout haze lifted, fixtures polished, drawer interiors cleaned, inside of the oven and fridge." },
+      { label: "Window & Track Clean",       detail: "Sticker and tape residue off, inside glass cleaned, tracks and frames wiped." },
+      { label: "Floor Detail",               detail: "Tile, hardwood, luxury vinyl, polished concrete. Method matched to the floor so nothing streaks or dulls." },
+      { label: "Dust Management",            detail: "HEPA vacuums for drywall dust — we don't just push it from room to room with a leaf blower." },
+    ],
+    process: [
+      { step: "01", title: "Walk + Scope",     detail: "We walk your house with you, scope what needs cleaning and detailing, and quote a flat price in writing." },
+      { step: "02", title: "Schedule",          detail: "Pick a day that works. Most residential cleans are a single day. Larger homes or heavier post-reno jobs run two days." },
+      { step: "03", title: "Clean",             detail: "Our crew runs the scope top-down, room by room, with HEPA vacuums and professional supplies — not a shop vac and a Swiffer." },
+      { step: "04", title: "Final Walk",        detail: "You walk the house with us before we leave. Anything missed gets fixed on the spot." },
+    ],
+    reasons: [
+      { title: "Drywall dust gone for real", body: "HEPA-vacuumed, not pushed around. The dust that settles for weeks on your furniture — we get it the first time." },
+      { title: "We bring the supplies",      body: "HEPA vacuums, microfiber systems, professional cleaners. All you provide is water access." },
+      { title: "One flat price",             body: "We quote the scope up front — no \"and that's extra\" surprises when we finish." },
+      { title: "Same crew every time",       body: "You get the same people — not whoever the staffing app sent today." },
+    ],
+    faq: [
+      { q: "How far in advance do I need to book?",
+        a: "A week is comfortable. Faster turnarounds we try to accommodate — just call and we'll tell you what's open." },
+      { q: "Do you bring your own supplies and vacuums?",
+        a: "Yes — HEPA vacuums, microfiber, pro cleaners. You provide water access and we handle the rest." },
+      { q: "Can we live in the house during the clean?",
+        a: "Most of the time, yes. We work room by room. Bigger post-reno cleans go faster when the house is empty but it's not required." },
+      { q: "Do you clean inside the oven and fridge?",
+        a: "On move-in deep cleans, yes. We'll call them out on the walk-through so you know what's in and what's not." },
+      { q: "Do you do windows outside too?",
+        a: "Standard clean covers interior glass and tracks. Exterior window washing we quote as an add-on or coordinate with our pressure-washing crew." },
+    ],
+    stats: [
+      { value: "HEPA",    label: "dust control" },
+      { value: "1 day",   label: "most homes" },
+      { value: "Walk-off", label: "guarantee" },
+    ],
+  },
+
+  {
     slug: "interior-demolition",
     name: "Interior Demolition",
     category: "Kitchen · Bath · Floors",
+    heroHeadline: { line1: "Tear it out.", line2: "Haul it off." },
     icon: "Hammer",
     accent: "orange",
     title: "Interior Demolition for SW Florida Homes — Kitchen, Bath, Floors",
@@ -105,6 +219,7 @@ export const SERVICES: ServiceContent[] = [
     slug: "outdoor-demolition",
     name: "Outdoor Demolition",
     category: "Pools · Sheds · Fences",
+    heroHeadline: { line1: "Yard eyesore?", line2: "Gone this week." },
     icon: "Construction",
     accent: "orange",
     title: "Outdoor Demolition for SW Florida Homes — Pools, Sheds, Fences",
@@ -162,118 +277,10 @@ export const SERVICES: ServiceContent[] = [
   },
 
   {
-    slug: "hauling",
-    name: "Junk Hauling",
-    category: "Junk · Debris · Bulk",
-    icon: "Truck",
-    accent: "green",
-    title: "Junk Hauling for SW Florida Homes — Garage, Attic, Yard, Debris",
-    description:
-      "Same-day junk hauling and bulk trash removal for SW Florida homes. Garage cleanouts, old furniture, appliances, renovation debris, yard waste. We load it, we haul it, flat-rate pricing — no hourly meter.",
-    lede:
-      "Garage full of stuff that needs to go? Old furniture, broken appliances, renovation debris, yard pile? Point at it. We load it. We haul it.",
-    intro: [
-      "Hauling is the service you call when you want something out of your house and gone today. Garage and attic cleanouts, old appliances, mattresses and furniture, hot-tub removal, yard debris, renovation leftovers.",
-      "We run our own dump trucks across Southwest Florida and quote flat-rate by the load — no hourly meter, no mystery fees. You don't lift anything unless you want to. We're insured, we show up when we said, and we leave your driveway cleaner than we found it.",
-    ],
-    scope: [
-      { label: "Garage & Attic Cleanouts", detail: "Years of \"someday\" piles — out in a morning. We'll even set aside anything you still want." },
-      { label: "Furniture & Appliances",   detail: "Couches, mattresses, old fridges, washers, dryers, exercise equipment, hot tubs. We disconnect and haul." },
-      { label: "Renovation Debris",        detail: "The pile left behind after your renovation. Drywall, tile, old cabinets, flooring — gone same day." },
-      { label: "Yard Debris",              detail: "Downed limbs, hedge trimmings, fence sections, the pile under the oak tree. Storm cleanups run heavy — call early." },
-      { label: "Estate & Rental Cleanouts", detail: "Full-house cleanouts between tenants, estate downsizes, snowbird exits. Fast, discreet." },
-      { label: "Hot Tub & Playset Removal", detail: "Awkward backyard items that need two people and a plan. We bring both." },
-    ],
-    process: [
-      { step: "01", title: "Text Us a Photo",  detail: "Snap a photo of the pile or the room. We quote a flat price inside the hour, most days." },
-      { step: "02", title: "Pick a Window",     detail: "Same-day or next-day for most jobs. Give us a two-hour arrival window that works for you." },
-      { step: "03", title: "We Load",           detail: "Our crew loads everything — garage, upstairs, backyard. You don't have to lift a thing." },
-      { step: "04", title: "Clean & Go",        detail: "Driveway and work area swept before we leave. Payment on completion — cash, card, or ACH." },
-    ],
-    reasons: [
-      { title: "Flat-rate, not hourly",     body: "Hourly meters feel like a parking app. We quote the load up front and that's the number." },
-      { title: "Same-day common",           body: "If a truck is open and you're inside our route, we'll knock it out today." },
-      { title: "You don't lift anything",    body: "That's the whole point. Point, we load, we haul." },
-      { title: "Clean driveway when we leave", body: "Yard, driveway, and work area swept before we pull away." },
-    ],
-    faq: [
-      { q: "Do I have to be home?",
-        a: "No. Lots of customers send a gate code or garage code and a photo of the pile. We handle it and send you a photo when we're done." },
-      { q: "What can't you haul?",
-        a: "Hazardous stuff — paint thinner, automotive fluids, asbestos, car batteries — needs a licensed hazmat hauler. Pretty much everything else, we'll take." },
-      { q: "How fast can you come?",
-        a: "Same day or next day most weeks. Snap a photo and text us to find out." },
-      { q: "Do you bring a dumpster?",
-        a: "We can — but for one-shot cleanouts, our load-and-go usually beats renting a dumpster for the week." },
-      { q: "How do you charge?",
-        a: "Flat rate by the truckload. We quote the price up front and that's the price — no hourly surprises." },
-    ],
-    stats: [
-      { value: "Same-day", label: "pickup" },
-      { value: "Flat-rate", label: "by truckload" },
-      { value: "No lifting", label: "for you" },
-    ],
-  },
-
-  {
-    slug: "site-cleanup",
-    name: "Site Cleanup",
-    category: "Post-Reno · Move-In Ready",
-    icon: "HardHat",
-    accent: "green",
-    title: "Post-Renovation & Move-In Cleanup for SW Florida Homes",
-    description:
-      "Post-renovation cleanup and move-in-ready cleans for Southwest Florida homes. Fine drywall dust gone, floors detailed, kitchens and baths wiped down — your contractor leaves, your house looks finished.",
-    lede:
-      "Renovation's done and the construction dust is everywhere? Just bought a house and want it move-in clean? We handle both — floor to ceiling, fixtures to fingerprints.",
-    intro: [
-      "Site cleanup is the step between \"the renovation is done\" and \"the house feels like yours again.\" Fine drywall dust settles on every surface for weeks if it's not cleaned right the first time. We handle it right the first time — HEPA vacuums, microfiber, the whole house.",
-      "We also do move-in cleans for homes just sold or just bought, pre-listing cleans to help a house show better, and detail cleans after a big home project. One crew, one standard, done when we say it's done.",
-    ],
-    scope: [
-      { label: "Post-Renovation Clean",     detail: "Fine construction dust lifted off every surface — walls, trim, floors, cabinets, ceiling fans. Not just wiped around." },
-      { label: "Move-In Deep Clean",         detail: "Kitchen inside the cabinets and oven, bathrooms down to the grout, floors detailed. Ready for the first night in your home." },
-      { label: "Pre-Listing Clean",          detail: "A sharp clean before the photographer shows up. Houses show better when the baseboards aren't dusty." },
-      { label: "Bathroom & Kitchen Detail",  detail: "Caulk lines wiped, grout haze lifted, fixtures polished, drawer interiors cleaned, inside of the oven and fridge." },
-      { label: "Window & Track Clean",       detail: "Sticker and tape residue off, inside glass cleaned, tracks and frames wiped." },
-      { label: "Floor Detail",               detail: "Tile, hardwood, luxury vinyl, polished concrete. Method matched to the floor so nothing streaks or dulls." },
-      { label: "Dust Management",            detail: "HEPA vacuums for drywall dust — we don't just push it from room to room with a leaf blower." },
-    ],
-    process: [
-      { step: "01", title: "Walk + Scope",     detail: "We walk your house with you, scope what needs cleaning and detailing, and quote a flat price in writing." },
-      { step: "02", title: "Schedule",          detail: "Pick a day that works. Most residential cleans are a single day. Larger homes or heavier post-reno jobs run two days." },
-      { step: "03", title: "Clean",             detail: "Our crew runs the scope top-down, room by room, with HEPA vacuums and professional supplies — not a shop vac and a Swiffer." },
-      { step: "04", title: "Final Walk",        detail: "You walk the house with us before we leave. Anything missed gets fixed on the spot." },
-    ],
-    reasons: [
-      { title: "Drywall dust gone for real", body: "HEPA-vacuumed, not pushed around. The dust that settles for weeks on your furniture — we get it the first time." },
-      { title: "We bring the supplies",      body: "HEPA vacuums, microfiber systems, professional cleaners. All you provide is water access." },
-      { title: "One flat price",             body: "We quote the scope up front — no \"and that's extra\" surprises when we finish." },
-      { title: "Same crew every time",       body: "You get the same people — not whoever the staffing app sent today." },
-    ],
-    faq: [
-      { q: "How far in advance do I need to book?",
-        a: "A week is comfortable. Faster turnarounds we try to accommodate — just call and we'll tell you what's open." },
-      { q: "Do you bring your own supplies and vacuums?",
-        a: "Yes — HEPA vacuums, microfiber, pro cleaners. You provide water access and we handle the rest." },
-      { q: "Can we live in the house during the clean?",
-        a: "Most of the time, yes. We work room by room. Bigger post-reno cleans go faster when the house is empty but it's not required." },
-      { q: "Do you clean inside the oven and fridge?",
-        a: "On move-in deep cleans, yes. We'll call them out on the walk-through so you know what's in and what's not." },
-      { q: "Do you do windows outside too?",
-        a: "Standard clean covers interior glass and tracks. Exterior window washing we quote as an add-on or coordinate with our pressure-washing crew." },
-    ],
-    stats: [
-      { value: "HEPA",    label: "dust control" },
-      { value: "1 day",   label: "most homes" },
-      { value: "Walk-off", label: "guarantee" },
-    ],
-  },
-
-  {
     slug: "landscaping",
     name: "Lawn Care",
     category: "Mow · Edge · Trim",
+    heroHeadline: { line1: "Cut clean.", line2: "Every week." },
     icon: "Leaf",
     accent: "green",
     title: "Lawn Care in Southwest Florida — Weekly Mowing, Edging & Trim",
@@ -334,6 +341,7 @@ export const SERVICES: ServiceContent[] = [
     slug: "pressure-washing",
     name: "Pressure Washing",
     category: "House · Driveway · Lanai",
+    heroHeadline: { line1: "Grime off.", line2: "Curb appeal back." },
     icon: "Droplets",
     accent: "orange",
     title: "Pressure Washing for SW Florida Homes — House, Driveway, Roof, Lanai",

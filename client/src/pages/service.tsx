@@ -82,9 +82,12 @@ export default function ServicePage() {
             </div>
 
             <h1 className="font-display font-black uppercase text-white leading-[0.9] tracking-[-0.035em] text-balance mb-5 text-[clamp(2.25rem,7vw,5rem)]">
-              {service.name.split(" ")[0]}<br />
-              <span className="text-gator-orange">{service.name.split(" ").slice(1).join(" ") || "Done Right."}</span>
+              {service.heroHeadline.line1}<br />
+              <span className="text-gator-orange">{service.heroHeadline.line2}</span>
             </h1>
+            <div className="font-mono text-[11px] sm:text-xs font-black tracking-[0.28em] uppercase text-white/60 mb-4">
+              {service.name}
+            </div>
 
             <p className="text-base sm:text-lg text-white/85 leading-[1.5] max-w-xl mb-7 text-pretty">
               {service.lede}

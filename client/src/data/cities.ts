@@ -19,6 +19,8 @@ export type CityContent = {
   description: string;
   /** 1-sentence lede above the headline */
   category: string;
+  /** Two-line hero headline — line2 is lime-accented. Falls back to City/State. */
+  heroHeadline: { line1: string; line2: string };
   /** Opening pitch — keep specific and short */
   lede: string;
   /** Longer narrative — local context for SEO + humans */
@@ -45,6 +47,7 @@ export const CITIES: CityContent[] = [
     description:
       "Local Cape Coral demolition, hauling, site cleanup, lot clearing, and property maintenance. Licensed and insured, serving every Cape Coral neighborhood from Pelican to Burnt Store.",
     category: "Home Base · Lee County",
+    heroHeadline: { line1: "Our home base:", line2: "Cape Coral." },
     lede:
       "Cape Coral is where we work most weeks. Canal lots, builder spec homes, hurricane recovery, the whole catalog.",
     intro: [
@@ -92,6 +95,7 @@ export const CITIES: CityContent[] = [
     description:
       "Fort Myers demolition, hauling, site cleanup, lot clearing, and property maintenance from Downtown River District through McGregor and East Fort Myers.",
     category: "Lee County",
+    heroHeadline: { line1: "We work daily in", line2: "Fort Myers." },
     lede:
       "From the River District up McGregor to East Fort Myers — we work this city like it's home, because it nearly is.",
     intro: [
@@ -136,6 +140,7 @@ export const CITIES: CityContent[] = [
     description:
       "Naples interior and outdoor demolition, hauling, post-construction cleanup, lot clearing, and property maintenance. From Old Naples to Pelican Bay and Vineyards.",
     category: "Collier County",
+    heroHeadline: { line1: "Clean cuts in", line2: "Naples." },
     lede:
       "Naples standards are exacting. We work to them — quiet trucks, neat job sites, COI for the gated communities.",
     intro: [
@@ -180,6 +185,7 @@ export const CITIES: CityContent[] = [
     description:
       "Bonita Springs hauling, demolition, cleanup, and property maintenance. Bonita Bay, Pelican Landing, and Old Bonita — we work the whole footprint.",
     category: "Lee County · Estero corridor",
+    heroHeadline: { line1: "Working the", line2: "Bonita corridor." },
     lede:
       "Bonita Springs sits between Naples and Fort Myers and gets the best of both. We work it like a regular stop.",
     intro: [
@@ -222,6 +228,7 @@ export const CITIES: CityContent[] = [
     description:
       "Punta Gorda demolition, hauling, lot clearing, and property maintenance. Punta Gorda Isles, Burnt Store, and Charlotte Harbor properties.",
     category: "Charlotte County",
+    heroHeadline: { line1: "On our route:", line2: "Punta Gorda." },
     lede:
       "Punta Gorda is canal country and old Florida charm — and we work it both ways.",
     intro: [
@@ -264,6 +271,7 @@ export const CITIES: CityContent[] = [
     description:
       "Sanibel Island demolition, hauling, lot clearing, and property maintenance. Hurricane recovery, building elevations, and post-rebuild cleanup.",
     category: "Lee County · Barrier Island",
+    heroHeadline: { line1: "Island cleanup for", line2: "Sanibel." },
     lede:
       "Sanibel is in a long rebuild. We've been on the island for it.",
     intro: [
@@ -306,6 +314,7 @@ export const CITIES: CityContent[] = [
     description:
       "Babcock Ranch new-build cleanup, hauling, lot clearing, and property maintenance for one of America's first solar-powered planned communities.",
     category: "Charlotte County · Planned Community",
+    heroHeadline: { line1: "Clean-site crew for", line2: "Babcock Ranch." },
     lede:
       "Babcock Ranch is one of the fastest-growing planned communities in the country. We're routine here.",
     intro: [
@@ -348,6 +357,7 @@ export const CITIES: CityContent[] = [
     description:
       "St. James City on Pine Island — demolition, hauling, lot clearing, hurricane debris, and property maintenance for the islands.",
     category: "Lee County · Pine Island",
+    heroHeadline: { line1: "Pine Island crew —", line2: "St. James City." },
     lede:
       "Pine Island. St. James City. Old Florida — and we know how to work it.",
     intro: [
