@@ -143,12 +143,47 @@ export default function ServicePage() {
         </div>
       </section>
 
+      {/* ── MASCOT BAND — lawn care only ── */}
+      {service.slug === "landscaping" && (
+        <section className="relative overflow-hidden bg-asphalt text-shell border-b border-white/10">
+          <div className="absolute -top-24 left-[15%] w-[520px] h-[520px] rounded-full bg-gator-orange/10 blur-3xl pointer-events-none" aria-hidden="true" />
+          <div className="absolute -bottom-32 right-[10%] w-[420px] h-[420px] rounded-full bg-teal/15 blur-3xl pointer-events-none" aria-hidden="true" />
+
+          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14 lg:py-16 grid sm:grid-cols-12 gap-6 sm:gap-10 items-center">
+            <div className="sm:col-span-5 lg:col-span-5 flex justify-center sm:justify-start">
+              <img
+                src="/images/badges/lawn-gator.png"
+                alt="Clear Gator lawn care mascot"
+                className="w-56 sm:w-full max-w-[22rem] drop-shadow-[0_22px_36px_rgba(0,0,0,0.6)]"
+              />
+            </div>
+            <div className="sm:col-span-7 lg:col-span-7 text-center sm:text-left">
+              <div className="font-mono text-[11px] font-black tracking-[0.3em] uppercase text-gator-orange mb-3">
+                Meet Your Yard Boss
+              </div>
+              <h2 className="font-display font-black uppercase text-[clamp(2rem,5.5vw,3.5rem)] leading-[0.92] tracking-[-0.03em] text-shell text-balance mb-4">
+                Cuts clean.<br />
+                <span className="text-gator-orange">Leaves cleaner.</span>
+              </h2>
+              <p className="text-shell/75 text-base sm:text-lg leading-[1.6] max-w-xl sm:max-w-none mx-auto sm:mx-0 mb-5">
+                Same crew, same day, every week. Edged every visit, blow-off on every walk — nothing left behind when we drive off.
+              </p>
+              <ul className="flex flex-wrap justify-center sm:justify-start gap-x-5 gap-y-2 font-mono text-[11px] sm:text-xs font-black uppercase tracking-[0.22em] text-shell/70">
+                <li className="flex items-center gap-1.5"><span className="w-1.5 h-1.5 rounded-full bg-gator-orange" aria-hidden="true" /> Flat weekly rate</li>
+                <li className="flex items-center gap-1.5"><span className="w-1.5 h-1.5 rounded-full bg-gator-orange" aria-hidden="true" /> Same day each week</li>
+                <li className="flex items-center gap-1.5"><span className="w-1.5 h-1.5 rounded-full bg-gator-orange" aria-hidden="true" /> No upcharges per visit</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* ── WHAT'S INCLUDED — asymmetric visual + compact list ── */}
       <section className="relative py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 bg-shell">
         <div ref={r1} className="max-w-7xl mx-auto reveal">
           <div className="grid lg:grid-cols-12 gap-x-10 gap-y-8 items-start">
             {/* Left visual — big icon tile over photo */}
-            <div className="relative lg:col-span-4 lg:sticky lg:top-24">
+            <div className="lg:col-span-4 lg:sticky lg:top-24">
               <div className="relative aspect-[4/5] sm:aspect-video lg:aspect-[4/5] overflow-hidden rounded-2xl">
                 <div
                   className="absolute inset-0 bg-cover bg-center"
@@ -169,14 +204,6 @@ export default function ServicePage() {
                   </div>
                 </div>
               </div>
-              {service.slug === "landscaping" && (
-                <img
-                  src="/images/badges/lawn-gator.png"
-                  alt=""
-                  aria-hidden="true"
-                  className="pointer-events-none select-none absolute -top-8 -right-4 sm:-top-12 sm:-right-8 lg:-top-14 lg:-right-10 w-28 sm:w-40 lg:w-48 rotate-[-10deg] drop-shadow-[0_18px_30px_rgba(0,0,0,0.55)]"
-                />
-              )}
             </div>
 
             {/* Right list — icon + label only, no long descriptions */}
