@@ -24,9 +24,9 @@ const HERO = "/images/stock/florida-home.jpg";
 const SERVICE_OPTIONS = [
   { id: "Interior Demolition", label: "Interior Demo", icon: Hammer, desc: "Floor removal, cabinets, drywall, bathroom & kitchen tear-outs" },
   { id: "Outdoor Demolition", label: "Outdoor Demo", icon: Construction, desc: "Pools, sheds, fences, decks, concrete pads & driveways" },
-  { id: "Hauling", label: "Hauling", icon: Truck, desc: "Construction debris, renovation waste, dump runs & bulk trash" },
-  { id: "Site Cleanup", label: "Site Cleanup", icon: HardHat, desc: "Post-construction, jobsite, bathroom & dust/debris cleanup" },
-  { id: "Landscaping", label: "Landscaping", icon: Leaf, desc: "Sod, mulch, hedge & palm trimming, plant installs, lot refresh" },
+  { id: "Junk Hauling", label: "Junk Hauling", icon: Truck, desc: "Garage cleanouts, old furniture, appliances, renovation debris" },
+  { id: "Site Cleanup", label: "Site Cleanup", icon: HardHat, desc: "Post-renovation, move-in deep clean, HEPA dust removal" },
+  { id: "Lawn Care", label: "Lawn Care", icon: Leaf, desc: "Weekly mow, edge, line-trim, blow-off. Flat-rate per visit" },
   { id: "Pressure Washing", label: "Pressure Wash", icon: Droplets, desc: "House, driveway, pool deck, roof wash, fences, screens" },
 ];
 

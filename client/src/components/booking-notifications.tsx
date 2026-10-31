@@ -21,9 +21,9 @@ const CITIES = [
 const SERVICES = [
   "Interior Demolition",
   "Outdoor Demolition",
-  "Hauling",
+  "Junk Hauling",
   "Site Cleanup",
-  "Landscaping",
+  "Lawn Care",
   "Pressure Washing",
 ];
 

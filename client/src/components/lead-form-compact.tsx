@@ -127,7 +127,7 @@ export default function LeadFormCompact({
           <label htmlFor="lf-service" className={`block mb-1.5 ${labelClass}`}>Service</label>
           <select id="lf-service" value={lead.serviceType} onChange={(e) => setLead((l) => ({ ...l, serviceType: e.target.value }))} className={inputClass}>
             <option value="">Pick one…</option>
-            {["Interior Demolition", "Outdoor Demolition", "Hauling", "Site Cleanup", "Landscaping", "Pressure Washing"].map((s) => (
+            {["Interior Demolition", "Outdoor Demolition", "Junk Hauling", "Site Cleanup", "Lawn Care", "Pressure Washing"].map((s) => (
               <option key={s} value={s}>{s}</option>
             ))}
           </select>

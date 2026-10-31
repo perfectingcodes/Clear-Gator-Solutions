@@ -22,12 +22,15 @@ export type JobStatus = typeof JOB_STATUSES[number];
 export const SERVICE_TYPES = [
   "Interior Demolition",
   "Outdoor Demolition",
-  "Hauling",
+  "Junk Hauling",
   "Site Cleanup",
+  "Lawn Care",
+  "Pressure Washing",
+  // Legacy aliases kept so existing records / cached frontends still validate.
+  "Hauling",
+  "Landscaping",
   "Lot Clearing",
   "Property Maintenance",
-  "Landscaping",
-  "Pressure Washing",
 ] as const;
 export type ServiceType = typeof SERVICE_TYPES[number];
 

@@ -7,12 +7,12 @@ import logoImg from "@assets/clear_gator_1775663894887.png";
 import { track } from "@/hooks/use-analytics";
 
 const SERVICES = [
-  "Interior Demo",
-  "Outdoor Demo",
-  "Hauling",
+  "Interior Demolition",
+  "Outdoor Demolition",
+  "Junk Hauling",
   "Site Cleanup",
-  "Landscaping",
-  "Pressure Wash",
+  "Lawn Care",
+  "Pressure Washing",
 ];
 
 type Lead = {
