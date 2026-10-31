@@ -271,9 +271,12 @@ export default function ServicePage() {
 
         <div ref={r3} className="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
           <div className="text-center mb-8 sm:mb-10">
-            <div className="font-mono text-[11px] font-black tracking-[0.3em] uppercase text-gator-orange mb-3">
-              Quick Answers
-            </div>
+            <img
+              src="/images/badges/faq-gator.png"
+              alt=""
+              aria-hidden="true"
+              className="mx-auto w-32 h-32 sm:w-40 sm:h-40 object-contain mb-3 drop-shadow-[0_10px_24px_rgba(0,0,0,0.35)]"
+            />
             <h2 className="font-display font-black uppercase text-[clamp(1.75rem,5vw,3rem)] leading-[0.95] tracking-[-0.03em] text-shell text-balance">
               Common<br className="sm:hidden" />
               <span className="text-gator-orange sm:ml-3">Questions.</span>

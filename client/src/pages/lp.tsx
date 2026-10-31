@@ -268,9 +268,12 @@ export default function LpPage() {
 
         <div className="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-10">
-            <div className="font-mono text-[11px] sm:text-xs font-black tracking-[0.3em] uppercase text-gator-orange mb-4">
-              Common Questions
-            </div>
+            <img
+              src="/images/badges/faq-gator.png"
+              alt=""
+              aria-hidden="true"
+              className="mx-auto w-32 h-32 sm:w-40 sm:h-40 object-contain mb-3 drop-shadow-[0_10px_24px_rgba(0,0,0,0.35)]"
+            />
             <h2 className="font-display font-black uppercase text-[clamp(1.75rem,5vw,3.5rem)] leading-[0.95] tracking-[-0.03em] text-shell text-balance">
               Quick<br /><span className="text-gator-orange">Answers.</span>
             </h2>

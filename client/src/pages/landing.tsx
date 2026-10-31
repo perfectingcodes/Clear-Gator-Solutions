@@ -9,7 +9,7 @@ import { SERVICE_IMAGES, CITY_IMAGES, FALLBACK_HERO } from "@/data/page-images";
 import {
   Truck, HardHat, PhoneCall, CheckCircle2,
   ArrowRight, Clock, Shield,
-  FileText, DollarSign, Search, MapPin,
+  FileText, MapPin,
   Hammer, Handshake, Construction, Leaf, Droplets
 } from "lucide-react";
 
@@ -88,10 +88,9 @@ const services = [
 ];
 
 const howItWorks = [
-  { step: "01", title: "Request a Free Estimate", desc: "Fill out our quick form with your project details and upload photos.", icon: FileText },
-  { step: "02", title: "Get Your Quote", desc: "Our team reviews your project and sends a detailed estimate within 24 hours.", icon: DollarSign },
-  { step: "03", title: "We Get to Work", desc: "Our crew arrives on schedule and gets the job done right the first time.", icon: HardHat },
-  { step: "04", title: "Track in Real Time", desc: "Use your Job ID to monitor progress, view site photos, and see your invoice.", icon: Search },
+  { step: "01", title: "Request a Free Quote",   desc: "Snap a photo or text us the details. Takes under two minutes.", badge: "/images/badges/step-1-quote.png" },
+  { step: "02", title: "Receive Your Free Quote", desc: "Written estimate inside 24 hours. Scope, timing, and dump fees all spelled out.", badge: "/images/badges/step-2-receive.png" },
+  { step: "03", title: "We Get to Work",         desc: "Our crew shows up when we said, does the work, hauls it off, leaves it clean.", badge: "/images/badges/step-3-work.png" },
 ];
 
 export default function LandingPage() {
@@ -366,10 +365,10 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* ── THE GATOR WAY — compact 4-card grid ── */}
-      <section id="how-it-works" className="relative py-14 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-shell">
+      {/* ── THE GATOR WAY — badge-forward 3-step ── */}
+      <section id="how-it-works" className="relative py-14 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-shell overflow-hidden">
         <div ref={howReveal} className="max-w-7xl mx-auto reveal">
-          <div className="text-center mb-10 sm:mb-12">
+          <div className="text-center mb-12 sm:mb-16">
             <div className="font-mono text-[11px] font-black tracking-[0.3em] uppercase text-teal mb-3">
               The Gator Way
             </div>
@@ -379,27 +378,55 @@ export default function LandingPage() {
             </h2>
           </div>
 
-          <ol className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
-            {howItWorks.map(({ step, title, desc, icon: Icon }) => (
-              <li
-                key={step}
-                className="group relative overflow-hidden rounded-xl bg-asphalt text-shell p-5 sm:p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-asphalt/25"
-              >
-                <div className="flex items-center justify-between mb-4">
-                  <span className="font-display font-black text-4xl text-gator-orange tracking-[-0.04em] leading-none">
-                    {step}
-                  </span>
-                  <div className="w-14 h-14 rounded-lg bg-gator-orange flex items-center justify-center shadow-lg shadow-black/40 group-hover:scale-110 transition-transform duration-300">
-                    <Icon className="w-7 h-7 text-asphalt" strokeWidth={2.4} />
+          <ol className="grid sm:grid-cols-3 gap-6 sm:gap-5 lg:gap-8 relative">
+            {howItWorks.map(({ step, title, desc, badge }, idx) => (
+              <li key={step} className="group relative flex flex-col items-center text-center">
+                {/* Connector dots between badges on desktop */}
+                {idx < howItWorks.length - 1 && (
+                  <div className="hidden sm:flex absolute top-24 lg:top-32 left-full items-center justify-center z-0 pointer-events-none -translate-x-1/2" aria-hidden="true">
+                    <div className="flex items-center gap-1.5">
+                      <span className="w-1.5 h-1.5 rounded-full bg-gator-orange/50" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-gator-orange/70" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-gator-orange" />
+                    </div>
                   </div>
+                )}
+
+                {/* Big badge image */}
+                <div className="relative mb-5 sm:mb-6 transition-transform duration-500 group-hover:scale-[1.04] group-hover:-rotate-1">
+                  <img
+                    src={badge}
+                    alt={`Step ${step}: ${title}`}
+                    className="w-48 h-48 sm:w-56 sm:h-56 lg:w-64 lg:h-64 object-contain drop-shadow-[0_14px_28px_rgba(0,0,0,0.35)]"
+                  />
                 </div>
-                <h3 className="font-display font-black uppercase text-base sm:text-lg leading-tight tracking-tight text-shell mb-1.5">
-                  {title}
-                </h3>
-                <p className="text-shell/65 text-[13px] leading-[1.55]">{desc}</p>
+
+                {/* Body */}
+                <div className="max-w-xs">
+                  <h3 className="font-display font-black uppercase text-lg sm:text-xl leading-tight tracking-tight text-asphalt mb-2">
+                    {title}
+                  </h3>
+                  <p className="text-asphalt/65 text-[13px] sm:text-sm leading-[1.55]">{desc}</p>
+                </div>
               </li>
             ))}
           </ol>
+
+          {/* Trailing CTA strip */}
+          <div className="mt-12 sm:mt-16 flex flex-col sm:flex-row items-center justify-between gap-4 pt-6 border-t border-asphalt/15">
+            <div className="flex items-center gap-3 text-asphalt/70">
+              <span className="w-2 h-2 rounded-full bg-gator-orange animate-pulse" />
+              <span className="font-mono text-[11px] font-black uppercase tracking-[0.26em]">
+                24h reply · Same-week starts
+              </span>
+            </div>
+            <Link href="/estimate">
+              <button className="inline-flex items-center gap-2 h-11 px-6 rounded-md bg-gator-orange hover:bg-gator-orange-dark text-asphalt font-black uppercase text-sm tracking-[0.1em] transition-all shadow-lg shadow-gator-orange/30">
+                Start Step 1
+                <ArrowRight className="w-4 h-4" strokeWidth={2.6} />
+              </button>
+            </Link>
+          </div>
         </div>
       </section>
 
