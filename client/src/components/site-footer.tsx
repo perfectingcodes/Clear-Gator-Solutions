@@ -4,27 +4,17 @@ import { SERVICES } from "@/data/services";
 import { CITIES } from "@/data/cities";
 import logoImg from "@assets/clear_gator_1775663894887.png";
 
-const TAGLINE_BG = "/images/stock/home-suburban.jpg";
-
 export default function SiteFooter() {
   return (
     <footer className="relative overflow-hidden">
-      {/* ── TAGLINE BAND — photo-backed ── */}
-      <div className="relative overflow-hidden bg-asphalt">
-        <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url('${TAGLINE_BG}')` }} aria-hidden="true" />
-        <div className="absolute inset-0 bg-gradient-to-br from-asphalt/92 via-asphalt/80 to-teal/55" aria-hidden="true" />
-        <div className="absolute inset-0 bg-gradient-to-t from-asphalt via-asphalt/40 to-transparent" aria-hidden="true" />
-
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 backdrop-blur-sm mb-6">
-            <img src={logoImg} alt="" aria-hidden="true" className="h-4 w-4 object-contain" />
-            <span className="font-mono text-[10px] sm:text-[11px] font-semibold tracking-[0.3em] uppercase text-white/90">
-              Let's Gator Done.
-            </span>
-          </div>
-          <div className="font-display font-black uppercase text-[clamp(2rem,6.5vw,4.75rem)] leading-[0.95] tracking-[-0.03em] text-white text-balance">
-            Clear Spaces.<br />
-            <span className="text-gator-orange">Brighter Tomorrows.</span>
+      {/* ── TAGLINE RULE — quiet, no photo, no lime pill ── */}
+      <div className="relative bg-asphalt border-t border-white/10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 flex flex-col sm:flex-row items-center gap-3 sm:gap-5 text-center sm:text-left">
+          <span className="font-mono text-[10px] font-black tracking-[0.3em] uppercase text-gator-orange sm:border-l-2 sm:border-gator-orange sm:pl-4 flex-shrink-0">
+            Let's Gator Done.
+          </span>
+          <div className="font-display font-black uppercase text-xl sm:text-2xl lg:text-3xl leading-tight tracking-[-0.02em] text-shell/85">
+            Clear Spaces. <span className="text-gator-orange">Brighter Tomorrows.</span>
           </div>
         </div>
       </div>
