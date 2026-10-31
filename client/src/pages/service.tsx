@@ -55,7 +55,7 @@ export default function ServicePage() {
 
       {/* Breadcrumbs */}
       <div className="bg-asphalt text-shell/60 border-b border-asphalt/80">
-        <div className="max-w-7xl mx-auto pr-4 sm:pr-6 lg:pr-8 pl-32 sm:pl-44 lg:pl-64 py-3 text-xs font-mono uppercase tracking-[0.18em] flex items-center gap-2">
+        <div className="max-w-7xl mx-auto pr-4 sm:pr-6 lg:pr-8 pl-4 sm:pl-44 lg:pl-64 py-3 text-xs font-mono uppercase tracking-[0.18em] flex items-center gap-2">
           <Link href="/" className="hover:text-gator-orange transition-colors">Home</Link>
           <ChevronRight className="w-3 h-3 opacity-60" />
           <Link href="/#services" className="hover:text-gator-orange transition-colors">Services</Link>

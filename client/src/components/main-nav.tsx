@@ -74,12 +74,13 @@ export default function MainNav() {
           <Link
             href="/"
             aria-label="Clear Gator Construction Services — Home"
-            className="relative h-full w-28 sm:w-40 lg:w-56 flex-shrink-0 group"
+            className="relative h-full w-14 sm:w-40 lg:w-56 flex-shrink-0 group"
           >
+            {/* Mobile: snug in-bar emblem. sm+: oversized breakout overflow. */}
             <img
               src={logoImg}
               alt="Clear Gator Construction Services"
-              className="absolute left-0 -top-5 sm:-top-7 lg:-top-10 h-32 w-32 sm:h-48 sm:w-48 lg:h-64 lg:w-64 object-contain transition-transform duration-300 group-hover:scale-[1.04] drop-shadow-[0_14px_28px_rgba(0,0,0,0.65)]"
+              className="absolute left-0 top-1/2 -translate-y-1/2 sm:top-auto sm:translate-y-0 sm:-top-7 lg:-top-10 h-14 w-14 sm:h-48 sm:w-48 lg:h-64 lg:w-64 object-contain transition-transform duration-300 group-hover:scale-[1.04] drop-shadow-[0_14px_28px_rgba(0,0,0,0.65)]"
             />
           </Link>
 
