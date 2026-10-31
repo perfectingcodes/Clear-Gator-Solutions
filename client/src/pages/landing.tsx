@@ -404,13 +404,8 @@ export default function LandingPage() {
                   />
                 </div>
 
-                {/* Body */}
-                <div className="max-w-xs">
-                  <h3 className="font-display font-black uppercase text-lg sm:text-xl leading-tight tracking-tight text-shell mb-2">
-                    {title}
-                  </h3>
-                  <p className="text-shell/65 text-[13px] sm:text-sm leading-[1.55]">{desc}</p>
-                </div>
+                {/* Body — badge banner already carries the title */}
+                <p className="text-shell/70 text-[13px] sm:text-sm leading-[1.55] max-w-xs">{desc}</p>
               </li>
             ))}
           </ol>
