@@ -81,13 +81,18 @@ export default function ServicePage() {
               </span>
             </div>
 
-            <h1 className="font-display font-black uppercase text-white leading-[0.9] tracking-[-0.035em] text-balance mb-5 text-[clamp(2.25rem,7vw,5rem)]">
-              {service.heroHeadline.line1}<br />
-              <span className="text-gator-orange">{service.heroHeadline.line2}</span>
+            {/* H1 carries the SEO target keyword ("Junk Hauling in Southwest Florida") so
+                search engines index the service+region phrase, while the big
+                display slogan stays visually dominant inside the same H1. */}
+            <h1 className="font-display font-black uppercase text-white leading-[0.9] tracking-[-0.035em] text-balance mb-5">
+              <span className="block font-mono text-[11px] sm:text-xs font-black tracking-[0.28em] uppercase text-gator-orange/90 mb-3">
+                {service.name} in Southwest Florida
+              </span>
+              <span className="block text-[clamp(2.25rem,7vw,5rem)]">
+                {service.heroHeadline.line1}<br />
+                <span className="text-gator-orange">{service.heroHeadline.line2}</span>
+              </span>
             </h1>
-            <div className="font-mono text-[11px] sm:text-xs font-black tracking-[0.28em] uppercase text-white/60 mb-4">
-              {service.name}
-            </div>
 
             <p className="text-base sm:text-lg text-white/85 leading-[1.5] max-w-xl mb-7 text-pretty">
               {service.lede}
@@ -146,8 +151,8 @@ export default function ServicePage() {
         </div>
       </section>
 
-      {/* ── MASCOT BAND — lawn care only ── */}
-      {service.slug === "landscaping" && (
+      {/* ── MASCOT BAND — any service with a mascot ── */}
+      {service.mascot && (
         <section className="relative overflow-hidden bg-asphalt text-shell border-b border-white/10">
           <div className="absolute -top-24 left-[15%] w-[520px] h-[520px] rounded-full bg-gator-orange/10 blur-3xl pointer-events-none" aria-hidden="true" />
           <div className="absolute -bottom-32 right-[10%] w-[420px] h-[420px] rounded-full bg-teal/15 blur-3xl pointer-events-none" aria-hidden="true" />
@@ -155,26 +160,29 @@ export default function ServicePage() {
           <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14 lg:py-16 grid sm:grid-cols-12 gap-6 sm:gap-10 items-center">
             <div className="sm:col-span-5 lg:col-span-5 flex justify-center sm:justify-start">
               <img
-                src="/images/badges/lawn-gator.png"
-                alt="Clear Gator lawn care mascot"
+                src={service.mascot.badge}
+                alt={`Clear Gator ${service.name.toLowerCase()} mascot`}
                 className="w-56 sm:w-full max-w-[22rem] drop-shadow-[0_22px_36px_rgba(0,0,0,0.6)]"
               />
             </div>
             <div className="sm:col-span-7 lg:col-span-7 text-center sm:text-left">
               <div className="font-mono text-[11px] font-black tracking-[0.3em] uppercase text-gator-orange mb-3">
-                Meet Your Yard Boss
+                {service.mascot.eyebrow}
               </div>
               <h2 className="font-display font-black uppercase text-[clamp(2rem,5.5vw,3.5rem)] leading-[0.92] tracking-[-0.03em] text-shell text-balance mb-4">
-                Cuts clean.<br />
-                <span className="text-gator-orange">Leaves cleaner.</span>
+                {service.mascot.line1}<br />
+                <span className="text-gator-orange">{service.mascot.line2}</span>
               </h2>
               <p className="text-shell/75 text-base sm:text-lg leading-[1.6] max-w-xl sm:max-w-none mx-auto sm:mx-0 mb-5">
-                Same crew, same day, every week. Edged every visit, blow-off on every walk — nothing left behind when we drive off.
+                {service.mascot.body}
               </p>
               <ul className="flex flex-wrap justify-center sm:justify-start gap-x-5 gap-y-2 font-mono text-[11px] sm:text-xs font-black uppercase tracking-[0.22em] text-shell/70">
-                <li className="flex items-center gap-1.5"><span className="w-1.5 h-1.5 rounded-full bg-gator-orange" aria-hidden="true" /> Flat weekly rate</li>
-                <li className="flex items-center gap-1.5"><span className="w-1.5 h-1.5 rounded-full bg-gator-orange" aria-hidden="true" /> Same day each week</li>
-                <li className="flex items-center gap-1.5"><span className="w-1.5 h-1.5 rounded-full bg-gator-orange" aria-hidden="true" /> No upcharges per visit</li>
+                {service.mascot.pills.map((p) => (
+                  <li key={p} className="flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-gator-orange" aria-hidden="true" />
+                    {p}
+                  </li>
+                ))}
               </ul>
             </div>
           </div>

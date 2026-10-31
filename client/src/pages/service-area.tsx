@@ -75,13 +75,17 @@ export default function ServiceAreaPage() {
               </span>
             </div>
 
-            <h1 className="font-display font-black uppercase text-white leading-[0.9] tracking-[-0.035em] text-balance mb-5 text-[clamp(2.25rem,8vw,5.5rem)]">
-              {city.heroHeadline.line1}<br />
-              <span className="text-gator-orange">{city.heroHeadline.line2}</span>
+            {/* H1 carries the city + region keyword while keeping the display
+                slogan visually dominant. */}
+            <h1 className="font-display font-black uppercase text-white leading-[0.9] tracking-[-0.035em] text-balance mb-5">
+              <span className="block font-mono text-[11px] sm:text-xs font-black tracking-[0.28em] uppercase text-gator-orange/90 mb-3">
+                Clear Gator Services in {city.name}, {city.state}
+              </span>
+              <span className="block text-[clamp(2.25rem,8vw,5.5rem)]">
+                {city.heroHeadline.line1}<br />
+                <span className="text-gator-orange">{city.heroHeadline.line2}</span>
+              </span>
             </h1>
-            <div className="font-mono text-[11px] sm:text-xs font-black tracking-[0.28em] uppercase text-white/60 mb-5">
-              {city.name}, {city.state}
-            </div>
 
             <p className="text-base sm:text-xl text-white/85 leading-[1.5] max-w-2xl mb-6 text-pretty">
               {city.lede}

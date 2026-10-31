@@ -12,6 +12,7 @@ import PrivacyPage from "@/pages/privacy";
 import TermsPage from "@/pages/terms";
 import ServicePage from "@/pages/service";
 import ServiceAreaPage from "@/pages/service-area";
+import ServiceInCityPage from "@/pages/service-in-city";
 import LpPage from "@/pages/lp";
 import BookingNotifications from "@/components/booking-notifications";
 import SupportBot from "@/components/support-bot";
@@ -29,6 +30,7 @@ function Router() {
       <Route path="/admin" component={AdminPage} />
       <Route path="/privacy" component={PrivacyPage} />
       <Route path="/terms" component={TermsPage} />
+      <Route path="/services/:slug/:cityPrefixed" component={ServiceInCityPage} />
       <Route path="/services/:slug" component={ServicePage} />
       <Route path="/service-areas/:slug" component={ServiceAreaPage} />
       <Route path="/lp/:slug" component={LpPage} />
