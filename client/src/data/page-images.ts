@@ -15,7 +15,7 @@ export type PageImage = {
 
 export const SERVICE_IMAGES: Record<string, PageImage> = {
   "interior-demolition": { hero: "/images/stock/kitchen-reno.jpg" },
-  "outdoor-demolition":  { hero: "/images/stock/pool-backyard.jpg" },
+  "outdoor-demolition":  { hero: "/images/stock/shed-teardown.jpg" },
   hauling:               { hero: "/images/stock/garage-clean.jpg" },
   "site-cleanup":        { hero: "/images/stock/clean-home.jpg" },
   landscaping:           { hero: "/images/stock/lawn-mow.jpg" },
@@ -27,7 +27,7 @@ export const CITY_IMAGES: Record<string, PageImage> = {
   "fort-myers":     { hero: "/images/stock/home-street.jpg" },
   naples:           { hero: "/images/stock/home-suburban.jpg" },
   "bonita-springs": { hero: "/images/stock/lawn-mow2.jpg" },
-  "punta-gorda":    { hero: "/images/stock/pool-backyard.jpg" },
+  "punta-gorda":    { hero: "/images/stock/backyard-fence.jpg" },
   "sanibel-island": { hero: "/images/stock/backyard-fence.jpg" },
   "babcock-ranch":  { hero: "/images/stock/home-driveway.jpg" },
   "st-james-city":  { hero: "/images/stock/florida-home-tall.jpg" },

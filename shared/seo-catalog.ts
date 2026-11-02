@@ -20,7 +20,7 @@ export const SERVICE_HERO: Record<string, HeroImage> = {
   "hauling":              { path: "/images/stock/garage-clean.jpg", alt: "Junk hauling crew loading debris into a dump trailer at a Southwest Florida home" },
   "site-cleanup":         { path: "/images/stock/clean-home.jpg",   alt: "Post-renovation site cleanup crew clearing debris from a residential driveway" },
   "interior-demolition":  { path: "/images/stock/kitchen-reno.jpg", alt: "Interior demolition — sledgehammer breaking down drywall during a home renovation" },
-  "outdoor-demolition":   { path: "/images/stock/pool-backyard.jpg", alt: "Outdoor demolition — backyard structure teardown at a Southwest Florida home" },
+  "outdoor-demolition":   { path: "/images/stock/shed-teardown.jpg", alt: "Outdoor demolition — backyard shed teardown at a Southwest Florida home" },
   "landscaping":          { path: "/images/stock/lawn-mow.jpg",     alt: "Lawn care crew mowing a manicured waterfront lawn with palm trees" },
   "pressure-washing":     { path: "/images/stock/pressure-wash.jpg", alt: "Pressure washing a paver driveway at a Southwest Florida home" },
 };
@@ -30,7 +30,7 @@ export const CITY_HERO: Record<string, HeroImage> = {
   "fort-myers":     { path: "/images/stock/home-street.jpg",        alt: "Fort Myers, FL residential street" },
   "naples":         { path: "/images/stock/home-suburban.jpg",      alt: "Naples, FL residential neighborhood" },
   "bonita-springs": { path: "/images/stock/lawn-mow2.jpg",          alt: "Bonita Springs, FL yard being mowed" },
-  "punta-gorda":    { path: "/images/stock/pool-backyard.jpg",      alt: "Punta Gorda, FL backyard pool deck" },
+  "punta-gorda":    { path: "/images/stock/backyard-fence.jpg",     alt: "Punta Gorda, FL fenced backyard" },
   "sanibel-island": { path: "/images/stock/backyard-fence.jpg",     alt: "Sanibel Island, FL fenced residential property" },
   "babcock-ranch":  { path: "/images/stock/home-driveway.jpg",      alt: "Babcock Ranch, FL residential driveway" },
   "st-james-city":  { path: "/images/stock/florida-home-tall.jpg",  alt: "St. James City on Pine Island, FL residential home" },
