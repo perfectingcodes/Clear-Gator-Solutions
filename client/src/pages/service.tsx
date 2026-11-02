@@ -94,11 +94,22 @@ export default function ServicePage() {
               </span>
             </h1>
 
-            {/* Action subhead — direct ask */}
-            <p className="text-lg sm:text-xl lg:text-2xl text-shell font-display font-black uppercase tracking-[-0.015em] leading-[1.15] max-w-xl mb-4 text-balance">
-              Text a photo.{" "}
-              <span className="text-gator-orange">Flat quote back inside the hour.</span>
-            </p>
+            {/* Service-specific action callout — doubles as a secondary CTA */}
+            <Link href="/estimate">
+              <div className="group relative inline-flex max-w-xl mb-6 items-center gap-4 pl-4 pr-5 py-3.5 rounded-lg border-l-4 border-gator-orange bg-gradient-to-r from-gator-orange/15 via-gator-orange/[0.07] to-transparent hover:from-gator-orange/25 hover:via-gator-orange/[0.12] transition-all cursor-pointer backdrop-blur-sm">
+                <div className="flex-1 min-w-0">
+                  <div className="font-mono text-[10px] sm:text-[11px] font-black tracking-[0.22em] uppercase text-gator-orange/90 mb-1">
+                    {service.heroCta.prompt}
+                  </div>
+                  <div className="font-display font-black uppercase text-base sm:text-lg leading-[1.2] tracking-tight text-shell">
+                    {service.heroCta.action}
+                  </div>
+                </div>
+                <div className="flex-shrink-0 w-10 h-10 rounded-md bg-gator-orange text-asphalt flex items-center justify-center group-hover:translate-x-1 transition-transform shadow-[0_8px_20px_-6px_rgba(198,244,50,0.6)]">
+                  <ArrowRight className="w-5 h-5" strokeWidth={2.8} />
+                </div>
+              </div>
+            </Link>
 
             <p className="text-base sm:text-lg text-white/80 leading-[1.5] max-w-xl mb-7 text-pretty">
               {service.lede}

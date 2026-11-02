@@ -17,6 +17,13 @@ export type ServiceContent = {
   category: string;
   /** Two-line hero headline — line2 is lime-accented. Falls back to a split name. */
   heroHeadline: { line1: string; line2: string };
+  /**
+   * Service-specific action CTA shown below the hero slogan. prompt sets up the
+   * trigger ("Snap a photo of the pile."), action is the lime-accented promise
+   * ("We're there same day."). Rendered as a clickable callout linking to the
+   * estimate funnel.
+   */
+  heroCta: { prompt: string; action: string };
   /** Optional mascot feature band on the service page. */
   mascot?: {
     badge: string;
@@ -57,6 +64,7 @@ export const SERVICES: ServiceContent[] = [
     name: "Junk Hauling",
     category: "Junk · Debris · Bulk",
     heroHeadline: { line1: "Point. Load.", line2: "Gone today." },
+    heroCta: { prompt: "Snap a photo of the pile.", action: "Flat quote back, same-day pickup." },
     mascot: {
       badge: "/images/badges/hauling-gator.png",
       eyebrow: "Meet Your Junk Removal Pro",
@@ -120,6 +128,7 @@ export const SERVICES: ServiceContent[] = [
     name: "Site Cleanup",
     category: "Post-Reno · Move-In Ready",
     heroHeadline: { line1: "Dust everywhere?", line2: "Not for long." },
+    heroCta: { prompt: "Reno just wrapped.", action: "We'll have it move-in clean by Friday." },
     icon: "HardHat",
     accent: "green",
     title: "Post-Renovation & Move-In Cleanup for SW Florida Homes",
@@ -176,6 +185,7 @@ export const SERVICES: ServiceContent[] = [
     name: "Interior Demolition",
     category: "Kitchen · Bath · Floors",
     heroHeadline: { line1: "Tear it out.", line2: "Haul it off." },
+    heroCta: { prompt: "Kitchen or bath coming out?", action: "Tear-out done in a weekend, dust contained." },
     icon: "Hammer",
     accent: "orange",
     title: "Interior Demolition for SW Florida Homes — Kitchen, Bath, Floors",
@@ -237,6 +247,7 @@ export const SERVICES: ServiceContent[] = [
     name: "Outdoor Demolition",
     category: "Pools · Sheds · Fences",
     heroHeadline: { line1: "Yard eyesore?", line2: "Gone this week." },
+    heroCta: { prompt: "Shed, pool, or deck going?", action: "We take it out and haul it off." },
     icon: "Construction",
     accent: "orange",
     title: "Outdoor Demolition for SW Florida Homes — Pools, Sheds, Fences",
@@ -298,6 +309,7 @@ export const SERVICES: ServiceContent[] = [
     name: "Lawn Care",
     category: "Mow · Edge · Trim",
     heroHeadline: { line1: "Cut clean.", line2: "Every week." },
+    heroCta: { prompt: "Lock in your mow day.", action: "Flat weekly rate, same crew every visit." },
     mascot: {
       badge: "/images/badges/lawn-gator.png",
       eyebrow: "Meet Your Yard Boss",
@@ -367,6 +379,7 @@ export const SERVICES: ServiceContent[] = [
     name: "Pressure Washing",
     category: "House · Driveway · Lanai",
     heroHeadline: { line1: "Grime off.", line2: "Curb appeal back." },
+    heroCta: { prompt: "House, roof, or driveway dull?", action: "One half-day wash, plant-safe, no stripes." },
     mascot: {
       badge: "/images/badges/pressure-gator.png",
       eyebrow: "Meet Your Pressure Washer",
