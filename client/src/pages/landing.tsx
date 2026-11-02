@@ -122,52 +122,59 @@ export default function LandingPage() {
         <div className="absolute inset-0 bg-gradient-to-t from-asphalt via-asphalt/40 to-transparent" aria-hidden="true" />
 
         <div className="relative z-10 max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 pt-16 sm:pt-24 lg:pt-32 pb-20 sm:pb-28 lg:pb-36">
-          {/* Service eyebrow pill */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 backdrop-blur-sm mb-6 sm:mb-8">
+          {/* Urgency eyebrow — leads with the ask */}
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gator-orange/15 border border-gator-orange/40 backdrop-blur-sm mb-6 sm:mb-8 shadow-[0_6px_20px_-6px_rgba(198,244,50,0.35)]">
             <span className="w-1.5 h-1.5 rounded-full bg-gator-orange animate-pulse" aria-hidden="true" />
-            <span className="font-mono text-[10px] sm:text-[11px] font-semibold tracking-[0.22em] uppercase text-white/90">
-              Junk Hauling · Site Cleanup · Demolition
+            <span className="font-mono text-[10px] sm:text-[11px] font-black tracking-[0.22em] uppercase text-gator-orange">
+              Same-day pickup · 24h written estimate
             </span>
           </div>
 
           {/* Massive headline */}
-          <h1 className="font-display font-black uppercase text-white leading-[0.9] tracking-[-0.035em] text-balance mb-6 sm:mb-8 max-w-5xl text-[clamp(2.5rem,8vw,6.5rem)]">
+          <h1 className="font-display font-black uppercase text-white leading-[0.9] tracking-[-0.035em] text-balance mb-5 sm:mb-6 max-w-5xl text-[clamp(2.5rem,8vw,6.5rem)]">
             Point. Load.<br />
             <span className="text-gator-orange">Gone today.</span>
           </h1>
 
-          {/* Lede */}
-          <p className="text-base sm:text-xl text-white/80 leading-[1.5] max-w-2xl mb-8 sm:mb-10 text-pretty">
-            Same-day junk hauling and post-renovation cleanup for SW Florida homes — plus demolition, lawn care, and pressure washing when you need the whole crew.
+          {/* Action subhead — direct, imperative */}
+          <p className="text-xl sm:text-2xl lg:text-3xl text-shell font-display font-black uppercase tracking-[-0.02em] leading-[1.1] max-w-3xl mb-5 sm:mb-6 text-balance">
+            Text us a photo.{" "}
+            <span className="text-gator-orange">Flat quote back inside the hour.</span>
           </p>
 
-          {/* Two CTAs */}
-          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-10 sm:mb-14 max-w-xl">
+          {/* Lede — short, specific */}
+          <p className="text-base sm:text-xl text-white/80 leading-[1.5] max-w-2xl mb-7 sm:mb-9 text-pretty">
+            Junk hauling, post-reno cleanup, demolition, lawn care, pressure washing — one SW Florida crew, flat-rate pricing, insured.
+          </p>
+
+          {/* Primary + secondary CTA */}
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-8 sm:mb-10 max-w-2xl">
+            <a href="tel:+12392343061" className="flex-1 sm:flex-initial">
+              <button
+                className="w-full h-16 sm:h-[64px] px-7 rounded-md bg-gator-orange hover:bg-gator-orange-dark text-asphalt font-black uppercase text-base tracking-[0.08em] inline-flex items-center justify-center gap-2.5 transition-all shadow-[0_12px_36px_-8px_rgba(198,244,50,0.55)]"
+                data-testid="hero-cta-call"
+              >
+                <PhoneCall className="w-5 h-5" strokeWidth={2.6} />
+                (239) 234-3061
+              </button>
+            </a>
             <Link href="/estimate" className="flex-1 sm:flex-initial">
               <button
-                className="w-full h-14 px-7 rounded-md bg-gator-orange hover:bg-gator-orange-dark text-asphalt font-black uppercase text-sm tracking-[0.1em] inline-flex items-center justify-center gap-2 transition-all shadow-lg shadow-black/30"
+                className="w-full h-16 sm:h-[64px] px-7 rounded-md border-2 border-white/40 hover:border-gator-orange hover:bg-white/5 text-white hover:text-gator-orange font-black uppercase text-sm tracking-[0.1em] inline-flex items-center justify-center gap-2 transition-all"
                 data-testid="hero-cta-estimate"
               >
                 Get a Free Estimate
                 <ArrowRight className="w-4 h-4" strokeWidth={2.6} />
               </button>
             </Link>
-            <a href="#services" className="flex-1 sm:flex-initial">
-              <button
-                className="w-full h-14 px-7 rounded-md border-2 border-white/30 hover:border-white hover:bg-white/5 text-white font-black uppercase text-sm tracking-[0.1em] inline-flex items-center justify-center gap-2 transition-all"
-                data-testid="hero-cta-services"
-              >
-                Our Services
-              </button>
-            </a>
           </div>
 
-          {/* Trust pill strip */}
+          {/* Trust pill strip — specific, numeric where possible */}
           <div className="flex flex-wrap items-center gap-x-3 gap-y-3 sm:gap-x-4">
             {[
-              { icon: Clock, label: "On Time, On Budget" },
-              { icon: Shield, label: "Licensed & Insured" },
-              { icon: CheckCircle2, label: "Serving SW Florida" },
+              { icon: Clock, label: "24h reply, guaranteed" },
+              { icon: Shield, label: "Licensed & insured" },
+              { icon: CheckCircle2, label: "Flat-rate, no hourly meter" },
             ].map(({ icon: Icon, label }) => (
               <div
                 key={label}

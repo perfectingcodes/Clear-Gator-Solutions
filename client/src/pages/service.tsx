@@ -84,7 +84,7 @@ export default function ServicePage() {
             {/* H1 carries the SEO target keyword ("Junk Hauling in Southwest Florida") so
                 search engines index the service+region phrase, while the big
                 display slogan stays visually dominant inside the same H1. */}
-            <h1 className="font-display font-black uppercase text-white leading-[0.9] tracking-[-0.035em] text-balance mb-5">
+            <h1 className="font-display font-black uppercase text-white leading-[0.9] tracking-[-0.035em] text-balance mb-4">
               <span className="block font-mono text-[11px] sm:text-xs font-black tracking-[0.28em] uppercase text-gator-orange/90 mb-3">
                 {service.name} in Southwest Florida
               </span>
@@ -94,7 +94,13 @@ export default function ServicePage() {
               </span>
             </h1>
 
-            <p className="text-base sm:text-lg text-white/85 leading-[1.5] max-w-xl mb-7 text-pretty">
+            {/* Action subhead — direct ask */}
+            <p className="text-lg sm:text-xl lg:text-2xl text-shell font-display font-black uppercase tracking-[-0.015em] leading-[1.15] max-w-xl mb-4 text-balance">
+              Text a photo.{" "}
+              <span className="text-gator-orange">Flat quote back inside the hour.</span>
+            </p>
+
+            <p className="text-base sm:text-lg text-white/80 leading-[1.5] max-w-xl mb-7 text-pretty">
               {service.lede}
             </p>
 
